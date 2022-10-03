@@ -17,7 +17,7 @@ class CreateTrainersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('address');
+            $table->text('address');
             $table->string('training_type');
             $table->timestamps();
         });

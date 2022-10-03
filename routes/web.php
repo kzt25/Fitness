@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\User\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
 
     Route::resource('users', UserController::class);
+
+    // Member
+     Route::resource('member',MemberController::class);
+     Route::get('/member/{id}/delete',[MemberController::class,'destroy']);
+     Route::get('/member/datatable/ssd', [MemberController::class, 'ssd']);
 });
