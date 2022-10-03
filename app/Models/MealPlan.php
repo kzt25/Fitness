@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MealPlan extends Model
 {
     use HasFactory;
+
+    public function meal()
+    {
+        return $this->belongsTo(Meal::class, 'meal_id', 'id');
+    }
 }
