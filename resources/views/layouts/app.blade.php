@@ -35,7 +35,7 @@
     <div id="app">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+            {{-- <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div> --}}
         </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
@@ -49,7 +49,7 @@
                             <i class='bx bx-grid-alt nav_icon'></i>
                             <span class="nav_name">Dashboard</span>
                         </a>
-                        <a href="#" class="nav_link">
+                        <a href="" class="nav_link">
                             <i class='bx bx-user nav_icon'></i>
                             <span class="nav_name">Users</span>
                         </a>
@@ -95,6 +95,8 @@
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
 
     <script src="{{ asset('js/sidebar.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
