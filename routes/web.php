@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\User\UserController;
 
 /*
@@ -24,11 +25,12 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function() {
-
     Route::get('/admin', [AdminController::class, 'index']);
     Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
 
     Route::resource('users', UserController::class);
+    Route::resource('trainer', TrainerController::class);
+    Route::get('trainer/datatable/ssd', [TrainerController::class, 'ssd']);
 
     // Member
      Route::resource('member',MemberController::class);
