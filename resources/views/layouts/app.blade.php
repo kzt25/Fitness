@@ -78,7 +78,7 @@
                             <span class="nav_name">Messages</span>
                         </a>
                         <a href="{{route('member.index')}}" class="nav_link active">
-                            <i class='bx bx-grid-alt nav_icon'></i>
+                            <i class="fa-solid fa-user-group"></i>
                             <span class="nav_name">Member</span>
                         </a>
 
