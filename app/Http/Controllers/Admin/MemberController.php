@@ -32,7 +32,7 @@ class MemberController extends Controller
             $edit_icon = '<a href=" ' . route('member.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
                         <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
                     </a>';
-                        $delete_icon = '<a href=" ' . route('member.delete', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
+            $delete_icon = '<a href=" ' . route('member.destroy', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
                         <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
                     </a>';
 

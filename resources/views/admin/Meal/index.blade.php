@@ -56,9 +56,9 @@
 
 @push('scripts')
     <script>
-        $(function() {
+       $(document).ready(function () {
             var i = 1;
-            $('.Datatable').DataTable({
+            var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -88,6 +88,31 @@
                     }
                 ]
             });
+
+
+            $(document).on('click','.delete', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/meal/${id}/delete`
+                            }).done(function(res) {
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+                })
 
             const Toast = Swal.mixin({
                 toast: true,

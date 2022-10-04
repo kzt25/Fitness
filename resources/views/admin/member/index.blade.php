@@ -25,6 +25,14 @@
 @endsection
 
 @section('content')
+    {{-- @if (Session::has('success'))
+        <script>
+    Toast.fire({
+        icon: 'success',
+        title: '{{ Session::get('success') }}'
+    })
+        </script>
+    @endif --}}
 <div class="col-md-11 mx-auto">
     <div class="col-12">
         <h2 class="text-center pt-3 pb-2">All Members' Types</h2>
@@ -43,9 +51,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbodpy>
+                <tbody>
 
-                </tbodpy>
+                </tbody>
         </table>
     </div>
 </div>
@@ -86,22 +94,30 @@
                 ]
             });
 
-            // $(document).on('click','.delete', function (e) {
-            // e.preventDefault();
-            //     var id=$(this).data('id');
-            //     $.ajaxSetup({
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //             }
-            //             });
-            //     $.ajax({
-            //         url: `/member/${id}/delete`,
-            //         type:`GET`,
-            //         success:function(){
-            //             table.ajax.reload(null, false);
-            //         }
-            //     })
-            // })
+            $(document).on('click','.delete', function (e) {
+
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/member/${id}/delete`
+                            }).done(function(res) {
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+            })
 
             const Toast = Swal.mixin({
                 toast: true,
