@@ -15,7 +15,6 @@ class CreateMealPlansTable extends Migration
     {
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->id();
-            $table->integer('meal_id');
             $table->integer('member_id');
             $table->string('meal_plan_type');
             $table->timestamps();

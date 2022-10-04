@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MealController;
-use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
+use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\User\UserController;
 
 /*
@@ -33,8 +34,16 @@ Route::middleware('auth')->group(function() {
     Route::resource('trainer', TrainerController::class);
     Route::get('trainer/datatable/ssd', [TrainerController::class, 'ssd']);
 
+    // Meal
+
+    Route::resource('mealplan', MealPlanController::class);
+    Route::get('getmealplan', [MealPlanController::class, 'getmealplan'])->name('getmealplan');
+
     Route::resource('meal', MealController::class);
     Route::get('getmeal', [MealController::class, 'getMeal'])->name('getmeal');
+
+
+
     // Member
      Route::resource('member',MemberController::class);
      Route::get('/member/{id}/delete',[MemberController::class,'destroy']);
