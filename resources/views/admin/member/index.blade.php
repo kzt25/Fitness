@@ -43,9 +43,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbodpy>
 
-                </tbody>
+                </tbodpy>
         </table>
     </div>
 </div>
@@ -54,8 +54,8 @@
 @push('scripts')
     <script>
 
-            $(function() {
-                var i = 1;
+        $(document).ready(function () {
+            var i =1 ;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -113,13 +113,14 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-            });
+            })
+
             @if (Session::has('success'))
                 Toast.fire({
                     icon: 'success',
                     title: '{{ Session::get('success') }}'
                 })
             @endif
-        });
+        })
     </script>
 @endpush
