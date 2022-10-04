@@ -26,8 +26,11 @@ class MemberController extends Controller
         $members = Member::query();
         return Datatables::of($members)
                ->addColumn('action',function($member){
-                return '<a class="btn btn-success btn-sm text-white edit" data-id='.$member->id.' onclick="return confirm(`Are you sure you want to delete this ?`)">Edit</a>
-                        <a class="btn btn-danger btn-sm text-white delete" data-id='.$member->id.' onclick="return confirm(`Are you sure you want to delete this ?`)">Delete</a>';
+                return '
+                <a href=" ' . route('member.edit', $member->id) . ' " class="text-success mx-1 " title="edit">
+                <i class="fa-solid fa-edit fa-xl" data-id="' . $member->id . '"></i>
+                </a>
+                <i class="fa-solid fa-trash fa-xl text-danger mx-1 delete" data-id='.$member->id. '"></i>';
                })
                ->rawColumns(['action'])
                ->make(true);
@@ -47,7 +50,7 @@ class MemberController extends Controller
        $member_store->member_type_level=$request->member_type_level;
        $member_store->price=$request->price;
        $member_store->save();
-       return redirect()->back();
+       return redirect()->route('member.index')->with('success', 'New Member Type is created successfully!');
     }
 
     /**
@@ -64,13 +67,21 @@ class MemberController extends Controller
 
     public function edit($id)
     {
-        //
+        $member_edit = Member::findOrFail($id);
+        return view('admin.member.edit',compact('member_edit'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $member_update=Member::findOrFail($id);
+        $member_update->user_id=$request->user_id;
+        $member_update->member_type=$request->member_type;
+        $member_update->member_type_level=$request->member_type_level;
+        $member_update->price=$request->price;
+
+        $member_update->update();
+        return redirect()->route('member.index')->with('success', 'Member Type is updated successfully!');
     }
 
 
