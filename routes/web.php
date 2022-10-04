@@ -34,18 +34,19 @@ Route::middleware('auth')->group(function() {
     Route::resource('trainer', TrainerController::class);
     Route::get('trainer/datatable/ssd', [TrainerController::class, 'ssd']);
 
-    // Meal
+    // Meal Plan
 
     Route::resource('mealplan', MealPlanController::class);
     Route::get('getmealplan', [MealPlanController::class, 'getmealplan'])->name('getmealplan');
     Route::get('mealplan/{id}/delete',[MealPlanController::class, 'destroy'])->name('mealplan.delete');
-    Route::resource('meal', MealController::class);
     Route::get('getmeal', [MealController::class, 'getMeal'])->name('getmeal');
 
-
+    // Meal
+    Route::resource('meal', MealController::class);
+    Route::get('meal/{id}/delete',[MealController::class, 'destroy'])->name('meal.delete');
 
     // Member
      Route::resource('member',MemberController::class);
-     Route::get('/member/{id}/delete',[MemberController::class,'destroy']);
+     Route::get('/member/{id}/delete',[MemberController::class,'destroy'])->name('member.delete');
      Route::get('/member/datatable/ssd', [MemberController::class, 'ssd']);
 });
