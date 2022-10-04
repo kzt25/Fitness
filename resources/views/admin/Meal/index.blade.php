@@ -27,7 +27,7 @@
 @section('content')
     <div class="col-md-11 mx-auto">
         <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">Meal Plan</h2>
+            <h2 class="text-center pt-3 pb-2">Meal</h2>
             <a href="{{ route('meal.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
                     class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Meal </a>
         </div>
@@ -57,14 +57,18 @@
 @push('scripts')
     <script>
         $(function() {
+            var i = 1;
             $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 ajax: '/getmeal',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'name',

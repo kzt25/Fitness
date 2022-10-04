@@ -55,13 +55,17 @@
     <script>
 
             $(function() {
+                var i = 1;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/member/datatable/ssd',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'member_type',

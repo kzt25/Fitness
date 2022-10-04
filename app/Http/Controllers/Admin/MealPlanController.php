@@ -37,6 +37,7 @@ class MealPlanController extends Controller
 
                 return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';
             })
+            // ->removeColumn('id')
             ->make(true);
     }
     /**

@@ -27,11 +27,19 @@
 
                 <div class="float-end mt-4">
                     <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="submit" class="btn btn-primary" onclick="submitForm(this);">Confirm</button>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        function submitForm(btn) {
+            // disable the button
+            btn.disabled = true;
+            // submit the form
+            btn.form.submit();
+        }
+    </script>
 @endsection
 
 

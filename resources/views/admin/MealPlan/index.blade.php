@@ -56,14 +56,18 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
+            var i = 1;
             $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 ajax: '/getmealplan',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'meal_plan_type',
