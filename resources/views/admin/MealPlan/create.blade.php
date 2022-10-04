@@ -10,7 +10,7 @@
 
                     <select class="form-control " name="member_id" id="member_id">
                         @foreach($member as $memb)
-                        <option value="{{$memb->id}}">{{$memb->member_type}}</option>
+                        <option value="{{$memb->id}}">{{$memb->member_type}} - {{$memb->member_type_level}}</option>
                         @endforeach
                     </select>
 

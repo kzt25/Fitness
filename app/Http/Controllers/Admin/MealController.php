@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 //use DataTables;
 use App\Models\Meal;
+use App\Models\MealPlan;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MealRequest;
 use Illuminate\Support\Facades\Validator;
 
 class MealController extends Controller
@@ -19,7 +21,7 @@ class MealController extends Controller
     public function index()
     {
         //
-        return view('admin.Meal.meal');
+        return view('admin.Meal.index');
     }
 
     /**
@@ -29,17 +31,26 @@ class MealController extends Controller
      */
     public function create()
     {
-        //
+        $meal_plan_type = MealPlan::All();
+        // dd($member);
+        return view('admin.Meal.create',compact('meal_plan_type'));
     }
     public function getMeal() {
         $meal = Meal::query();
-        // return Datatables::of($meal)
-        return DataTables::of($meal)
-        ->addColumn('Actions', function($data) {
-            return '<button type="button" class="btn btn-success btn-sm" id="getEditArticleData" data-id="'.$data->id.'">Edit</button>
-                <button type="button" data-id="'.$data->id.'"  class="btn btn-danger btn-sm" id="getDeleteId">Delete</button>';
+        return Datatables::of($meal)
+        ->addColumn('action', function ($each) {
+            $edit_icon = '';
+            $delete_icon = '';
+
+            $edit_icon = '<a href=" ' . route('meal.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
+            <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
+        </a>';
+            $delete_icon = '<a href=" ' . route('meal.destroy', $each->id) . ' " class="text-danger mx-1 " title="delete">
+            <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
+        </a>';
+
+            return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';
         })
-        ->rawColumns(['Actions'])
         ->make(true);
             //    ->make(true);
     }
@@ -49,21 +60,14 @@ class MealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,  Meal $meal)
+    public function store(MealRequest $request)
     {
-        //
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'calories' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()->all()]);
-        }
-
-        $meal->storeData($request->all());
-
-        return response()->json(['success'=>'Meal added successfully']);
+        $meal_create = new Meal();
+        $meal_create->name = $request->name;
+        $meal_create->calories = $request->calories;
+        $meal_create->meal_plan_id = $request->meal_plan_id;
+        $meal_create->save();
+        return redirect()->route('meal.index')->with('success', 'New Meal is created successfully!');
     }
 
     /**
@@ -86,6 +90,9 @@ class MealController extends Controller
     public function edit($id)
     {
         //
+        $meal_plan_type = MealPlan::All();
+        $meal = Meal::findOrFail($id);
+        return view('admin.Meal.edit', compact('meal','meal_plan_type'));
     }
 
     /**
@@ -98,6 +105,12 @@ class MealController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $meal_update = Meal::findOrFail($id);
+        $meal_update->name = $request->name;
+        $meal_update->calories = $request->calories;
+        $meal_update->meal_plan_id = $request->meal_plan_id;
+        $meal_update->update();
+        return redirect()->route('meal.index')->with('success', 'Meal is updated successfully!');
     }
 
     /**
