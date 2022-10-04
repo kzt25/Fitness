@@ -13,4 +13,9 @@ class MealPlan extends Model
     {
         return $this->belongsTo(Meal::class, 'meal_id', 'id');
     }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
 }
