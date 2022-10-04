@@ -36,7 +36,7 @@ class MealController extends Controller
         return view('admin.Meal.create',compact('meal_plan_type'));
     }
     public function getMeal() {
-        $meal = Meal::query();
+        $meal = Meal::query()->with(['meal_plans']);
         return Datatables::of($meal)
         ->addColumn('action', function ($each) {
             $edit_icon = '';

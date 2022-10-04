@@ -75,8 +75,8 @@
                         name: 'calories'
                     },
                     {
-                        data: 'meal_plan_id',
-                        name: 'meal_plan_id'
+                        data: 'meal_plans.meal_plan_type',
+                        name: 'meal_plans.meal_plan_type'
                     },
                     {
                         data: 'action',
