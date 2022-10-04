@@ -16,13 +16,13 @@
                 </div>
 
                 <div class="mt-4">
-                    <label for="name">Meal Plan Type</label>
+                    <label for="name">Meal Name</label>
                     <input type="text" class="form-control" name="name">
                 </div>
 
                 <div class="mt-4">
                     <label for="calories">Calories</label>
-                    <input type="text" class="form-control" name="calories">
+                    <input type="number" class="form-control" name="calories">
                 </div>
 
                 <div class="float-end mt-4">
