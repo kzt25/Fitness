@@ -39,6 +39,7 @@
                         <th>No</th>
                         <th>Member Type</th>
                         <th>Level</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -71,12 +72,16 @@
                         name: 'member_type_level'
                     },
                     {
+                        data: 'price',
+                        name: 'price'
+                    },
+                    {
                         data: 'action',
                         name: 'action'
                     },
                 ]
             });
-            
+
             $(document).on('click','.delete', function (e) {
             e.preventDefault();
                 var id=$(this).data('id');

@@ -77,7 +77,10 @@
                             <i class='bx bx-message-square-detail nav_icon'></i>
                             <span class="nav_name">Messages</span>
                         </a>
-
+                        <a href="{{route('member.index')}}" class="nav_link active">
+                            <i class='bx bx-grid-alt nav_icon'></i>
+                            <span class="nav_name">Member</span>
+                        </a>
 
                     </div>
                 </div>
