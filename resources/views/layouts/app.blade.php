@@ -135,7 +135,14 @@
     @stack('scripts')
 
     <script>
+
        $(document).ready(function() {
+        
+        $(document).on('submit', 'form', function() {
+            console.log('ghghhj');
+            $('button').attr('disabled', 'disabled');
+        });
+
             let token = document.head.querySelector('meta[name="csrf-token"]');
             if (token) {
                 $.ajaxSetup({

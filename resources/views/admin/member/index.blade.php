@@ -54,7 +54,7 @@
 @push('scripts')
     <script>
 
-            $(function() {
+        $(document).ready(function () {
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -109,13 +109,14 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-            });
+            })
+
             @if (Session::has('success'))
                 Toast.fire({
                     icon: 'success',
                     title: '{{ Session::get('success') }}'
                 })
             @endif
-        });
+        })
     </script>
 @endpush
