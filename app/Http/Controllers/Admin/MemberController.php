@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use GrahamCampbell\ResultType\Success;
+use App\Http\Requests\CreateMemberRequest;
 
 class MemberController extends Controller
 {
@@ -32,6 +33,7 @@ class MemberController extends Controller
                 </a>
                 <i class="fa-solid fa-trash fa-xl text-danger mx-1 delete" data-id='.$member->id. '"></i>';
                })
+
                ->rawColumns(['action'])
                ->make(true);
     }
@@ -42,7 +44,7 @@ class MemberController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CreateMemberRequest $request)
     {
        $member_store=New Member();
        $member_store->user_id=$request->user_id;
@@ -72,7 +74,7 @@ class MemberController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(CreateMemberRequest $request, $id)
     {
         $member_update=Member::findOrFail($id);
         $member_update->user_id=$request->user_id;
