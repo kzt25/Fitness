@@ -37,7 +37,7 @@
     <div class="col-12">
         <h2 class="text-center pt-3 pb-2">All Members' Types</h2>
         <a href="{{route('member.create')}}" class="create_trainer btn btn-primary my-3 float-end"><i
-                class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create New</a>
+                class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Member Type</a>
     </div>
 
     <div class="col-12 card p-4 mb-5">

@@ -69,23 +69,12 @@ class MealPlanController extends Controller
         return redirect()->route('mealplan.index')->with('success', 'New Meal Plan is created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -94,13 +83,7 @@ class MealPlanController extends Controller
         return view('admin.MealPlan.edit', compact('mealplan','member'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(MealPlanRequest $request, $id)
     {
         //
