@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function() {
 
     Route::resource('mealplan', MealPlanController::class);
     Route::get('getmealplan', [MealPlanController::class, 'getmealplan'])->name('getmealplan');
-
+    Route::get('mealplan/{id}/delete',[MealPlanController::class, 'destroy'])->name('mealplan.delete');
     Route::resource('meal', MealController::class);
     Route::get('getmeal', [MealController::class, 'getMeal'])->name('getmeal');
 
