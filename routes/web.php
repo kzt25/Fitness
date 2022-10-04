@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\User\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('meal', MealController::class);
+    Route::get('getmeal', [MealController::class, 'getMeal'])->name('getmeal');
 });
