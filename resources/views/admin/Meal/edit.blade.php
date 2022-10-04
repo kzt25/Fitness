@@ -23,7 +23,7 @@
 
                 <div class="mt-4">
                     <label for="calories">Calories</label>
-                    <input type="text" class="form-control" name="calories" value={{$meal->calories}}>
+                    <input type="number" class="form-control" name="calories" value={{$meal->calories}}>
                 </div>
 
                 <div class="float-end mt-4">
