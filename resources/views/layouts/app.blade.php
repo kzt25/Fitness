@@ -114,6 +114,7 @@
 
     <!-- Select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
@@ -123,9 +124,23 @@
     @stack('scripts')
 
     <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
+       $(document).ready(function() {
+            let token = document.head.querySelector('meta[name="csrf-token"]');
+            if (token) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': token.content
+                    }
+                });
+            } else {
+                console.error('CSRF TOKEN not found!');
+            }
+            $(document).on('click', '.previousLink', function(e) {
+                e.preventDefault();
+                window.history.back();
+            })
+            $(".ninja-select").select2();
+        })
     </script>
 </body>
 
