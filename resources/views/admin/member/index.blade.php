@@ -110,6 +110,10 @@
                                 method: "GET",
                                 url: `/member/${id}/delete`
                             }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
                                 table.ajax.reload(null, false);
                             })
                         } else {

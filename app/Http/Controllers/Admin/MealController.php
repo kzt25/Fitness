@@ -46,7 +46,7 @@ class MealController extends Controller
             <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
         </a>';
             $delete_icon = '<a href=" ' . route('meal.destroy', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
-            <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
+            <i class="fa-solid fa-trash fa-xl delete-btn" data-id="' . $each->id . '"></i>
         </a>';
 
             return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';

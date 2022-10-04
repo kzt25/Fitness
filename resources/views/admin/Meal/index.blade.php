@@ -150,7 +150,7 @@
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',
-                                    title: 'Deleted'
+                                    title: 'Deleted!'
                                 })
                                 // console.log("deleted");
                                 table.ajax.reload();

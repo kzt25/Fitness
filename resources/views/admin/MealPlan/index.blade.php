@@ -99,6 +99,10 @@
                                 method: "GET",
                                 url: `/mealplan/${id}/delete`
                             }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
                                 table.ajax.reload(null, false);
                             })
                         } else {
