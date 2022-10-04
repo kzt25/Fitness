@@ -18,6 +18,7 @@ class CreateMembersTable extends Migration
             $table->integer('user_id');
             $table->string('member_type');
             $table->string('member_type_level');
+            $table->integer('price')->default(0);
             $table->timestamps();
         });
     }

@@ -11,6 +11,11 @@ class MealPlan extends Model
 
     public function meal()
     {
-        return $this->belongsTo(Meal::class, 'meal_id', 'id');
+        return $this->hasMany(Meal::class);
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
     }
 }
