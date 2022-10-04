@@ -20,9 +20,9 @@
             <label for="price" class="form-label">Price</label>
             <input type="number" class="form-control" id="price" name="price">
         </div>
-        <div class="mt-5">
-        <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <div class="float-end mt-4">
+            <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Confirm</button>
         </div>
     </form>
     </div>

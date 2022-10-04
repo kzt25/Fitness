@@ -85,23 +85,6 @@
                 ]
             });
 
-            // $(document).on('click','.delete', function (e) {
-            // e.preventDefault();
-            //     var id=$(this).data('id');
-            //     $.ajaxSetup({
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //             }
-            //             });
-            //     $.ajax({
-            //         url: `/mealplan/${id}/destroy`,
-            //         type:`GET`,
-            //         success:function(){
-            //             table.ajax.reload(null, false);
-            //         }
-            //     })
-            // })
-
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',

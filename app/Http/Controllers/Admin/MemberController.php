@@ -25,13 +25,19 @@ class MemberController extends Controller
     public function ssd() {
         $members = Member::query();
         return Datatables::of($members)
-               ->addColumn('action',function($member){
-                return '
-                <a href=" ' . route('member.edit', $member->id) . ' " class="text-success mx-1 " title="edit">
-                <i class="fa-solid fa-edit fa-xl" data-id="' . $member->id . '"></i>
-                </a>
-                <i class="fa-solid fa-trash fa-xl text-danger mx-1 delete" data-id='.$member->id. '"></i>';
-               })
+        ->addColumn('action', function ($each) {
+            $edit_icon = '';
+            $delete_icon = '';
+
+            $edit_icon = '<a href=" ' . route('member.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
+                        <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
+                    </a>';
+                        $delete_icon = '<a href=" ' . route('member.delete', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
+                        <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
+                    </a>';
+
+                        return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';
+                    })
                ->rawColumns(['action'])
                ->make(true);
     }

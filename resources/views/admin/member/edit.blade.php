@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h3 class="text-center pt-3 pb-2">Create Member Type</h3>
+<h3 class="text-center pt-3 pb-2">Update Member Type</h3>
 <div class="col-md-8 mx-auto">
     <div class="card shadow p-4">
     <form action="{{route('member.update',$member_edit->id)}}" method="POST" id="edit_member_type">
@@ -20,9 +20,9 @@
             <label for="price" class="form-label">Price</label>
             <input type="number" class="form-control" id="price" name="price" value="{{$member_edit->price}}">
         </div>
-        <div class="mt-4">
-        <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <div class="float-end mt-4">
+            <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </form>
     </div>
