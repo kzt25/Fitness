@@ -4,7 +4,7 @@
 @section('content')
     <h1>I am Admin Home Page</h1>
     <div class="card p-4 mb-5">
-        <table class="table  Datatable " style="width: 100%">
+        <table class="table table-striped  Datatable " style="width: 100%">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -27,6 +27,7 @@
             $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: '/admin/datatable/ssd',
                 columns: [{
                         data: 'id',
