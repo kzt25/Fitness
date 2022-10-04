@@ -52,6 +52,33 @@
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
             <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+
+
+            <div class="dropdown">
+                <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+                >
+                <i class="fa-solid fa-user"></i>&nbsp;&nbsp; {{Auth()->user()->name}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="nav_name">Profile</span>
+                        </a>
+                    </li>
+                  <li>
+                    <a href="#" class="dropdown-item sign_out">
+                    <i class='bx bx-log-out nav_icon'></i>
+                    <span class="nav_name">SignOut</span>
+                    </a>
+                </li>
+                </ul>
+              </div>
         </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
@@ -100,10 +127,13 @@
 
                     </div>
                 </div>
-                <a href="#" class="nav_link">
-                    <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
-                </a>
+                {{-- <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="btn btn-secondary" onclick="return confirm('Are you sure you want to logout this ?')">
+                        <i class='bx bx-log-out nav_icon'></i>
+                    </button>
+                </form> --}}
             </nav>
         </div>
         <!--Container Main start-->
@@ -145,9 +175,30 @@
     <script>
 
        $(document).ready(function() {
-        
+        $(document).on('click','.sign_out', function (e) {
+                e.preventDefault();
+
+                swal({
+                        text: "Are you sure you want to sign out?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "POST",
+                                url: `/logout`
+                            })
+                            location.reload();
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+                })
+
         $(document).on('submit', 'form', function() {
-            console.log('ghghhj');
+
             $('button').attr('disabled', 'disabled');
         });
 
