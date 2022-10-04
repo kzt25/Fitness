@@ -81,6 +81,14 @@
                             <i class='bx bx-grid-alt nav_icon'></i>
                             <span class="nav_name">Member</span>
                         </a>
+                        <a href="{{route('mealplan.index')}}" class="nav_link active">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span class="nav_name">Meal Plan</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link active">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
 
                     </div>
                 </div>
