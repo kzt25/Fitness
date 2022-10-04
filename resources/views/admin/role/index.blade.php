@@ -27,20 +27,18 @@
 @section('content')
     <div class="col-md-11 mx-auto">
         <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">All Trainers</h2>
-            <a href="{{ route('trainer.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Trainer</a>
+            <h2 class="text-center pt-3 pb-2">All Roless</h2>
+            <a href="{{ route('role.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
+                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Role</a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
-            <table class="table table-striped Datatable " style="width: 100%">
+            <table class="table table-striped Datatable" style="width: 100%">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Training Type</th>
+                        <th>Permissions</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -63,7 +61,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '/trainer/datatable/ssd',
+                ajax: '/role/datatable/ssd',
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -73,16 +71,8 @@
                         name: 'name'
                     },
                     {
-                        data: 'phone',
-                        name: 'phone'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-                    {
-                        data: 'training_type',
-                        name: 'training_type'
+                        data: 'permissions',
+                        name: 'permissions'
                     },
                     {
                         data: 'created_at',
@@ -128,7 +118,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "DELETE",
-                                url: `/trainer/${id}`
+                                url: `/role/${id}`
                             }).done(function(res) {
                                 console.log("deleted");
                                 table.ajax.reload();

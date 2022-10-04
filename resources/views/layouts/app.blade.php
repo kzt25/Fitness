@@ -51,7 +51,7 @@
     <div id="app">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            {{-- <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div> --}}
+            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
         </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
@@ -72,6 +72,14 @@
                         <a href="{{ route('trainer.index') }}" class="nav_link">
                             <i class='bx bx-dumbbell nav_icon'></i>
                             <span class="nav_name">Trainers</span>
+                        </a>
+                        <a href="{{ route('permission.index') }}" class="nav_link">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span class="nav_name">Permissions</span>
+                        </a>
+                        <a href="{{ route('role.index') }}" class="nav_link">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span class="nav_name">Roles</span>
                         </a>
                         <a href="#" class="nav_link">
                             <i class='bx bx-message-square-detail nav_icon'></i>

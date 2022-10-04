@@ -27,9 +27,15 @@
                     <label class="" for="training_type">Training Type</label> <br>
 
                     <select class="form-control " name="training_type" id="training_type">
-                        <option value="weight_gain">Weight Gain</option>
-                        <option value="weight_loss">Weight Loss</option>
-                        <option value="body_beauty">Body Beauty</option>
+                        <option value="weight_gain" @if($trainer->training_type == 'weight_gain') selected @endif>
+                            Weight Gain
+                        </option>
+                        <option value="weight_loss"  @if($trainer->training_type == 'weight_loss') selected @endif>
+                            Weight Loss
+                        </option>
+                        <option value="body_beauty" @if($trainer->training_type == 'body_beauty') selected @endif>
+                            Body Beauty
+                        </option>
                     </select>
 
 

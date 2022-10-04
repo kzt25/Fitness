@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\PermissionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +33,18 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
 
     Route::resource('users', UserController::class);
+
+    //Trainer
     Route::resource('trainer', TrainerController::class);
     Route::get('trainer/datatable/ssd', [TrainerController::class, 'ssd']);
+
+    // Permission
+    Route::resource('permission', PermissionController::class );
+    Route::get('permission/datatable/ssd', [PermissionController::class, 'ssd']);
+
+    // Role
+    Route::resource('role', RoleController::class );
+    Route::get('role/datatable/ssd', [RoleController::class, 'ssd']);
 
     // Meal Plan
 
@@ -50,3 +62,5 @@ Route::middleware('auth')->group(function() {
      Route::get('/member/{id}/delete',[MemberController::class,'destroy'])->name('member.delete');
      Route::get('/member/datatable/ssd', [MemberController::class, 'ssd']);
 });
+
+
