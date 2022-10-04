@@ -35,13 +35,19 @@ class MemberController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.member.create');
     }
 
 
     public function store(Request $request)
     {
-        //
+       $member_store=New Member();
+       $member_store->user_id=$request->user_id;
+       $member_store->member_type=$request->member_type;
+       $member_store->member_type_level=$request->member_type_level;
+       $member_store->price=$request->price;
+       $member_store->save();
+       return redirect()->back();
     }
 
     /**

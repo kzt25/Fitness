@@ -4,6 +4,10 @@
 @section('content')
     <h1>Members</h1>
 
+    <a href="{{route('member.create')}}" class="btn btn-primary ">
+       Add New
+    </a>
+<br><br>
     <div class="card p-4 mb-5">
         <table class="table  Datatable " style="width: 100%">
             <thead>
