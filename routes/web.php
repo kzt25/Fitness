@@ -31,13 +31,10 @@ Route::middleware('auth')->group(function() {
 
     Route::resource('users', UserController::class);
 
-<<<<<<< HEAD
     Route::resource('meal', MealController::class);
     Route::get('getmeal', [MealController::class, 'getMeal'])->name('getmeal');
-=======
     // Member
      Route::resource('member',MemberController::class);
      Route::get('/member/{id}/delete',[MemberController::class,'destroy']);
      Route::get('/member/datatable/ssd', [MemberController::class, 'ssd']);
->>>>>>> c4a14607e2aa64c67b799463586b2d3421612b5d
 });

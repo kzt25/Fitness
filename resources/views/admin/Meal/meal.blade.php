@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h2 class="h2">Meal</h2>
+            <h3 class="h3">Meal</h3>
             <div class="card p-4 mb-5">
                 <table class="table  Datatable " style="width: 100%">
                     <thead>
