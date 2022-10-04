@@ -2,6 +2,15 @@
 @section('content')
     <h3 class="text-center pt-3 pb-2">Edit Trainer</h3>
     <div class="col-md-8 mx-auto">
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="card shadow p-4">
             <form action="{{ route('trainer.update', $trainer->id) }}" method="POST" id="edit-trainer">
                 @csrf
@@ -12,7 +21,7 @@
                 </div>
                 <div class="mt-4">
                     <label for="phone">Phone</label>
-                    <input type="number" class="form-control" name="phone">
+                    <input type="number" class="form-control" name="phone" value="{{ old('name', $trainer->phone) }}">
                 </div>
                 <div class="mt-4">
                     <label class="" for="training_type">Training Type</label> <br>
@@ -27,12 +36,12 @@
                 </div>
                 <div class="mt-4">
                     <label for="address">Address</label>
-                    <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+                    <textarea name="address" id="" cols="30" rows="5" class="form-control">{{ $trainer->address }}</textarea>
                 </div>
 
                 <div class="float-end mt-4">
                     <a href="{{ route('trainer.index') }}" class="btn btn-secondary">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
@@ -41,5 +50,5 @@
 
 
 @push('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\CreateTrainerRequest', '#create-trainer') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateTrainerRequest', '#edit-trainer') !!}
 @endpush
