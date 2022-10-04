@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\User\UserWorkoutController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
