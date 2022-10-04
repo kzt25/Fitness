@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTrainerRequest extends FormRequest
+class MealPlanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class CreateTrainerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'phone' => 'required|min:9|max:11|unique:trainers',
-            'address' => 'required'
+            //
+            'member_id' => 'required',
+            'meal_plan_type' => 'required',
+
+
         ];
     }
 }

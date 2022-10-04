@@ -85,7 +85,18 @@
                             <i class='bx bx-message-square-detail nav_icon'></i>
                             <span class="nav_name">Messages</span>
                         </a>
-
+                        <a href="{{route('member.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-user-group"></i>
+                            <span class="nav_name">Member</span>
+                        </a>
+                        <a href="{{route('mealplan.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span class="nav_name">Meal Plan</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
 
                     </div>
                 </div>
