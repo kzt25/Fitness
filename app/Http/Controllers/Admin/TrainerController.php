@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTrainerRequest;
+use App\Http\Requests\UpdateTrainerRequest;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -30,18 +31,18 @@ class TrainerController extends Controller
                 $detail_icon = '';
                 $delete_icon = '';
 
-                $edit_icon = '<a href=" ' . route('trainer.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
-                <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
+                $edit_icon = '<a href=" ' . route('trainer.edit', $each->id) . ' " class="text-warning mx-1 " title="edit">
+                <i class="fa-solid fa-edit fa-xl"></i>
             </a>';
                 $detail_icon = '<a href=" ' . route('trainer.show', $each->id) . ' " class="text-info mx-1 " title="detail">
-                    <i class="fa-solid fa-circle-info fa-xl" data-id="' . $each->id . '"></i>
+                    <i class="fa-solid fa-circle-info fa-xl"></i>
                 </a>';
 
-                $delete_icon = '<a href=" ' . route('trainer.destroy', $each->id) . ' " class="text-danger mx-1 " title="delete">
-                <i class="fa-solid fa-trash fa-xl" data-id="' . $each->id . '"></i>
+                $delete_icon = '<a href=" ' . route('trainer.destroy', $each->id) . ' " class="text-danger mx-1 delete-btn" data-id="' . $each->id . '" title="delete">
+                <i class="fa-solid fa-trash fa-xl"></i>
             </a>';
 
-                return '<div class="d-flex justify-content-center">' . $edit_icon . $detail_icon . $delete_icon. '</div>';
+                return '<div class="d-flex justify-content-center">'.  $detail_icon  . $edit_icon . $delete_icon. '</div>';
             })
             ->make(true);
     }
@@ -105,9 +106,17 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTrainerRequest $request, $id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        $trainer->name = $request->name;
+        $trainer->phone = $request->phone;
+        $trainer->training_type = $request->training_type;
+        $trainer->address = $request->address;
+
+        $trainer->update();
+
+        return redirect()->route('trainer.index')->with('success', 'New Trainer is updated successfully!');
     }
 
     /**
@@ -118,6 +127,9 @@ class TrainerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $trainer = Trainer::findOrFail($id);
+        $trainer->delete();
+
+        return 'success';
     }
 }

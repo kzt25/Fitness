@@ -58,7 +58,7 @@
 @push('scripts')
     <script>
         $(function() {
-            $('.Datatable').DataTable({
+           var table =  $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -110,7 +110,29 @@
                 })
             @endif
 
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
 
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "DELETE",
+                                url: `/trainer/${id}`
+                            }).done(function(res) {
+                                console.log("deleted");
+                                table.ajax.reload();
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+            })
             // $(document).on('click', '.create_trainer', function(e) {
             //     e.preventDefault();
             //     var id = $(this).data('id');
