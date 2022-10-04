@@ -31,7 +31,7 @@ class MealPlanController extends Controller
                 $edit_icon = '<a href=" ' . route('mealplan.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
                 <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
             </a>';
-                $delete_icon = '<a href=" ' . route('mealplan.destroy', $each->id) . ' " class="text-danger mx-1 " title="delete">
+                $delete_icon = '<a href=" ' . route('mealplan.delete', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
                 <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
             </a>';
 
@@ -118,8 +118,6 @@ class MealPlanController extends Controller
      */
     public function destroy($id)
     {
-        //
-        dd($id);
         $mealPlan_delete=MealPlan::findOrFail($id);
         $mealPlan_delete->delete();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is Deleted successfully!');

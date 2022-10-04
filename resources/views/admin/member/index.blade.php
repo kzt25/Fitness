@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
 @section('styles')
-    <style>
-        .swal2-popup {
-            display: none;
-            position: relative;
-            box-sizing: border-box;
-            grid-template-columns: minmax(0, 100%);
-            width: 40em !important;
-            max-width: 100%;
-            padding: 0 0 1.25em;
-            border: none;
-            border-radius: 5px;
-            background: #fff;
-            color: #545454;
-            font-family: inherit;
-            font-size: 1rem;
-        }
+<style>
+    .swal2-popup {
+        display: none;
+        position: relative;
+        box-sizing: border-box;
+        grid-template-columns: minmax(0, 100%);
+        width: 40em !important;
+        max-width: 100%;
+        padding: 0 0 1.25em;
+        border: none;
+        border-radius: 5px;
+        background: #fff;
+        color: #545454;
+        font-family: inherit;
+        font-size: 1rem;
+    }
 
-        .form-label {
-            font-size: 14px;
-        }
-    </style>
+    .form-label {
+        font-size: 14px;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -109,14 +109,13 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-            })
-
+            });
             @if (Session::has('success'))
                 Toast.fire({
                     icon: 'success',
                     title: '{{ Session::get('success') }}'
                 })
             @endif
-        })
+        });
     </script>
 @endpush
