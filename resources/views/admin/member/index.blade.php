@@ -42,9 +42,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbodpy>
 
-                </tbody>
+                </tbodpy>
         </table>
     </div>
 </div>
@@ -76,7 +76,7 @@
                     },
                 ]
             });
-            
+
             $(document).on('click','.delete', function (e) {
             e.preventDefault();
                 var id=$(this).data('id');

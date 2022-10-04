@@ -26,6 +26,17 @@ class TrainerController extends Controller
     {
         $trainers = Trainer::query();
         return Datatables::of($trainers)
+            ->editColumn('training_type', function($each) {
+                $training_type = "";
+                if($each->training_type == 'weight_loss'){
+                    $training_type = 'Weight Loss';
+                }elseif($each->training_type == 'weight_gain') {
+                    $training_type = 'Weight Gain';
+                }else {
+                    $training_type = 'Body Beauty';
+                }
+                return $training_type;
+            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -116,7 +127,7 @@ class TrainerController extends Controller
 
         $trainer->update();
 
-        return redirect()->route('trainer.index')->with('success', 'New Trainer is updated successfully!');
+        return redirect()->route('trainer.index')->with('success', 'Trainer is updated successfully!');
     }
 
     /**
