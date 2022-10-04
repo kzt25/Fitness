@@ -12,6 +12,6 @@ class Meal extends Model
 
     public function meal_plans()
     {
-        return $this->belongsTo(MealPlan::class);
+        return $this->belongsTo(MealPlan::class, 'meal_plan_id', 'id');
     }
 }

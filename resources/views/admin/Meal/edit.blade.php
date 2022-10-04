@@ -9,7 +9,7 @@
                 <div class="mb-4">
                     <label class="" for="meal_plan_id">Meal Plan Type</label> <br>
                     <select class="form-control " name="meal_plan_id" id="meal_plan_id">
-                        <option value="{{$meal->meal_plan_id}}">{{$meal->meal_plan_id}}</option>
+                        <option value="{{$meal->meal_plan_id}}">{{$meal->meal_plans->meal_plan_type}}</option>
                         @foreach($meal_plan_type as $meal_plan)
                         <option value="{{$meal_plan->id}}">{{$meal_plan->meal_plan_type}}</option>
                         @endforeach

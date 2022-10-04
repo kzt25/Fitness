@@ -25,7 +25,7 @@ class CreateTrainerRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'required,min:9, max:11,unique:trainers',
+            'phone' => 'required|min:9|max:11|unique:trainers',
             'address' => 'required'
         ];
     }
