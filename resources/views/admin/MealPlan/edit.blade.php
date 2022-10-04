@@ -10,7 +10,7 @@
                     <label class="" for="member_id">Members Type</label> <br>
 
                     <select class="form-control " name="member_id" id="member_id">
-                        <option value="{{$mealplan->member_id}}">{{$mealplan->member_id}}</option>
+                        <option value="{{$mealplan->member_id}}">{{$mealplan->member->member_type}}</option>
                         @foreach($member as $memb)
                         <option value="{{$memb->id}}">{{$memb->member_type}}</option>
                         @endforeach
