@@ -25,6 +25,14 @@
 @endsection
 
 @section('content')
+    {{-- @if (Session::has('success'))
+        <script>
+    Toast.fire({
+        icon: 'success',
+        title: '{{ Session::get('success') }}'
+    })
+        </script>
+    @endif --}}
 <div class="col-md-11 mx-auto">
     <div class="col-12">
         <h2 class="text-center pt-3 pb-2">All Members' Types</h2>
@@ -54,14 +62,18 @@
 @push('scripts')
     <script>
 
-        $(function() {
+        $(document).ready(function () {
+            var i =1 ;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/member/datatable/ssd',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'member_type',
@@ -105,19 +117,6 @@
                         }
                     });
 
-            //     var id=$(this).data('id');
-            //     $.ajaxSetup({
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //             }
-            //             });
-            //     $.ajax({
-            //         url: `/member/${id}/delete`,
-            //         type:`GET`,
-            //         success:function(){
-            //             table.ajax.reload(null, false);
-            //         }
-            //     })
             })
 
             const Toast = Swal.mixin({
