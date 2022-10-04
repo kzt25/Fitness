@@ -43,9 +43,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbodpy>
+                <tbody>
 
-                </tbodpy>
+                </tbody>
         </table>
     </div>
 </div>
@@ -54,7 +54,7 @@
 @push('scripts')
     <script>
 
-        $(document).ready(function () {
+        $(function() {
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -82,8 +82,29 @@
                 ]
             });
 
-            // $(document).on('click','.delete', function (e) {
-            // e.preventDefault();
+            $(document).on('click','.delete', function (e) {
+
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/member/${id}/delete`
+                            }).done(function(res) {
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
             //     var id=$(this).data('id');
             //     $.ajaxSetup({
             //             headers: {
@@ -97,7 +118,7 @@
             //             table.ajax.reload(null, false);
             //         }
             //     })
-            // })
+            })
 
             const Toast = Swal.mixin({
                 toast: true,
