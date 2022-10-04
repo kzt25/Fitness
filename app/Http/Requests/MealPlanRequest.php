@@ -13,7 +13,7 @@ class MealPlanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,9 @@ class MealPlanRequest extends FormRequest
     {
         return [
             //
-            'meal_plan_type' => 'required',
             'member_id' => 'required',
+            'meal_plan_type' => 'required',
+
 
         ];
     }

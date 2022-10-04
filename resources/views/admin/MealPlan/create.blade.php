@@ -5,14 +5,22 @@
         <div class="card shadow p-4">
             <form action="{{ route('mealplan.store') }}" method="POST" id="create-mealplan">
                 @csrf
-                <div class="mb-3">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name">
+                <div class="mb-4">
+                    <label class="" for="member_id">Members Type</label> <br>
+
+                    <select class="form-control " name="member_id" id="member_id">
+                        @foreach($member as $memb)
+                        <option value="{{$memb->id}}">{{$memb->member_type}}</option>
+                        @endforeach
+                    </select>
+
+
                 </div>
-                <div class="mb-3">
-                    <label for="name">Member ID</label>
-                    <input type="text" class="form-control" name="name">
+                <div class="mt-4">
+                    <label for="name">Meal Plan Type</label>
+                    <input type="text" class="form-control" name="meal_plan_type">
                 </div>
+
                 <div class="float-end mt-4">
                     <a href="{{ route('mealplan.index') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Confirm</button>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Member;
 use App\Models\MealPlan;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\MealPlanRequest;
 
 class MealPlanController extends Controller
 {
@@ -17,7 +19,7 @@ class MealPlanController extends Controller
     public function index()
     {
         //
-        return view('admin.Meal.mealPlan');
+        return view('admin.MealPlan.index');
     }
     public function getmealplan(){
         $mealPlan = MealPlan::query();
@@ -26,10 +28,10 @@ class MealPlanController extends Controller
                 $edit_icon = '';
                 $delete_icon = '';
 
-                $edit_icon = '<a href=" ' . route('trainer.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
+                $edit_icon = '<a href=" ' . route('mealplan.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
                 <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
             </a>';
-                $delete_icon = '<a href=" ' . route('trainer.destroy', $each->id) . ' " class="text-danger mx-1 " title="delete">
+                $delete_icon = '<a href=" ' . route('mealplan.destroy', $each->id) . ' " class="text-danger mx-1 " title="delete">
                 <i class="fa-solid fa-trash fa-xl" data-id="' . $each->id . '"></i>
             </a>';
 
@@ -45,6 +47,9 @@ class MealPlanController extends Controller
     public function create()
     {
         //
+        $member = Member::All();
+        // dd($member);
+        return view('admin.MealPlan.create',compact('member'));
     }
 
     /**
@@ -53,9 +58,14 @@ class MealPlanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MealPlanRequest $request)
     {
         //
+        $mealPlan = new MealPlan();
+        $mealPlan->member_id = $request->member_id;
+        $mealPlan->meal_plan_type = $request->meal_plan_type;
+        $mealPlan->save();
+        return redirect()->route('mealplan.index')->with('success', 'New Meal Plan is created successfully!');
     }
 
     /**
@@ -78,6 +88,9 @@ class MealPlanController extends Controller
     public function edit($id)
     {
         //
+        $member = Member::All();
+        $mealplan = MealPlan::findOrFail($id);
+        return view('admin.MealPlan.edit', compact('mealplan','member'));
     }
 
     /**
@@ -87,9 +100,14 @@ class MealPlanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MealPlanRequest $request, $id)
     {
         //
+        $mealPlan = new MealPlan();
+        $mealPlan->member_id = $request->member_id;
+        $mealPlan->meal_plan_type = $request->meal_plan_type;
+        $mealPlan->update();
+        return redirect()->route('mealplan.index')->with('success', 'Meal Plan is updated successfully!');
     }
 
     /**

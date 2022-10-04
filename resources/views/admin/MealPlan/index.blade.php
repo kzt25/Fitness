@@ -29,7 +29,7 @@
         <div class="col-12">
             <h2 class="text-center pt-3 pb-2">Meal Plan</h2>
             <a href="{{ route('mealplan.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Trainer</a>
+                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Meal Plan</a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -37,7 +37,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Meal Plan Type</th>
+                        <th>Member Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -65,8 +66,8 @@
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'meal_plan_type',
+                        name: 'meal_plan_type'
                     },
                     {
                         data: 'member_id',
