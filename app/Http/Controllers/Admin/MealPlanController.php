@@ -22,7 +22,7 @@ class MealPlanController extends Controller
         return view('admin.MealPlan.index');
     }
     public function getmealplan(){
-        $mealPlan = MealPlan::query();
+        $mealPlan = MealPlan::query()->with(['member']);
         return Datatables::of($mealPlan)
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
@@ -103,10 +103,10 @@ class MealPlanController extends Controller
     public function update(MealPlanRequest $request, $id)
     {
         //
-        $mealPlan = new MealPlan();
-        $mealPlan->member_id = $request->member_id;
-        $mealPlan->meal_plan_type = $request->meal_plan_type;
-        $mealPlan->update();
+        $mealPlan_update=MealPlan::findOrFail($id);
+        $mealPlan_update->member_id = $request->member_id;
+        $mealPlan_update->meal_plan_type = $request->meal_plan_type;
+        $mealPlan_update->update();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is updated successfully!');
     }
 

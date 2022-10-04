@@ -5,6 +5,7 @@
         <div class="card shadow p-4">
             <form action="{{ route('mealplan.update', $mealplan->id) }}" method="POST" id="create-mealplan">
                 @csrf
+                @method('PUT')
                 <div class="mb-4">
                     <label class="" for="member_id">Members Type</label> <br>
 
