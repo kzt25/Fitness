@@ -58,7 +58,7 @@
 
 @push('scripts')
     <script>
-        $(function() {
+        $(document).ready(function() {
            var i = 1;
            var table =  $('.Datatable').DataTable({
                 processing: true,
@@ -67,9 +67,8 @@
                 ajax: '/trainer/datatable/ssd',
                 columns: [{
                         data: 'id',
-                        render: function() {
-                        return i++;
-                    }
+                        name: 'id',
+
                     },
                     {
                         data: 'name',
@@ -131,7 +130,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "DELETE",
-                                url: `/trainer/${id}`
+                                url: `/admin/trainer/${id}`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',
