@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembersTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMembersTable extends Migration
      */
     public function up()
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('member_type');
-            $table->string('member_type_level')->nullable();
-            $table->string('duration')->nullable();
-            $table->integer('price')->default(0);
+            $table->text('messge_body');
+            $table->text('file');
+            $table->text('photo');
+            $table->text('short_video');
+            $table->text('voice_msg');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateMembersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('messages');
     }
 }
