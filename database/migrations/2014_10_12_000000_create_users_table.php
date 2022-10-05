@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->integer('member_id');
+            $table->integer('member_id')->nullable();
             $table->integer('personal_choice_id')->nullable();
             $table->integer('profile_id')->nullable();
             $table->integer('chat_id')->nullable();
@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->date('from')->nullable();
             $table->date('to')->nullable();
             $table->boolean('active_status')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
