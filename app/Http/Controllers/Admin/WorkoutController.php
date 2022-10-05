@@ -6,6 +6,7 @@ use App\Models\Workout;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class WorkoutController extends Controller
@@ -47,20 +48,21 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-
-            Storage::disk('public')->put(
-                'upload/'.$video_name,
-                file_get_contents($video)
-            );
+            $video->move(public_path().'/upload/',$video_name);
+            // Storage::disk('public')->put(
+            //     'upload/'.$video_name,
+            //     file_get_contents($video)
+            // );
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
 
-            Storage::disk('public')->put(
-                'upload/'.$image_name,
-                file_get_contents($image)
-            );
+            $image->move(public_path().'/upload/',$image_name);
+            // Storage::disk('public')->put(
+            //     'upload/'.$image_name,
+            //     file_get_contents($image)
+            // );
         }
         //$workoutplan = WorkoutPlan::select('workout_plans.id')->where('workout_plans.id',$request->workoutplanId)->first();
 
@@ -78,7 +80,7 @@ class WorkoutController extends Controller
     }
 
     public function workoutview(){
-        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.workout_level','workouts.time','workouts.calories')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
+        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.workout_level','workouts.time','workouts.calories','workouts.video')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
 
         //dd($workoutview->toArray());
         return view('admin.workout')->with(['workoutview'=>$workoutview]);
@@ -86,8 +88,18 @@ class WorkoutController extends Controller
 
     public function workoutdelete($id){
         $data = Workout::findOrFail($id);
+        $image_name = $data['image'];
+        $video_name =$data['video'];
+
         $data->delete();
-        return back();
+
+        if(File::exists(public_path().'/upload/'.$image_name)){
+            File::delete(public_path().'/upload/'.$image_name);
+        }
+        if(File::exists(public_path().'/upload/'.$video_name)){
+            File::delete(public_path().'/upload/'.$video_name);
+        }
+        return back()->with(['success'=>'Workout delete success.']);
     }
 
     public function workoutedit($id){
@@ -102,22 +114,14 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-
-            Storage::disk('public')->put(
-                'upload/'.$video_name,
-                file_get_contents($video)
-            );
+            $video->move(public_path().'/upload/',$video_name);
         }else{
             $video_name = $check->video;
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-
-            Storage::disk('public')->put(
-                'upload/'.$image_name,
-                file_get_contents($image)
-            );
+            $image->move(public_path().'/upload/',$image_name);
         }else{
             $image_name = $check->image;
         }
