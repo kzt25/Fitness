@@ -117,6 +117,19 @@
                             <span class="nav_name">Meal</span>
                         </a>
 
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+
                     </div>
                 </div>
                 <a href="#" class="nav_link">
