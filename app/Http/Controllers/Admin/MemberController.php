@@ -25,6 +25,7 @@ class MemberController extends Controller
     public function ssd() {
         $members = Member::query();
         return Datatables::of($members)
+        ->addIndexColumn()
         ->addColumn('action', function ($each) {
             $edit_icon = '';
             $delete_icon = '';

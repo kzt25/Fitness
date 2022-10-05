@@ -38,6 +38,7 @@ class TrainerController extends Controller
                 }
                 return $training_type;
             })
+            ->addIndexColumn()
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
