@@ -34,7 +34,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 // Route::prefix('admin')->group(function () {
     Auth::routes();
     Route::middleware('auth')->group(function () {
-        Route::get('/admin', [AdminController::class, 'index']);
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
         Route::resource('users', UserController::class);
 

@@ -25,6 +25,7 @@ class TrainerController extends Controller
     public function ssd()
     {
         $trainers = Trainer::query();
+        $id = 0;
         return Datatables::of($trainers)
             ->editColumn('training_type', function ($each) {
                 $training_type = "";
