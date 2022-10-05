@@ -56,14 +56,18 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            $('.Datatable').DataTable({
+            var i = 1;
+            var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 ajax: '/getmealplan',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'meal_plan_type',
@@ -79,6 +83,34 @@
                     }
                 ]
             });
+
+            $(document).on('click','.delete', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/mealplan/${id}/delete`
+                            }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+                })
 
             const Toast = Swal.mixin({
                 toast: true,

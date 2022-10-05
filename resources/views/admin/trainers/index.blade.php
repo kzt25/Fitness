@@ -59,6 +59,7 @@
 @push('scripts')
     <script>
         $(function() {
+           var i = 1;
            var table =  $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -66,7 +67,9 @@
                 ajax: '/trainer/datatable/ssd',
                 columns: [{
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'name',
@@ -130,8 +133,12 @@
                                 method: "DELETE",
                                 url: `/trainer/${id}`
                             }).done(function(res) {
-                                console.log("deleted");
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
                                 table.ajax.reload();
+                                console.log("deleted");
                             })
                         } else {
                             swal("Your imaginary file is safe!");

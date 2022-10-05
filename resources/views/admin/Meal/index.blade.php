@@ -27,7 +27,7 @@
 @section('content')
     <div class="col-md-11 mx-auto">
         <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">Meal Plan</h2>
+            <h2 class="text-center pt-3 pb-2">Meal</h2>
             <a href="{{ route('meal.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
                     class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Meal </a>
         </div>
@@ -56,15 +56,19 @@
 
 @push('scripts')
     <script>
-        $(function() {
-            $('.Datatable').DataTable({
+       $(document).ready(function () {
+            var i = 1;
+            var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 ajax: '/getmeal',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'name',
@@ -85,6 +89,31 @@
                 ]
             });
 
+
+            $(document).on('click','.delete', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/meal/${id}/delete`
+                            }).done(function(res) {
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+                })
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',
@@ -103,6 +132,34 @@
                     title: '{{ Session::get('success') }}'
                 })
             @endif
+
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "DELETE",
+                                url: `/meal/${id}`
+                            }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!'
+                                })
+                                // console.log("deleted");
+                                table.ajax.reload();
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+            })
         });
     </script>
 @endpush

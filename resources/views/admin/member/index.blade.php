@@ -25,11 +25,19 @@
 @endsection
 
 @section('content')
+    {{-- @if (Session::has('success'))
+        <script>
+    Toast.fire({
+        icon: 'success',
+        title: '{{ Session::get('success') }}'
+    })
+        </script>
+    @endif --}}
 <div class="col-md-11 mx-auto">
     <div class="col-12">
         <h2 class="text-center pt-3 pb-2">All Members' Types</h2>
         <a href="{{route('member.create')}}" class="create_trainer btn btn-primary my-3 float-end"><i
-                class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create New</a>
+                class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Member Type</a>
     </div>
 
     <div class="col-12 card p-4 mb-5">
@@ -43,9 +51,9 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbodpy>
+                <tbody>
 
-                </tbodpy>
+                </tbody>
         </table>
     </div>
 </div>
@@ -54,14 +62,18 @@
 @push('scripts')
     <script>
 
-            $(function() {
+        $(document).ready(function () {
+            var i =1 ;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/member/datatable/ssd',
-                columns: [{
+                columns: [
+                    {
                         data: 'id',
-                        name: 'id'
+                        render: function() {
+                        return i++;
+                    }
                     },
                     {
                         data: 'member_type',
@@ -82,22 +94,34 @@
                 ]
             });
 
-            // $(document).on('click','.delete', function (e) {
-            // e.preventDefault();
-            //     var id=$(this).data('id');
-            //     $.ajaxSetup({
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //             }
-            //             });
-            //     $.ajax({
-            //         url: `/member/${id}/delete`,
-            //         type:`GET`,
-            //         success:function(){
-            //             table.ajax.reload(null, false);
-            //         }
-            //     })
-            // })
+            $(document).on('click','.delete', function (e) {
+
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `/member/${id}/delete`
+                            }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
+                                table.ajax.reload(null, false);
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+            })
 
             const Toast = Swal.mixin({
                 toast: true,
@@ -109,13 +133,14 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
-            });
+            })
+
             @if (Session::has('success'))
                 Toast.fire({
                     icon: 'success',
                     title: '{{ Session::get('success') }}'
                 })
             @endif
-        });
+        })
     </script>
 @endpush
