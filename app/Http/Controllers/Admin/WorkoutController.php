@@ -14,7 +14,7 @@ class WorkoutController extends Controller
     public function index(){
         $workoutplan = WorkoutPlan::select('id','plan_type')->get();
         //dd($workoutplan->toArray());
-        return view('admin.workoutplan', compact('workoutplan'));
+        return view('admin.workout.workoutplan', compact('workoutplan'));
     }
 
     public function createworkoutplan(Request $request){
@@ -31,13 +31,14 @@ class WorkoutController extends Controller
     public function workoutindex(Request $request){
         $workoutplanId = $request->id;
         //dd($workoutplanId);
-        return view('admin.workoutcreate', compact('workoutplanId'));
+        return view('admin.workout.workoutcreate', compact('workoutplanId'));
     }
 
     public function createworkout(Request $request){
-        //dd($request->id);
+        //dd($request->all());
         $this->validate($request,[
             'workoutname'=> 'required',
+            'gendertype' => 'required',
             'workoutlevel'=> 'required',
             'calories'=> 'required',
             'time'=> 'required',
@@ -69,21 +70,22 @@ class WorkoutController extends Controller
         $data = new Workout();
         $data->workout_plan_id = $request->workoutplanId;
         $data->workout_name = $request->workoutname;
+        $data->gender_type = $request->gendertype;
         $data->workout_level = $request->workoutlevel;
         $data->calories = $request->calories;
         $data->time = $request->time;
         $data->workout_periods =0;
         $data->image = $image_name;
         $data->video=$video_name;
+
         $data->save();
         return redirect('/workout');
     }
 
     public function workoutview(){
-        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.workout_level','workouts.time','workouts.calories','workouts.video')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
-
+        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.gender_type','workouts.workout_level','workouts.time','workouts.calories','workouts.video')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
         //dd($workoutview->toArray());
-        return view('admin.workout')->with(['workoutview'=>$workoutview]);
+        return view('admin.workout.workout')->with(['workoutview'=>$workoutview]);
     }
 
     public function workoutdelete($id){
@@ -105,7 +107,7 @@ class WorkoutController extends Controller
     public function workoutedit($id){
         $data = Workout::where('id',$id)->first();
         //dd($data->toArray());
-        return view('admin.workoutedit')->with(['data'=>$data]);
+        return view('admin.workout.workoutedit')->with(['data'=>$data]);
     }
 
     public function workoutupdate($id, Request $request){
@@ -126,9 +128,8 @@ class WorkoutController extends Controller
             $image_name = $check->image;
         }
 
-
-
         $check->workout_name = $request->workoutname ?? $check->workout_name;
+        $check->gender_type = $request->gendertype ?? $check->gender_type;
         $check->workout_level = $request->workoutlevel ?? $check->workout_level;
         $check->time = $request->time ?? $check->time;
         $check->calories = $request->calories ?? $check->calories;

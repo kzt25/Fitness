@@ -58,7 +58,7 @@
 
 @push('scripts')
     <script>
-        $(function() {
+        $(document).ready(function () {
            var i = 1;
            var table =  $('.Datatable').DataTable({
                 processing: true,

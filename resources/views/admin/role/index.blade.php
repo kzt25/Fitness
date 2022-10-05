@@ -27,7 +27,7 @@
 @section('content')
     <div class="col-md-11 mx-auto">
         <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">All Roless</h2>
+            <h2 class="text-center pt-3 pb-2">All Roles</h2>
             <a href="{{ route('role.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
                     class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Role</a>
         </div>
