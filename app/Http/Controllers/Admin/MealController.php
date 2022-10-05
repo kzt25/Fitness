@@ -38,6 +38,7 @@ class MealController extends Controller
     public function getMeal() {
         $meal = Meal::query()->with(['meal_plans']);
         return Datatables::of($meal)
+        ->addIndexColumn()
         ->addColumn('action', function ($each) {
             $edit_icon = '';
             $delete_icon = '';
@@ -64,6 +65,7 @@ class MealController extends Controller
     {
         $meal_create = new Meal();
         $meal_create->name = $request->name;
+        $meal_create->gender = $request->gender;
         $meal_create->calories = $request->calories;
         $meal_create->meal_plan_id = $request->meal_plan_id;
         $meal_create->save();
@@ -90,8 +92,11 @@ class MealController extends Controller
     public function edit($id)
     {
         //
+        // dd($id);
         $meal_plan_type = MealPlan::All();
+
         $meal = Meal::findOrFail($id);
+        // dd($meal);
         return view('admin.Meal.edit', compact('meal','meal_plan_type'));
     }
 
@@ -107,6 +112,7 @@ class MealController extends Controller
         //
         $meal_update = Meal::findOrFail($id);
         $meal_update->name = $request->name;
+        $meal_update->gender = $request->gender;
         $meal_update->calories = $request->calories;
         $meal_update->meal_plan_id = $request->meal_plan_id;
         $meal_update->update();

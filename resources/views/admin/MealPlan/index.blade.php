@@ -36,9 +36,11 @@
             <table class="table table-striped Datatable " style="width: 100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
+                        {{-- <th>ID</th> --}}
                         <th>Meal Plan Type</th>
-                        <th>Member Name</th>
+                        <th>Member Type</th>
+                        <th>Member Level</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -63,12 +65,10 @@
                 responsive: true,
                 ajax: '/getmealplan',
                 columns: [
-                    {
-                        data: 'id',
-                        render: function() {
-                        return i++;
-                    }
-                    },
+
+
+                    {data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',orderable: false, searchable: false},
                     {
                         data: 'meal_plan_type',
                         name: 'meal_plan_type'
@@ -76,6 +76,10 @@
                     {
                         data: 'member.member_type',
                         name: 'member.member_type'
+                    },
+                    {
+                        data: 'member.member_type_level',
+                        name: 'member.member_type_level'
                     },
                     {
                         data: 'action',

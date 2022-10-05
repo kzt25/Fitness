@@ -71,9 +71,7 @@
                 columns: [
                     {
                         data: 'id',
-                        render: function() {
-                        return i++;
-                    }
+                        name: 'id'
                     },
                     {
                         data: 'member_type',

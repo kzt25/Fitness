@@ -36,9 +36,10 @@
             <table class="table table-striped Datatable " style="width: 100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No.</th>
                         <th>Name</th>
                         <th>Calories</th>
+                        <th>Gender</th>
                         <th>Meal Plan Type</th>
                         <th>Action</th>
                     </tr>
@@ -52,8 +53,6 @@
     </div>
 @endsection
 
-
-
 @push('scripts')
     <script>
        $(document).ready(function () {
@@ -64,11 +63,10 @@
                 responsive: true,
                 ajax: '/getmeal',
                 columns: [
-                    {
-                        data: 'id',
-                        render: function() {
-                        return i++;
-                    }
+                    {data: 'DT_RowIndex',
+                     name: 'DT_RowIndex',
+                     orderable: false,
+                     searchable: false
                     },
                     {
                         data: 'name',
@@ -77,6 +75,10 @@
                     {
                         data: 'calories',
                         name: 'calories'
+                    },
+                    {
+                        data: 'gender',
+                        name: 'gender'
                     },
                     {
                         data: 'meal_plans.meal_plan_type',
