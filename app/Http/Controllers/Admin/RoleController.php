@@ -7,6 +7,7 @@ use Yajra\Datatables\Datatables;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use Spatie\Permission\Models\Permission;
 
 
@@ -26,6 +27,14 @@ class RoleController extends Controller
     {
         $roles = Role::query();
         return Datatables::of($roles)
+            ->addColumn('permissions', function ($each) {
+                $output = '';
+                foreach ($each->permissions as $permission) {
+                    $output .= '<span class="badge badge-pill badge-dark text-white m-1">' . $permission->name . '</span>';
+                }
+
+                return $output;
+            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -44,6 +53,7 @@ class RoleController extends Controller
 
                 return '<div class="d-flex justify-content-center">' .   $edit_icon . $delete_icon . '</div>';
             })
+            ->rawColumns(['permissions', 'action'])
             ->make(true);
     }
     /**
@@ -67,7 +77,7 @@ class RoleController extends Controller
     {
         $role = new Role();
         $role->name = $request->name;
-
+        $role->givePermissionTo($request->permissions);
         $role->save();
 
         return redirect()->route('role.index')->with('success', 'New Role is created successfully!');
@@ -92,7 +102,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+        $old_permissions = $role->permissions->pluck('id')->toArray();
+        return view('admin.role.edit', compact('role', 'permissions', 'old_permissions'));
     }
 
     /**
@@ -102,9 +115,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->name = $request->name;
+
+        $role->update();
+
+        $old_permissions = $role->permissions->pluck('name')->toArray();
+        $role->revokePermissionTo($old_permissions);
+        $role->givePermissionTo($request->permissions);
+        return redirect()->route('role.index')->with('success', 'Role is updated successfully!');
     }
 
     /**
@@ -115,6 +136,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+
+        return 'success';
     }
 }

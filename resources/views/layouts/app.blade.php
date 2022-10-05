@@ -98,12 +98,21 @@
                             <span class="nav_name">Meal</span>
                         </a>
 
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+                        <a href="{{route('meal.index')}}" class="nav_link ">
+                            <i class="fa-solid fa-burger"></i>
+                            <span class="nav_name">Meal</span>
+                        </a>
+
                     </div>
                 </div>
-                <a href="#" class="nav_link">
-                    <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
-                </a>
             </nav>
         </div>
         <!--Container Main start-->
