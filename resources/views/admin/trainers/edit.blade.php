@@ -1,17 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <h3 class="text-center pt-3 pb-2">Edit Trainer</h3>
     <div class="col-md-8 mx-auto">
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
         <div class="card shadow p-4">
+            <h3 class="text-center mb-2">Edit Trainer</h3>
             <form action="{{ route('trainer.update', $trainer->id) }}" method="POST" id="edit-trainer">
                 @csrf
                 @method('PUT')

@@ -1,29 +1,29 @@
 @extends('layouts.app')
 
 @section('styles')
-<style>
-    .swal2-popup {
-        display: none;
-        position: relative;
-        box-sizing: border-box;
-        grid-template-columns: minmax(0, 100%);
-        width: 40em !important;
-        max-width: 100%;
-        padding: 0 0 1.25em;
-        border: none;
-        border-radius: 5px;
-        background: #fff;
-        color: #545454;
-        font-family: inherit;
-        font-size: 1rem;
-    }
+    <style>
+        .swal2-popup {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            grid-template-columns: minmax(0, 100%);
+            width: 40em !important;
+            max-width: 100%;
+            padding: 0 0 1.25em;
+            border: none;
+            border-radius: 5px;
+            background: #fff;
+            color: #545454;
+            font-family: inherit;
+            font-size: 1rem;
+        }
 
-    .form-label {
-        font-size: 14px;
-    }
-</style>
+        .form-label {
+            font-size: 14px;
+        }
+    </style>
 @endsection
-
+@section('member-active', 'active')
 @section('content')
     {{-- @if (Session::has('success'))
         <script>
@@ -33,15 +33,15 @@
     })
         </script>
     @endif --}}
-<div class="col-md-11 mx-auto">
-    <div class="col-12">
-        <h2 class="text-center pt-3 pb-2">All Members' Types</h2>
-        <a href="{{route('member.create')}}" class="create_trainer btn btn-primary my-3 float-end"><i
-                class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create New</a>
-    </div>
+    <div class="col-md-11 mx-auto">
+        <div class="d-flex justify-content-between mb-3">
+            <h2 class="text-center mb-0">All Member Types</h2>
+            <a href="{{ route('member.create') }}" class="btn btn-primary align-middle"><i
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Member Type</span> </a>
+        </div>
 
-    <div class="col-12 card p-4 mb-5">
-        <table class="table table-striped Datatable " style="width: 100%">
+        <div class="col-12 card p-4 mb-5">
+            <table class="table table-striped Datatable " style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -54,24 +54,22 @@
                 <tbody>
 
                 </tbody>
-        </table>
+            </table>
+        </div>
     </div>
-</div>
 @endsection
 
 @push('scripts')
     <script>
-
-        $(document).ready(function () {
-            var i =1 ;
+        $(document).ready(function() {
+            var i = 1;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/member/datatable/ssd',
-                columns: [
-                    {
+                columns: [{
                         data: 'id',
-                        name: 'id'
+                        name: 'id',
                     },
                     {
                         data: 'member_type',
@@ -92,7 +90,7 @@
                 ]
             });
 
-            $(document).on('click','.delete', function (e) {
+            $(document).on('click', '.delete', function(e) {
 
                 e.preventDefault();
                 var id = $(this).data('id');

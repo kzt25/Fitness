@@ -23,13 +23,13 @@
         }
     </style>
 @endsection
-
+@section('permission-active', 'active')
 @section('content')
     <div class="col-md-11 mx-auto">
-        <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">All Permissions</h2>
-            <a href="{{ route('permission.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Permission</a>
+        <div class="d-flex justify-content-between mb-3">
+            <h2 class="text-center mb-0">All Permissions</h2>
+            <a href="{{ route('permission.create') }}" class="btn btn-primary align-middle"><i
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Permission</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">

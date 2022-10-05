@@ -117,5 +117,12 @@ class MemberTypeSeeder extends Seeder
         'price'=>200000
        ]);
 
+       Member::create([
+        'user_id'=>1,
+        'member_type' =>'Free',
+        'member_type_level' => '',
+        'price'=>0
+       ]);
+
     }
 }

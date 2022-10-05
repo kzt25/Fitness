@@ -10,17 +10,16 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
     <!-- MDB -->
@@ -30,11 +29,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href=" https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}"> --}}
 
     <!-- Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -47,71 +45,94 @@
 
 </head>
 
-<body id="body-pd">
-    <div id="app">
-        <header class="header" id="header">
-            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-        </header>
-        <div class="l-navbar" id="nav-bar">
-            <nav class="nav">
-                <div>
-                    <a href="#" class="nav_logo">
-                        <i class='bx bx-layer nav_logo-icon'></i>
-                        <span class="nav_logo-name">GYM</span>
-                    </a>
-                    <div class="nav_list">
-                        <a href="#" class="nav_link active">
-                            <i class='bx bx-grid-alt nav_icon'></i>
-                            <span class="nav_name">Dashboard</span>
-                        </a>
-                        <a href="" class="nav_link">
-                            <i class='bx bx-user nav_icon'></i>
-                            <span class="nav_name">Users</span>
-                        </a>
-                        <a href="{{ route('trainer.index') }}" class="nav_link">
-                            <i class='bx bx-dumbbell nav_icon'></i>
-                            <span class="nav_name">Trainers</span>
-                        </a>
-                        <a href="{{ route('permission.index') }}" class="nav_link">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <span class="nav_name">Permissions</span>
-                        </a>
-                        <a href="{{ route('role.index') }}" class="nav_link">
-                            <i class="fa-solid fa-user-shield"></i>
-                            <span class="nav_name">Roles</span>
-                        </a>
-                        <a href="#" class="nav_link">
-                            <i class='bx bx-message-square-detail nav_icon'></i>
-                            <span class="nav_name">Messages</span>
-                        </a>
-                        <a href="{{route('member.index')}}" class="nav_link ">
-                            <i class="fa-solid fa-user-group"></i>
-                            <span class="nav_name">Member</span>
-                        </a>
-                        <a href="{{route('mealplan.index')}}" class="nav_link ">
-                            <i class="fa-solid fa-utensils"></i>
-                            <span class="nav_name">Meal Plan</span>
-                        </a>
-                        <a href="{{route('meal.index')}}" class="nav_link ">
-                            <i class="fa-solid fa-burger"></i>
-                            <span class="nav_name">Meal</span>
-                        </a>
-
-                    </div>
-                </div>
-                <a href="#" class="nav_link">
-                    <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="sidebar js-sidebar">
+            <div class="sidebar-content js-simplebar">
+                <a class="sidebar-brand" href="index.html">
+                    <span class="align-middle">GYM</span>
                 </a>
-            </nav>
-        </div>
-        <!--Container Main start-->
-        <div class="height-100">
-            @yield('content')
-        </div>
-        <!--Container Main end-->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Pages
+                    </li>
 
+                    <li class="sidebar-item @yield('dashboard-active')">
+                        <a class="sidebar-link" href="{{ route('admin-home') }}">
+                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('trainer-active') ">
+                        <a class="sidebar-link" href="{{ route('trainer.index') }}">
+                            <i class="fa-solid fa-dumbbell align-middle "></i> <span
+                                class="align-middle">Trainers</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @yield('meal-active')">
+                        <a class="sidebar-link" href="{{ route('meal.index') }}">
+                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @yield('mealplan-active')">
+                        <a class="sidebar-link" href="{{ route('mealplan.index') }}">
+                            <i class="fa-solid fa-utensils  align-middle"></i> <span class="align-middle">Meal
+                                Plans</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('permission-active')">
+                        <a class="sidebar-link" href="{{ route('permission.index') }}">
+                            <i class="fa-solid fa-shield-halved  align-middle"></i> <span
+                                class="align-middle">Permissions</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('role-active')">
+                        <a class="sidebar-link" href="{{ route('role.index') }}">
+                            <i class="fa-solid fa-user-shield  align-middle"></i> <span
+                                class="align-middle">Roles</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Members</span>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </nav>
+
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-light navbar-bg d-flex justify-content-between">
+                <a class="sidebar-toggle js-sidebar-toggle">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+
+                <div class="dropdown">
+                    <img src="{{ asset('img/avatar.jpg') }}" style="cursor: pointer;" class="rounded-circle me-2" width="35" alt="">
+                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down"></i></span>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
+                    </ul>
+                  </div>
+            </nav>
+
+            <main class="content">
+                <div class="container-fluid p-0">
+                    @yield('content')
+                </div>
+            </main>
+        </div>
     </div>
 
     <!-- JQuery -->
@@ -119,8 +140,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <!-- Scripts -->
+     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
     <!-- Datatable -->
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
@@ -138,19 +163,10 @@
     <!-- Laravel Javascript Validation -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-    <script src="{{ asset('js/sidebar.js') }}"></script>
-
     @stack('scripts')
 
     <script>
-
-       $(document).ready(function() {
-        
-        $(document).on('submit', 'form', function() {
-            console.log('ghghhj');
-            $('button').attr('disabled', 'disabled');
-        });
-
+        $(document).ready(function() {
             let token = document.head.querySelector('meta[name="csrf-token"]');
             if (token) {
                 $.ajaxSetup({
@@ -165,6 +181,34 @@
                 e.preventDefault();
                 window.history.back();
             })
+
+
+            $(document).on('click', '.logout-btn', function(e) {
+                e.preventDefault();
+
+                swal({
+                        text: "Are you sure you want to Logout?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "POST",
+                                url: `/logout`
+                            })
+                            location.reload();
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+
+            })
+
+            $(document).on('submit', 'form', function() {
+
+                $('button').attr('disabled', 'disabled');
+            });
             $(".ninja-select").select2();
         })
     </script>
