@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
-use App\Models\MemberHistory;
 use App\Models\User;
+use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\MemberHistory;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $users=User::all();
+        // $mmhs=MemberHistory::all();
+        // $members=Member::all();
+        // $membHist = MemberHistory::groupBy('user_id')->latest()->get();
+        // // dd($membHist);
+        // $membHist = MemberHistory::select(DB::raw('t.*'))
+        //     ->from(DB::raw('(SELECT * FROM member_histories ORDER BY created_at DESC) t'))
+        //     ->groupBy('t.user_id')
+        //     ->get();
+        return view('home',compact('users'));
     }
 }
