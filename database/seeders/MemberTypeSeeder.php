@@ -17,110 +17,109 @@ class MemberTypeSeeder extends Seeder
         Member::create([
         'user_id'=>1,
         'member_type' =>'Platinum',
-        'member_type_level' => 'Beginner',
+        'duration'=>1,
         'price'=>5000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Platinum',
-        'member_type_level' => 'Advance',
+        'duration'=>1,
         'price'=>5000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Platinum',
-        'member_type_level' => 'Professional',
+        'duration'=>1,
         'price'=>5000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Gold',
-        'member_type_level' => 'Beginner',
+        'duration'=>1,
         'price'=>20000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Gold',
-        'member_type_level' => 'Advance',
+        'duration'=>1,
         'price'=>20000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Gold',
-        'member_type_level' => 'Professional',
+        'duration'=>1,
         'price'=>20000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Diamond',
-        'member_type_level' => 'Beginner',
+        'duration'=>1,
         'price'=>40000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Diamond',
-        'member_type_level' => 'Advance',
+        'duration'=>1,
         'price'=>40000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Diamond',
-        'member_type_level' => 'Professional',
+        'duration'=>1,
         'price'=>40000
        ]);
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby',
-        'member_type_level' => 'Beginner',
+        'duration'=>1,
         'price'=>100000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby',
-        'member_type_level' => 'Advance',
+        'duration'=>1,
         'price'=>100000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby',
-        'member_type_level' => 'Professional',
+        'duration'=>1,
         'price'=>100000
        ]);
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby Premium',
-        'member_type_level' => 'Beginner',
+        'duration'=>1,
         'price'=>200000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby Premium',
-        'member_type_level' => 'Advance',
+        'duration'=>1,
         'price'=>200000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Ruby Premium',
-        'member_type_level' => 'Professional',
+        'duration'=>1,
         'price'=>200000
        ]);
 
        Member::create([
         'user_id'=>1,
         'member_type' =>'Free',
-        'member_type_level' => '',
         'price'=>0
        ]);
 

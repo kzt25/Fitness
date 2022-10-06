@@ -46,7 +46,7 @@
                     <tr>
                         <th>No</th>
                         <th>Member Type</th>
-                        <th>Level</th>
+                        <th>Duration(Month)</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -78,8 +78,8 @@
                         name: 'member_type'
                     },
                     {
-                        data: 'member_type_level',
-                        name: 'member_type_level'
+                        data: 'duration',
+                        name: 'duration'
                     },
                     {
                         data: 'price',
