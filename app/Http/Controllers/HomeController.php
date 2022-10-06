@@ -26,9 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users=User::all();
-        $mmhs=MemberHistory::all();
-        $members=Member::all();
-        return view('home',compact('users','mmhs','members'));
+        return view('home');
     }
 }

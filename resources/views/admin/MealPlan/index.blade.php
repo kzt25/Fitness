@@ -42,7 +42,6 @@
                         {{-- <th>ID</th> --}}
                         <th>Meal Plan Type</th>
                         <th>Member Type</th>
-                        <th>Member Level</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -80,10 +79,7 @@
                         data: 'member.member_type',
                         name: 'member.member_type'
                     },
-                    {
-                        data: 'member.member_type_level',
-                        name: 'member.member_type_level'
-                    },
+
                     {
                         data: 'action',
                         name: 'action'

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Meal;
 use App\Models\Member;
 use App\Models\MealPlan;
 use Illuminate\Http\Request;
@@ -86,7 +87,7 @@ class MealPlanController extends Controller
         return view('admin.MealPlan.edit', compact('mealplan','member'));
     }
 
-   
+
     public function update(MealPlanRequest $request, $id)
     {
         //
@@ -107,6 +108,8 @@ class MealPlanController extends Controller
      */
     public function destroy($id)
     {
+        $meal_delete = Meal::where('meal_plan_id',$id);
+        $meal_delete->delete();
         $mealPlan_delete=MealPlan::findOrFail($id);
         $mealPlan_delete->delete();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is Deleted successfully!');
