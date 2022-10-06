@@ -10,10 +10,10 @@ class Member extends Model
     use HasFactory;
     protected $table="members";
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id', 'id');
+    // }
 
     public function mealplan()
     {

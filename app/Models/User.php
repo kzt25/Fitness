@@ -26,10 +26,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-  public function member()
-  {
-      return $this->hasOne(User::class);
-  }
+    public function member_histories()
+    {
+        return $this->hasMany(MemberHistory::class);
+    }
+
+//   public function member()
+//   {
+//       return $this->hasOne(User::class);
+//   }
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
+use App\Models\MemberHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users=User::all();
+        $mmhs=MemberHistory::all();
+        $members=Member::all();
+        return view('home',compact('users','mmhs','members'));
     }
 }

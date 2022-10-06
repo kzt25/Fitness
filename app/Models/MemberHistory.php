@@ -11,11 +11,11 @@ class MemberHistory extends Model
 
     public function member()
     {
-        return $this->belongsTo(Member::class, 'member_id', 'user_id');
+        return $this->belongsTo(Member::class, 'member_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'member_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
