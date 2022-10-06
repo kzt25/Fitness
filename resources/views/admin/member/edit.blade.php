@@ -15,6 +15,10 @@
 
                 </div>
                 <div class="mt-4">
+                    <label for="duration" class="form-label">Duration(Month)</label>
+                    <input type="number" class="form-control" id="duration" name="duration" value="{{ $member_edit->duration }}">
+                </div>
+                <div class="mt-4">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" class="form-control" id="price" name="price"
                         value="{{ $member_edit->price }}">

@@ -26,10 +26,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function member_histories()
+    // public function member_histories()
+    // {
+    //     return $this->hasMany(MemberHistory::class);
+    // }
+
+    public function members()
     {
-        return $this->hasMany(MemberHistory::class);
+        return $this->belongsToMany(Members::class, 'member_histories', 'user_id', 'member_id');
     }
+
 
 //   public function member()
 //   {

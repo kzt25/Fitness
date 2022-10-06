@@ -15,8 +15,8 @@ class CreateMemberHistoriesTable extends Migration
     {
         Schema::create('member_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('member_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('member_id')->unsigned();
             $table->string('member_type_level');
             $table->timestamps();
         });

@@ -36,6 +36,7 @@ class HomeController extends Controller
         //     ->from(DB::raw('(SELECT * FROM member_histories ORDER BY created_at DESC) t'))
         //     ->groupBy('t.user_id')
         //     ->get();
+        $users=User::all();
         return view('home',compact('users'));
     }
 }
