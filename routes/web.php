@@ -35,7 +35,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Auth::routes();
     Route::middleware('auth')->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
-        Route::get('/admin/datatable/ssd', [AdminController::class, 'ssd']);
+        Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
+        Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
+        // Route::put('/profile/{}')
+
+
         Route::resource('users', UserController::class);
 
         //workout

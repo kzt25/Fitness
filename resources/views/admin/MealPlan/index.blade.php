@@ -30,7 +30,8 @@
         <div class="d-flex justify-content-between mb-3">
             <h2 class="text-center mb-0">All Meal Plans</h2>
             <a href="{{ route('mealplan.create') }}" class="btn btn-primary align-middle"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Meal Plans</span> </a>
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Meal
+                    Plans</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -57,16 +58,19 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var i = 1;
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
                 ajax: '/getmealplan',
-                columns: [
-                    {data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',orderable: false, searchable: false},
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
                     {
                         data: 'meal_plan_type',
                         name: 'meal_plan_type'
@@ -83,7 +87,7 @@
                 ]
             });
 
-            $(document).on('click','.delete', function (e) {
+            $(document).on('click', '.delete', function(e) {
                 e.preventDefault();
                 var id = $(this).data('id');
 
@@ -109,7 +113,7 @@
                         }
                     });
 
-                })
+            })
 
             const Toast = Swal.mixin({
                 toast: true,

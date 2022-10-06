@@ -122,12 +122,12 @@
 
                 <div class="dropdown">
                     <img src="{{ asset('img/avatar.jpg') }}" style="cursor: pointer;" class="rounded-circle me-2" width="35" alt="">
-                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down"></i></span>
+                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down fa-sm"></i></span>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="{{ route('admin-profile') }}">Profile</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
+                      <li><a class="dropdown-item logout-btn" href="">Logout</a></li>
                     </ul>
                   </div>
             </nav>
