@@ -66,9 +66,10 @@
                 serverSide: true,
                 responsive: true,
                 ajax: '/trainer/datatable/ssd',
-                columns: [{
-                        data: 'id',
-                        name: 'id',
+                columns: [{data: 'DT_RowIndex',
+                     name: 'DT_RowIndex',
+                     orderable: false,
+                     searchable: false
                     },
                     {
                         data: 'name',
@@ -143,49 +144,6 @@
                         }
                     });
             })
-            // $(document).on('click', '.create_trainer', function(e) {
-            //     e.preventDefault();
-            //     var id = $(this).data('id');
-            //     Swal.fire({
-            //         title: 'Create Trainer',
-            //         html: `
-        //                <div class="text-start">
-        //                 <form action="" method="POST">
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Name</label>
-        //                         <input class="form-control @error('name') is-invalid @enderror" name="name">
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Phone</label>
-        //                         <input class="form-control" name="phone">
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Address</label>
-        //                         <textarea class="form-control" col="10" row="5">
-        //                         </textarea>
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Training Type</label>
-        //                         <select class="select2">
-        //                             <option selected>Open this select menu</option>
-        //                             <option value="1">One</option>
-        //                             <option value="2">Two</option>
-        //                             <option value="3">Three</option>
-        //                         </select>
-        //                     </div>
-        //                     <select class="select2">
-        //                             <option selected>Open this select menu</option>
-        //                             <option value="1">One</option>
-        //                             <option value="2">Two</option>
-        //                             <option value="3">Three</option>
-        //                         </select>
-        //                 </form>
-        //                 </div>
-        //         `
-            //     });
-            // });
-
-
         });
     </script>
 @endpush
