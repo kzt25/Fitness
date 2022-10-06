@@ -15,11 +15,6 @@
 
                 </div>
                 <div class="mt-4">
-                    <label for="member_type_level" class="form-label">Level</label>
-                    <input type="text" class="form-control" id="member_type_level" name="member_type_level"
-                        value="{{ $member_edit->member_type_level }}">
-                </div>
-                <div class="mt-4">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" class="form-control" id="price" name="price"
                         value="{{ $member_edit->price }}">

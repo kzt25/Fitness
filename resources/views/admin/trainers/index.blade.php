@@ -66,7 +66,8 @@
                 serverSide: true,
                 responsive: true,
                 ajax: '/trainer/datatable/ssd',
-                columns: [{data: 'DT_RowIndex',
+                columns: [
+                    {data: 'DT_RowIndex',
                      name: 'DT_RowIndex',
                      orderable: false,
                      searchable: false
