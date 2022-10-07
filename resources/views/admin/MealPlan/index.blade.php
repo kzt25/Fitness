@@ -41,7 +41,7 @@
                         <th>No</th>
                         {{-- <th>ID</th> --}}
                         <th>Meal Plan Type</th>
-                        <th>Member Type</th>
+                        <th>gender</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -76,8 +76,8 @@
                         name: 'meal_plan_type'
                     },
                     {
-                        data: 'member.member_type',
-                        name: 'member.member_type'
+                        data: 'gender',
+                        name: 'gender'
                     },
 
                     {

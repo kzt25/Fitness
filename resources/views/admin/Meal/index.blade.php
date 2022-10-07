@@ -79,12 +79,12 @@
                         name: 'calories'
                     },
                     {
-                        data: 'gender',
-                        name: 'gender'
-                    },
-                    {
                         data: 'meal_plans.meal_plan_type',
                         name: 'meal_plans.meal_plan_type'
+                    },
+                    {
+                        data: 'meal_plans.gender',
+                        name: 'meal_plans.gender'
                     },
                     {
                         data: 'action',
