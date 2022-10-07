@@ -34,6 +34,7 @@ class HomeController extends Controller
        $user->member_type=$user_member_type->member_type;
        $user->save();
        $user->members()->attach($request->member_id, ['member_type_level' => $user_member_type_level]);
+       return redirect()->back();
 
     }
 
@@ -43,17 +44,8 @@ class HomeController extends Controller
         $mem = $user->members()->get();
         $users=User::with('members')->orderBy('created_at','DESC')->get();
 
-        return view('home',compact('users','user','mem'));
-        // $users=User::all();
-        // $mmhs=MemberHistory::all();
-        // $members=Member::all();
-        // $membHist = MemberHistory::groupBy('user_id')->latest()->get();
-        // // dd($membHist);
-        // $membHist = MemberHistory::select(DB::raw('t.*'))
-        //     ->from(DB::raw('(SELECT * FROM member_histories ORDER BY created_at DESC) t'))
-        //     ->groupBy('t.user_id')
-        //     ->get();
-        // $users=User::all();
-        // return view('home',compact('users'));
+        //return view('home',compact('users','user','mem'));
+        return view('customer.customer_registration');
+
     }
 }
