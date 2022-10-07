@@ -106,6 +106,12 @@
                 proficiencyCheckboxesList.item(i).checked = false
             }
           }
+          if(category === 'diet'){
+            var dietCheckboxesList = document.getElementsByName("diet");
+            for(var i = 0; i < dietCheckboxesList.length;i++){
+                dietCheckboxesList.item(i).checked = false
+            }
+          }
 
 
 
@@ -250,9 +256,11 @@
                 // console.log((parseInt(waist)))
                 // const bfp = ((86.010*Math.log10(parseInt(waist.value)-parseInt(neck.value)))-(70.041*(Math.log10(overallInches))))+36.76
                 if(gender.value === "male"){
+                    console.log("male bfp")
                   bfp= Math.round((86.010*(Math.log(waist.value*1-neck.value*1)/Math.log(10))-70.041*(Math.log(overallInches)/Math.log(10))+36.76*1)*100)/100;
                 }
                 if(gender.value === "female"){
+                    console.log("female bfp")
                   bfp = Math.round((163.205*(Math.log(waist.value*1.0+hip.value*1.0-neck.value*1.0)/Math.log(10))- 97.684*(Math.log(overallInches)/Math.log(10))-78.387*1.0)*100)/100;
                 }
 
@@ -414,6 +422,7 @@
           //check if user select diet
           if(category === 'diet'){
             var diet = document.querySelectorAll("input[name='diet']:checked")
+            console.log(diet)
             var dietArr = []
             var dietData = []
 

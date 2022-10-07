@@ -456,7 +456,7 @@
 
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="traditional" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="traditional" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -470,7 +470,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="vagetarian" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="vagetarian" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -484,7 +484,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="keto" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="keto" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -498,7 +498,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="pescatarian" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="pescatarian" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -512,7 +512,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="vegan" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="vegan" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -526,7 +526,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="keto vegan" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="keto vegan" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -540,7 +540,7 @@
       </div>
       <div class="checkbox checkbox-small">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "diet" class="checkbox-input" value="lactose free" />
+          <input type="checkbox" name = "diet" class="checkbox-input" value="lactose free" onclick="checkedOnClick(this,'diet')"/>
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="diet-icon"></div>
@@ -559,7 +559,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'typicalDay')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'diet')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
