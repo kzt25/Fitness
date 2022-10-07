@@ -21,7 +21,7 @@ class Member extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'member_users')
+        return $this->belongsToMany(User::class,'member_histories')
                     ->withPivot(['member_type_level','deleted_at'])
                     ->withTimestamps();
     }
