@@ -39,10 +39,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
         // Route::put('/profile/{}')
-
-
         Route::resource('users', UserController::class);
-
         //workout
         Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
         Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
