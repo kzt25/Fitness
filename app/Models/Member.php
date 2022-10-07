@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
-    protected $table="members";
 
     // public function user()
     // {
@@ -22,7 +21,9 @@ class Member extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'member_histories', 'user_id', 'member_id');
+        return $this->belongsToMany(User::class,'member_histories')
+                    ->withPivot(['member_type_level','deleted_at'])
+                    ->withTimestamps();
     }
 
 

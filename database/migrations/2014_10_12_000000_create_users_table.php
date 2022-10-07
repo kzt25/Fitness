@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->string('address')->nullable();
             $table->string('email')->unique();
+            $table->string('member_type');
+            $table->string('membertype_level');
             $table->string('member_code')->nullable();
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
@@ -43,9 +45,6 @@ class CreateUsersTable extends Migration
             $table->boolean('active_status')->nullable();
             // $table->string('current_member_type')->nullable();
             // $table->string('member_type_level')->nullable();
-            $table->string('currentmember_type');
-            $table->string('membertype_level');
-
             $table->string('neck')->nullable();
             $table->string('waist')->nullable();
             $table->string('hip')->nullable();

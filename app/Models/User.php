@@ -33,7 +33,9 @@ class User extends Authenticatable
 
     public function members()
     {
-        return $this->belongsToMany(Members::class, 'member_histories', 'user_id', 'member_id');
+        return $this->belongsToMany(Member::class, 'member_histories')
+                    ->withPivot(['member_type_level','deleted_at'])
+                    ->withTimestamps();
     }
 
 

@@ -19,14 +19,31 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    public function store(Request $request)
+    {
+       $user=New User();
+       $user_member_type_id=$request->member_id;
+       $user_member_type=Member::findOrFail($user_member_type_id);
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+       $user_member_type_level=$request->member_type_level;
+       $user->name=$request->name;
+       $user->phone=$request->phone;
+       $user->email=$request->email;
+       $user->password=$request->password;
+       $user->membertype_level=$request->member_type_level;
+       $user->member_type=$user_member_type->member_type;
+       $user->save();
+       $user->members()->attach($request->member_id, ['member_type_level' => $user_member_type_level]);
+
+    }
+
     public function index()
     {
+        $user = User::find(1);
+        $mem = $user->members()->get();
+        $users=User::with('members')->orderBy('created_at','DESC')->get();
+
+        return view('home',compact('users','user','mem'));
         // $users=User::all();
         // $mmhs=MemberHistory::all();
         // $members=Member::all();
@@ -36,7 +53,7 @@ class HomeController extends Controller
         //     ->from(DB::raw('(SELECT * FROM member_histories ORDER BY created_at DESC) t'))
         //     ->groupBy('t.user_id')
         //     ->get();
-        $users=User::all();
-        return view('home',compact('users'));
+        // $users=User::all();
+        // return view('home',compact('users'));
     }
 }

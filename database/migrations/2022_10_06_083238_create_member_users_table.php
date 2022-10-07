@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMemberHistoriesTable extends Migration
+class CreateMemberUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMemberHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_histories', function (Blueprint $table) {
+        Schema::create('member_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('member_id')->unsigned();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->string('member_type_level');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateMemberHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_histories');
+        Schema::dropIfExists('member_users');
     }
 }
