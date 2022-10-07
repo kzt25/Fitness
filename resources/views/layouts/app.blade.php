@@ -70,17 +70,27 @@
                                 class="align-middle">Trainers</span>
                         </a>
                     </li>
-                    <li class="sidebar-item @yield('meal-active')">
-                        <a class="sidebar-link" href="{{ route('meal.index') }}">
-                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+
+                    <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Members</span>
                         </a>
                     </li>
+
                     <li class="sidebar-item @yield('mealplan-active')">
                         <a class="sidebar-link" href="{{ route('mealplan.index') }}">
                             <i class="fa-solid fa-utensils  align-middle"></i> <span class="align-middle">Meal
                                 Plans</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item @yield('meal-active')">
+                        <a class="sidebar-link" href="{{ route('meal.index') }}">
+                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+                        </a>
+                    </li>
+
 
                     <li class="sidebar-item @yield('permission-active')">
                         <a class="sidebar-link" href="{{ route('permission.index') }}">
@@ -96,12 +106,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('member-active')">
-                        <a class="sidebar-link" href="{{ route('member.index') }}">
-                            <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Members</span>
-                        </a>
-                    </li>
+
 
 
 

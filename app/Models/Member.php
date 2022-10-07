@@ -20,11 +20,11 @@ class Member extends Model
         return $this->hasOne(MealPlan::class);
     }
 
-
-    public function member_histories()
+    public function users()
     {
-        return $this->hasMany(MemberHistory::class);
+        return $this->belongsToMany(User::class, 'member_histories', 'user_id', 'member_id');
     }
+
 
     public static function boot() {
         parent::boot();

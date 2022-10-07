@@ -14,10 +14,10 @@
                         @endforeach
                     </select>
                 </div>
-
+ 
                 <div class="mt-4">
                     <label for="name">Meal Name</label>
-                    <input type="text" class="form-control" name="name" value={{$meal->name}}>
+                    <input type="text" class="form-control" name="name" value="{{$meal->name}}">
                 </div>
 
 
