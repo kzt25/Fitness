@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $users=User::all();
+        $users=User::all();
         // $mmhs=MemberHistory::all();
         // $members=Member::all();
         // $membHist = MemberHistory::groupBy('user_id')->latest()->get();

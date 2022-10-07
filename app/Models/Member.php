@@ -22,7 +22,7 @@ class Member extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'member_histories', 'user_id', 'member_id');
+        return $this->belongsToMany(User::class, 'member_histories');
     }
 
 
