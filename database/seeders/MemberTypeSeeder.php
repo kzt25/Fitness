@@ -21,30 +21,6 @@ class MemberTypeSeeder extends Seeder
        ]);
 
        Member::create([
-        'member_type' =>'Platinum',
-        'duration'=>1,
-        'price'=>5000
-       ]);
-
-       Member::create([
-        'member_type' =>'Platinum',
-        'duration'=>1,
-        'price'=>5000
-       ]);
-
-       Member::create([
-        'member_type' =>'Gold',
-        'duration'=>1,
-        'price'=>20000
-       ]);
-
-       Member::create([
-        'member_type' =>'Gold',
-        'duration'=>1,
-        'price'=>20000
-       ]);
-
-       Member::create([
         'member_type' =>'Gold',
         'duration'=>1,
         'price'=>20000
@@ -57,37 +33,9 @@ class MemberTypeSeeder extends Seeder
        ]);
 
        Member::create([
-        'member_type' =>'Diamond',
-        'duration'=>1,
-        'price'=>40000
-       ]);
-
-       Member::create([
-        'member_type' =>'Diamond',
-        'duration'=>1,
-        'price'=>40000
-       ]);
-       Member::create([
         'member_type' =>'Ruby',
         'duration'=>1,
         'price'=>100000
-       ]);
-
-       Member::create([
-        'member_type' =>'Ruby',
-        'duration'=>1,
-        'price'=>100000
-       ]);
-
-       Member::create([
-        'member_type' =>'Ruby',
-        'duration'=>1,
-        'price'=>100000
-       ]);
-       Member::create([
-        'member_type' =>'Ruby Premium',
-        'duration'=>1,
-        'price'=>200000
        ]);
 
        Member::create([
@@ -96,11 +44,6 @@ class MemberTypeSeeder extends Seeder
         'price'=>200000
        ]);
 
-       Member::create([
-        'member_type' =>'Ruby Premium',
-        'duration'=>1,
-        'price'=>200000
-       ]);
 
        Member::create([
         'member_type' =>'Free',
