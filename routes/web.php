@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\PermissionController;
-
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +78,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
         Route::resource('member', MemberController::class);
         Route::get('/member/{id}/delete', [MemberController::class, 'destroy'])->name('member.delete');
         Route::get('/member/datatable/ssd', [MemberController::class, 'ssd']);
+
+
+        Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
+
     });
 // });
 

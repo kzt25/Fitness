@@ -18,6 +18,19 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    public function store(Request $request)
+    {
+       $user=New User();
+       $user_member_type_level=$request->member_type_level;
+       $user->name=$request->name;
+       $user->phone=$request->phone;
+       $user->email=$request->email;
+       $user->password=$request->password;
+       $user->member_type_level=$request->member_type_level;
+       $user->save();
+       $user->members()->attach($request->member_id, ['member_type_level' => $user_member_type_level]);
+
+    }
 
     /**
      * Show the application dashboard.
@@ -26,7 +39,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users=User::all();
-        return view('home',compact('users'));
+        $user = User::find(1);
+        $mem = $user->members()->get();
+        $users=User::with('members')->orderBy('created_at','DESC')->get();
+
+        return view('home',compact('users','user','mem'));
     }
 }
