@@ -5,11 +5,11 @@
         var allData = {
 
         }
-        
-        
-        
-        
-        
+
+
+
+
+
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -26,7 +26,7 @@
                 if(hipNode){
                     parent.removeChild(hipNode);
                 }
-                
+
             }
         }
 
@@ -107,17 +107,17 @@
             }
           }
 
-          
 
-          
-          
-          
+
+
+
+
           if(el.checked){
             el.checked = false;
           }else{
             el.checked = true;
           }
-          
+
         }
 
         function showTab(n) {
@@ -162,10 +162,10 @@
           // This function deals with validation of the form fields
           var x, y, i, valid = true;
           // var gender = document.querySelector('[name="customerGender"]')
-          
 
-          
-        
+
+
+
           x = document.getElementsByClassName("tab");
           y = x[currentTab].querySelectorAll("input[type='text'],input[type='number'],input[type='email'],input[type='password'], select");
 
@@ -227,7 +227,7 @@
                 }
             }
           }
-          
+
 
           if(category === "bodyMeasurements"){
             var feet = document.querySelector('[name="feet"]')
@@ -240,13 +240,13 @@
             var hip = document.querySelector('[name="hip"]')
             var shoulders = document.querySelector('[name="shoulders"]')
             var bodyMeasurementsData = []
-            
+
             if(valid){
             //   console.log(feet,inches,weight,age,gender,neck,waist,hip,shoulders)
                 const overallInches = parseInt((feet.value * 12)) + parseInt(inches.value)
                 const bmi = (parseInt(weight.value)/(overallInches*overallInches))*703
                 var bfp
-                // console.log(bmi) 
+                // console.log(bmi)
                 // console.log((parseInt(waist)))
                 // const bfp = ((86.010*Math.log10(parseInt(waist.value)-parseInt(neck.value)))-(70.041*(Math.log10(overallInches))))+36.76
                 if(gender.value === "male"){
@@ -255,7 +255,7 @@
                 if(gender.value === "female"){
                   bfp = Math.round((163.205*(Math.log(waist.value*1.0+hip.value*1.0-neck.value*1.0)/Math.log(10))- 97.684*(Math.log(overallInches)/Math.log(10))-78.387*1.0)*100)/100;
                 }
-                
+
                 console.log(bfp)
               bodyMeasurementsData.push(feet.value,inches.value,weight.value,age.value,gender.value,neck.value,waist.value,hip?.value,shoulders.value,bmi,bfp)
               allData = {
@@ -341,7 +341,7 @@
                 ...allData,
                 bodyType  : bodyTypeData
             }
-              
+
             }
           }
 
@@ -400,7 +400,7 @@
             }
           }
 
-          //check if user select diet 
+          //check if user select diet
           if(category === 'diet'){
             var diet = document.querySelectorAll("input[name='diet']:checked")
             var dietArr = []
@@ -580,7 +580,7 @@
             }
           }
 
-          //check if user selects water intake 
+          //check if user selects water intake
           if(category === 'waterIntake'){
             var waterIntake = document.querySelectorAll("input[name='waterIntake']:checked")
             // console.log("waterIntake")
@@ -657,7 +657,7 @@
             }
             }
           }
-          
+
           // If the valid status is true, mark the step as finished and valid:
           if (valid) {
             // document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -686,4 +686,3 @@
         //   //... and adds the "active" class to the current step:
         //   x[n].className += " active";
         // }
-    
