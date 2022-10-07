@@ -200,7 +200,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "POST",
-                                url: `/logout`
+                                url: `/admin/logout`
                             })
                             location.reload();
                         } else {

@@ -64,7 +64,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '/getmealplan',
+                ajax: 'admin/getmealplan',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -100,7 +100,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "GET",
-                                url: `/mealplan/${id}/delete`
+                                url: `admin/mealplan/${id}/delete`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',
