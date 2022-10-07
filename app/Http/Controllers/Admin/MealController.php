@@ -65,7 +65,7 @@ class MealController extends Controller
     {
         $meal_create = new Meal();
         $meal_create->name = $request->name;
-        $meal_create->gender = $request->gender;
+        // $meal_create->gender = $request->gender;
         $meal_create->calories = $request->calories;
         $meal_create->meal_plan_id = $request->meal_plan_id;
         $meal_create->save();
@@ -112,7 +112,7 @@ class MealController extends Controller
         //
         $meal_update = Meal::findOrFail($id);
         $meal_update->name = $request->name;
-        $meal_update->gender = $request->gender;
+        // $meal_update->gender = $request->gender;
         $meal_update->calories = $request->calories;
         $meal_update->meal_plan_id = $request->meal_plan_id;
         $meal_update->update();

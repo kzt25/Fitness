@@ -66,7 +66,8 @@ class MealPlanController extends Controller
     {
         //
         $mealPlan = new MealPlan();
-        $mealPlan->member_id = $request->member_id;
+        // $mealPlan->member_id = $request->member_id;
+        $mealPlan->gender = $request->gender;
         $mealPlan->meal_plan_type = $request->meal_plan_type;
         $mealPlan->save();
         return redirect()->route('mealplan.index')->with('success', 'New Meal Plan is created successfully!');
@@ -94,7 +95,8 @@ class MealPlanController extends Controller
         // $mealPlan_update = MealPlan::where('meal_plan_id',$id)->first();
         //  dd($mealPlan_update->meal_plan_id);
         $mealPlan_update=MealPlan::findOrFail($id);
-        $mealPlan_update->member_id = $request->member_id;
+        // $mealPlan_update->member_id = $request->member_id;
+        $mealPlan_update->gender = $request->gender;
         $mealPlan_update->meal_plan_type = $request->meal_plan_type;
         $mealPlan_update->update();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is updated successfully!');
