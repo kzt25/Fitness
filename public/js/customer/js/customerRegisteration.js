@@ -1,4 +1,4 @@
-
+// $(document).ready(function(){
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -239,7 +239,7 @@
             var waist = document.querySelector('[name="waist"]')
             var hip = document.querySelector('[name="hip"]')
             var shoulders = document.querySelector('[name="shoulders"]')
-            var bodyMeasurementsData = []
+            var bodyMeasurementsData
 
             if(valid){
             //   console.log(feet,inches,weight,age,gender,neck,waist,hip,shoulders)
@@ -257,7 +257,18 @@
                 }
 
                 console.log(bfp)
-              bodyMeasurementsData.push(feet.value,inches.value,weight.value,age.value,gender.value,neck.value,waist.value,hip?.value,shoulders.value,bmi,bfp)
+                bodyMeasurementsData = {
+                  height : overallInches,
+                  weight: weight.value,
+                  age : age.value,
+                  gender : gender.value,
+                  neck : neck.value,
+                  waist : waist.value,
+                  hip : hip?.value,
+                  shoulders : shoulders.value,
+                  bmi : bmi,
+                  bfp : bfp,
+                }
               allData = {
                 ...allData,
                 bodyMeasurements  : bodyMeasurementsData
@@ -656,6 +667,20 @@
                 proficiency  : proficiencyData
             }
             }
+            $.ajax({
+                url : 'customerCreate',
+                method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:  {"allData":allData},
+                success   : function(data) {
+                    console.log("PI",data);
+                },
+                // error : function(err){
+                //     console.log(err)
+                // }
+            });
           }
 
           // If the valid status is true, mark the step as finished and valid:
@@ -673,9 +698,13 @@
             // }
             // console.log(personalInfoData,bodyMeasurementsData,physicalLimitationsData,preferedActivitiesData,bodyTypeData,mainGoalData,typicalDayData,dietData)
             console.log(allData)
+
+
           }
           return valid; // return the valid status
         }
+
+
 
         // function fixStepIndicator(n) {
         //   // This function removes the "active" class of all steps...
@@ -686,3 +715,4 @@
         //   //... and adds the "active" class to the current step:
         //   x[n].className += " active";
         // }
+    // })

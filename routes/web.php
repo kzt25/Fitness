@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -81,6 +82,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 
         Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
+
+
+        Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
     });
 // });
