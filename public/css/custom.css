@@ -1,3 +1,10 @@
+.dropdown-toggle:after {
+    display: none;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+}
+
 /********************* Customizing Select2 start  **************************/
 
 .select2-container {

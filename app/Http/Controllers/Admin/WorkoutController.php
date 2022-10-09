@@ -23,7 +23,7 @@ class WorkoutController extends Controller
         ]);
         $data = new WorkoutPlan();
         $data->plan_type = $request->plantype;
-        $data->workout_id = 1;
+
         $data->save();
         return back();
     }
@@ -41,7 +41,6 @@ class WorkoutController extends Controller
             'gendertype' => 'required',
             'workoutlevel'=> 'required',
             'calories'=> 'required',
-            'time'=> 'required',
             'image' => 'required',
             'video'=> 'required|mimes:mp4,webm',
         ]);
@@ -50,36 +49,55 @@ class WorkoutController extends Controller
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
             $video->move(public_path().'/upload/',$video_name);
-            // Storage::disk('public')->put(
-            //     'upload/'.$video_name,
-            //     file_get_contents($video)
-            // );
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-
             $image->move(public_path().'/upload/',$image_name);
-            // Storage::disk('public')->put(
-            //     'upload/'.$image_name,
-            //     file_get_contents($image)
-            // );
         }
-        //$workoutplan = WorkoutPlan::select('workout_plans.id')->where('workout_plans.id',$request->workoutplanId)->first();
+
+        if($request->gendertype == 'both'){
+            $data = new Workout();
+        $data->workout_plan_id = $request->workoutplanId;
+        $data->workout_name = $request->workoutname;
+        $data->gender_type = 'male';
+        $data->workout_level = $request->workoutlevel;
+        $data->calories = $request->calories;
+        $data->time = $request->videoTime;
+        $data->workout_periods =0;
+        $data->image = $image_name;
+        $data->video=$video_name;
+        $data->save();
 
         $data = new Workout();
+        $data->workout_plan_id = $request->workoutplanId;
+        $data->workout_name = $request->workoutname;
+        $data->gender_type = 'female';
+        $data->workout_level = $request->workoutlevel;
+        $data->calories = $request->calories;
+        $data->time = $request->videoTime;
+        $data->workout_periods =0;
+        $data->image = $image_name;
+        $data->video=$video_name;
+        $data->save();
+        return redirect('/workout');
+        }
+        else{
+            $data = new Workout();
         $data->workout_plan_id = $request->workoutplanId;
         $data->workout_name = $request->workoutname;
         $data->gender_type = $request->gendertype;
         $data->workout_level = $request->workoutlevel;
         $data->calories = $request->calories;
-        $data->time = $request->time;
+        $data->time = $request->videoTime;
         $data->workout_periods =0;
         $data->image = $image_name;
         $data->video=$video_name;
-
         $data->save();
         return redirect('/workout');
+        }
+
+
     }
 
     public function workoutview(){
@@ -111,6 +129,7 @@ class WorkoutController extends Controller
     }
 
     public function workoutupdate($id, Request $request){
+
         $check = Workout::findOrFail($id);
 
         if($request->hasFile('video')) {
@@ -131,7 +150,7 @@ class WorkoutController extends Controller
         $check->workout_name = $request->workoutname ?? $check->workout_name;
         $check->gender_type = $request->gendertype ?? $check->gender_type;
         $check->workout_level = $request->workoutlevel ?? $check->workout_level;
-        $check->time = $request->time ?? $check->time;
+        $check->time = $request->videoTime ?? $check->time;
         $check->calories = $request->calories ?? $check->calories;
         $check->image = $image_name;
         $check->video = $video_name;

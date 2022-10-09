@@ -24,21 +24,24 @@
     </style>
 @endsection
 
+@section('mealplan-active', 'active')
 @section('content')
     <div class="col-md-11 mx-auto">
-        <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">Meal Plan</h2>
-            <a href="{{ route('mealplan.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Meal Plan</a>
+        <div class="d-flex justify-content-between mb-3">
+            <h2 class="text-center mb-0">All Meal Plans</h2>
+            <a href="{{ route('mealplan.create') }}" class="btn btn-primary align-middle"><i
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Meal Plans</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
             <table class="table table-striped Datatable " style="width: 100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
+                        {{-- <th>ID</th> --}}
                         <th>Meal Plan Type</th>
-                        <th>Member Name</th>
+                        <th>Member Type</th>
+                        <th>Member Level</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -63,12 +66,8 @@
                 responsive: true,
                 ajax: '/getmealplan',
                 columns: [
-                    {
-                        data: 'id',
-                        render: function() {
-                        return i++;
-                    }
-                    },
+                    {data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',orderable: false, searchable: false},
                     {
                         data: 'meal_plan_type',
                         name: 'meal_plan_type'
@@ -76,6 +75,10 @@
                     {
                         data: 'member.member_type',
                         name: 'member.member_type'
+                    },
+                    {
+                        data: 'member.member_type_level',
+                        name: 'member.member_type_level'
                     },
                     {
                         data: 'action',

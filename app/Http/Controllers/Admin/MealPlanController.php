@@ -23,7 +23,9 @@ class MealPlanController extends Controller
     }
     public function getmealplan(){
         $mealPlan = MealPlan::query()->with(['member']);
+        $i = 1;
         return Datatables::of($mealPlan)
+            ->addIndexColumn()
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $delete_icon = '';
@@ -37,7 +39,7 @@ class MealPlanController extends Controller
 
                 return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';
             })
-            // ->removeColumn('id')
+            ->removeColumn('id')
             ->make(true);
     }
     /**
@@ -79,7 +81,8 @@ class MealPlanController extends Controller
     {
         //
         $member = Member::All();
-        $mealplan = MealPlan::findOrFail($id);
+        // $mealplan = MealPlan::where('meal_plan_id',$id)->first();
+        $mealplan =MealPlan::findOrFail($id);
         return view('admin.MealPlan.edit', compact('mealplan','member'));
     }
 
@@ -87,6 +90,8 @@ class MealPlanController extends Controller
     public function update(MealPlanRequest $request, $id)
     {
         //
+        // $mealPlan_update = MealPlan::where('meal_plan_id',$id)->first();
+        //  dd($mealPlan_update->meal_plan_id);
         $mealPlan_update=MealPlan::findOrFail($id);
         $mealPlan_update->member_id = $request->member_id;
         $mealPlan_update->meal_plan_type = $request->meal_plan_type;

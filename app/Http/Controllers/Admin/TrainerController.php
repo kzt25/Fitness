@@ -25,18 +25,20 @@ class TrainerController extends Controller
     public function ssd()
     {
         $trainers = Trainer::query();
+        $id = 0;
         return Datatables::of($trainers)
-            ->editColumn('training_type', function($each) {
+            ->editColumn('training_type', function ($each) {
                 $training_type = "";
-                if($each->training_type == 'weight_loss'){
+                if ($each->training_type == 'weight_loss') {
                     $training_type = 'Weight Loss';
-                }elseif($each->training_type == 'weight_gain') {
+                } elseif ($each->training_type == 'weight_gain') {
                     $training_type = 'Weight Gain';
-                }else {
+                } else {
                     $training_type = 'Body Beauty';
                 }
                 return $training_type;
             })
+            ->addIndexColumn()
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -53,7 +55,7 @@ class TrainerController extends Controller
                 <i class="fa-solid fa-trash fa-xl"></i>
             </a>';
 
-                return '<div class="d-flex justify-content-center">'.  $detail_icon  . $edit_icon . $delete_icon. '</div>';
+                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
             })
             ->make(true);
     }

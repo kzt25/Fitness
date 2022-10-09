@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <h3 class="text-center pt-3 pb-2">Create Role</h3>
     <div class="col-md-8 mx-auto">
         <div class="card shadow p-4">
+            <h3 class="text-center mb-2">Create Role</h3>
             <form action="{{ route('role.store') }}" method="POST" id="create-role">
                 @csrf
                 <div class="mb-3">

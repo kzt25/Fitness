@@ -13,11 +13,11 @@
                 <div class="d-flex flex-row justify-content-center">
                 <div class="mx-3">
                     <i class="fa-solid fa-burger"></i>
-                    <span>Calories:{{$workoutuser->calories}}</span>
+                    {{-- <span>Calories:{{$workoutuser->calories}}</span> --}}
                 </div>
                 <div class="mx-3">
                     <i class="fa-regular fa-clock"></i>
-                    <span>Minutes:{{$workoutuser->time}}</span>
+                    {{-- <span>Minutes:{{$workoutuser->time}}</span> --}}
                 </div>
                 </div>
                 <button class="btn btn-dark">Let's Go</button>
@@ -48,6 +48,10 @@
                     <div class="col-md-6 my-3" style="margin-left: 20px;">
                         <div class="row">
                                 <div class="col-md-7" style="border: solid 2px black;">
+                                    {{-- @for ($i=0; $i<=count($videogrouped[$workoutuser->workout_plan_id])-1; $i++)
+                                    <p>{{{ $videogrouped[$workoutuser->workout_plan_id][$i] }}}</p><br>
+                                    @endfor --}}
+
                                     <video width="100%" height="100%" controls>
                                         <source src="{{asset('/upload/'.$workoutuser->video)}}" type="video/mp4">
                                         Your browser does not support the video tag.
@@ -55,14 +59,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <p class="card-text">{{$workoutuser->workout_name}}</p>
-                                    <small class="text-muted">{{$workoutuser->time}} mins</small>
+                                    <small class="text-muted video-duration"> </small>
                                 </div>
                             </div>
                     </div>
                 </div>
                 </div>
-
-
             </div>
         @endforeach
     @else
@@ -73,5 +75,17 @@
 
 @endif
 
+<script>
+
+    var videoduration = document.querySelector('.video-duration');
+
+    var videolength = document.querySelector('video');
+    videolength.addEventListener('loadedmetadata', function () {
+	var minutes = Math.floor(videolength.duration / 60) %60;
+	var seconds = Math.floor(videolength.duration % 60);
+	videoduration.innerHTML = "Duration : " + minutes +" : "+ seconds +" Minutes"
+	});
+
+</script>
 
 @endsection

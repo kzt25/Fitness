@@ -24,18 +24,19 @@
     </style>
 @endsection
 
+@section('trainer-active', 'active')
 @section('content')
     <div class="col-md-11 mx-auto">
-        <div class="col-12">
-            <h2 class="text-center pt-3 pb-2">All Trainers</h2>
-            <a href="{{ route('trainer.create') }}" class="create_trainer btn btn-primary my-3 float-end"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Create Trainer</a>
+        <div class="d-flex justify-content-between mb-3">
+            <h2 class="text-center mb-0">All Trainers</h2>
+            <a href="{{ route('trainer.create') }}" class="btn btn-primary align-middle"><i
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Trainer</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
             <table class="table table-striped Datatable " style="width: 100%">
                 <thead>
-                    <tr>
+                    <tr class="align-middle">
                         <th>ID</th>
                         <th>Name</th>
                         <th>Phone</th>
@@ -65,11 +66,11 @@
                 serverSide: true,
                 responsive: true,
                 ajax: '/trainer/datatable/ssd',
-                columns: [{
-                        data: 'id',
-                        render: function() {
-                        return i++;
-                    }
+                columns: [
+                    {data: 'DT_RowIndex',
+                     name: 'DT_RowIndex',
+                     orderable: false,
+                     searchable: false
                     },
                     {
                         data: 'name',
@@ -97,7 +98,6 @@
                     }
                 ]
             });
-
 
             const Toast = Swal.mixin({
                 toast: true,

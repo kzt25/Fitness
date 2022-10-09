@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <h3 class="text-center pt-3 pb-2">Create Meal</h3>
     <div class="col-md-8 mx-auto">
         <div class="card shadow p-4">
+            <h3 class="text-center mb-2">Create Meal</h3>
             <form action="{{ route('meal.store') }}" method="POST" id="create-meal">
                 @csrf
 
@@ -21,9 +21,23 @@
                 </div>
 
                 <div class="mt-4">
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" checked>
+                        <label class="form-check-label" for="inlineRadio1">Male</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female">
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                      </div>
+                </div>
+
+                <div class="mt-4">
                     <label for="calories">Calories</label>
                     <input type="number" class="form-control" name="calories">
                 </div>
+
+
 
                 <div class="float-end mt-4">
                     <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>
@@ -32,14 +46,7 @@
             </form>
         </div>
     </div>
-    <script>
-        function submitForm(btn) {
-            // disable the button
-            btn.disabled = true;
-            // submit the form
-            btn.form.submit();
-        }
-    </script>
+
 @endsection
 
 

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@section('workoutplan-active','active')
 
 <div class="container">
     {{-- create workout plan --}}
-    <div class="d-flex justify-content-center"><button class="btn btn-primary create-workoutplan">Create Workout Plan</button></div>
+    <div class="d-flex justify-content-end"><button class="btn btn-primary create-workoutplan">Create Workout Plan</button></div>
     <div class="workout-plan-popup-parent-container">
         <div class="workout-plan-popup-container ">
             <div class="workout-plan-popup">
