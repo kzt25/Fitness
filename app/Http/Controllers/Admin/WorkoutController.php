@@ -80,7 +80,7 @@ class WorkoutController extends Controller
         $data->image = $image_name;
         $data->video=$video_name;
         $data->save();
-        return redirect('/workout');
+        return redirect('admin/workout');
         }
         else{
             $data = new Workout();
@@ -94,7 +94,7 @@ class WorkoutController extends Controller
         $data->image = $image_name;
         $data->video=$video_name;
         $data->save();
-        return redirect('/workout');
+        return redirect('admin/workout');
         }
 
 
@@ -155,6 +155,6 @@ class WorkoutController extends Controller
         $check->image = $image_name;
         $check->video = $video_name;
         $check->update();
-        return redirect('/workout');
+        return redirect('admin/workout');
     }
 }

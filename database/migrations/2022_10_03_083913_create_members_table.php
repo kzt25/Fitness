@@ -15,9 +15,7 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
             $table->string('member_type');
-            $table->string('member_type_level')->nullable();
             $table->string('duration')->nullable();
             $table->integer('price')->default(0);
             $table->timestamps();

@@ -30,7 +30,8 @@
         <div class="d-flex justify-content-between mb-3">
             <h2 class="text-center mb-0">All Trainers</h2>
             <a href="{{ route('trainer.create') }}" class="btn btn-primary align-middle"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create Trainer</span> </a>
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create
+                    Trainer</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -59,18 +60,19 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
-           var i = 1;
-           var table =  $('.Datatable').DataTable({
+        $(document).ready(function() {
+            var i = 1;
+            var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '/trainer/datatable/ssd',
+                ajax: 'admin/trainer/datatable/ssd',
                 columns: [
-                    {data: 'DT_RowIndex',
-                     name: 'DT_RowIndex',
-                     orderable: false,
-                     searchable: false
+                    {
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'name',
@@ -131,7 +133,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "DELETE",
-                                url: `/trainer/${id}`
+                                url: `/admin/trainer/${id}`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',
@@ -145,49 +147,6 @@
                         }
                     });
             })
-            // $(document).on('click', '.create_trainer', function(e) {
-            //     e.preventDefault();
-            //     var id = $(this).data('id');
-            //     Swal.fire({
-            //         title: 'Create Trainer',
-            //         html: `
-        //                <div class="text-start">
-        //                 <form action="" method="POST">
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Name</label>
-        //                         <input class="form-control @error('name') is-invalid @enderror" name="name">
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Phone</label>
-        //                         <input class="form-control" name="phone">
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Address</label>
-        //                         <textarea class="form-control" col="10" row="5">
-        //                         </textarea>
-        //                     </div>
-        //                     <div class="mb-3">
-        //                         <label class="form-label">Training Type</label>
-        //                         <select class="select2">
-        //                             <option selected>Open this select menu</option>
-        //                             <option value="1">One</option>
-        //                             <option value="2">Two</option>
-        //                             <option value="3">Three</option>
-        //                         </select>
-        //                     </div>
-        //                     <select class="select2">
-        //                             <option selected>Open this select menu</option>
-        //                             <option value="1">One</option>
-        //                             <option value="2">Two</option>
-        //                             <option value="3">Three</option>
-        //                         </select>
-        //                 </form>
-        //                 </div>
-        //         `
-            //     });
-            // });
-
-
         });
     </script>
 @endpush

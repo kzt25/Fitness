@@ -25,7 +25,7 @@ class CreateMemberRequest extends FormRequest
     {
         return [
             'member_type' => 'required',
-            'member_type_level' => 'required',
+            'duration' => 'required',
             'price' => 'required'
         ];
     }

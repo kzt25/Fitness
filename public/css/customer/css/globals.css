@@ -1,0 +1,131 @@
+:root{
+    --customer-primary-color: #3CDD57;
+    --customer-primary-color-hover : #53f96f;
+    --customer-placeholder-color: #dddddd;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.customer-main-content-container{
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.customer-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.customer-navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customer-logo-language-container{
+    display: flex;
+    align-items: center;
+}
+
+.customer-logo{
+    font-size: 32px;
+}
+
+.customer-language-container{
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.customer-language-flag-container{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.customer-language-flag-container img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.customer-language-container select{
+    margin-left: 5px;
+    background-color: transparent;
+    border: 2px solid var(--customer-primary-color);
+    border-radius: 3px;
+}
+
+.customer-navlinks-container a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+
+}
+
+.customer-navlinks-container a:not(:first-child){
+    margin-left: 40px;
+}
+
+.customer-login-btn{
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.customer-login-btn:hover{
+    color: white;
+    background-color: var(--customer-primary-color-hover);
+}
+
+.customer-signup-btn{
+    margin-left: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.customer-signup-btn:hover{
+    color: var(--customer-primary-color-hover);
+    border: 2px solid var(--customer-primary-color-hover);
+}
+
+.customer-primary-btn{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: var(--customer-primary-color);
+    color: white;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.customer-primary-btn:hover{
+    color: white;
+    background-color: var(--customer-primary-color-hover);
+}
+
+.customer-secondary-btn{
+    padding: 8px 13px;
+    border-radius: 5px;
+    border: 2px solid var(--customer-primary-color);
+    color: var(--customer-primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -13,9 +14,12 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
-    public function ssd() {
-        $users = User::query();
-        return Datatables::of($users)
-               ->make(true);
+    public function adminProfile() {
+       return view('admin.profile.index');
+    }
+
+    public function editAdminProfile() {
+        $user = auth()->user();
+        return view('admin.profile.edit', compact('user'));
     }
 }

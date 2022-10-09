@@ -14,4 +14,6 @@ class Meal extends Model
     {
         return $this->belongsTo(MealPlan::class, 'meal_plan_id', 'id');
     }
+
+    
 }

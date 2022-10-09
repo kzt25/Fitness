@@ -62,7 +62,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '/getmeal',
+                ajax: 'admin/getmeal',
                 columns: [
                     {data: 'DT_RowIndex',
                      name: 'DT_RowIndex',
@@ -79,12 +79,12 @@
                         name: 'calories'
                     },
                     {
-                        data: 'gender',
-                        name: 'gender'
-                    },
-                    {
                         data: 'meal_plans.meal_plan_type',
                         name: 'meal_plans.meal_plan_type'
+                    },
+                    {
+                        data: 'meal_plans.gender',
+                        name: 'meal_plans.gender'
                     },
                     {
                         data: 'action',
@@ -107,7 +107,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "GET",
-                                url: `/meal/${id}/delete`
+                                url: `admin/meal/${id}/delete`
                             }).done(function(res) {
                                 table.ajax.reload(null, false);
                             })
@@ -150,7 +150,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "DELETE",
-                                url: `/meal/${id}`
+                                url: `admin/meal/${id}`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',

@@ -70,17 +70,27 @@
                                 class="align-middle">Trainers</span>
                         </a>
                     </li>
-                    <li class="sidebar-item @yield('meal-active')">
-                        <a class="sidebar-link" href="{{ route('meal.index') }}">
-                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+
+                    <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Members</span>
                         </a>
                     </li>
+
                     <li class="sidebar-item @yield('mealplan-active')">
                         <a class="sidebar-link" href="{{ route('mealplan.index') }}">
                             <i class="fa-solid fa-utensils  align-middle"></i> <span class="align-middle">Meal
                                 Plans</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item @yield('meal-active')">
+                        <a class="sidebar-link" href="{{ route('meal.index') }}">
+                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+                        </a>
+                    </li>
+
 
                     <li class="sidebar-item @yield('permission-active')">
                         <a class="sidebar-link" href="{{ route('permission.index') }}">
@@ -96,12 +106,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('member-active')">
-                        <a class="sidebar-link" href="{{ route('member.index') }}">
-                            <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Members</span>
-                        </a>
-                    </li>
+
 
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
@@ -124,12 +129,12 @@
 
                 <div class="dropdown">
                     <img src="{{ asset('img/avatar.jpg') }}" style="cursor: pointer;" class="rounded-circle me-2" width="35" alt="">
-                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down"></i></span>
+                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down fa-sm"></i></span>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="{{ route('admin-profile') }}">Profile</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item logout-btn" href="#">Logout</a></li>
+                      <li><a class="dropdown-item logout-btn" href="">Logout</a></li>
                     </ul>
                   </div>
             </nav>
@@ -202,7 +207,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "POST",
-                                url: `/logout`
+                                url: `/admin/logout`
                             })
                             location.reload();
                         } else {

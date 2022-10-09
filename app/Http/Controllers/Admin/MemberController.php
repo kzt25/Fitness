@@ -7,6 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
+use App\Models\MealPlan;
 use GrahamCampbell\ResultType\Success;
 
 class MemberController extends Controller
@@ -54,7 +55,7 @@ class MemberController extends Controller
        $member_store=New Member();
        $member_store->user_id=$request->user_id;
        $member_store->member_type=$request->member_type;
-       $member_store->member_type_level=$request->member_type_level;
+       $member_store->duration=$request->duration;
        $member_store->price=$request->price;
        $member_store->save();
        return redirect()->route('member.index')->with('success', 'New Member Type is created successfully!');
@@ -84,7 +85,7 @@ class MemberController extends Controller
         $member_update=Member::findOrFail($id);
         $member_update->user_id=$request->user_id;
         $member_update->member_type=$request->member_type;
-        $member_update->member_type_level=$request->member_type_level;
+        $member_update->duration=$request->duration;
         $member_update->price=$request->price;
 
         $member_update->update();

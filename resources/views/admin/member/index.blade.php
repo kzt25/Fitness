@@ -46,7 +46,7 @@
                     <tr>
                         <th>No</th>
                         <th>Member Type</th>
-                        <th>Level</th>
+                        <th>Duration(Month)</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -66,7 +66,7 @@
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/member/datatable/ssd',
+                ajax: 'admin/member/datatable/ssd',
                 columns: [
                     {data: 'DT_RowIndex',
                      name: 'DT_RowIndex',
@@ -78,8 +78,8 @@
                         name: 'member_type'
                     },
                     {
-                        data: 'member_type_level',
-                        name: 'member_type_level'
+                        data: 'duration',
+                        name: 'duration'
                     },
                     {
                         data: 'price',
@@ -106,7 +106,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "GET",
-                                url: `/member/${id}/delete`
+                                url: `admin/member/${id}/delete`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',
