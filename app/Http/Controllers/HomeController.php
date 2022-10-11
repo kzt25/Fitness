@@ -53,9 +53,9 @@ class HomeController extends Controller
         $mem = $user->members()->get();
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
-
+        $members=Member::all();
         //return view('home',compact('users','user','mem'));
-        return view('customer.customer_registration');
+        return view('customer.customer_registration',compact('members'));
 
     }
 }

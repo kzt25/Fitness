@@ -1131,8 +1131,22 @@
          Choose your plan<br>
          <span>One time welcome offer</span>
       </p>
+        @foreach ($members as $member)
+            <div class="checkbox customer-member-plan-checkbox">
+                <label class="checkbox-wrapper">
+                <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="{{$member->id}}" onclick="checkedOnClick(this,'memberPlan')" />
+                <span class="checkbox-tile">
 
-      <div class="checkbox customer-member-plan-checkbox">
+                    <span class="checkbox-label">{{$member->member_type}}
+
+                    </span>
+                    <span class="checkbox-price-label"> {{$member->price}} mmk/ {{$member->duration}} month</span>
+
+                </span>
+                </label>
+            </div>
+        @endforeach
+      {{-- <div class="checkbox customer-member-plan-checkbox">
         <label class="checkbox-wrapper">
           <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="free" onclick="checkedOnClick(this,'memberPlan')" />
           <span class="checkbox-tile">
@@ -1209,7 +1223,7 @@
 
           </span>
         </label>
-      </div>
+      </div> --}}
 
 
 

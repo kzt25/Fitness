@@ -55,7 +55,7 @@ class CreateUsersTable extends Migration
             $table->integer('profile_id')->nullable();
             $table->integer('chat_id')->nullable();
             $table->integer('message_id')->nullable();
-            // $table->timestamp('email_verified_at')->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });

@@ -53,7 +53,6 @@ class MemberController extends Controller
     public function store(Request $request)
     {
        $member_store=New Member();
-       $member_store->user_id=$request->user_id;
        $member_store->member_type=$request->member_type;
        $member_store->duration=$request->duration;
        $member_store->price=$request->price;
@@ -83,7 +82,6 @@ class MemberController extends Controller
     public function update(Request $request, $id)
     {
         $member_update=Member::findOrFail($id);
-        $member_update->user_id=$request->user_id;
         $member_update->member_type=$request->member_type;
         $member_update->duration=$request->duration;
         $member_update->price=$request->price;
