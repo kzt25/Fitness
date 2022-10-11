@@ -22,6 +22,10 @@ class AuthController extends Controller
             return response()->json([
                 "message" => "Already Registered!"
             ]);
+        }else {
+            return response()->json([
+                "message" => "OK"
+            ]);
         }
     }
 
