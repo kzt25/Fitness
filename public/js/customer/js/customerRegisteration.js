@@ -112,6 +112,12 @@
                 dietCheckboxesList.item(i).checked = false
             }
           }
+          if(category === 'memberPlanDuration'){
+            var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
+            for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
+                memberPlanDurationCheckboxesList.item(i).checked = false
+            }
+          }
 
 
 
@@ -204,14 +210,14 @@
               alert("Passwords are not equal")
             }
 
-            if(password.value !== "" && !(password.value.length > 6 && password.value.length < 11) ){
+            if(password.value !== "" && !(password.value.length >= 6 && password.value.length <= 11) ){
               valid = false
               password.classList.add("invalid")
               confirmPassword.classList.add("invalid")
               alert("Passwords should have 6 to 11 characters or numbers.")
             }
 
-            if(phone.value !== "" && !(phone.value.length > 7 && phone.value.length < 11)){
+            if(phone.value !== "" && !(phone.value.length >= 7 && phone.value.length <= 11)){
               valid = false
               phone.classList.add("invalid")
               alert("Phone number should have 7 to 11 numbers")

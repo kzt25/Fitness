@@ -77,6 +77,63 @@ html{
     color: var(--customer-placeholder-color);
 }
 
+.member-plan-duration-parent-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.member-plan-duration-parent-container > p{
+    color: white;
+}
+
+.member-plan-duration-parent-container p{
+    margin-bottom: 0;
+}
+
+.member-plan-duretions-container{
+    display: flex;
+    align-items: center;
+
+}
+
+.member-plan-duration-container{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--customer-primary-color);
+    padding: 6px 10px 6px 20px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+.member-plan-duration-container:not(:first-child){
+    margin-left: 10px;
+}
+
+.customer-member-plan-duration-checkbox-input{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.member-plan-duration-container label{
+    cursor: pointer;
+}
+
+.member-plan-duration-container p{
+    margin-left: 10px;
+    color: white;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+
+.member-plan-duration-container:has(.customer-member-plan-duration-checkbox-input:checked){
+    background-color: var(--customer-primary-color);
+}
 .customer-registeration-input{
     width: 100%;
     margin-top: 40px;

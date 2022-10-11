@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PersonalChoice;
 use App\Http\Controllers\Controller;
+use App\Models\BankingInfo;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -20,6 +21,10 @@ class AuthController extends Controller
         if ($usr_phone || $usr_email) {
             return response()->json([
                 "message" => "Already Registered!"
+            ]);
+        }else {
+            return response()->json([
+                "message" => "OK"
             ]);
         }
     }
@@ -57,6 +62,8 @@ class AuthController extends Controller
         $user->physical_activity = $request->physical_activity;
         $user->bad_habits = $request->bad_habits;
 
+        $user->hydration = $request->hydration;
+        $user->body_area = $request->body_area;
         // Thandar style start
         $user_member_type_id = $request->member_id;
 
@@ -70,14 +77,22 @@ class AuthController extends Controller
         $user->members()->attach($request->member_id, ['member_type_level' => $user_member_type_level]);
         // Thandar style end
 
+        $token = $user->createToken('gym');
+
         return response()->json([
             'message' => 'Register successfully!',
-            'user' => $user
+            'user' => $user,
+            'token' => $token->plainTextToken
         ]);
     }
 
     public function login() {
 
+    }
+
+    public function logout() {
+        $user = auth()->user();
+        $token = $user->currentAccessToken()->delete();
     }
 
     public function getMemberPlans() {
@@ -87,7 +102,28 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getEwalletInfos() {
+        $banking_infos = BankingInfo::where('payment_type', 'ewallet')->get();
+        return response()->json([
+            'banking_infos' => $banking_infos
+        ]);
+    }
+    public function getBankingInfos() {
+        $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
+        return response()->json([
+            'banking_infos' => $banking_infos
+        ]);
+    }
+
+
+
     public function me() {
-        return auth()->user();
+        $user = auth()->user();
+        $token = $user->currentAccessToken();
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 }

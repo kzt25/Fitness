@@ -3,7 +3,7 @@
 @section('content')
 <form id="regForm" action="">
     <!--personal infos-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
@@ -1124,7 +1124,7 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--member plan-->
     <div class="cutomer-registeration-form tab customer-member-plan-form">
@@ -1132,8 +1132,49 @@
          Choose your plan<br>
          <span>One time welcome offer</span>
       </p>
+      <div class="member-plan-duration-parent-container">
+        <p>Get Offers For</p>
+        <div class="member-plan-duretions-container">
+            <div class="member-plan-duration-container">
+                <label>
 
-      <div class="checkbox customer-member-plan-checkbox">
+
+                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
+                    <p class="customer-member-plan-duration-checkbox-title">1 month</p>
+
+                </label>
+            </div>
+            <div class="member-plan-duration-container">
+                <label>
+                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
+                    <p class="customer-member-plan-duration-checkbox-title">3 months</p>
+                </label>
+            </div>
+            <div class="member-plan-duration-container">
+                <label>
+                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
+                    <p class="customer-member-plan-duration-checkbox-title">6 months</p>
+                </label>
+            </div>
+        </div>
+      </div>
+
+        @foreach ($members as $member)
+            <div class="checkbox customer-member-plan-checkbox">
+                <label class="checkbox-wrapper">
+                <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="{{$member->id}}" onclick="checkedOnClick(this,'memberPlan')" />
+                <span class="checkbox-tile">
+
+                    <span class="checkbox-label">{{$member->member_type}}
+
+                    </span>
+                    <span class="checkbox-price-label"> {{$member->price}} mmk/ {{$member->duration}} month</span>
+
+                </span>
+                </label>
+            </div>
+        @endforeach
+      {{-- <div class="checkbox customer-member-plan-checkbox">
         <label class="checkbox-wrapper">
           <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="free" onclick="checkedOnClick(this,'memberPlan')" />
           <span class="checkbox-tile">
@@ -1210,7 +1251,7 @@
 
           </span>
         </label>
-      </div>
+      </div> --}}
 
 
 

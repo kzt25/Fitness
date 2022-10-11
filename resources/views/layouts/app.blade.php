@@ -221,9 +221,7 @@
                     });
 
             })
-
             $(document).on('submit', 'form', function() {
-
                 $('button').attr('disabled', 'disabled');
             });
             $(".ninja-select").select2();
