@@ -46,6 +46,12 @@ class CustomerRegisterController extends Controller
         $user->bfp=$bodyMeasurements->bfp;
         $user->bmi=$bodyMeasurements->bmi;
         $user->gender=$user_gender;
+        if($user_member_type=='free'){
+            $user->active_status=0;
+        }else{
+            $user->active_status=1;
+        }
+
         if($user_gender=='male'){
             $user->hip=0;
         }else{

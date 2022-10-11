@@ -15,6 +15,11 @@ class MemberTypeSeeder extends Seeder
     public function run()
     {
         Member::create([
+            'member_type' =>'Free',
+            'price'=>0
+           ]);
+           
+        Member::create([
         'member_type' =>'Platinum',
         'duration'=>1,
         'price'=>5000
@@ -42,12 +47,6 @@ class MemberTypeSeeder extends Seeder
         'member_type' =>'Ruby Premium',
         'duration'=>1,
         'price'=>200000
-       ]);
-
-
-       Member::create([
-        'member_type' =>'Free',
-        'price'=>0
        ]);
 
     }
