@@ -66,7 +66,7 @@
             var table = $('.Datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/member/datatable/ssd',
+                ajax: 'admin/member/datatable/ssd',
                 columns: [
                     {data: 'DT_RowIndex',
                      name: 'DT_RowIndex',
@@ -106,7 +106,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "GET",
-                                url: `/member/${id}/delete`
+                                url: `admin/member/${id}/delete`
                             }).done(function(res) {
                                 Toast.fire({
                                     icon: 'success',

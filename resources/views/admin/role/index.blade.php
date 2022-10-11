@@ -61,7 +61,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '/role/datatable/ssd',
+                ajax: 'admin/role/datatable/ssd',
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -118,7 +118,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "DELETE",
-                                url: `/role/${id}`
+                                url: `admin/role/${id}`
                             }).done(function(res) {
                                 console.log("deleted");
                                 table.ajax.reload();
