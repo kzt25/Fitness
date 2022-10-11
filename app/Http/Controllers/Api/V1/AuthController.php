@@ -102,8 +102,14 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getEwalletInfos() {
+        $banking_infos = BankingInfo::where('payment_type', 'ewallet')->get();
+        return response()->json([
+            'banking_infos' => $banking_infos
+        ]);
+    }
     public function getBankingInfos() {
-        $banking_infos = BankingInfo::all();
+        $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
             'banking_infos' => $banking_infos
         ]);
