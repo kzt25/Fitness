@@ -62,6 +62,8 @@ class AuthController extends Controller
         $user->physical_activity = $request->physical_activity;
         $user->bad_habits = $request->bad_habits;
 
+        $user->hydration = $request->hydration;
+        $user->body_area = $request->body_area;
         // Thandar style start
         $user_member_type_id = $request->member_id;
 
