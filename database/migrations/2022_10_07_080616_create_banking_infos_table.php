@@ -20,7 +20,6 @@ class CreateBankingInfosTable extends Migration
             $table->string('bank_account_holder');
             $table->string('phone');
             $table->string('account_name');
-            $table->integer('amount');
             $table->timestamps();
         });
     }

@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Workout;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+
 
 class WorkoutController extends Controller
 {
@@ -113,6 +116,10 @@ class WorkoutController extends Controller
 
         $data->delete();
 
+
+
+
+
         if(File::exists(public_path().'/upload/'.$image_name)){
             File::delete(public_path().'/upload/'.$image_name);
         }
@@ -156,5 +163,19 @@ class WorkoutController extends Controller
         $check->video = $video_name;
         $check->update();
         return redirect('admin/workout');
+    }
+
+    public function getVideo(){
+        $video = Workout::select('video')->get();
+        //dd(count($video));
+        //$videoView = Storage::disk('local')->get("{$video}");
+        // $response = Response::make($videoView,200);
+        // $response->header('Content-Type','video/mp4');
+        // $response->header('Accept-Ranges','bytes');
+        // for ($i=1; $i<=count($video); $i++) {
+            foreach($video as $vd){
+                return response()->file(storage_path()."/app/".$vd->video);
+            }
+        // }
     }
 }

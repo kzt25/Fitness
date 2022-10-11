@@ -57,6 +57,7 @@
           </select>
         </div>
         <input  type="number" required class="customer-registeration-input" placeholder="Weight" name="weight">
+        <input  type="number" required class="customer-registeration-input" placeholder="Ideal Weight" name="idealWeight">
         <input  type="number" required class="customer-registeration-input" placeholder="Age" name="age">
         <select class="customer-registeration-input" name="gender" onchange="checkFemale(this)">
             <option style="color: black;" value="">Gender</option>

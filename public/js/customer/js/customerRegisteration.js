@@ -239,6 +239,7 @@
             var feet = document.querySelector('[name="feet"]')
             var inches = document.querySelector('[name="inches"]')
             var weight = document.querySelector('[name="weight"]')
+            var idealWeight = document.querySelector('[name="idealWeight"]')
             var age = document.querySelector('[name="age"]')
             var gender = document.querySelector('[name="gender"]')
             var neck = document.querySelector('[name="neck"]')
@@ -268,6 +269,7 @@
                 bodyMeasurementsData = {
                   height : overallInches,
                   weight: weight.value,
+                  idealWeight: idealWeight.value,
                   age : age.value,
                   gender : gender.value,
                   neck : neck.value,
