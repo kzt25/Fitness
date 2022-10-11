@@ -40,7 +40,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
+    <link rel="stylesheet" href="{{asset('css/workout.css')}}">
     @yield('styles')
 
 </head>
@@ -108,6 +108,13 @@
 
 
 
+                    <li class="sidebar-item @yield('workoutplan-active')">
+                        <a class="sidebar-link" href="{{ route('workoutplane') }}">
+                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <span class="align-middle">Workout Plan</span>
+                        </a>
+                    </li>
+
 
 
                 </ul>
@@ -143,7 +150,7 @@
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
      <!-- Scripts -->

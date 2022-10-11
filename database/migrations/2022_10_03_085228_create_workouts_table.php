@@ -17,7 +17,8 @@ class CreateWorkoutsTable extends Migration
             $table->id();
             $table->integer('workout_plan_id');
             $table->string('workout_name');
-            $table->time('time');
+            $table->integer('time');
+            $table->string('gender_type');
             $table->string('calories');
             $table->string('workout_level');
             $table->string('workout_periods');

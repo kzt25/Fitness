@@ -1,16 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\WorkoutController;
-use App\Http\Controllers\Admin\User\UserController;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
+use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\User\UserWorkoutController;
+
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\HomeController;
 
@@ -33,6 +35,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
+Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
+
 // Admin Site
 Route::prefix('admin')->group(function () {
     Auth::routes();
@@ -44,14 +48,14 @@ Route::prefix('admin')->group(function () {
         Route::resource('users', UserController::class);
 
         //Workout
-        Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
-        Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
-        Route::get('/workout/{id}', [WorkoutController::class, 'workoutindex'])->name('workout');
-        Route::get('/workout', [WorkoutController::class, 'workoutview'])->name('workoutview');
-        Route::get('/workout/delete/{id}', [WorkoutController::class, 'workoutdelete'])->name('workoutdelete');
-        Route::get('/workout/edit/{id}', [WorkoutController::class, 'workoutedit'])->name('workoutedit');
-        Route::post('/workout/update/{id}', [WorkoutController::class, 'workoutupdate'])->name('workoutupdate');
-        Route::post('/workout/create', [WorkoutController::class, 'createworkout'])->name('createworkout');
+        Route::get('admin/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
+        Route::post('admin/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
+        Route::get('admin/workout/{id}', [WorkoutController::class, 'workoutindex'])->name('workout');
+        Route::get('admin/workout', [WorkoutController::class, 'workoutview'])->name('workoutview');
+        Route::get('admin/workout/delete/{id}', [WorkoutController::class, 'workoutdelete'])->name('workoutdelete');
+        Route::get('admin/workout/edit/{id}', [WorkoutController::class, 'workoutedit'])->name('workoutedit');
+        Route::post('admin/workout/update/{id}', [WorkoutController::class, 'workoutupdate'])->name('workoutupdate');
+        Route::post('admin/workout/create', [WorkoutController::class, 'createworkout'])->name('createworkout');
 
         //Trainer
         Route::resource('trainer', TrainerController::class);
@@ -81,4 +85,5 @@ Route::prefix('admin')->group(function () {
         Route::get('admin/member/{id}/delete', [MemberController::class, 'destroy'])->name('member.delete');
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
     });
+
 });
