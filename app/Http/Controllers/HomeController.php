@@ -49,13 +49,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user = User::find(1);
-        $mem = $user->members()->get();
-        $users = User::with('members')->orderBy('created_at', 'DESC')->get();
+        // $user = User::find(1);
+        // $mem = $user->members()->get();
+        // $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
-        $members=Member::all();
-        //return view('home',compact('users','user','mem'));
-        return view('customer.customer_registration',compact('members'));
-
+        $durations=Member::groupBy('duration')->get();
+        // $this->getmember();
+        return view('customer.customer_registration',compact('durations'));
     }
+    
 }

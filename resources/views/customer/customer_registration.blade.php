@@ -6,9 +6,9 @@
     {{-- <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
-        </p>
+        </p> --}}
 
-        <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
+        {{-- <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
         <input  type="number" required class="customer-registeration-input" placeholder="Phone" name="phone">
         <input  type="email" required class="customer-registeration-input" placeholder="Email" name="email">
         <input  type="text" required class="customer-registeration-input" placeholder="Address" name="address">
@@ -17,7 +17,7 @@
 
         <div class="customer-form-btn-container">
           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'personalInfo')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'personalInfo')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -87,7 +87,7 @@
             <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
             <p>Previous</p>
           </button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyMeasurements')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyMeasurements')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -163,7 +163,7 @@
             <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
             <p>Previous</p>
           </button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'physicalLimitations')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'physicalLimitations')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -237,7 +237,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'preferedActivities')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'preferedActivities')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -304,7 +304,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyType')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyType')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -365,7 +365,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'mainGoal')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'mainGoal')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -440,7 +440,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'typicalDay')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'typicalDay')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -560,7 +560,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'diet')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'diet')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -634,7 +634,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'sleep')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'sleep')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -695,7 +695,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'energyLevel')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'energyLevel')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -769,7 +769,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'idealWeight')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'idealWeight')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -870,7 +870,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyArea')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyArea')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -944,7 +944,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'physicalActivity')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'physicalActivity')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1037,7 +1037,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'badHabits')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'badHabits')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1118,7 +1118,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'waterIntake')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'waterIntake')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1135,16 +1135,16 @@
       <div class="member-plan-duration-parent-container">
         <p>Get Offers For</p>
         <div class="member-plan-duretions-container">
-            <div class="member-plan-duration-container">
-                <label>
+            @foreach ($durations as $duration)
+                <div class="member-plan-duration-container">
+                    <label>
+                        <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')" value="{{$duration->duration}}"/>
+                        <p class="customer-member-plan-duration-checkbox-title">{{$duration->duration}} month</p>
+                    </label>
+                </div>
+            @endforeach
 
-
-                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
-                    <p class="customer-member-plan-duration-checkbox-title">1 month</p>
-
-                </label>
-            </div>
-            <div class="member-plan-duration-container">
+            {{-- <div class="member-plan-duration-container">
                 <label>
                     <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
                     <p class="customer-member-plan-duration-checkbox-title">3 months</p>
@@ -1155,11 +1155,11 @@
                     <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
                     <p class="customer-member-plan-duration-checkbox-title">6 months</p>
                 </label>
-            </div>
+            </div> --}}
         </div>
       </div>
 
-        @foreach ($members as $member)
+        {{-- @foreach ($members as $member)
             <div class="checkbox customer-member-plan-checkbox">
                 <label class="checkbox-wrapper">
                 <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="{{$member->id}}" onclick="checkedOnClick(this,'memberPlan')" />
@@ -1173,7 +1173,7 @@
                 </span>
                 </label>
             </div>
-        @endforeach
+        @endforeach --}}
       {{-- <div class="checkbox customer-member-plan-checkbox">
         <label class="checkbox-wrapper">
           <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="free" onclick="checkedOnClick(this,'memberPlan')" />
@@ -1262,7 +1262,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'memberPlan')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'memberPlan')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1331,7 +1331,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'proficiency')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'proficiency')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1346,3 +1346,4 @@
 </form>
 
 @endsection
+
