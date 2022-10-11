@@ -52,10 +52,14 @@ class HomeController extends Controller
         // $user = User::find(1);
         // $mem = $user->members()->get();
         // $users = User::with('members')->orderBy('created_at', 'DESC')->get();
+        $user = User::find(1);
+        // $mem = $user->members()->get();
+        $users = User::with('members')->orderBy('created_at', 'DESC')->get();
+
+        $members=Member::all();
 
         $durations=Member::groupBy('duration')->get();
-        // $this->getmember();
-        return view('customer.customer_registration',compact('durations'));
+        return view('customer.customer_registration',compact('durations','members'));
     }
-    
+
 }

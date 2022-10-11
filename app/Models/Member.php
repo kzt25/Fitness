@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Member extends Model
 {
-    use HasFactory;
+    use HasFactory,HasRoles;
 
     // public function user()
     // {
@@ -25,7 +26,6 @@ class Member extends Model
                     ->withPivot(['member_type_level','deleted_at'])
                     ->withTimestamps();
     }
-
 
     public static function boot() {
         parent::boot();

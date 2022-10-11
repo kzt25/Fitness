@@ -6,9 +6,9 @@
     {{-- <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
-        </p> --}}
+        </p>
 
-        {{-- <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
+        <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
         <input  type="number" required class="customer-registeration-input" placeholder="Phone" name="phone">
         <input  type="email" required class="customer-registeration-input" placeholder="Email" name="email">
         <input  type="text" required class="customer-registeration-input" placeholder="Address" name="address">
@@ -1110,9 +1110,6 @@
       </div>
 
 
-
-
-
       <div class="customer-form-btn-container">
         <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
@@ -1138,7 +1135,7 @@
             @foreach ($durations as $duration)
                 <div class="member-plan-duration-container">
                     <label>
-                        <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')" value="{{$duration->duration}}"/>
+                        <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnDurationClick(this,'memberPlanDuration')" value="{{$duration->duration}}"/>
                         <p class="customer-member-plan-duration-checkbox-title">{{$duration->duration}} month</p>
                     </label>
                 </div>
@@ -1157,7 +1154,10 @@
                 </label>
             </div> --}}
         </div>
+
       </div>
+
+      <div id="customer-member-plan"></div>
 
         {{-- @foreach ($members as $member)
             <div class="checkbox customer-member-plan-checkbox">
@@ -1253,10 +1253,6 @@
         </label>
       </div> --}}
 
-
-
-
-
       <div class="customer-form-btn-container">
         <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
@@ -1346,4 +1342,31 @@
 </form>
 
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function(){
+    var member = @json($members);
+console.log(member);
+    $.each(member, function(index, value){
+                    $("#customer-member-plan").append(`
+                    <div class="checkbox customer-member-plan-checkbox">
+                    <label class="checkbox-wrapper">
+                    <input type="checkbox" name = "memberPlan"
+                    class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+                    <span class="checkbox-tile">
+
+                        <span class="checkbox-label">${value.member_type}
+
+                        </span>
+                        <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
+
+                    </span>
+                    </label>
+                    </div>
+                    `)
+                });
+
+    })
+</script>
+@endpush
 

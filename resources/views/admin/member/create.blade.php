@@ -21,6 +21,18 @@
                     <label for="price" class="form-label">Price</label>
                     <input type="number" class="form-control" id="price" name="price">
                 </div>
+                {{-- <p>Permissions</p>
+                <div class="row mb-3">
+                    @foreach ($permissions as $permission)
+                        <div class="col-md-3 col-6 mb-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $permission->name }}"
+                                    name="permissions[]" id="{{ $permission->name }}" />
+                                <label class="form-check-label" for="{{ $permission->name }}">{{ $permission->name }}</label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div> --}}
                 <div class="float-end mt-4">
                     <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Confirm</button>
