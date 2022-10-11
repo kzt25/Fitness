@@ -80,7 +80,5 @@ Route::prefix('admin')->group(function () {
         Route::resource('member', MemberController::class);
         Route::get('admin/member/{id}/delete', [MemberController::class, 'destroy'])->name('member.delete');
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
-
     });
 });
-
