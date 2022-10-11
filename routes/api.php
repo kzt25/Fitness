@@ -21,8 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/check-user-exists', [AuthController::class, 'checkUserExists']);
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::get('get-member-plans', [AuthController::class, 'getMemberPlans']);
+Route::get('get-ewallet-infos', [AuthController::class, 'getEwalletInfos']);
+Route::get('get-banking-infos', [AuthController::class, 'getBankingInfos']);
 
+
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::get('me', [AuthController::class, 'me']);
 });
