@@ -36,7 +36,7 @@ class CustomerRegisterController extends Controller
         $user->bmi=$bodyMeasurements->bmi;
         $user->gender=$bodyMeasurements->gender;
         $user->neck=$bodyMeasurements->neck;
-        //$user->hip=$bodyMeasurements->hip;
+        $user->hip=$bodyMeasurements->hip;
         $user->shoulders=$bodyMeasurements->shoulders;
         $user->waist=$bodyMeasurements->waist;
         $user->weight=$bodyMeasurements->weight;
