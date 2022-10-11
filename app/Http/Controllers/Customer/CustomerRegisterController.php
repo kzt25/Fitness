@@ -30,7 +30,6 @@ class CustomerRegisterController extends Controller
 
         $member=Member::findOrFail($user_member_type);
 
-
         //$user_body_type =json_encode($all_info->bodyType);
         $user_bad_habits=json_encode($all_info->badHabits);
         $user_bodyArea=json_encode($all_info->bodyArea);
@@ -46,6 +45,9 @@ class CustomerRegisterController extends Controller
         $user->bfp=$bodyMeasurements->bfp;
         $user->bmi=$bodyMeasurements->bmi;
         $user->gender=$user_gender;
+        $user->daily_life=$all_info->typicalDay[0];
+        $user->diet_type=$all_info->diet[0];
+
         if($user_member_type=='free'){
             $user->active_status=0;
         }else{

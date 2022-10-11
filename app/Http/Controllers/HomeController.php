@@ -54,8 +54,13 @@ class HomeController extends Controller
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
         $members=Member::all();
+
         //return view('home',compact('users','user','mem'));
         return view('customer.customer_registration',compact('members'));
+        // return response()->json([
+        //            'success' => 'success',
+        //             'data' => $members,
+        //     ]);
 
     }
 }
