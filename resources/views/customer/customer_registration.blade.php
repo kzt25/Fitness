@@ -3,7 +3,7 @@
 @section('content')
 <form id="regForm" action="">
     <!--personal infos-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
@@ -23,7 +23,7 @@
           </button>
         </div>
 
-    </div>
+    </div> --}}
 
     <!-- body measurements-->
     <div class="cutomer-registeration-form tab">
@@ -31,7 +31,7 @@
             Body Measurements
         </p>
 
-        <!-- <input  type="number" required class="customer-registeration-input" placeholder="Height" name="height"> -->
+
         <div class="customer-registeration-height-container">
           <p class="customer-registeration-label">Height</p>
           <select class="customer-registeration-input" name="feet">
@@ -56,8 +56,6 @@
               <option style="color: black;" value="11">11</option>
           </select>
         </div>
-        <input  type="number" required class="customer-registeration-input" placeholder="Weight" name="weight">
-        <input  type="number" required class="customer-registeration-input" placeholder="Ideal Weight" name="idealWeight">
         <input  type="number" required class="customer-registeration-input" placeholder="Age" name="age">
         <select class="customer-registeration-input" name="gender" onchange="checkFemale(this)">
             <option style="color: black;" value="">Gender</option>
@@ -96,7 +94,7 @@
     </div>
 
     <!--physical limitations-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
            Do you have any physical limitations?
         </p>
@@ -169,10 +167,10 @@
           </button>
         </div>
 
-    </div>
+    </div> --}}
 
     <!--which activities do you prefer-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Which activities do you prefer?
       </p>
@@ -243,10 +241,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--your body type-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Your body type<br>
          <span>Which body type do you have?</span>
@@ -310,10 +308,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--main goal-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your main goal?
       </p>
@@ -371,10 +369,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--typical day-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your typical day look like?<br>
          <span>You need an individual approach based on your habits to reach your goal</span>
@@ -446,10 +444,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--diet type-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Choose your diet type
 
@@ -566,10 +564,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--average night-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your average night like?<br>
          <span>Sleep is vary important not only for well-being but also for keeping in shape</span>
@@ -640,10 +638,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--energy level-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          How's your energy level during the day?<br>
       </p>
@@ -701,7 +699,7 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--ideal weight-->
     <div class="cutomer-registeration-form tab">
@@ -778,7 +776,7 @@
     </div>
 
     <!--area of the body that needs the most attention-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
         Which areas of your body need the most attention?
 
@@ -876,10 +874,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--how physically active are you-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          How physically active are you?<br>
          <span>Your physical activity plays a major role if you want to lose weight or keep in shape while spending most of your time in the office</span>
@@ -950,10 +948,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--bad habits-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Bad habits<br>
          <span>Which activities are yout guilty pleasure?</span>
@@ -1043,10 +1041,10 @@
         </button>
       </div>
 
-    </div>
+    </div> --}}
 
     <!--daily water intake-->
-    <div class="cutomer-registeration-form tab">
+    {{-- <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your daily water intake?
 
@@ -1121,7 +1119,31 @@
         </button>
       </div>
 
+    </div> --}}
+
+    <!--weight -->
+    <div class="cutomer-registeration-form tab">
+        <p class="customer-registeration-form-header">
+            Weight
+         </p>
+         <input  type="number" required class="customer-registeration-input" placeholder="Weight" name="weight">
+         <input  type="number" required class="customer-registeration-input" placeholder="Ideal Weight" name="idealWeightInput">
+
+         <p class="weight-difference-text"></p>
+
+         <div class="customer-form-btn-container">
+            <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
+              <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
+              <p>Previous</p>
+            </button>
+            <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'weight')">
+              <p>Next</p>
+              <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
+            </button>
+        </div>
+
     </div>
+
 
     <!--member plan-->
     <div class="cutomer-registeration-form tab customer-member-plan-form">
