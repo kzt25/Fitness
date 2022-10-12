@@ -523,3 +523,10 @@ input.invalid, select.invalid {
     font-size: 14px;
     color: white;
 }
+
+.weight-difference-text{
+    color: var(--customer-primary-color);
+    margin-top: 40px;
+    text-align: center;
+    font-weight: 600;
+}
