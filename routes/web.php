@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
-use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\PermissionController;
 
 use App\Http\Controllers\User\UserWorkoutController;
@@ -44,7 +44,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
         // Route::put('/profile/{}')
-        Route::resource('users', UserController::class);
+        Route::resource('user', UserController::class);
+        Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
         Route::get('/requestlist', [HomeController::class, 'requestlist'])->name('requestlist');
 

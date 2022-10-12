@@ -71,7 +71,7 @@
                     </li>
 
                     <li class="sidebar-item @yield('user-active') ">
-                        <a class="sidebar-link" href="{{ route('users.index') }}">
+                        <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
                         </a>
@@ -132,6 +132,8 @@
                             <span class="align-middle">Banking Info</span>
                         </a>
                     </li>
+
+
 
 
 
