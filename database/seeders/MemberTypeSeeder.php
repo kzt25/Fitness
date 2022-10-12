@@ -16,37 +16,44 @@ class MemberTypeSeeder extends Seeder
     {
         Member::create([
             'member_type' =>'Free',
-            'price'=>0
+            'price'=>0,
+            'duration'=>0,
+            'role_id'=>1
            ]);
-           
+
         Member::create([
         'member_type' =>'Platinum',
         'duration'=>1,
-        'price'=>5000
+        'price'=>5000,
+        'role_id'=>2
        ]);
 
        Member::create([
         'member_type' =>'Gold',
         'duration'=>1,
-        'price'=>20000
+        'price'=>20000,
+        'role_id'=>3
        ]);
 
        Member::create([
         'member_type' =>'Diamond',
         'duration'=>1,
-        'price'=>40000
+        'price'=>40000,
+        'role_id'=>4
        ]);
 
        Member::create([
         'member_type' =>'Ruby',
         'duration'=>1,
-        'price'=>100000
+        'price'=>100000,
+        'role_id'=>5
        ]);
 
        Member::create([
         'member_type' =>'Ruby Premium',
         'duration'=>1,
-        'price'=>200000
+        'price'=>200000,
+        'role_id'=>6
        ]);
 
     }

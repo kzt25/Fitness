@@ -51,7 +51,6 @@ class CreateUsersTable extends Migration
             $table->float('shoulders')->default(0.0);
             $table->string('password');
             $table->integer('hydration')->nullable();
-            $table->string('body_area')->nullable();
 
             // for trainer crud
             $table->string('training_type')->nullable();
