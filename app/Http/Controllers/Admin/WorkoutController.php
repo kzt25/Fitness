@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class WorkoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $workoutplan = WorkoutPlan::select('id','plan_type')->get();
         //dd($workoutplan->toArray());

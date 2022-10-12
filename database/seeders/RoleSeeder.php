@@ -15,6 +15,21 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
+        'name' =>'King',
+        'guard_name' => 'web'
+        ]);
+
+        Role::create([
+        'name' =>'Queen',
+        'guard_name' => 'web'
+        ]);
+
+        Role::create([
+        'name' =>'System_Admin',
+        'guard_name' => 'web'
+        ]);
+
+        Role::create([
         'name' =>'Free',
         'guard_name' => 'web'
         ]);

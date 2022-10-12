@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -15,11 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user =User::create([
             'name'=>'user',
             'email' =>'user@gmail.com',
             'phone'=>'0912345678',
             'password' => Hash::make('12345678'),
            ]);
+        $user->assignRole('System_Admin');
     }
 }

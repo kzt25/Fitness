@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class RequestAcceptDeclineController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function accept($id, Request $request){
         $u=User::findOrFail($id);
 

@@ -42,7 +42,8 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 // Admin Site
 Route::prefix('admin')->group(function () {
     Auth::routes();
-    Route::middleware('auth')->group(function () {
+     Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
+    // Route::middleware('auth')->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
