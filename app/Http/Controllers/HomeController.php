@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
     public function store(Request $request)
     {
        $user=New User();
@@ -47,15 +38,25 @@ class HomeController extends Controller
         $user->members()->attach($request->member_id, ['member_type_level' => $user_member_type_level]);
     }
 
+    public function requestlist(Request $request)
+    {
+        $users=User::where('active_status',1)->get();
+        return view('admin.requestlist',compact('users'));
+    }
+
     public function index()
     {
+        // $user = User::find(1);
+        // $mem = $user->members()->get();
+        // $users = User::with('members')->orderBy('created_at', 'DESC')->get();
         $user = User::find(1);
-        $mem = $user->members()->get();
+        // $mem = $user->members()->get();
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
+        $members=Member::all();
 
-        //return view('home',compact('users','user','mem'));
-        return view('customer.customer_registration');
-
+        $durations=Member::groupBy('duration')->get();
+        return view('customer.customer_registration',compact('durations','members'));
     }
+
 }

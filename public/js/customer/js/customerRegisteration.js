@@ -9,7 +9,7 @@
 
 
 
-
+        
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -118,6 +118,7 @@
 
 
 
+
           if(el.checked){
             el.checked = false;
           }else{
@@ -204,14 +205,14 @@
               alert("Passwords are not equal")
             }
 
-            if(password.value !== "" && !(password.value.length > 6 && password.value.length < 11) ){
+            if(password.value !== "" && !(password.value.length >= 6 && password.value.length <= 11) ){
               valid = false
               password.classList.add("invalid")
               confirmPassword.classList.add("invalid")
               alert("Passwords should have 6 to 11 characters or numbers.")
             }
 
-            if(phone.value !== "" && !(phone.value.length > 7 && phone.value.length < 11)){
+            if(phone.value !== "" && !(phone.value.length >= 7 && phone.value.length <= 11)){
               valid = false
               phone.classList.add("invalid")
               alert("Phone number should have 7 to 11 numbers")
@@ -239,6 +240,7 @@
             var feet = document.querySelector('[name="feet"]')
             var inches = document.querySelector('[name="inches"]')
             var weight = document.querySelector('[name="weight"]')
+            var idealWeight = document.querySelector('[name="idealWeight"]')
             var age = document.querySelector('[name="age"]')
             var gender = document.querySelector('[name="gender"]')
             var neck = document.querySelector('[name="neck"]')
@@ -268,6 +270,7 @@
                 bodyMeasurementsData = {
                   height : overallInches,
                   weight: weight.value,
+                  idealWeight: idealWeight.value,
                   age : age.value,
                   gender : gender.value,
                   neck : neck.value,

@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Workout;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+
 
 class WorkoutController extends Controller
 {
@@ -48,12 +51,20 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-            $video->move(public_path().'/upload/',$video_name);
+            Storage::disk('local')->put(
+                'upload/'.$video_name,
+                file_get_contents($video)
+            );
+            // $video->move(public_path().'/upload/',$video_name);
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-            $image->move(public_path().'/upload/',$image_name);
+            Storage::disk('local')->put(
+                'upload/'.$image_name,
+                file_get_contents($image)
+            );
+            //$image->move(public_path().'/upload/',$image_name);
         }
 
         if($request->gendertype == 'both'){
@@ -135,14 +146,20 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-            $video->move(public_path().'/upload/',$video_name);
+            Storage::disk('local')->put(
+                'upload/'.$video_name,
+                file_get_contents($video)
+            );
         }else{
             $video_name = $check->video;
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-            $image->move(public_path().'/upload/',$image_name);
+            Storage::disk('local')->put(
+                'upload/'.$image_name,
+                file_get_contents($image)
+            );
         }else{
             $image_name = $check->image;
         }
@@ -156,5 +173,19 @@ class WorkoutController extends Controller
         $check->video = $video_name;
         $check->update();
         return redirect('admin/workout');
+    }
+
+    public function getVideo(){
+        $video = Workout::select('video')->get();
+        //dd(count($video));
+        //$videoView = Storage::disk('local')->get("{$video}");
+        // $response = Response::make($videoView,200);
+        // $response->header('Content-Type','video/mp4');
+        // $response->header('Accept-Ranges','bytes');
+        // for ($i=1; $i<=count($video); $i++) {
+            foreach($video as $vd){
+                return response()->file(storage_path()."/app/".$vd->video);
+            }
+        // }
     }
 }

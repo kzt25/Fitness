@@ -63,6 +63,12 @@
                             <span class="align-middle">Dashboard</span>
                         </a>
                     </li>
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link" href="{{ route('requestlist') }}">
+                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <span class="align-middle">Request</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-item @yield('user-active') ">
                         <a class="sidebar-link" href="{{ route('users.index') }}">
@@ -113,12 +119,17 @@
                         </a>
                     </li>
 
-
-
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
                             <i class="fa-solid fa-layer-group align-middle "></i>
                             <span class="align-middle">Workout Plan</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('bankinginfo-active')">
+                        <a class="sidebar-link" href="{{ route('bankinginfo.index') }}">
+                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <span class="align-middle">Banking Info</span>
                         </a>
                     </li>
 

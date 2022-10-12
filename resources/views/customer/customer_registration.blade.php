@@ -17,7 +17,7 @@
 
         <div class="customer-form-btn-container">
           <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'personalInfo')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'personalInfo')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -57,6 +57,7 @@
           </select>
         </div>
         <input  type="number" required class="customer-registeration-input" placeholder="Weight" name="weight">
+        <input  type="number" required class="customer-registeration-input" placeholder="Ideal Weight" name="idealWeight">
         <input  type="number" required class="customer-registeration-input" placeholder="Age" name="age">
         <select class="customer-registeration-input" name="gender" onchange="checkFemale(this)">
             <option style="color: black;" value="">Gender</option>
@@ -86,7 +87,7 @@
             <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
             <p>Previous</p>
           </button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyMeasurements')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyMeasurements')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -162,7 +163,7 @@
             <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
             <p>Previous</p>
           </button>
-          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'physicalLimitations')">
+          <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'physicalLimitations')">
             <p>Next</p>
             <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
           </button>
@@ -236,7 +237,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'preferedActivities')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'preferedActivities')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -303,7 +304,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyType')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyType')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -364,7 +365,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'mainGoal')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'mainGoal')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -439,7 +440,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'typicalDay')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'typicalDay')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -559,7 +560,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'diet')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'diet')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -633,7 +634,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'sleep')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'sleep')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -694,7 +695,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'energyLevel')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'energyLevel')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -768,7 +769,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'idealWeight')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'idealWeight')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -869,7 +870,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'bodyArea')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'bodyArea')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -943,7 +944,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'physicalActivity')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'physicalActivity')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1036,7 +1037,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'badHabits')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'badHabits')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1109,15 +1110,12 @@
       </div>
 
 
-
-
-
       <div class="customer-form-btn-container">
         <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'waterIntake')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'waterIntake')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1131,8 +1129,52 @@
          Choose your plan<br>
          <span>One time welcome offer</span>
       </p>
+      <div class="member-plan-duration-parent-container">
+        <p>Get Offers For</p>
+        <div class="member-plan-duretions-container">
+            @foreach ($durations as $duration)
+                <div class="member-plan-duration-container">
+                    <label>
+                        <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnDurationClick(this,'memberPlanDuration')" value="{{$duration->duration}}"/>
+                        <p class="customer-member-plan-duration-checkbox-title">{{$duration->duration}} month</p>
+                    </label>
+                </div>
+            @endforeach
 
-      <div class="checkbox customer-member-plan-checkbox">
+            {{-- <div class="member-plan-duration-container">
+                <label>
+                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
+                    <p class="customer-member-plan-duration-checkbox-title">3 months</p>
+                </label>
+            </div>
+            <div class="member-plan-duration-container">
+                <label>
+                    <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnClick(this,'memberPlanDuration')"/>
+                    <p class="customer-member-plan-duration-checkbox-title">6 months</p>
+                </label>
+            </div> --}}
+        </div>
+
+      </div>
+
+      <div id="customer-member-plan"></div>
+
+        {{-- @foreach ($members as $member)
+            <div class="checkbox customer-member-plan-checkbox">
+                <label class="checkbox-wrapper">
+                <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="{{$member->id}}" onclick="checkedOnClick(this,'memberPlan')" />
+                <span class="checkbox-tile">
+
+                    <span class="checkbox-label">{{$member->member_type}}
+
+                    </span>
+                    <span class="checkbox-price-label"> {{$member->price}} mmk/ {{$member->duration}} month</span>
+
+                </span>
+                </label>
+            </div>
+        @endforeach --}}
+      {{-- <div class="checkbox customer-member-plan-checkbox">
         <label class="checkbox-wrapper">
           <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="free" onclick="checkedOnClick(this,'memberPlan')" />
           <span class="checkbox-tile">
@@ -1209,18 +1251,14 @@
 
           </span>
         </label>
-      </div>
-
-
-
-
+      </div> --}}
 
       <div class="customer-form-btn-container">
         <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'memberPlan')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'memberPlan')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1289,7 +1327,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(1,'proficiency')">
+        <button class="customer-registeration-next-btn customer-primary-btn" type="button" id="nextBtn" onclick="nextPrev(1,'proficiency')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1304,3 +1342,136 @@
 </form>
 
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function(){
+    let member = @json($members);
+    console.log(member);
+    // $.each(member, function(index, value){
+    //                 $("#customer-member-plan").append(`
+    //                 <div class="checkbox customer-member-plan-checkbox">
+    //                 <label class="checkbox-wrapper">
+    //                 <input type="checkbox" name = "memberPlan"
+    //                 class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+    //                 <span class="checkbox-tile">
+
+    //                     <span class="checkbox-label">${value.member_type}
+
+    //                     </span>
+    //                     <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
+
+    //                 </span>
+    //                 </label>
+    //                 </div>
+    //                 `)
+    //             });
+
+    // })
+
+    const checkedOnDurationClick = (el,category) => {
+    let member = @json($members);
+    // console.log(member);
+
+    if(category === 'memberPlanDuration'){
+        // console.log(el)
+        var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
+        // console.log(memberPlanDurationCheckboxesList)
+        for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
+            memberPlanDurationCheckboxesList.item(i).checked = false
+        }
+    }
+
+    if(el.checked){
+        el.checked = false;
+    }else{
+        el.checked = true;
+    }
+
+        $.each(member, function(index, value){
+            // console.log(el.value === value.duration)
+        if(el.value === value.duration){
+                console.log(value)
+                $("#customer-member-plan").append(`
+                <div class="checkbox customer-member-plan-checkbox">
+                    <label class="checkbox-wrapper">
+                    <input type="checkbox" name = "memberPlan"
+                    class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+                    <span class="checkbox-tile">
+
+                        <span class="checkbox-label">${value.member_type}
+
+                        </span>
+                        <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
+
+                    </span>
+                    </label>
+                </div>
+                `)
+        }
+            else{
+                // console.log($(".customer-member-plan-checkbox").value())
+                console.log("remove")
+                $(".customer-member-plan-checkbox").remove()
+            }
+        });
+
+
+
+
+}
+})
+
+// const checkedOnDurationClick = (el,category) => {
+//     let member = @json($members);
+//     // console.log(member);
+
+//     if(category === 'memberPlanDuration'){
+//         // console.log(el)
+//         var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
+//         // console.log(memberPlanDurationCheckboxesList)
+//         for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
+//             memberPlanDurationCheckboxesList.item(i).checked = false
+//         }
+//     }
+
+//     if(el.checked){
+//         el.checked = false;
+//     }else{
+//         el.checked = true;
+//     }
+
+//         $.each(member, function(index, value){
+//             // console.log(el.value === value.duration)
+//         if(el.value === value.duration){
+//                 console.log(value)
+//                 $("#customer-member-plan").append(`
+//                 <div class="checkbox customer-member-plan-checkbox">
+//                     <label class="checkbox-wrapper">
+//                     <input type="checkbox" name = "memberPlan"
+//                     class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+//                     <span class="checkbox-tile">
+
+//                         <span class="checkbox-label">${value.member_type}
+
+//                         </span>
+//                         <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
+
+//                     </span>
+//                     </label>
+//                 </div>
+//                 `)
+//         }
+//             else{
+//                 // console.log($(".customer-member-plan-checkbox").value())
+//                 console.log("remove")
+//                 $(".customer-member-plan-checkbox").remove()
+//             }
+//         });
+
+
+
+
+// }
+</script>
+@endpush
+
