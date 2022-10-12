@@ -28,7 +28,7 @@
 @section('content')
     <div class="col-md-11 mx-auto">
         <div class="d-flex justify-content-between mb-3">
-            <h2 class="text-center mb-0">Banking Information</h2>
+            <h2 class="text-center mb-0">Request - Member</h2>
             <a href="{{ route('bankinginfo.create') }}" class="btn btn-primary align-middle"><i
                     class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create
                     Bank Info</span> </a>
@@ -39,10 +39,10 @@
                 <thead>
                     <tr class="align-middle">
                         <th>ID</th>
-                        <th>Paymenmt Type</th>
-                        <th>Account Name</th>
-                        <th>Account Holder</th>
-                        <th>Account Number</th>
+                        <th>Name</th>
+                        <th>Request Type</th>
+                        <th>Request Type Level</th>
+                        <th>Gender</th>
                         <th>Phone</th>
                         <th>Action</th>
                     </tr>
@@ -66,7 +66,7 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: 'admin/bankinginfo/datatable/ssd',
+                ajax: 'request/member/datatable/ssd',
                 columns: [
                     {
                         data: 'DT_RowIndex',
@@ -75,20 +75,20 @@
                         searchable: false
                     },
                     {
-                        data: 'payment_type',
-                        name: 'payment_type'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
-                        data: 'account_name',
-                        name: 'account_name'
+                        data: 'member_type',
+                        name: 'member_type'
                     },
                     {
-                        data: 'bank_account_holder',
-                        name: 'bank_account_holder'
+                        data: 'member_type_level',
+                        name: 'member_type_level'
                     },
                     {
-                        data: 'bank_account_number',
-                        name: 'bank_account_number'
+                        data: 'gender',
+                        name: 'gender'
                     },
                     {
                         data: 'phone',

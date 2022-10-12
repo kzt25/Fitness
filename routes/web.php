@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
+use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,7 @@ Route::prefix('admin')->group(function () {
         //Request
         Route::resource('request', RequestController::class);
         Route::get('request/member/datatable/ssd', [RequestController::class, 'ssd']);
+        Route::get('request/member/accept/{id}', [RequestAcceptDeclineController::class, 'accept'])->name('requestaccept');
     });
 
 });
