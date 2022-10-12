@@ -15,7 +15,12 @@
 
     <!--global css-->
     <link href={{ asset('css/customer/css/globals.css')}} rel="stylesheet"/>
+
+     <!--customer registeration-->
     <link href={{ asset('css/customer/css/customerRegisteration.css')}} rel="stylesheet"/>
+
+    <!--customer login-->
+    <link href="{{ asset('css/customer/css/customerLogin.css')}}" rel="stylesheet"/>
 
     <title>Hello, world!</title>
   </head>
