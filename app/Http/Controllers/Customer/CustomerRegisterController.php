@@ -30,10 +30,10 @@ class CustomerRegisterController extends Controller
         $user_gender=$bodyMeasurements->gender;
 
         $member=Member::findOrFail($user_member_type);
+        
         $user_member_role_id=$member->role_id;
         $role=Role::findOrFail($user_member_role_id);
         $user->assignRole($role->name);
-
         $user->assignRole($user_member_role_id);
         //$user_body_type =json_encode($all_info->bodyType);
         $user_bad_habits=json_encode($all_info->badHabits);

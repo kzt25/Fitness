@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PermissionController;
 
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 
 /*
@@ -27,6 +28,7 @@ use App\Http\Controllers\Customer\CustomerRegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -40,6 +42,7 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 Route::prefix('admin')->group(function () {
     Auth::routes();
     Route::middleware('auth')->group(function () {
+
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');

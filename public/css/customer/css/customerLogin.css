@@ -1,0 +1,29 @@
+.forgot-password-link{
+    font-size: 12px;
+    color: var(--customer-placeholder-color);
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.customer-login-cancel-form-btn{
+    margin-left: 10px;
+}
+
+.customer-login-phone-container, .customer-login-pw-container{
+    position: relative;
+
+}
+
+.customer-login-phone-icon, .customer-login-pw-icon{
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.customer-login-phone-container input, .customer-login-pw-container input{
+    padding-left: 30px;
+}
