@@ -23,7 +23,7 @@
         </div>
 
         <div class="customer-nav-btns-container">
-          <a class="customer-primary-btn customer-login-btn">Log In</a>
+          <a href="{{ route('customerlogin') }}" class="customer-primary-btn customer-login-btn">Log In</a>
           <a class="customer-secondary-btn customer-signup-btn">Sign Up</a>
         </div>
     </div>
