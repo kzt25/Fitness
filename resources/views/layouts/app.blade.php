@@ -71,7 +71,7 @@
                     </li>
 
                     <li class="sidebar-item @yield('user-active') ">
-                        <a class="sidebar-link" href="{{ route('users.index') }}">
+                        <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
                         </a>
@@ -81,6 +81,13 @@
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">
                             <i class="fa-solid fa-dumbbell align-middle "></i> <span
                                 class="align-middle">Trainers</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('request-active')">
+                        <a class="sidebar-link" href="{{ route('request.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Request</span>
                         </a>
                     </li>
 
@@ -121,7 +128,7 @@
 
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
-                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <i class="fa-duotone fa-dumbbell"></i>
                             <span class="align-middle">Workout Plan</span>
                         </a>
                     </li>
@@ -132,6 +139,8 @@
                             <span class="align-middle">Banking Info</span>
                         </a>
                     </li>
+
+
 
 
 

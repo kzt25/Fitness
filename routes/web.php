@@ -5,17 +5,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
-use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\PermissionController;
-
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
+use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ use App\Http\Controllers\Customer\CustomerRegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -40,11 +43,13 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 Route::prefix('admin')->group(function () {
     Auth::routes();
     Route::middleware('auth')->group(function () {
+
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
         // Route::put('/profile/{}')
-        Route::resource('users', UserController::class);
+        Route::resource('user', UserController::class);
+        Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
         Route::get('/requestlist', [HomeController::class, 'requestlist'])->name('requestlist');
 
@@ -91,6 +96,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);
 
+        //Request
+        Route::resource('request', RequestController::class);
+        Route::get('request/member/datatable/ssd', [RequestController::class, 'ssd']);
+        Route::get('request/member/accept/{id}', [RequestAcceptDeclineController::class, 'accept'])->name('requestaccept');
+        Route::get('request/member/decline/{id}', [RequestAcceptDeclineController::class, 'decline'])->name('requestdecline');
     });
 
 });
