@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('member_code')->nullable();
             $table->integer('height')->default(0);
             $table->float('weight')->default(0.0);
-            $table->float('ideal_weight')->nullable(0.0);
+            $table->float('ideal_weight')->default(0.0);
             $table->string('bad_habits')->nullable();
             $table->string('most_attention_areas')->nullable();
             $table->string('average_night')->nullable();
@@ -52,9 +52,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('hydration')->nullable();
             $table->string('body_area')->nullable();
-            $table->integer('profile_id')->nullable();
-            $table->integer('chat_id')->nullable();
-            $table->integer('message_id')->nullable();
+            $table->integer('profile_id')->default(0);
+            $table->integer('chat_id')->default(0);
+            $table->integer('message_id')->default(0);
 
             $table->rememberToken();
             $table->timestamps();
