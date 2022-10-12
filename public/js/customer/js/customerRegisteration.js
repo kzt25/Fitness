@@ -9,7 +9,7 @@
 
 
 
-        
+
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -29,6 +29,41 @@
 
             }
         }
+
+        $("[name='weight'] , [name='idealWeightInput']").change(function(){
+            if($("[name='weight']").val() !== "" && $("[name='idealWeightInput']").val() !== ""){
+                const idealWeight = $("[name='idealWeightInput']").val()
+                const weight = $("[name='weight']").val()
+                const weightDiff = parseInt(idealWeight) - parseInt(weight)
+                var duration
+                console.log(weightDiff.toString())
+                if(Math.abs(weightDiff).toString().length ===1){
+                    console.log("weight diff 1")
+                    duration = "1"
+                }
+                if(Math.abs(weightDiff).toString().length >= 2){
+                    console.log("weight diff 2")
+                    if(Math.abs(weightDiff) >= 80){
+                        duration = 12
+                    }else{
+                        if(Math.abs(weightDiff).toString().split("")[1] === '0'){
+                            duration  = Math.abs(weightDiff).toString().split("")[0]
+                        }else{
+                            duration  = (parseInt(weightDiff.toString().split("")[0]) + 1).toString()
+                        }
+                    }
+
+                }
+
+                if(weightDiff < 0){
+                    $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                }
+                if(weightDiff > 0){
+                    $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                }
+
+            }
+        })
 
         function checkedOnClick(el, category){
 
@@ -239,8 +274,8 @@
           if(category === "bodyMeasurements"){
             var feet = document.querySelector('[name="feet"]')
             var inches = document.querySelector('[name="inches"]')
-            var weight = document.querySelector('[name="weight"]')
-            var idealWeight = document.querySelector('[name="idealWeight"]')
+            // var weight = document.querySelector('[name="weight"]')
+            // var idealWeight = document.querySelector('[name="idealWeight"]')
             var age = document.querySelector('[name="age"]')
             var gender = document.querySelector('[name="gender"]')
             var neck = document.querySelector('[name="neck"]')
@@ -252,33 +287,31 @@
             if(valid){
             //   console.log(feet,inches,weight,age,gender,neck,waist,hip,shoulders)
                 const overallInches = parseInt((feet.value * 12)) + parseInt(inches.value)
-                const bmi = (parseInt(weight.value)/(overallInches*overallInches))*703
-                var bfp
+                // const bmi = (parseInt(weight.value)/(overallInches*overallInches))*703
+                // var bfp
                 // console.log(bmi)
                 // console.log((parseInt(waist)))
                 // const bfp = ((86.010*Math.log10(parseInt(waist.value)-parseInt(neck.value)))-(70.041*(Math.log10(overallInches))))+36.76
                 if(gender.value === "male"){
                     console.log("male bfp")
-                  bfp= Math.round((86.010*(Math.log(waist.value*1-neck.value*1)/Math.log(10))-70.041*(Math.log(overallInches)/Math.log(10))+36.76*1)*100)/100;
+                //   bfp= Math.round((86.010*(Math.log(waist.value*1-neck.value*1)/Math.log(10))-70.041*(Math.log(overallInches)/Math.log(10))+36.76*1)*100)/100;
                 }
                 if(gender.value === "female"){
                     console.log("female bfp")
-                  bfp = Math.round((163.205*(Math.log(waist.value*1.0+hip.value*1.0-neck.value*1.0)/Math.log(10))- 97.684*(Math.log(overallInches)/Math.log(10))-78.387*1.0)*100)/100;
+                //   bfp = Math.round((163.205*(Math.log(waist.value*1.0+hip.value*1.0-neck.value*1.0)/Math.log(10))- 97.684*(Math.log(overallInches)/Math.log(10))-78.387*1.0)*100)/100;
                 }
 
-                console.log(bfp)
+                // console.log(bfp)
                 bodyMeasurementsData = {
                   height : overallInches,
-                  weight: weight.value,
-                  idealWeight: idealWeight.value,
                   age : age.value,
                   gender : gender.value,
                   neck : neck.value,
                   waist : waist.value,
                   hip : hip?.value,
                   shoulders : shoulders.value,
-                  bmi : bmi,
-                  bfp : bfp,
+                //   bmi : bmi,
+                //   bfp : bfp,
                 }
               allData = {
                 ...allData,
@@ -629,6 +662,40 @@
             }
           }
 
+          if(category === "weight"){
+            var weight = document.querySelector('[name="weight"]')
+            var idealWeight = document.querySelector('[name="idealWeightInput"]')
+
+            if(valid){
+                var overallInches = allData.bodyMeasurements.height
+                const bmi = (parseInt(weight.value)/(overallInches*overallInches))*703
+                const waist = allData.bodyMeasurements.waist
+                const neck = allData.bodyMeasurements.neck
+                const hip = allData.bodyMeasurements.hip
+                var bfp
+
+                if(allData.bodyMeasurements.gender === "male"){
+                    console.log("male bfp")
+                    bfp= Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(overallInches)/Math.log(10))+36.76*1)*100)/100;
+                }
+                if(allData.bodyMeasurements.gender === "female"){
+                    console.log("female bfp")
+                    bfp = Math.round((163.205*(Math.log(waist*1.0+hip*1.0-neck*1.0)/Math.log(10))- 97.684*(Math.log(overallInches)/Math.log(10))-78.387*1.0)*100)/100;
+                }
+
+                weightData = {
+                    weight: weight.value,
+                    idealWeight: idealWeight.value,
+                    bmi : bmi,
+                    bfp : bfp,
+                  }
+                allData = {
+                  ...allData,
+                  weight  : weightData
+              }
+            }
+          }
+
           //check if user selects member plan
           if(category === 'memberPlan'){
             var memberPlan = document.querySelectorAll("input[name='memberPlan']:checked")
@@ -727,4 +794,4 @@
         //   //... and adds the "active" class to the current step:
         //   x[n].className += " active";
         // }
-    // })
+// })

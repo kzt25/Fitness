@@ -53,9 +53,9 @@ class HomeController extends Controller
         // $mem = $user->members()->get();
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
-        $members=Member::all();
+        $members=Member::orderBy('price','ASC')->get();
 
-        $durations=Member::groupBy('duration')->get();
+        $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
         return view('customer.customer_registration',compact('durations','members'));
     }
 
