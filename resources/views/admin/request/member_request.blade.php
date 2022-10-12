@@ -29,9 +29,6 @@
     <div class="col-md-11 mx-auto">
         <div class="d-flex justify-content-between mb-3">
             <h2 class="text-center mb-0">Request - Member</h2>
-            <a href="{{ route('bankinginfo.create') }}" class="btn btn-primary align-middle"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create
-                    Bank Info</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -83,8 +80,8 @@
                         name: 'member_type'
                     },
                     {
-                        data: 'member_type_level',
-                        name: 'member_type_level'
+                        data: 'membertype_level',
+                        name: 'membertype_level'
                     },
                     {
                         data: 'gender',
@@ -120,33 +117,33 @@
                 })
             @endif
 
-            $(document).on('click', '.delete-btn', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
+            // $(document).on('click', '.delete-btn', function(e) {
+            //     e.preventDefault();
+            //     var id = $(this).data('id');
 
-                swal({
-                        text: "Are you sure you want to delete?",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                method: "DELETE",
-                                url: `/admin/bankinginfo/${id}`
-                            }).done(function(res) {
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: 'Deleted'
-                                })
-                                table.ajax.reload();
-                                console.log("deleted");
-                            })
-                        } else {
-                            swal("Your imaginary file is safe!");
-                        }
-                    });
-            })
+            //     swal({
+            //             text: "Are you sure you want to delete?",
+            //             buttons: true,
+            //             dangerMode: true,
+            //         })
+            //         .then((willDelete) => {
+            //             if (willDelete) {
+            //                 $.ajax({
+            //                     method: "DELETE",
+            //                     url: `/admin/bankinginfo/${id}`
+            //                 }).done(function(res) {
+            //                     Toast.fire({
+            //                         icon: 'success',
+            //                         title: 'Deleted'
+            //                     })
+            //                     table.ajax.reload();
+            //                     console.log("deleted");
+            //                 })
+            //             } else {
+            //                 swal("Your imaginary file is safe!");
+            //             }
+            //         });
+            // })
         });
     </script>
 @endpush

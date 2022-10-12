@@ -32,7 +32,7 @@ class RequestController extends Controller
                                     <i class="fa-solid fa-edit fa-xl"></i>
                               </a>';
 
-                $delete_icon = '<a href=" ' . route('request.destroy', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
+                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 

@@ -97,6 +97,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('request', RequestController::class);
         Route::get('request/member/datatable/ssd', [RequestController::class, 'ssd']);
         Route::get('request/member/accept/{id}', [RequestAcceptDeclineController::class, 'accept'])->name('requestaccept');
+        Route::get('request/member/decline/{id}', [RequestAcceptDeclineController::class, 'decline'])->name('requestdecline');
     });
 
 });

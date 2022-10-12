@@ -7,6 +7,7 @@
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
+      
 
         <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
         <input  type="number" required class="customer-registeration-input" placeholder="Phone" name="phone">
@@ -1348,6 +1349,7 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
+
     let member = @json($members);
     var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
     for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
@@ -1357,6 +1359,7 @@ $(document).ready(function(){
             checkedOnDurationClick(memberPlanDurationCheckboxesList.item(i),"memberPlanDuration")
         }
     }
+
 
 })
 
