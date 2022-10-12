@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PermissionController;
 
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 
 /*
@@ -35,6 +36,8 @@ Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'
 
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
+
+Route::get('password_reset',[PassResetController::class,'passReset'])->name('password_reset');
 
 // Admin Site
 Route::prefix('admin')->group(function () {
