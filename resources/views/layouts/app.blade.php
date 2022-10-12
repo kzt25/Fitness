@@ -70,6 +70,13 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item @yield('user-active') ">
+                        <a class="sidebar-link" href="{{ route('users.index') }}">
+                            <i class="fa-solid fa-users align-middle "></i> <span
+                                class="align-middle">Users</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item @yield('trainer-active') ">
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">
                             <i class="fa-solid fa-dumbbell align-middle "></i> <span

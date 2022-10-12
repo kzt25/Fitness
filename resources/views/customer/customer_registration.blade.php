@@ -1133,12 +1133,15 @@
         <p>Get Offers For</p>
         <div class="member-plan-duretions-container">
             @foreach ($durations as $duration)
+            @if ($duration->duration !=0 || $duration->duration !=null)
                 <div class="member-plan-duration-container">
                     <label>
                         <input type="checkbox" name = "memberPlanDuration" class=" customer-member-plan-duration-checkbox-input"  onclick="checkedOnDurationClick(this,'memberPlanDuration')" value="{{$duration->duration}}"/>
                         <p class="customer-member-plan-duration-checkbox-title">{{$duration->duration}} month</p>
                     </label>
                 </div>
+            @endif
+
             @endforeach
 
             {{-- <div class="member-plan-duration-container">
@@ -1346,36 +1349,25 @@
 <script>
 $(document).ready(function(){
     let member = @json($members);
-    console.log(member);
-    // $.each(member, function(index, value){
-    //                 $("#customer-member-plan").append(`
-    //                 <div class="checkbox customer-member-plan-checkbox">
-    //                 <label class="checkbox-wrapper">
-    //                 <input type="checkbox" name = "memberPlan"
-    //                 class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
-    //                 <span class="checkbox-tile">
+    var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
+    for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
+        if(memberPlanDurationCheckboxesList.item(i).value === '1'){
+            // console.log("check 1")
+            memberPlanDurationCheckboxesList.item(i).checked = true
+            checkedOnDurationClick(memberPlanDurationCheckboxesList.item(i),"memberPlanDuration")
+        }
+    }
 
-    //                     <span class="checkbox-label">${value.member_type}
+})
 
-    //                     </span>
-    //                     <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
-
-    //                 </span>
-    //                 </label>
-    //                 </div>
-    //                 `)
-    //             });
-
-    // })
-
-    const checkedOnDurationClick = (el,category) => {
+const checkedOnDurationClick = (el,category) => {
     let member = @json($members);
-    // console.log(member);
+    $("#customer-member-plan").empty()
 
     if(category === 'memberPlanDuration'){
-        // console.log(el)
+
         var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
-        // console.log(memberPlanDurationCheckboxesList)
+
         for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
             memberPlanDurationCheckboxesList.item(i).checked = false
         }
@@ -1388,90 +1380,49 @@ $(document).ready(function(){
     }
 
         $.each(member, function(index, value){
-            // console.log(el.value === value.duration)
-        if(el.value === value.duration){
-                console.log(value)
-                $("#customer-member-plan").append(`
-                <div class="checkbox customer-member-plan-checkbox">
-                    <label class="checkbox-wrapper">
-                    <input type="checkbox" name = "memberPlan"
-                    class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
-                    <span class="checkbox-tile">
 
-                        <span class="checkbox-label">${value.member_type}
+            if( value.duration === "0" &&  el.value === '1'){
+                $("#customer-member-plan").append(`
+                    <div class="checkbox customer-member-plan-checkbox">
+                        <label class="checkbox-wrapper">
+                        <input type="checkbox" name = "memberPlan"
+                        class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+                        <span class="checkbox-tile">
+
+                            <span class="checkbox-label">${value.member_type}
+
+                            </span>
+                            <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
 
                         </span>
-                        <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
-
-                    </span>
-                    </label>
-                </div>
-                `)
-        }
-            else{
-                // console.log($(".customer-member-plan-checkbox").value())
-                console.log("remove")
-                $(".customer-member-plan-checkbox").remove()
+                        </label>
+                    </div>
+                    `)
             }
+            else if(el.value === value.duration){
+                    // console.log(value)
+                    $("#customer-member-plan").append(`
+                    <div class="checkbox customer-member-plan-checkbox">
+                        <label class="checkbox-wrapper">
+                        <input type="checkbox" name = "memberPlan"
+                        class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
+                        <span class="checkbox-tile">
+
+                            <span class="checkbox-label">${value.member_type}
+
+                            </span>
+                            <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
+
+                        </span>
+                        </label>
+                    </div>
+                    `)
+            }
+
+
         });
 
-
-
-
 }
-})
-
-// const checkedOnDurationClick = (el,category) => {
-//     let member = @json($members);
-//     // console.log(member);
-
-//     if(category === 'memberPlanDuration'){
-//         // console.log(el)
-//         var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
-//         // console.log(memberPlanDurationCheckboxesList)
-//         for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
-//             memberPlanDurationCheckboxesList.item(i).checked = false
-//         }
-//     }
-
-//     if(el.checked){
-//         el.checked = false;
-//     }else{
-//         el.checked = true;
-//     }
-
-//         $.each(member, function(index, value){
-//             // console.log(el.value === value.duration)
-//         if(el.value === value.duration){
-//                 console.log(value)
-//                 $("#customer-member-plan").append(`
-//                 <div class="checkbox customer-member-plan-checkbox">
-//                     <label class="checkbox-wrapper">
-//                     <input type="checkbox" name = "memberPlan"
-//                     class=" customer-member-plan-checkbox-input" value=${value.id} onclick="checkedOnClick(this,'memberPlan')" />
-//                     <span class="checkbox-tile">
-
-//                         <span class="checkbox-label">${value.member_type}
-
-//                         </span>
-//                         <span class="checkbox-price-label">${value.price}mmk/${value.duration}month</span>
-
-//                     </span>
-//                     </label>
-//                 </div>
-//                 `)
-//         }
-//             else{
-//                 // console.log($(".customer-member-plan-checkbox").value())
-//                 console.log("remove")
-//                 $(".customer-member-plan-checkbox").remove()
-//             }
-//         });
-
-
-
-
-// }
 </script>
 @endpush
 
