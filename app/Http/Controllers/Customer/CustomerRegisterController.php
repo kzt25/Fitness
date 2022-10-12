@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,7 +30,11 @@ class CustomerRegisterController extends Controller
         $user_gender=$bodyMeasurements->gender;
 
         $member=Member::findOrFail($user_member_type);
+        $user_member_role_id=$member->role_id;
+        $role=Role::findOrFail($user_member_role_id);
+        $user->assignRole($role->name);
 
+        $user->assignRole($user_member_role_id);
         //$user_body_type =json_encode($all_info->bodyType);
         $user_bad_habits=json_encode($all_info->badHabits);
         $user_bodyArea=json_encode($all_info->bodyArea);

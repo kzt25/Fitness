@@ -92,7 +92,10 @@ class AuthController extends Controller
 
     public function logout() {
         $user = auth()->user();
-        $token = $user->currentAccessToken()->delete();
+        $user->currentAccessToken()->delete();
+        return response()->json([
+            "message" => "User successfully logout!"
+        ]);
     }
 
     public function getMemberPlans() {
@@ -114,8 +117,6 @@ class AuthController extends Controller
             'banking_infos' => $banking_infos
         ]);
     }
-
-
 
     public function me() {
         $user = auth()->user();

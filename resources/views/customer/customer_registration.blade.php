@@ -3,7 +3,7 @@
 @section('content')
 <form id="regForm" action="">
     <!--personal infos-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
@@ -1121,7 +1121,7 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--member plan-->
     <div class="cutomer-registeration-form tab customer-member-plan-form">
