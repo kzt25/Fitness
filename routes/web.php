@@ -46,6 +46,8 @@ Route::prefix('admin')->group(function () {
         // Route::put('/profile/{}')
         Route::resource('users', UserController::class);
 
+        Route::get('/requestlist', [HomeController::class, 'requestlist'])->name('requestlist');
+
         //Workout
         Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
         Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');

@@ -9,6 +9,7 @@ use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use App\Models\MealPlan;
 use GrahamCampbell\ResultType\Success;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class MemberController extends Controller
@@ -47,19 +48,19 @@ class MemberController extends Controller
 
     public function create()
     {
-        $permissions=Permission::all();
-        return view('admin.member.create',compact('permissions'));
+        $roles=Role::all();
+        return view('admin.member.create',compact('roles'));
     }
 
 
     public function store(Request $request)
     {
+      //  dd($request->role_id);
        $member_store=New Member();
        $member_store->member_type=$request->member_type;
        $member_store->duration=$request->duration;
        $member_store->price=$request->price;
-
-       $member_store->givePermissionTo($request->permissions);
+       $member_store->role_id=$request->role_id;
 
        $member_store->save();
        return redirect()->route('member.index')->with('success', 'New Member Type is created successfully!');
