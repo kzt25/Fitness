@@ -88,8 +88,26 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login() {
+    public function login(Request $request) {
+        $credentails = ['email' => $request->email, 'password' => $request->password];
 
+        if(Auth::attempt($credentails)) {
+            $user = Auth::user();
+            // Auth::login($user);
+
+            $token = $user->createToken('gym');
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Successfully Login!',
+                'token' => $token->plainTextToken
+            ]);
+        }else {
+            return response()->json([
+                'status' => 500,
+                'message' => 'User credential do not match our records!'
+            ]);
+        }
     }
 
     public function logout() {
