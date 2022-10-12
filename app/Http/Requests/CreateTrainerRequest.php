@@ -25,8 +25,10 @@ class CreateTrainerRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'required|min:9|max:11|unique:trainers',
-            'address' => 'required'
+            'phone' => 'required|min:9|max:11|unique:users',
+            'address' => 'required',
+            'password' => 'required|min:6|max:11',
+            'password_confirmation' => 'required|same:password'
         ];
     }
 }

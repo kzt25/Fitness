@@ -28,6 +28,8 @@ Route::get('get-member-plans', [AuthController::class, 'getMemberPlans']);
 Route::get('get-ewallet-infos', [AuthController::class, 'getEwalletInfos']);
 Route::get('get-banking-infos', [AuthController::class, 'getBankingInfos']);
 
+Route::post('store-bank-payment', [AuthController::class, 'storeBankPayment']);
+Route::post('store-wallet-payment', [AuthController::class, 'storeWalletPayment']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('me', [AuthController::class, 'me']);

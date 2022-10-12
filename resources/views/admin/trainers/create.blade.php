@@ -27,12 +27,20 @@
                     <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="mt-4">
+                    <label for="role">Roles</label>
+                    <select class="form-select" name="role" id="role">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mt-4">
                     <label for="password">Password</label>
-                    <input type="number" class="form-control" name="password" id="password">
+                    <input type="password" class="form-control" name="password" id="password">
                 </div>
                 <div class="mt-4">
                     <label for="password_confirmation">Confirmed Password</label>
-                    <input type="number" class="form-control" name="password_confirmation" id="password_confirmation">
+                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
                 </div>
 
                 <div class="float-end mt-4">
