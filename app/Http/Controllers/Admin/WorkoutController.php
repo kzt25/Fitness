@@ -51,12 +51,20 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-            $video->move(public_path().'/upload/',$video_name);
+            Storage::disk('local')->put(
+                'upload/'.$video_name,
+                file_get_contents($video)
+            );
+            // $video->move(public_path().'/upload/',$video_name);
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-            $image->move(public_path().'/upload/',$image_name);
+            Storage::disk('local')->put(
+                'upload/'.$image_name,
+                file_get_contents($image)
+            );
+            //$image->move(public_path().'/upload/',$image_name);
         }
 
         if($request->gendertype == 'both'){
@@ -116,10 +124,6 @@ class WorkoutController extends Controller
 
         $data->delete();
 
-
-
-
-
         if(File::exists(public_path().'/upload/'.$image_name)){
             File::delete(public_path().'/upload/'.$image_name);
         }
@@ -142,14 +146,20 @@ class WorkoutController extends Controller
         if($request->hasFile('video')) {
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
-            $video->move(public_path().'/upload/',$video_name);
+            Storage::disk('local')->put(
+                'upload/'.$video_name,
+                file_get_contents($video)
+            );
         }else{
             $video_name = $check->video;
         }
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
-            $image->move(public_path().'/upload/',$image_name);
+            Storage::disk('local')->put(
+                'upload/'.$image_name,
+                file_get_contents($image)
+            );
         }else{
             $image_name = $check->image;
         }
