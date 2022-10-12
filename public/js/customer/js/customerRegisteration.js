@@ -9,7 +9,7 @@
 
 
 
-
+        
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -112,12 +112,7 @@
                 dietCheckboxesList.item(i).checked = false
             }
           }
-          if(category === 'memberPlanDuration'){
-            var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
-            for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
-                memberPlanDurationCheckboxesList.item(i).checked = false
-            }
-          }
+
 
 
 
