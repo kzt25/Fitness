@@ -93,6 +93,9 @@ Route::prefix('admin')->group(function () {
         Route::get('admin/member/{id}/delete', [MemberController::class, 'destroy'])->name('member.delete');
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
 
+        Route::get('user_member', [MemberController::class, 'user_member_show'])->name('member.user_member');
+        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
+
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);

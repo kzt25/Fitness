@@ -63,12 +63,6 @@
                             <span class="align-middle">Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('requestlist') }}">
-                            <i class="fa-solid fa-layer-group align-middle "></i>
-                            <span class="align-middle">Request</span>
-                        </a>
-                    </li>
 
                     <li class="sidebar-item @yield('user-active') ">
                         <a class="sidebar-link" href="{{ route('user.index') }}">
@@ -91,12 +85,32 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('member-active')">
+                    {{-- <li class="sidebar-item @yield('member-active')">
                         <a class="sidebar-link" href="{{ route('member.index') }}">
                             <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Members</span>
+                                class="align-middle">Member Type</span>
                         </a>
+                    </li> --}}
+
+                    <li class="sidebar-item " >
+                        <a class="sidebar-link" href="#collapseExample" data-mdb-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-m"></i>
+                            <span class="align-middle">Member</span>
+                        </a>
+                        <li class="collapse mt-3" id="collapseExample">
+                            <a class="sidebar-link text-white" href="{{ route('member.user_member') }}">
+                                <i class="fa-solid fa-user-group  align-middle"></i>
+                              <span class="align-middle">Members</span>
+                            </a>
+                            <a class="sidebar-link text-white" href="{{ route('member.index') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="align-middle">Create Member Type</span>
+                            </a>
+                        </li>
+
+
                     </li>
+
 
                     <li class="sidebar-item @yield('mealplan-active')">
                         <a class="sidebar-link" href="{{ route('mealplan.index') }}">
