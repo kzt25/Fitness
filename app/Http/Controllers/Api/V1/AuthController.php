@@ -33,7 +33,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        return ;
         $user = new User();
 
         $user->name = $request->name;
