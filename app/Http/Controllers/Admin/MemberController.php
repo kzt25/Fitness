@@ -18,7 +18,7 @@ class MemberController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.member.index');
@@ -46,10 +46,25 @@ class MemberController extends Controller
                ->make(true);
     }
 
+    public function user_member_ssd() {
+
+        $members = User::query()
+                    ->where('member_type','!=','Free')
+                    ->where('member_type','!=',' ');
+        return Datatables::of($members)
+        ->addIndexColumn()
+        ->make(true);
+    }
+
     public function create()
     {
         $roles=Role::all();
         return view('admin.member.create',compact('roles'));
+    }
+
+    public function user_member_show()
+    {
+        return view('admin.member.user_member_show');
     }
 
 
