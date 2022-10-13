@@ -65,7 +65,6 @@ class AuthController extends Controller
         $user->bad_habits = $request->bad_habits;
 
         $user->hydration = $request->hydration;
-        $user->body_area = $request->body_area;
         // Thandar style start
         $user_member_type_id = $request->member_id;
 
@@ -131,7 +130,7 @@ class AuthController extends Controller
             'banking_infos' => $banking_infos
         ]);
     }
-    
+
     public function getBankingInfos() {
         $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
