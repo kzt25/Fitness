@@ -90,7 +90,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $credentails = ['email' => $request->email, 'password' => $request->password];
+        $credentails = ['phone' => $request->phone, 'password' => $request->password];
 
         if(Auth::attempt($credentails)) {
             $user = Auth::user();
@@ -151,11 +151,13 @@ class AuthController extends Controller
 
         // Store Image
         // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
+
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
 
         Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+                $file);
 
         $payment->photo = $image_name;
 
@@ -192,6 +194,21 @@ class AuthController extends Controller
             'message' => 'success'
         ]);
 
+    }
+
+    public function checkPhone(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->get();
+        if (!$user) {
+            return response()->json([
+                'message' => 'success'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 403,
+            'message' => 'This phone number is already registered'
+        ]);
     }
 
     public function me() {
