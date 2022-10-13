@@ -176,11 +176,13 @@ class AuthController extends Controller
         $payment->amount = $request->amount;
 
         // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
+
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
 
         Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+                $file);
 
         $payment->photo = $image_name;
 
