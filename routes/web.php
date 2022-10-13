@@ -31,11 +31,12 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 */
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
+ Auth::routes();
+Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
