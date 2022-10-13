@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PersonalChoice;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -99,13 +100,11 @@ class AuthController extends Controller
             $token = $user->createToken('gym');
 
             return response()->json([
-                'status' => 200,
                 'message' => 'Successfully Login!',
                 'token' => $token->plainTextToken
             ]);
         }else {
             return response()->json([
-                'status' => 500,
                 'message' => 'User credential do not match our records!'
             ]);
         }
@@ -198,7 +197,7 @@ class AuthController extends Controller
 
     public function checkPhone(Request $request)
     {
-        $user = User::where('phone', $request->phone)->get();
+        $user = User::where('phone', $request->phone)->first();
         if (!$user) {
             return response()->json([
                 'message' => 'success'
