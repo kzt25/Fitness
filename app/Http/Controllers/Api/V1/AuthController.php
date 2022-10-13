@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Storage;
 class AuthController extends Controller
 {
 
-    public function checkUserExists(Request $request) {
+    public function checkUserExists(Request $request)
+    {
         $usr_phone = User::where('phone', $request->phone)->first();
         $usr_email = User::where('email', $request->email)->first();
 
@@ -25,7 +26,7 @@ class AuthController extends Controller
             return response()->json([
                 "message" => "Already Registered!"
             ]);
-        }else {
+        } else {
             return response()->json([
                 "message" => "OK"
             ]);
@@ -90,10 +91,11 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $credentails = ['phone' => $request->phone, 'password' => $request->password];
 
-        if(Auth::attempt($credentails)) {
+        if (Auth::attempt($credentails)) {
             $user = Auth::user();
             // Auth::login($user);
 
@@ -103,14 +105,15 @@ class AuthController extends Controller
                 'message' => 'Successfully Login!',
                 'token' => $token->plainTextToken
             ]);
-        }else {
+        } else {
             return response()->json([
                 'message' => 'User credential do not match our records!'
             ]);
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         $user = auth()->user();
         $user->currentAccessToken()->delete();
         return response()->json([
@@ -118,28 +121,32 @@ class AuthController extends Controller
         ]);
     }
 
-    public function getMemberPlans() {
+    public function getMemberPlans()
+    {
         $members = Member::all();
         return response()->json([
             'members' => $members
         ]);
     }
 
-    public function getEwalletInfos() {
+    public function getEwalletInfos()
+    {
         $banking_infos = BankingInfo::where('payment_type', 'ewallet')->get();
         return response()->json([
             'banking_infos' => $banking_infos
         ]);
     }
 
-    public function getBankingInfos() {
+    public function getBankingInfos()
+    {
         $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
             'banking_infos' => $banking_infos
         ]);
     }
 
-    public function storeBankPayment(Request $request) {
+    public function storeBankPayment(Request $request)
+    {
         $user = auth()->user();
         $payment = new Payment();
         $payment->user_id = $user->id;
@@ -155,8 +162,10 @@ class AuthController extends Controller
         $file = base64_decode($tmp);
         $image_name = $request->name;
 
-        Storage::disk('local')->put('payments/' . $image_name,
-                $file);
+        Storage::disk('local')->put(
+            'payments/' . $image_name,
+            $file
+        );
 
         $payment->photo = $image_name;
 
@@ -167,7 +176,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function storeWalletPayment(Request $request) {
+    public function storeWalletPayment(Request $request)
+    {
         $user = auth()->user();
         $payment = new Payment();
         $payment->user_id = $user->id;
@@ -182,8 +192,10 @@ class AuthController extends Controller
         $file = base64_decode($tmp);
         $image_name = $request->name;
 
-        Storage::disk('local')->put('payments/' . $image_name,
-                $file);
+        Storage::disk('local')->put(
+            'payments/' . $image_name,
+            $file
+        );
 
         $payment->photo = $image_name;
 
@@ -192,7 +204,6 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'success'
         ]);
-
     }
 
     public function checkPhone(Request $request)
@@ -200,17 +211,18 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
         if (!$user) {
             return response()->json([
-                'message' => 'success'
+                'message' => 'Unauthenticated phone number!'
             ]);
         }
 
         return response()->json([
-            'status' => 403,
-            'message' => 'This phone number is already registered'
+            'message' => 'success',
+            'user' => $user
         ]);
     }
 
-    public function me() {
+    public function me()
+    {
         $user = auth()->user();
         $token = $user->currentAccessToken();
 
