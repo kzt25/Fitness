@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
@@ -31,13 +32,19 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 */
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
+ Auth::routes();
+Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
+
+Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
+Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
+
 
 // Admin Site
 Route::prefix('admin')->group(function () {

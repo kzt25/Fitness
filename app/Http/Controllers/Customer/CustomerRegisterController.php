@@ -11,13 +11,9 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerRegisterController extends Controller
 {
-    //
+
     public function CustomerData(Request $request)
     {
-        // return response()->json([
-        //            'success' => 'success',
-        //             'data' => $request->allData,
-        //     ]);
         $user = new User();
 
         $all_info = $request->allData; // json string
@@ -92,5 +88,10 @@ class CustomerRegisterController extends Controller
         $member_id = $member->id;
         $user->save();
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
+    }
+
+    public function register()
+    {
+        return view('customer.index');
     }
 }
