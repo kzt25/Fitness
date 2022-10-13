@@ -33,12 +33,13 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        return ;
         $user = new User();
 
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address == $request->address;
+        $user->address = $request->address;
         $user->password = Hash::make($request->password);
 
         $user->height = $request->height;
@@ -51,8 +52,10 @@ class AuthController extends Controller
         $user->shoulders = $request->shoulders;
         $user->member_code = 'yc-' . Str::uuid();
 
-        $user->physical_limitation = $request->physical_limitation;
-        $user->activities = $request->activities;
+        // $physical_limitations = $request->physical_limitation;
+
+        $user->physical_limitation = json_encode($request->physical_limitation); //
+        $user->activities = json_encode($request->activities); //
         $user->body_type = $request->body_type;
         $user->goal = $request->goal;
         $user->daily_life = $request->daily_life;
@@ -60,9 +63,9 @@ class AuthController extends Controller
         $user->average_night = $request->average_night;
         $user->energy_level = $request->energy_level;
         $user->ideal_weight = $request->ideal_weight;
-        $user->most_attention_areas = $request->most_attention_areas;
+        $user->most_attention_areas = json_encode($request->most_attention_areas); //
         $user->physical_activity = $request->physical_activity;
-        $user->bad_habits = $request->bad_habits;
+        $user->bad_habits = json_encode($request->bad_habbits); //
 
         $user->hydration = $request->hydration;
         // Thandar style start
