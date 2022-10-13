@@ -131,6 +131,7 @@ class AuthController extends Controller
             'banking_infos' => $banking_infos
         ]);
     }
+    
     public function getBankingInfos() {
         $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
