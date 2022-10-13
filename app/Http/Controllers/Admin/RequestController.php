@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
-
-class UserController extends Controller
+class RequestController extends Controller
 {
     public function __construct()
     {
@@ -18,31 +16,23 @@ class UserController extends Controller
     
     public function index()
     {
-        return view('admin.users.index');
+        return view('admin.request.member_request');
     }
 
     public function ssd()
     {
-        $users = User::query();
-
-        return Datatables::of($users)
+        $memberRequest = User::where('active_status',1)->get();
+        return Datatables::of($memberRequest)
             ->addIndexColumn()
-            ->editColumn('created_at', function ($each) {
-                return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
-            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
                 $delete_icon = '';
-
-                $edit_icon = '<a href=" ' . route('user.edit', $each->id) . ' " class="text-warning mx-1 " title="edit">
+                $edit_icon = '<a href=" ' . route('requestaccept', $each->id) . ' " class="text-warning mx-1 " title="edit">
                                     <i class="fa-solid fa-edit fa-xl"></i>
                               </a>';
-                $detail_icon = '<a href=" ' . route('user.show', $each->id) . ' " class="text-info mx-1" title="detail">
-                                    <i class="fa-solid fa-circle-info fa-xl"></i>
-                                </a>';
 
-                $delete_icon = '<a href=" ' . route('user.destroy', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
+                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 
@@ -50,7 +40,6 @@ class UserController extends Controller
             })
             ->make(true);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -70,7 +59,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
