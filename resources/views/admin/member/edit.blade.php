@@ -23,6 +23,14 @@
                     <input type="number" class="form-control" id="price" name="price"
                         value="{{ $member_edit->price }}">
                 </div>
+                <div class="mt-4">
+                    <label for="price" class="form-label">Role</label>
+                    <select class="form-control " name="role_id">
+                        @foreach ($roles as $role)
+                        <option value="{{$role->id}}" {{ $member_edit->role_id == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="float-end mt-4">
                     <a href="{{ route('member.index') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Update</button>

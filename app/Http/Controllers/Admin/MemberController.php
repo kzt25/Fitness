@@ -14,11 +14,11 @@ use Spatie\Permission\Models\Permission;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.member.index');
@@ -26,7 +26,7 @@ class MemberController extends Controller
 
 
     public function ssd() {
-        $members = Member::query();
+        $members = Member::query()->where('member_type','!=','Free');
         return Datatables::of($members)
         ->addIndexColumn()
         ->addColumn('action', function ($each) {
@@ -46,10 +46,25 @@ class MemberController extends Controller
                ->make(true);
     }
 
+    public function user_member_ssd() {
+
+        $members = User::query()
+                    ->where('member_type','!=','Free')
+                    ->where('member_type','!=',' ');
+        return Datatables::of($members)
+        ->addIndexColumn()
+        ->make(true);
+    }
+
     public function create()
     {
         $roles=Role::all();
         return view('admin.member.create',compact('roles'));
+    }
+
+    public function user_member_show()
+    {
+        return view('admin.member.user_member_show');
     }
 
 
@@ -81,7 +96,8 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member_edit = Member::findOrFail($id);
-        return view('admin.member.edit',compact('member_edit'));
+        $roles=Role::where('name','!=','Free')->get();
+        return view('admin.member.edit',compact('member_edit','roles'));
     }
 
 
@@ -90,6 +106,7 @@ class MemberController extends Controller
         $member_update=Member::findOrFail($id);
         $member_update->member_type=$request->member_type;
         $member_update->duration=$request->duration;
+        $member_update->role_id=$request->role_id;
         $member_update->price=$request->price;
 
         $member_update->update();

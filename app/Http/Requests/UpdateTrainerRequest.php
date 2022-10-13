@@ -26,7 +26,7 @@ class UpdateTrainerRequest extends FormRequest
         $id = $this->route('trainer');
         return [
             'name' => 'required',
-            'phone' => "required|unique:trainers,phone,$id",
+            'phone' => "required|unique:users,phone,$id",
             'address' => 'required'
         ];
     }

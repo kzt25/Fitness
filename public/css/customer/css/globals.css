@@ -5,7 +5,7 @@
 }
 *{
     font-family: 'Poppins', sans-serif;
-    
+
 }
 
 input::-webkit-outer-spin-button,
@@ -17,6 +17,11 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.customer-secondary-btn:hover{
+    color: var(--customer-primary-color-hover);
+    border: 2px solid var(--customer-primary-color-hover);
 }
 
 .customer-main-content-container{

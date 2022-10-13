@@ -21,7 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->string('bank_account_holder')->nullable();
             $table->string('account_name')->nullable();
             $table->string('phone')->nullable();
-            $table->string('amount')->nullable();
+            $table->bigInteger('amount')->default(0);
             $table->string('photo');
             $table->timestamps();
         });

@@ -9,15 +9,17 @@ use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTrainerRequest;
 use App\Http\Requests\UpdateTrainerRequest;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class TrainerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.trainers.index');
@@ -25,7 +27,7 @@ class TrainerController extends Controller
 
     public function ssd()
     {
-        $trainers = Trainer::query();
+        $trainers = User::whereNotNull('training_type');
 
         return Datatables::of($trainers)
             ->addIndexColumn()
@@ -71,7 +73,8 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('admin.trainers.create');
+        $roles = Role::all();
+        return view('admin.trainers.create', compact('roles'));
     }
 
     /**
@@ -82,13 +85,16 @@ class TrainerController extends Controller
      */
     public function store(CreateTrainerRequest $request)
     {
-        $trainer = new Trainer();
+        $trainer = new User();
         $trainer->name = $request->name;
         $trainer->phone = $request->phone;
         $trainer->training_type = $request->training_type;
         $trainer->address = $request->address;
+        $trainer->password = Hash::make($request->password);
 
         $trainer->save();
+
+        $trainer->syncRoles($request->role);
 
         return redirect()->route('trainer.index')->with('success', 'New Trainer is created successfully!');
     }
@@ -112,8 +118,11 @@ class TrainerController extends Controller
      */
     public function edit($id)
     {
-        $trainer = Trainer::findOrFail($id);
-        return view('admin.trainers.edit', compact('trainer'));
+        $trainer = User::findOrFail($id);
+
+        $roles = Role::all();
+        $old_roles = $trainer->roles->pluck('id')->toArray();
+        return view('admin.trainers.edit', compact('trainer', 'roles', 'old_roles'));
     }
 
     /**
@@ -125,14 +134,16 @@ class TrainerController extends Controller
      */
     public function update(UpdateTrainerRequest $request, $id)
     {
-        $trainer = Trainer::findOrFail($id);
+        $trainer = User::findOrFail($id);
         $trainer->name = $request->name;
         $trainer->phone = $request->phone;
         $trainer->training_type = $request->training_type;
         $trainer->address = $request->address;
 
-        $trainer->update();
+        $trainer->password = $request->password == null ? $trainer->password  : Hash::make($request->password) ;
 
+        $trainer->update();
+        $trainer->syncRoles($request->role);
         return redirect()->route('trainer.index')->with('success', 'Trainer is updated successfully!');
     }
 
@@ -144,7 +155,7 @@ class TrainerController extends Controller
      */
     public function destroy($id)
     {
-        $trainer = Trainer::findOrFail($id);
+        $trainer = User::findOrFail($id);
         $trainer->delete();
 
         return 'success';

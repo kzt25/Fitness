@@ -3,10 +3,11 @@
 @section('content')
 <form id="regForm" action="">
     <!--personal infos-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
+
 
         <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
         <input  type="number" required class="customer-registeration-input" placeholder="Phone" name="phone">
@@ -23,7 +24,7 @@
           </button>
         </div>
 
-    </div> --}}
+    </div>
 
     <!-- body measurements-->
     <div class="cutomer-registeration-form tab">
@@ -94,7 +95,7 @@
     </div>
 
     <!--physical limitations-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
            Do you have any physical limitations?
         </p>
@@ -167,10 +168,10 @@
           </button>
         </div>
 
-    </div> --}}
+    </div>
 
     <!--which activities do you prefer-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Which activities do you prefer?
       </p>
@@ -241,10 +242,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--your body type-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Your body type<br>
          <span>Which body type do you have?</span>
@@ -308,10 +309,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--main goal-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your main goal?
       </p>
@@ -369,10 +370,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--typical day-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your typical day look like?<br>
          <span>You need an individual approach based on your habits to reach your goal</span>
@@ -444,10 +445,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--diet type-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Choose your diet type
 
@@ -564,10 +565,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--average night-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your average night like?<br>
          <span>Sleep is vary important not only for well-being but also for keeping in shape</span>
@@ -638,10 +639,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--energy level-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          How's your energy level during the day?<br>
       </p>
@@ -699,7 +700,7 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--ideal weight-->
     <div class="cutomer-registeration-form tab">
@@ -776,7 +777,7 @@
     </div>
 
     <!--area of the body that needs the most attention-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
         Which areas of your body need the most attention?
 
@@ -874,10 +875,9 @@
         </button>
       </div>
 
-    </div> --}}
-
+    </div>
     <!--how physically active are you-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          How physically active are you?<br>
          <span>Your physical activity plays a major role if you want to lose weight or keep in shape while spending most of your time in the office</span>
@@ -948,10 +948,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--bad habits-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          Bad habits<br>
          <span>Which activities are yout guilty pleasure?</span>
@@ -1041,10 +1041,10 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--daily water intake-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
       <p class="customer-registeration-form-header">
          What's your daily water intake?
 
@@ -1119,7 +1119,7 @@
         </button>
       </div>
 
-    </div> --}}
+    </div>
 
     <!--weight -->
     <div class="cutomer-registeration-form tab">
@@ -1199,84 +1199,6 @@
                 </label>
             </div>
         @endforeach --}}
-      {{-- <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="free" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Free
-
-            </span>
-            <span class="checkbox-price-label">mmk 0 / month</span>
-
-          </span>
-        </label>
-      </div>
-      <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="platinum" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Platinum
-
-            </span>
-            <span class="checkbox-price-label">mmk 5000 / month</span>
-
-          </span>
-        </label>
-      </div>
-      <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="gold" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Gold
-
-            </span>
-            <span class="checkbox-price-label">mmk 20000 / month</span>
-
-          </span>
-        </label>
-      </div>
-      <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="diamond" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Diamond
-
-            </span>
-            <span class="checkbox-price-label">mmk 40000 / month</span>
-
-          </span>
-        </label>
-      </div>
-      <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="ruby" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Ruby
-
-            </span>
-            <span class="checkbox-price-label">mmk 100000 / month</span>
-
-          </span>
-        </label>
-      </div>
-      <div class="checkbox customer-member-plan-checkbox">
-        <label class="checkbox-wrapper">
-          <input type="checkbox" name = "memberPlan" class=" customer-member-plan-checkbox-input" value="platinum" onclick="checkedOnClick(this,'memberPlan')" />
-          <span class="checkbox-tile">
-
-            <span class="checkbox-label">Ruby Premium
-
-            </span>
-            <span class="checkbox-price-label">mmk 200000 / month</span>
-
-          </span>
-        </label>
-      </div> --}}
 
       <div class="customer-form-btn-container">
         <button class="customer-registeration-prev-btn customer-primary-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">
@@ -1370,6 +1292,7 @@
 @push('scripts')
 <script>
 $(document).ready(function(){
+
     let member = @json($members);
     var memberPlanDurationCheckboxesList = document.getElementsByName("memberPlanDuration");
     for(var i = 0; i < memberPlanDurationCheckboxesList.length;i++){
@@ -1379,6 +1302,7 @@ $(document).ready(function(){
             checkedOnDurationClick(memberPlanDurationCheckboxesList.item(i),"memberPlanDuration")
         }
     }
+
 
 })
 

@@ -63,15 +63,9 @@
                             <span class="align-middle">Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('requestlist') }}">
-                            <i class="fa-solid fa-layer-group align-middle "></i>
-                            <span class="align-middle">Request</span>
-                        </a>
-                    </li>
 
                     <li class="sidebar-item @yield('user-active') ">
-                        <a class="sidebar-link" href="{{ route('users.index') }}">
+                        <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
                         </a>
@@ -84,12 +78,39 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('member-active')">
-                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                    <li class="sidebar-item @yield('request-active')">
+                        <a class="sidebar-link" href="{{ route('request.index') }}">
                             <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Members</span>
+                                class="align-middle">Request</span>
                         </a>
                     </li>
+
+                    {{-- <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Member Type</span>
+                        </a>
+                    </li> --}}
+
+                    <li class="sidebar-item " >
+                        <a class="sidebar-link" href="#collapseExample" data-mdb-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-m"></i>
+                            <span class="align-middle">Member</span>
+                        </a>
+                        <li class="collapse mt-3" id="collapseExample">
+                            <a class="sidebar-link text-white" href="{{ route('member.user_member') }}">
+                                <i class="fa-solid fa-user-group  align-middle"></i>
+                              <span class="align-middle">Members</span>
+                            </a>
+                            <a class="sidebar-link text-white" href="{{ route('member.index') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="align-middle">Create Member Type</span>
+                            </a>
+                        </li>
+
+
+                    </li>
+
 
                     <li class="sidebar-item @yield('mealplan-active')">
                         <a class="sidebar-link" href="{{ route('mealplan.index') }}">
@@ -121,7 +142,7 @@
 
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
-                            <i class="fa-solid fa-layer-group align-middle "></i>
+                            <i class="fa-duotone fa-dumbbell"></i>
                             <span class="align-middle">Workout Plan</span>
                         </a>
                     </li>
@@ -132,6 +153,8 @@
                             <span class="align-middle">Banking Info</span>
                         </a>
                     </li>
+
+
 
 
 
