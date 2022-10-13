@@ -38,7 +38,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address == $request->address;
+        $user->address = $request->address;
         $user->password = Hash::make($request->password);
 
         $user->height = $request->height;
@@ -51,8 +51,10 @@ class AuthController extends Controller
         $user->shoulders = $request->shoulders;
         $user->member_code = 'yc-' . Str::uuid();
 
-        $user->physical_limitation = $request->physical_limitation;
-        $user->activities = $request->activities;
+        // $physical_limitations = $request->physical_limitation;
+
+        $user->physical_limitation = json_encode($request->physical_limitation); //
+        $user->activities = json_encode($request->activities); //
         $user->body_type = $request->body_type;
         $user->goal = $request->goal;
         $user->daily_life = $request->daily_life;
@@ -60,12 +62,11 @@ class AuthController extends Controller
         $user->average_night = $request->average_night;
         $user->energy_level = $request->energy_level;
         $user->ideal_weight = $request->ideal_weight;
-        $user->most_attention_areas = $request->most_attention_areas;
+        $user->most_attention_areas = json_encode($request->most_attention_areas); //
         $user->physical_activity = $request->physical_activity;
-        $user->bad_habits = $request->bad_habits;
+        $user->bad_habits = json_encode($request->bad_habbits); //
 
         $user->hydration = $request->hydration;
-        $user->body_area = $request->body_area;
         // Thandar style start
         $user_member_type_id = $request->member_id;
 
@@ -89,7 +90,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $credentails = ['email' => $request->email, 'password' => $request->password];
+        $credentails = ['phone' => $request->phone, 'password' => $request->password];
 
         if(Auth::attempt($credentails)) {
             $user = Auth::user();
@@ -131,6 +132,7 @@ class AuthController extends Controller
             'banking_infos' => $banking_infos
         ]);
     }
+
     public function getBankingInfos() {
         $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
@@ -149,11 +151,13 @@ class AuthController extends Controller
 
         // Store Image
         // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
+
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
 
         Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+                $file);
 
         $payment->photo = $image_name;
 
@@ -174,11 +178,13 @@ class AuthController extends Controller
         $payment->amount = $request->amount;
 
         // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
+
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
 
         Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+                $file);
 
         $payment->photo = $image_name;
 
@@ -188,6 +194,21 @@ class AuthController extends Controller
             'message' => 'success'
         ]);
 
+    }
+
+    public function checkPhone(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->get();
+        if (!$user) {
+            return response()->json([
+                'message' => 'success'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 403,
+            'message' => 'This phone number is already registered'
+        ]);
     }
 
     public function me() {
