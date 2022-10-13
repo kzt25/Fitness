@@ -37,7 +37,10 @@ Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
-Route::get('password_reset',[PassResetController::class,'passReset'])->name('password_reset');
+Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
+Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
+
 
 // Admin Site
 Route::prefix('admin')->group(function () {

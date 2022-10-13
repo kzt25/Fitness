@@ -6,49 +6,63 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 
 class PassResetController extends Controller
 {
     //
-    public function passReset(Request $request){
-        // $validator = Validator::make($request->all(), [
-        //     'password' => 'required|min:6|max:9',
-        //     'password_confirmation' => 'required|same:password'
+    public function passResetView(){
+        return view ('auth.passReset');
+    }
+    public function checkPhoneGetOTP(Request $request){
+            $phone = $request->phone;
+            $user = User::where('phone', $phone)->first();
+            if($user){
+                // return response()->json([
+                //     'status' => 200,
+                //     'message' => $user->phone,
+                // ]);
+                $response = Http::get('https://verify.smspoh.com/api/v1/request', [
+                    'access-token' => 'gND4P7JNgbd5supML5ZT5ayuRmG0gS1cr6C09apXkkpc5m2QzBEOH3Euc5jX27t0',
+                    'code_length' => '4',
+                    'brand_name' => 'Gym',
+                    'sender_name' => 'Gym',
+                    'ttl' => '300',
+                    'number' => $user->phone,
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    'message' => $response['request_id'],
+                ]);
+            }
+            else{
+                return response()->json([
+                            'status' => 300,
+                            'message' => "Your Phone Number is not register yet!",
+                        ]);
+            }
+    }
+    public function password_reset(Request $request){
+
+        //  $validator = Validator::make($request, [
+        //     'password' => 'required|min:6',
+        //     'cpassword' => 'required|same:password', // this will check password
         // ]);
 
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'status' => 400,
-        //         'message' => 'Validation Error!',
-        //         'data' => $validator->errors()
-        //     ]);
-        // }
 
-        $user = User::where('phone', $request->phone)->first();
-        if($user == $request->phone){
-            return Redirect()->back()->with('phone', 'This Number exist !');
+        if($request->password==$request->cpassword){
+    // dd($request->password);
+            $phone = $request->phone;
+            $user = User::where('phone', $phone)->first();
+            $user->password = Hash::make($request->password);
+            $user->update();
+            return view('auth.login');
+        }else{
+            return redirect()->back()->with('success','Passwords do not match');
         }
-        else{
-            return Redirect()->back()->with('phone', 'This Number does not exist !');
-        }
-        // if ($user) {
-        //     $user->password = Hash::make($request->password);
-        //     $user->save();
 
-        //     return response()->json([
-        //         'status' => 200,
-        //         'message' => "You have changed password successfully",
-        //         'data' => $user
-        //     ]);
-        // } else {
-        //     return response()->json([
-        //         'status' => 403,
-        //         'message' => 'Your phone is not in our database'
-        //     ]);
-        // }
 
-    return view ('auth.passReset');
     }
 }
