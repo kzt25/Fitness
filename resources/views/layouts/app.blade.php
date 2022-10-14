@@ -176,7 +176,6 @@
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li><a class="dropdown-item" href="{{ route('admin-profile') }}">Profile</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item logout-btn" href="">Logout</a></li>
                     </ul>
                   </div>

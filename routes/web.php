@@ -59,7 +59,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
-        // Route::put('/profile/{}')
+        Route::put('/profile/{id}/update', [AdminController::class, 'updateAdminProfile'])->name('admin-update');
         Route::resource('user', UserController::class);
         Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
