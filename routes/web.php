@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
@@ -30,25 +31,36 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
+//Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
-Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
+Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
+Route::post('customer/signup',[CustomerRegisterController::class,'register'])->name('signup');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
+Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
+Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
+
 // Admin Site
 Route::prefix('admin')->group(function () {
-    Auth::routes();
-    Route::middleware('auth')->group(function () {
+
+     Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
+    // Route::middleware('auth')->group(function () {
 
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
-        // Route::put('/profile/{}')
+        Route::put('/profile/{id}/update', [AdminController::class, 'updateAdminProfile'])->name('admin-update');
         Route::resource('user', UserController::class);
         Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
@@ -96,6 +108,9 @@ Route::prefix('admin')->group(function () {
         Route::get('admin/member/{id}/delete', [MemberController::class, 'destroy'])->name('member.delete');
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
 
+        Route::get('user_member', [MemberController::class, 'user_member_show'])->name('member.user_member');
+        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
+
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);
@@ -114,5 +129,7 @@ Route::prefix('admin')->group(function () {
         Route::get('request/member/accept/{id}', [RequestAcceptDeclineController::class, 'accept'])->name('requestaccept');
         Route::get('request/member/decline/{id}', [RequestAcceptDeclineController::class, 'decline'])->name('requestdecline');
     });
+
+});
 
 });

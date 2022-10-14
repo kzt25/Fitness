@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Trainer;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -14,11 +15,11 @@ use App\Http\Requests\UpdatePermissionRequest;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.permission.index');
@@ -26,8 +27,11 @@ class PermissionController extends Controller
 
     public function ssd()
     {
-        $trainers = Permission::query();
-        return Datatables::of($trainers)
+        $permissions = Permission::query();
+        return Datatables::of($permissions)
+            ->editColumn('created_at', function ($each) {
+                return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
+            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -46,6 +50,7 @@ class PermissionController extends Controller
 
                 return '<div class="d-flex justify-content-center">' .   $edit_icon . $delete_icon . '</div>';
             })
+
             ->make(true);
     }
 

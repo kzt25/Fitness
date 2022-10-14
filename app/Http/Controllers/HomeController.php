@@ -46,9 +46,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $user = User::find(1);
-        // $mem = $user->members()->get();
-        // $users = User::with('members')->orderBy('created_at', 'DESC')->get();
+        return view('customer.index');
+    }
+
+    public function customerregister()
+    {
         $user = User::find(1);
         // $mem = $user->members()->get();
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
@@ -58,5 +60,6 @@ class HomeController extends Controller
         $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
         return view('customer.customer_registration',compact('durations','members'));
     }
+
 
 }

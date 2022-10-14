@@ -10,13 +10,15 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PersonalChoice;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
 
-    public function checkUserExists(Request $request) {
+    public function checkUserExists(Request $request)
+    {
         $usr_phone = User::where('phone', $request->phone)->first();
         $usr_email = User::where('email', $request->email)->first();
 
@@ -24,7 +26,7 @@ class AuthController extends Controller
             return response()->json([
                 "message" => "Already Registered!"
             ]);
-        }else {
+        } else {
             return response()->json([
                 "message" => "OK"
             ]);
@@ -38,7 +40,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->email = $request->email;
-        $user->address == $request->address;
+        $user->address = $request->address;
         $user->password = Hash::make($request->password);
 
         $user->height = $request->height;
@@ -51,8 +53,10 @@ class AuthController extends Controller
         $user->shoulders = $request->shoulders;
         $user->member_code = 'yc-' . Str::uuid();
 
-        $user->physical_limitation = $request->physical_limitation;
-        $user->activities = $request->activities;
+        // $physical_limitations = $request->physical_limitation;
+
+        $user->physical_limitation = json_encode($request->physical_limitation); //
+        $user->activities = json_encode($request->activities); //
         $user->body_type = $request->body_type;
         $user->goal = $request->goal;
         $user->daily_life = $request->daily_life;
@@ -60,12 +64,11 @@ class AuthController extends Controller
         $user->average_night = $request->average_night;
         $user->energy_level = $request->energy_level;
         $user->ideal_weight = $request->ideal_weight;
-        $user->most_attention_areas = $request->most_attention_areas;
+        $user->most_attention_areas = json_encode($request->most_attention_areas); //
         $user->physical_activity = $request->physical_activity;
-        $user->bad_habits = $request->bad_habits;
+        $user->bad_habits = json_encode($request->bad_habbits); //
 
         $user->hydration = $request->hydration;
-        $user->body_area = $request->body_area;
         // Thandar style start
         $user_member_type_id = $request->member_id;
 
@@ -88,57 +91,55 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request) {
-        $credentails = ['email' => $request->email, 'password' => $request->password];
+    public function login(Request $request)
+    {
+        $credentails = ['phone' => $request->phone, 'password' => $request->password];
 
-        if(Auth::attempt($credentails)) {
+        if (Auth::attempt($credentails)) {
             $user = Auth::user();
             // Auth::login($user);
 
             $token = $user->createToken('gym');
 
             return response()->json([
-                'status' => 200,
                 'message' => 'Successfully Login!',
-                'token' => $token->plainTextToken
+                'token' => $token->plainTextToken,
+                'user' => $user
             ]);
-        }else {
+        } else {
             return response()->json([
-                'status' => 500,
                 'message' => 'User credential do not match our records!'
             ]);
         }
     }
 
-    public function logout() {
-        $user = auth()->user();
-        $user->currentAccessToken()->delete();
-        return response()->json([
-            "message" => "User successfully logout!"
-        ]);
-    }
 
-    public function getMemberPlans() {
+    public function getMemberPlans()
+    {
         $members = Member::all();
         return response()->json([
             'members' => $members
         ]);
     }
 
-    public function getEwalletInfos() {
+    public function getEwalletInfos()
+    {
         $banking_infos = BankingInfo::where('payment_type', 'ewallet')->get();
         return response()->json([
             'banking_infos' => $banking_infos
         ]);
     }
-    public function getBankingInfos() {
+
+    public function getBankingInfos()
+    {
         $banking_infos = BankingInfo::where('payment_type', 'bank')->get();
         return response()->json([
             'banking_infos' => $banking_infos
         ]);
     }
 
-    public function storeBankPayment(Request $request) {
+    public function storeBankPayment(Request $request)
+    {
         $user = auth()->user();
         $payment = new Payment();
         $payment->user_id = $user->id;
@@ -148,12 +149,15 @@ class AuthController extends Controller
         $payment->amount = $request->amount;
 
         // Store Image
-        // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
 
-        Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
+
+        Storage::disk('local')->put(
+            'payments/' . $image_name,
+            $file
+        );
 
         $payment->photo = $image_name;
 
@@ -164,7 +168,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function storeWalletPayment(Request $request) {
+    public function storeWalletPayment(Request $request)
+    {
         $user = auth()->user();
         $payment = new Payment();
         $payment->user_id = $user->id;
@@ -174,11 +179,15 @@ class AuthController extends Controller
         $payment->amount = $request->amount;
 
         // Store Image
-        $file = $request->file('image');
-        $image_name = time() .'-' . uniqid() . '-' . $file->getClientOriginalName();
+        $tmp = $request->image;
 
-        Storage::disk('local')->put('payments/' . $image_name,
-                file_get_contents($file));
+        $file = base64_decode($tmp);
+        $image_name = $request->name;
+
+        Storage::disk('local')->put(
+            'payments/' . $image_name,
+            $file
+        );
 
         $payment->photo = $image_name;
 
@@ -187,16 +196,59 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'success'
         ]);
-
     }
 
-    public function me() {
+    public function checkPhone(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthenticated phone number!'
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'success',
+            'user' => $user
+        ]);
+    }
+
+    public function passwordChange(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+
+        if ($user) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return response()->json([
+                'message' => "You have changed password successfully",
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Your phone is not in our database'
+            ]);
+        }
+    }
+
+    public function me()
+    {
         $user = auth()->user();
         $token = $user->currentAccessToken();
 
         return response()->json([
             'user' => $user,
             'token' => $token
+        ]);
+    }
+
+    public function logout()
+    {
+        $user = auth()->user();
+        $user->currentAccessToken()->delete();
+        return response()->json([
+            "message" => "User successfully logout!"
         ]);
     }
 }

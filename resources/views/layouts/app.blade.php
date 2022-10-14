@@ -78,12 +78,12 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('user-active') ">
+                    {{-- <li class="sidebar-item @yield('user-active') ">
                         <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-item @yield('trainer-active') ">
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">
@@ -92,12 +92,39 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('member-active')">
-                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                    <li class="sidebar-item @yield('request-active')">
+                        <a class="sidebar-link" href="{{ route('request.index') }}">
                             <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Members</span>
+                                class="align-middle">Request</span>
                         </a>
                     </li>
+
+                    {{-- <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Member Type</span>
+                        </a>
+                    </li> --}}
+
+                    <li class="sidebar-item " >
+                        <a class="sidebar-link" href="#collapseExample" data-mdb-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-m"></i>
+                            <span class="align-middle">Member</span>
+                        </a>
+                        <li class="collapse mt-3" id="collapseExample">
+                            <a class="sidebar-link text-white" href="{{ route('member.user_member') }}">
+                                <i class="fa-solid fa-user-group  align-middle"></i>
+                              <span class="align-middle">Members</span>
+                            </a>
+                            <a class="sidebar-link text-white" href="{{ route('member.index') }}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="align-middle">Create Member Type</span>
+                            </a>
+                        </li>
+
+
+                    </li>
+
 
                     <li class="sidebar-item @yield('mealplan-active')">
                         <a class="sidebar-link" href="{{ route('mealplan.index') }}">
@@ -157,11 +184,12 @@
 
                 <div class="dropdown">
                     <img src="{{ asset('img/avatar.jpg') }}" style="cursor: pointer;" class="rounded-circle me-2" width="35" alt="">
-                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">{{ auth()->user()->name }} <i class="fa-solid fa-angle-down fa-sm"></i></span>
+
+                    <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">
+                        {{ auth()->user()->name }} <i class="fa-solid fa-angle-down fa-sm"></i></span>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li><a class="dropdown-item" href="{{ route('admin-profile') }}">Profile</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><a class="dropdown-item logout-btn" href="">Logout</a></li>
                     </ul>
                   </div>
@@ -235,7 +263,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "POST",
-                                url: `/admin/logout`
+                                url: `/logout`
                             })
                             location.reload();
                         } else {

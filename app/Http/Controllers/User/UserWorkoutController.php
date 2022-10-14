@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserWorkoutController extends Controller
 {
+    
     public function video(){
 
 
