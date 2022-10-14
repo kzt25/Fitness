@@ -64,12 +64,12 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('user-active') ">
+                    {{-- <li class="sidebar-item @yield('user-active') ">
                         <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="sidebar-item @yield('trainer-active') ">
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">

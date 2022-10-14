@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Spatie\Permission\Models\Role;
@@ -17,7 +18,7 @@ class RoleController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.role.index');
@@ -52,6 +53,9 @@ class RoleController extends Controller
                                 </a>';
 
                 return '<div class="d-flex justify-content-center">' .   $edit_icon . $delete_icon . '</div>';
+            })
+            ->editColumn('created_at', function ($each) {
+                return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
             })
             ->rawColumns(['permissions', 'action'])
             ->make(true);
