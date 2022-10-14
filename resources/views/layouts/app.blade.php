@@ -170,10 +170,10 @@
 
                 <div class="dropdown">
                     <img src="{{ asset('img/avatar.jpg') }}" style="cursor: pointer;" class="rounded-circle me-2" width="35" alt="">
-                    @if(!auth())
+
                     <span class="mb-0 me-4 dropdown-toggle" style="cursor: pointer;" data-mdb-toggle="dropdown">
                         {{ auth()->user()->name }} <i class="fa-solid fa-angle-down fa-sm"></i></span>
-                    @endif
+
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li><a class="dropdown-item" href="{{ route('admin-profile') }}">Profile</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -250,7 +250,7 @@
                         if (willDelete) {
                             $.ajax({
                                 method: "POST",
-                                url: `/admin/logout`
+                                url: `/logout`
                             })
                             location.reload();
                         } else {

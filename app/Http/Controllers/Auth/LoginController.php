@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -44,12 +45,14 @@ class LoginController extends Controller
         return 'phone';
     }
 
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     $role_name=$user->getRoleNames()->toArray();
+    protected function authenticated(Request $request, $user)
+    {
+        $role_name=$user->getRoleNames()->toArray();
 
-    //     if( $user->hasAnyRole(['System_Admin'])){
-
-    //     }
-    // }
+        if( $user->hasAnyRole(['System_Admin'])){
+            Auth::login($user);
+        }else{
+           return redirect()->route('customer_register');
+        }
+    }
 }

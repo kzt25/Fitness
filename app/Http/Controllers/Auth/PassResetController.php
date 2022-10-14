@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +59,8 @@ class PassResetController extends Controller
             $user = User::where('phone', $phone)->first();
             $user->password = Hash::make($request->password);
             $user->update();
-            return view('auth.login');
+            Auth::logout();
+            return redirect('/');
         }else{
             return redirect()->back()->with('success','Passwords do not match');
         }
