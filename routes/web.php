@@ -36,23 +36,21 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
-Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
- Auth::routes();
+Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
-Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
+Route::post('customer/signup',[CustomerRegisterController::class,'register'])->name('signup');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
 Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
 Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
-});
 
 // Admin Site
-Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::prefix('admin')->group(function () {
 
      Route::middleware(['role:System_Admin|King|Queen'])->group(function () {

@@ -8,6 +8,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerRegisterController extends Controller
@@ -91,8 +92,16 @@ class CustomerRegisterController extends Controller
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
     }
 
-    public function register()
+    public function register(Request $request)
     {
+        // $this->validator($request->all())->validate();
+
+        // event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        // return $this->registered($request, $user)
+        //                 ?: redirect('$this->redirectPath()');
         return redirect('/');
     }
 }
