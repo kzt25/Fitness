@@ -37,7 +37,7 @@ Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
  Auth::routes();
-Route::get('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
+Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 

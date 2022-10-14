@@ -68,6 +68,11 @@
                                 </button>
                             </div>
                         </div>
+                        {{--
+                        <a class="btn btn-warning " id="checkDisable" >
+                            {{ __('Disabled Enabled') }}
+                        </a> --}}
+
                     </form>
                 </div>
             </div>
@@ -84,7 +89,6 @@
         $("#cpassword").prop('disabled', true);
         var otpStatus
        $("#checkPhone").click(function(){
-        //$('a').attr('disabled', 'disabled');
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',
@@ -106,6 +110,17 @@
     });
 
 
+    // $("#checkDisable").click(function(){
+    //     $("#checkDisable").prop('disabled', true);
+    //     console.log("disabled");
+    //     localStorage.setItem('Disable', Date($.now()));
+    //    setTimeout(function() {
+    //    $('#checkDisable').prop('disabled', false);
+    //    console.log("enable");
+    // }, 10000);
+    // });
+
+
         $("#checkOTP").keyup(function(){
             if(otpStatus.status === 200){
                 var code = $('#checkOTP').val();
@@ -117,6 +132,8 @@
                                         $("#check_icon").css("color", "green");
                                         $("#password").prop('disabled', false);
                                         $("#cpassword").prop('disabled', false);
+                                        $("#checkOTP").prop('disabled', true);
+                                        $("#check_icon").css("color", "green");
                                     }
                                     else{
                                         $("#check_icon").css("color", "red");
