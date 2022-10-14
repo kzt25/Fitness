@@ -93,6 +93,6 @@ class CustomerRegisterController extends Controller
 
     public function register()
     {
-        return view('customer.index');
+        return redirect('/');
     }
 }

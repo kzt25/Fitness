@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-<form id="regForm" method="GET" action="{{route('customer_register')}}">
+<form id="regForm" method="POST" action="{{route('customer_register')}}">
     @csrf
     <!--personal infos-->
     <div class="cutomer-registeration-form tab">

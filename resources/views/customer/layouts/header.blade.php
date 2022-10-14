@@ -28,7 +28,7 @@
             {{-- @if (Route::has('login')) --}}
             <a href="{{ route('login') }}" class="customer-primary-btn customer-login-btn">Sign In</a>
 
-            <a href="/" class="customer-secondary-btn customer-signup-btn">Sign Up</a>
+            <a href="{{route('signup')}}" class="customer-secondary-btn customer-signup-btn">Sign Up</a>
 
             @endguest
 

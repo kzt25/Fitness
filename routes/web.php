@@ -33,14 +33,16 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
  Auth::routes();
-Route::get('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
+Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
