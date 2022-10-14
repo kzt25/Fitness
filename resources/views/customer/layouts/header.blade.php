@@ -20,18 +20,20 @@
             <a href="#">Home</a>
             <a href="#">Shop</a>
             <a href="#">Training Center</a>
+
         </div>
 
         <div class="customer-nav-btns-container">
             @guest
             {{-- @if (Route::has('login')) --}}
-            <a href="{{ route('login') }}" class="customer-primary-btn customer-login-btn">Log In</a>
+            <a href="{{ route('login') }}" class="customer-primary-btn customer-login-btn">Sign In</a>
 
             <a href="/" class="customer-secondary-btn customer-signup-btn">Sign Up</a>
 
             @endguest
-            @if(Auth::user())
 
+            @if(Auth::user())
+            {{-- <p>{{Auth()->user()->name}}</p> --}}
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="customer-primary-btn customer-login-btn" type="submit">Logout</button>
