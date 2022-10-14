@@ -12,7 +12,7 @@
 
     <!--iconify-->
     <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!--global css-->
     <link href={{ asset('css/customer/css/globals.css')}} rel="stylesheet"/>
 

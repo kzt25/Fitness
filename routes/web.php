@@ -37,7 +37,7 @@ Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
  Auth::routes();
-Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
+Route::get('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
@@ -48,7 +48,7 @@ Route::post('password_reset',[PassResetController::class,'password_reset'])->nam
 
 // Admin Site
 Route::prefix('admin')->group(function () {
-    Auth::routes();
+
      Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
     // Route::middleware('auth')->group(function () {
 

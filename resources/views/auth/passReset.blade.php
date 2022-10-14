@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('customer.layouts.app')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action = "{{route('password_reset')}}" >
+                    <form method="POST" action = "{{route('password_reset')}}" id="loginForm">
                         @csrf
 
                         <div class="row mb-3 ">
@@ -79,10 +79,12 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
      $(document).ready(function() {
+
         $("#password").prop('disabled', true);
         $("#cpassword").prop('disabled', true);
         var otpStatus
        $("#checkPhone").click(function(){
+        //$('a').attr('disabled', 'disabled');
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',
