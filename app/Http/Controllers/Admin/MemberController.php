@@ -50,7 +50,8 @@ class MemberController extends Controller
 
         $members = User::query()
                     ->where('member_type','!=','Free')
-                    ->where('member_type','!=',' ');
+                    ->where('member_type','!=',' ')
+                    ->where('active_status',2);
         return Datatables::of($members)
         ->addIndexColumn()
         ->make(true);

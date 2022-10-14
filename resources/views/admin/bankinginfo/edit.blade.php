@@ -26,9 +26,26 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <div id="bank-select" >
                     <label for="accname">Payment Name</label>
-                    <input type="text" class="form-control" name="paymentName" value="{{$bankinginfo->payment_name}}" >
+                    <select class="form-select mb-3" name="bankName" aria-label="Default select example">
+                        <option selected>Select Bank Name</option>
+                        <option value="KBZ Bank">KBZ Bank</option>
+                        <option value="CB Bank">CB Bank</option>
+                        <option value="AYA Bank">AYA Bank</option>
+                        <option value="MAB Bank">MAB Bank</option>
+                    </select>
+                </div>
+
+                <div id="wallet-select" style="display: none;">
+                    <label for="accname">Payment Name</label>
+                    <select class="form-select mb-3" name="ewalletName" aria-label="Default select example" >
+                        <option selected>Select Wallet Name</option>
+                        <option value="KBZ Pay">KBZ Pay</option>
+                        <option value="CB Pay">CB Pay</option>
+                        <option value="AYA Pay">AYA Pay</option>
+                        <option value="Wave Pay">Wave Pay</option>
+                    </select>
                 </div>
 
                 <div class="mb-3" id="bank-holder">
@@ -68,6 +85,8 @@
         $("#ewallet").attr('checked', 'checked');
         $('#accname').show();
         $('#phone').show();
+        $('#wallet-select').show();
+        $('#bank-select').hide();
         $('#bank-number').hide();
         $('#bank-holder').hide();
     }else{
@@ -81,12 +100,16 @@
     $("#ewallet").click(function() {
         $('#accname').show();
         $('#phone').show();
+        $('#wallet-select').show();
+        $('#bank-select').hide();
         $('#bank-number').hide();
         $('#bank-holder').hide();
     });
     $("#bank").click(function() {
-        $('#bank-number').show();
+        $('#bank-select').show();
         $('#bank-holder').show();
+        $('#bank-number').show();
+        $('#wallet-select').hide();
         $('#accname').hide();
         $('#phone').hide();
     });

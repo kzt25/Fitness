@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href=" https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     {{-- <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}"> --}}
 
     <!-- Select2 -->
@@ -92,12 +93,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('request-active')">
-                        <a class="sidebar-link" href="{{ route('request.index') }}">
-                            <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Request</span>
-                        </a>
-                    </li>
+
 
                     {{-- <li class="sidebar-item @yield('member-active')">
                         <a class="sidebar-link" href="{{ route('member.index') }}">
@@ -220,6 +216,7 @@
     <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
 
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

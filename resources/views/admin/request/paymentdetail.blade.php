@@ -20,11 +20,11 @@
             <div class="card-body">
               <div>
                 <label class="fs-5">Name :</label>
-                <label class="ms-2 text-capitalize">{{$payment->user->name}}</label>
+                <label class="ms-2 text-capitalize">{{$payment->user->name ?? "User not have."}}</label>
               </div>
               <div>
                 <label class="fs-5">Payment Type :</label>
-                <label class="ms-2 text-capitalize">{{$payment->payment_type}}</label>
+                <label class="ms-2 text-capitalize">{{$payment->payment_type ?? "Type not have."}}</label>
               </div>
               <div id="payment-name">
                 <label class="fs-5">Payment name :</label>
@@ -49,7 +49,7 @@
               </div>
              <div>
                 <label class="fs-5">Amount :</label>
-                <label class="ms-2 text-capitalize">{{$payment->amount}}</label>
+                <label class="ms-2 text-capitalize">{{$payment->amount ?? "Amount not have."}}</label>
              </div>
             </div>
           </div>

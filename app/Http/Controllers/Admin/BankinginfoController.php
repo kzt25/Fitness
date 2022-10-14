@@ -14,7 +14,7 @@ class BankinginfoController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.bankinginfo.index');
@@ -65,16 +65,25 @@ class BankinginfoController extends Controller
     public function store(Request $request)
     {
         $bankinginfo = new BankingInfo();
-
+        if ($request->paymentType == "bank transfer") {
             $bankinginfo->payment_type = $request->paymentType;
-            $bankinginfo->payment_name = $request->paymentName;
+            $bankinginfo->payment_name = $request->bankName;
             $bankinginfo->bank_account_number = $request->accountNo;
             $bankinginfo->bank_account_holder = $request->accountHolder;
+            $bankinginfo->account_name = null;
+            $bankinginfo->phone = null;
+            $bankinginfo->save();
+            return redirect()->route('bankinginfo.index');
+        } else if($request->paymentType == "ewallet"){
+            $bankinginfo->payment_type = $request->paymentType;
+            $bankinginfo->payment_name = $request->ewalletName;
+            $bankinginfo->bank_account_number =null;
+            $bankinginfo->bank_account_holder =null;
             $bankinginfo->account_name = $request->accountName;
             $bankinginfo->phone = $request->phone;
             $bankinginfo->save();
             return redirect()->route('bankinginfo.index');
-
+        }
 
     }
 
@@ -110,23 +119,25 @@ class BankinginfoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $bank = BankingInfo::findorFail($id);
 
         if($request->paymentType =='bank transfer'){
             $bank->payment_type = $request->paymentType;
-            $bank->payment_name = $request->paymentName;
+            $bank->payment_name = $request->bankName;
             $bank->bank_account_number = $request->accountNo;
-            $bank->account_name = '';
             $bank->bank_account_holder = $request->accountHolder;
-            $bank->phone = '';
+            $bank->account_name = null;
+            $bank->phone = null;
             $bank->update();
 
         return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
-        }else{
+
+        }else if($request->paymentType =='ewallet'){
             $bank->payment_type = $request->paymentType;
-            $bank->payment_name = $request->paymentName;
-            $bank->bank_account_number = '';
-            $bank->bank_account_holder = '';
+            $bank->payment_name = $request->ewalletName;
+            $bank->bank_account_number = null;
+            $bank->bank_account_holder = null;
             $bank->account_name = $request->accountName;
             $bank->phone = $request->phone;
             $bank->update();
