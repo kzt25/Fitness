@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Password Reset') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" id = "can_reset_password">
 
                     <form method="POST" action = "{{route('password_reset')}}" id="loginForm">
                         @csrf
@@ -68,12 +68,17 @@
                                 </button>
                             </div>
                         </div>
-                        {{--
-                        <a class="btn btn-warning " id="checkDisable" >
+
+                        {{-- <a class="btn btn-warning " id="checkDisable" >
                             {{ __('Disabled Enabled') }}
                         </a> --}}
 
                     </form>
+                </div>
+                <div class="card-body d-flex justify-content-center" >
+                    <div class="col-md-5" id = "cannot_reset_password">
+                        <h5 class="text-danger">You cannot reset your password now! <br><br>Please Try again later!</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,7 +89,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
      $(document).ready(function() {
-
+        $("#cannot_reset_password").css("display", "none");
+        //$('#cannot_reset_password').hide();
         $("#password").prop('disabled', true);
         $("#cpassword").prop('disabled', true);
         var otpStatus
@@ -110,16 +116,25 @@
     });
 
 
-    // $("#checkDisable").click(function(){
-    //     $("#checkDisable").prop('disabled', true);
-    //     console.log("disabled");
-    //     localStorage.setItem('Disable', Date($.now()));
-    //    setTimeout(function() {
-    //    $('#checkDisable').prop('disabled', false);
-    //    console.log("enable");
-    // }, 10000);
-    // });
+    $("#checkDisable").click(function(){
+        $("#checkDisable").prop('disabled', true);
+        console.log("disabled");
+        var ClickedDate = Date($.now());
+        var dateNow = Date($.now());
+        localStorage.setItem('ClickedDate', ClickedDate);
+    });
 
+    cl_date = new Date(localStorage.getItem('ClickedDate'));
+    dateNow = new Date(Date());
+    dateDifference = dateNow.getTime() - cl_date.getTime();
+    Difference_In_Days = dateDifference / (1000 * 3600);
+    console.log(cl_date);
+    console.log(Difference_In_Days);
+
+    if(Difference_In_Days == 24){
+        localStorage.removeItem('ClickedDate');
+        $("#checkDisable").prop('disabled', true);
+    }
 
         $("#checkOTP").keyup(function(){
             if(otpStatus.status === 200){

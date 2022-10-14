@@ -8,6 +8,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerRegisterController extends Controller
@@ -89,10 +90,16 @@ class CustomerRegisterController extends Controller
         $member_id = $member->id;
         $user->save();
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
+        Auth::login($user->id);
+        return redirect('/');
     }
-
     public function register()
     {
         return redirect('/');
+    }
+
+    public function payment()
+    {
+        return view('customer.payment');
     }
 }

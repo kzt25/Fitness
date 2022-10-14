@@ -36,7 +36,9 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
-Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+
+Route::get('payment', [CustomerRegisterController::class, 'payment'])->name('payment');
 
  Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
