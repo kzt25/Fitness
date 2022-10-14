@@ -30,13 +30,18 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
+
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
  Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
 Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
@@ -44,9 +49,10 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
 Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
-
+});
 
 // Admin Site
+Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::prefix('admin')->group(function () {
 
      Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
@@ -113,5 +119,7 @@ Route::prefix('admin')->group(function () {
         Route::get('request/member/accept/{id}', [RequestAcceptDeclineController::class, 'accept'])->name('requestaccept');
         Route::get('request/member/decline/{id}', [RequestAcceptDeclineController::class, 'decline'])->name('requestdecline');
     });
+
+});
 
 });

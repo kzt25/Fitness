@@ -103,7 +103,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Successfully Login!',
-                'token' => $token->plainTextToken
+                'token' => $token->plainTextToken,
+                'user' => $user
             ]);
         } else {
             return response()->json([
@@ -112,14 +113,6 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
-    {
-        $user = auth()->user();
-        $user->currentAccessToken()->delete();
-        return response()->json([
-            "message" => "User successfully logout!"
-        ]);
-    }
 
     public function getMemberPlans()
     {
@@ -155,7 +148,6 @@ class AuthController extends Controller
         $payment->bank_account_holder = $request->bank_account_holder;
         $payment->amount = $request->amount;
 
-        // Store Image
         // Store Image
         $tmp = $request->image;
 
@@ -221,6 +213,25 @@ class AuthController extends Controller
         ]);
     }
 
+    public function passwordChange(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+
+        if ($user) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return response()->json([
+                'message' => "You have changed password successfully",
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Your phone is not in our database'
+            ]);
+        }
+    }
+
     public function me()
     {
         $user = auth()->user();
@@ -229,6 +240,15 @@ class AuthController extends Controller
         return response()->json([
             'user' => $user,
             'token' => $token
+        ]);
+    }
+
+    public function logout()
+    {
+        $user = auth()->user();
+        $user->currentAccessToken()->delete();
+        return response()->json([
+            "message" => "User successfully logout!"
         ]);
     }
 }

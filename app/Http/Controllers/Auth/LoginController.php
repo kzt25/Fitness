@@ -52,7 +52,7 @@ class LoginController extends Controller
         if( $user->hasAnyRole(['System_Admin'])){
             Auth::login($user);
         }else{
-           return redirect()->route('customer_register');
+            return redirect('/');
         }
     }
 }

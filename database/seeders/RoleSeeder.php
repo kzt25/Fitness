@@ -58,6 +58,11 @@ class RoleSeeder extends Seeder
             'name' =>'Ruby Premium',
             'guard_name' => 'web'
             ]);
+            
+        Role::create([
+            'name' =>'Trainer',
+            'guard_name' => 'web'
+            ]);
 
     }
 }
