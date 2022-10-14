@@ -43,7 +43,7 @@
                                     <input type="number" class="form-control" id = "checkOTP" required >
 
                                 </div>
-                                <div class="col-md-1 ">
+                                <div class="col-md-1 align-self-center">
 
                                      <i class="fa-solid fa-circle-check" id="check_icon"></i>
 
