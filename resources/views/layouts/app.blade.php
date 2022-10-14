@@ -63,10 +63,18 @@
                             <span class="align-middle">Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
-                        <a class="sidebar-link" href="{{ route('requestlist') }}">
-                            <i class="fa-solid fa-layer-group align-middle "></i>
-                            <span class="align-middle">Request</span>
+
+                    <li class="sidebar-item @yield('request-active')">
+                        <a class="sidebar-link" href="{{ route('request.index') }}">
+                            <i class="fa-solid fa-user-group align-middle"></i> <span
+                                class="align-middle">Request</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('transction-active')">
+                        <a class="sidebar-link" href="{{ route('payment.transction') }}">
+                            <i class="fa-solid fa-money-bill-transfer"></i> <span
+                                class="align-middle">Payment Transaction</span>
                         </a>
                     </li>
 
@@ -81,13 +89,6 @@
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">
                             <i class="fa-solid fa-dumbbell align-middle "></i> <span
                                 class="align-middle">Trainers</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item @yield('request-active')">
-                        <a class="sidebar-link" href="{{ route('request.index') }}">
-                            <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Request</span>
                         </a>
                     </li>
 
@@ -107,28 +108,28 @@
 
                     <li class="sidebar-item @yield('meal-active')">
                         <a class="sidebar-link" href="{{ route('meal.index') }}">
-                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+                            <i class="fa-solid fa-burger align-middle"></i> <span class="align-middle">Meals</span>
                         </a>
                     </li>
 
 
                     <li class="sidebar-item @yield('permission-active')">
                         <a class="sidebar-link" href="{{ route('permission.index') }}">
-                            <i class="fa-solid fa-shield-halved  align-middle"></i> <span
+                            <i class="fa-solid fa-shield-halved align-middle"></i> <span
                                 class="align-middle">Permissions</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item @yield('role-active')">
                         <a class="sidebar-link" href="{{ route('role.index') }}">
-                            <i class="fa-solid fa-user-shield  align-middle"></i> <span
+                            <i class="fa-solid fa-user-shield align-middle"></i> <span
                                 class="align-middle">Roles</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
-                            <i class="fa-duotone fa-dumbbell"></i>
+                            <i class="fa-solid fa-clipboard-list"></i>
                             <span class="align-middle">Workout Plan</span>
                         </a>
                     </li>

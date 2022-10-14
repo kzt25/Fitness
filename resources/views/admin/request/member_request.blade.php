@@ -21,6 +21,9 @@
         .form-label {
             font-size: 14px;
         }
+        tbody{
+            text-transform: capitalize;
+        }
     </style>
 @endsection
 
@@ -116,6 +119,7 @@
                     title: '{{ Session::get('success') }}'
                 })
             @endif
+
 
             // $(document).on('click', '.delete-btn', function(e) {
             //     e.preventDefault();

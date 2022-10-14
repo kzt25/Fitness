@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
@@ -56,6 +57,9 @@ Route::prefix('admin')->group(function () {
         //Workout
         Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
         Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
+        Route::post('/workoutplan/update/{id}', [WorkoutController::class, 'updateworkoutplan'])->name('updateworkoutplan');
+        Route::get('/workoutplan/delete/{id}', [WorkoutController::class, 'deleteworkoutplan'])->name('deleteworkoutplan');
+        Route::get('/workoutplan/edit/{id}', [WorkoutController::class, 'editworkoutplan'])->name('editworkoutplan');
         Route::get('/workout/{id}', [WorkoutController::class, 'workoutindex'])->name('workout');
         Route::get('/workout', [WorkoutController::class, 'workoutview'])->name('workoutview');
         Route::get('/workout/delete/{id}', [WorkoutController::class, 'workoutdelete'])->name('workoutdelete');
@@ -95,6 +99,14 @@ Route::prefix('admin')->group(function () {
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);
+
+        //payment
+        Route::get('/payment/{id}',[PaymentController::class,'detail'])->name('payment.detail');
+        Route::get('/transaction/bank/{id}',[PaymentController::class,'transactionBankDetail'])->name('transactionbank.detail');
+        Route::get('/transaction/ewallet/{id}',[PaymentController::class,'transactionWalletDetail'])->name('transactionwallet.detail');
+        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction']);
+        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction']);
+        Route::get('/payment',[PaymentController::class,'transctionView'])->name('payment.transction');
 
         //Request
         Route::resource('request', RequestController::class);

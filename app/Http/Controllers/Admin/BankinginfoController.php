@@ -40,20 +40,18 @@ class BankinginfoController extends Controller
             // })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
-                $detail_icon = '';
                 $delete_icon = '';
+
+
                 $edit_icon = '<a href=" ' . route('bankinginfo.edit', $each->id) . ' " class="text-warning mx-1 " title="edit">
                                     <i class="fa-solid fa-edit fa-xl"></i>
                               </a>';
-                $detail_icon = '<a href=" ' . route('bankinginfo.show', $each->id) . ' " class="text-info mx-1" title="detail">
-                                    <i class="fa-solid fa-circle-info fa-xl"></i>
-                                </a>';
 
-                $delete_icon = '<a href=" ' . route('bankinginfo.destroy', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
+                $delete_icon = '<a href=" ' . route('bankinginfo.destroy', $each->id) . ' " class="text-danger mx-1 delete-btn" title="delete"  data-id="' . $each->id . '" >
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 
-                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
+                return '<div class="d-flex justify-content-center">'.$edit_icon .$delete_icon . '</div>';
             })
             ->make(true);
     }
@@ -66,15 +64,18 @@ class BankinginfoController extends Controller
      */
     public function store(Request $request)
     {
-
         $bankinginfo = new BankingInfo();
-        $bankinginfo->payment_type = $request->type;
-        $bankinginfo->bank_account_number = $request->accountNo;
-        $bankinginfo->bank_account_holder = $request->accountHolder;
-        $bankinginfo->account_name = $request->accountName;
-        $bankinginfo->phone = $request->phone;
-        $bankinginfo->save();
-        return redirect()->route('bankinginfo.index');
+
+            $bankinginfo->payment_type = $request->paymentType;
+            $bankinginfo->payment_name = $request->paymentName;
+            $bankinginfo->bank_account_number = $request->accountNo;
+            $bankinginfo->bank_account_holder = $request->accountHolder;
+            $bankinginfo->account_name = $request->accountName;
+            $bankinginfo->phone = $request->phone;
+            $bankinginfo->save();
+            return redirect()->route('bankinginfo.index');
+
+
     }
 
     /**
@@ -110,14 +111,30 @@ class BankinginfoController extends Controller
     public function update(Request $request, $id)
     {
         $bank = BankingInfo::findorFail($id);
-        $bank->payment_type = $request->type;
-        $bank->bank_account_number = $request->accountNo;
-        $bank->account_name = $request->name;
-        $bank->bank_account_holder = $request->accountHolder;
-        $bank->phone = $request->phone;
-        $bank->update();
+
+        if($request->paymentType =='bank transfer'){
+            $bank->payment_type = $request->paymentType;
+            $bank->payment_name = $request->paymentName;
+            $bank->bank_account_number = $request->accountNo;
+            $bank->account_name = '';
+            $bank->bank_account_holder = $request->accountHolder;
+            $bank->phone = '';
+            $bank->update();
 
         return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
+        }else{
+            $bank->payment_type = $request->paymentType;
+            $bank->payment_name = $request->paymentName;
+            $bank->bank_account_number = '';
+            $bank->bank_account_holder = '';
+            $bank->account_name = $request->accountName;
+            $bank->phone = $request->phone;
+            $bank->update();
+
+            return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
+        }
+
+
     }
 
     /**

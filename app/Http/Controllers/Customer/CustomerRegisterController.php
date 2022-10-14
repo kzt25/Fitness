@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Events\Noti;
 use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -88,7 +89,5 @@ class CustomerRegisterController extends Controller
         $member_id=$member->id;
         $user->save();
         $user->members()->attach($member_id,['member_type_level' => $user_member_type_level]);
-
-
     }
 }

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('workoutplan-active','active')
 
 @section('content')
 @if (Session::has('success'))
@@ -11,7 +12,10 @@
 @endif
 <div class="container">
 
-<h3 class="text-center">Workouts</h3>
+<div class="d-flex">
+<h3 class="text-center mx-auto">Workouts</h3>
+</div>
+<a href="javascript:history.back()" class="btn btn-primary "><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
     <div class="row my-3">
         @foreach ($workoutview as $workout)
         <div class="col-md-3">

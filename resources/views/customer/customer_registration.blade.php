@@ -3,11 +3,11 @@
 @section('content')
 <form id="regForm" action="">
     <!--personal infos-->
-    {{-- <div class="cutomer-registeration-form tab">
+    <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
             Personal Informations
         </p>
-      
+
 
         <input  type="text" required class="customer-registeration-input" placeholder="Name" name="name">
         <input  type="number" required class="customer-registeration-input" placeholder="Phone" name="phone">
@@ -24,7 +24,7 @@
           </button>
         </div>
 
-    </div> --}}
+    </div>
 
     <!-- body measurements-->
     <div class="cutomer-registeration-form tab">
@@ -1381,7 +1381,6 @@ $(document).ready(function(){
             checkedOnDurationClick(memberPlanDurationCheckboxesList.item(i),"memberPlanDuration")
         }
     }
-
 
 })
 
