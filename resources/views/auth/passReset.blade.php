@@ -34,9 +34,9 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-2 offset-md-4">
-                                    <a class="btn btn-warning " id="checkPhone" >
+                                    <button class="btn btn-warning " id="checkPhone" type="button">
                                         {{ __('Get OTP') }}
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="col-md-3 ">
 
@@ -69,15 +69,15 @@
                             </div>
                         </div>
 
-                        {{-- <a class="btn btn-warning " id="checkDisable" >
+                        {{-- <button class="btn btn-warning " id="checkDisable" onclick='dispAlert()'>
                             {{ __('Disabled Enabled') }}
-                        </a> --}}
+                        </button> --}}
 
                     </form>
                 </div>
                 <div class="card-body d-flex justify-content-center" >
                     <div class="col-md-5" id = "cannot_reset_password">
-                        <h5 class="text-danger">You cannot reset your password now! <br><br>Please Try again later!</h5>
+                        <h6 class="text-danger">You cannot reset your password now! <br><br>Please Try again later!</h6>
                     </div>
                 </div>
             </div>
@@ -88,6 +88,9 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
+     function dispAlert(){
+				alert("Button disabled.");
+			    }
      $(document).ready(function() {
         $("#cannot_reset_password").css("display", "none");
         //$('#cannot_reset_password').hide();
@@ -95,6 +98,7 @@
         $("#cpassword").prop('disabled', true);
         var otpStatus
        $("#checkPhone").click(function(){
+
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',
@@ -109,30 +113,64 @@
                         alert(data.message);
                     }
                     if(data.status == 200){
-
+                        var ClickedDate = Date($.now());
+                        localStorage.setItem('DateClicked', ClickedDate);
+                        $(this).prop('disabled', true);
                     }
                 },
         });
     });
 
 
+
+
     $("#checkDisable").click(function(){
-        $("#checkDisable").prop('disabled', true);
         console.log("disabled");
+    $(this).prop('disabled', true);
+        // $('#checkDisable').value('disabled');
+
         var ClickedDate = Date($.now());
         var dateNow = Date($.now());
         localStorage.setItem('ClickedDate', ClickedDate);
+        console.log(localStorage.getItem('ClickedDate'));
     });
+                // $("#checkDisable").click(function(){
+				// 	$("#checkDisable").prop('disabled',true);
+                //     console.log("dfdf")
+				// });
+
 
     cl_date = new Date(localStorage.getItem('ClickedDate'));
-    dateNow = new Date(Date());
-    dateDifference = dateNow.getTime() - cl_date.getTime();
-    Difference_In_Days = dateDifference / (1000 * 3600);
-    console.log(cl_date);
+    dateNow1 = new Date(Date());
+    dateDifference = dateNow1.getTime() - cl_date.getTime();
+    Difference_In_Days = dateDifference / (1000 * 3600 *24);
+    console.log(localStorage.getItem('ClickedDate'));
     console.log(Difference_In_Days);
 
-    if(Difference_In_Days == 24){
+    reset_date = new Date(localStorage.getItem('DateClicked'));
+    dateNow = new Date(Date());
+    dateDifferent = dateNow.getTime() - reset_date.getTime();
+    enable_reset = dateDifferent / (1000 * 3600 *24);
+    console.log(localStorage.getItem('DateClicked'));
+    console.log(enable_reset);
+
+    if(enable_reset >= 1){
         localStorage.removeItem('ClickedDate');
+        $("#checkPhone").prop('disabled', false);
+        $("#cannot_reset_password").css("display", "none");
+    }
+    else{
+        $("#checkPhone").prop('disabled', true);
+        $("#cannot_reset_password").css("display", "block");
+        $("#can_reset_password").css("display", "none");
+    }
+
+    if(Difference_In_Days >= 1){
+        localStorage.removeItem('ClickedDate');
+        $("#checkDisable").prop('disabled', false);
+        $("#cannot_reset_password").css("display", "block");
+    }
+    else{
         $("#checkDisable").prop('disabled', true);
     }
 

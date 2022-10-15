@@ -40,7 +40,8 @@ Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
 Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
-Route::post('kbz_pay_store', [PaymentController::class, 'kbz_pay_store'])->name('kbz_pay_store');
+Route::post('ewallet_store', [PaymentController::class, 'ewallet_store'])->name('ewallet_store');
+Route::post('bank_payment_store', [PaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

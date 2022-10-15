@@ -1,6 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
+@include('sweetalert::alert')
 <!--kpay modal-->
 <div class="modal fade" id="kpayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -10,18 +11,21 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-          <form class="customer-transaction-form" method="POST" action="" >
+            <form action="{{ route('ewallet_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
             <div class="customer-transaction-form-img">
                 <img src="../imgs/kpay.png"/>
             </div>
 
             <div class="customer-transaction-input-container">
                 <p>KPay Phone Number:</p>
-                <input type="number" name = "number" required>
+                <input type="text" name = "payment_name" hidden value="KBZ Pay">
+                <input type="number" name = "phone" required>
+
             </div>
             <div class="customer-transaction-input-container">
                 <p>KPay Name:</p>
-                <input type="text" required name = "name">
+                <input type="text" required name = "account_name">
             </div>
             <div class="customer-transaction-input-container">
                 <p>Amount:
@@ -36,7 +40,7 @@
                 <div class="customer-screenshot-upload-btn">
                     <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                     <p>Photo</p>
-                    <input type="file" id="kpayImg" name="kpayImg" required>
+                    <input type="file" id="kpayImg" name="image" required>
                 </div>
 
                 <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -81,23 +85,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('ewallet_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/cbpay.jfif"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>CBpay Phone Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="CB Pay">
+                    <input type="number" name="phone" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>CBpay Name:</p>
-                    <input type="text" required>
+                    <input type="text" name="account_name" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" name = "amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -107,7 +113,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="cbpayImg" name="cbpayImg" required>
+                        <input type="file" id="cbpayImg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -150,23 +156,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('ewallet_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/wavepay.jfif"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Wave pay Phone Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="Wave Pay">
+                    <input type="number" name="phone" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Wave pay Name:</p>
-                    <input type="text" required>
+                    <input type="text" name="account_name" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" name ="amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -176,7 +184,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="wavepayImg" name="wavepayImg" required>
+                        <input type="file" id="wavepayImg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -224,23 +232,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('ewallet_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/ayapay.jfif"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Ayapay Phone Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="AYA Pay">
+                    <input type="number" name="phone" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Ayapay Name:</p>
-                    <input type="text" required>
+                    <input type="text" name="account_name" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number"  name = "amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -250,7 +260,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="ayapayImg" name="ayapayImg" required>
+                        <input type="file" id="ayapayImg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -294,23 +304,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('bank_payment_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/kbzbank-removebg-preview.png"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="KBZ Bank">
+                    <input type="number" name = "bank_account_number" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Name:</p>
-                    <input type="text" required>
+                    <input type="text" name ="bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" name ="amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -320,7 +332,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="kbzbankimg" name="kbzbankimg" required>
+                        <input type="file" id="kbzbankimg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -364,23 +376,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('bank_payment_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/cbbank-removebg-preview.png"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="CB Bank">
+                    <input type="number" required name ="bank_account_number">
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Name:</p>
-                    <input type="text" required>
+                    <input type="text" name ="bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" required name = "amount">
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -390,7 +404,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="cbbankimg" name="cbbankimg" required>
+                        <input type="file" id="cbbankimg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -433,23 +447,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('bank_payment_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/ayabank-removebg-preview.png"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="AYA Bank">
+                    <input type="number" name ="bank_account_number" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Name:</p>
-                    <input type="text" required>
+                    <input type="text" name = "bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" name ="amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -459,7 +475,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="ayabankimg" name="ayabankimg" required>
+                        <input type="file" id="ayabankimg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
@@ -502,23 +518,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-            <form class="customer-transaction-form">
+            <form action="{{ route('bank_payment_store') }}" method="POST" enctype="multipart/form-data" class="customer-transaction-form">
+                @csrf
                 <div class="customer-transaction-form-img">
                     <img src="../imgs/mabbank-removebg-preview.png"/>
                 </div>
 
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Number:</p>
-                    <input type="number" required>
+                    <input type="text" name = "payment_name" hidden value="MAB Bank">
+                    <input type="number" name = "bank_account_number" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Name:</p>
-                    <input type="text" required>
+                    <input type="text" name = "bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Amount:
                     </p>
-                    <input type="number" required>
+                    <input type="number" name = "amount" required>
                 </div>
 
                 <div class="customer-transaction-receipt-img">
@@ -528,7 +546,7 @@
                     <div class="customer-screenshot-upload-btn">
                         <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
                         <p>Photo</p>
-                        <input type="file" id="mabbankImg" name="mabbankImg" required>
+                        <input type="file" id="mabbankImg" name="image" required>
                     </div>
 
                     <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
