@@ -51,6 +51,7 @@
 
      <!-- Sweet Alert -->
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
 
     <script src={{ asset('js/customer/js/customerRegisteration.js')}}></script>
 

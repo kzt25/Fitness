@@ -16,11 +16,11 @@ class CreateBankingInfosTable extends Migration
         Schema::create('banking_infos', function (Blueprint $table) {
             $table->id();
             $table->string('payment_type');
-            $table->string('payment_name');
-            $table->string('bank_account_number');
-            $table->string('bank_account_holder');
-            $table->string('phone');
-            $table->string('account_name');
+            $table->string('payment_name')->nullable();
+            $table->string('bank_account_number')->nullable();
+            $table->string('bank_account_holder')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('account_name')->nullable();
             $table->timestamps();
         });
     }

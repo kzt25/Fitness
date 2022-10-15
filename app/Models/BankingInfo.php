@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class BankingInfo extends Model
 {
     use HasFactory;
-    protected $fillable = ['payment_type','bank_account_number','bank_account_holder','phone','account_name'];
+    protected $fillable = ['payment_type','payment_name','bank_account_number','bank_account_holder','phone','account_name'];
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

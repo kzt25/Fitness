@@ -36,6 +36,24 @@ class WorkoutController extends Controller
         return back();
     }
 
+    public function editworkoutplan($id){
+        $workoutplanEdit = WorkoutPlan::where('id',$id)->first();
+        return view('admin.workout.workoutplanedit', compact('workoutplanEdit'));
+    }
+
+    public function updateworkoutplan($id, Request $request){
+        $data =  WorkoutPlan::findOrFail($id);
+        $data->plan_type = $request->plantype;
+        $data->update();
+        return redirect()->route('workoutplane');
+    }
+
+    public function deleteworkoutplan($id){
+        $data =  WorkoutPlan::findOrFail($id);
+        $data->delete();
+        return back();
+    }
+
     public function workoutindex(Request $request){
         $workoutplanId = $request->id;
         //dd($workoutplanId);
@@ -60,8 +78,8 @@ class WorkoutController extends Controller
                 'upload/'.$video_name,
                 file_get_contents($video)
             );
-            // $video->move(public_path().'/upload/',$video_name);
         }
+
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
@@ -69,7 +87,6 @@ class WorkoutController extends Controller
                 'upload/'.$image_name,
                 file_get_contents($image)
             );
-            //$image->move(public_path().'/upload/',$image_name);
         }
 
         if($request->gendertype == 'both'){
@@ -129,11 +146,11 @@ class WorkoutController extends Controller
 
         $data->delete();
 
-        if(File::exists(public_path().'/upload/'.$image_name)){
-            File::delete(public_path().'/upload/'.$image_name);
+        if(File::exists(storage_path()."/app/upload/".$image_name)){
+            File::delete(storage_path()."/app/upload/".$image_name);
         }
-        if(File::exists(public_path().'/upload/'.$video_name)){
-            File::delete(public_path().'/upload/'.$video_name);
+        if(File::exists(storage_path()."/app/upload/".$video_name)){
+            File::delete(storage_path()."/app/upload/".$video_name);
         }
         return back()->with(['success'=>'Workout delete success.']);
     }
@@ -189,7 +206,7 @@ class WorkoutController extends Controller
         // $response->header('Accept-Ranges','bytes');
         // for ($i=1; $i<=count($video); $i++) {
             foreach($video as $vd){
-                return response()->file(storage_path()."/app/".$vd->video);
+                return response()->file(storage_path()."/app/upload/".$vd->video);
             }
         // }
     }

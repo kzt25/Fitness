@@ -12,10 +12,11 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Customer\PaymentController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
-use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
@@ -38,23 +39,22 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
-Route::get('payment', [CustomerRegisterController::class, 'payment'])->name('payment');
+Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
+Route::post('kbz_pay_store', [PaymentController::class, 'kbz_pay_store'])->name('kbz_pay_store');
 
- Auth::routes();
+Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
-Route::post('/customer_register',[CustomerRegisterController::class,'register'])->name('customer_register');
+Route::post('customer/signup',[CustomerRegisterController::class,'register'])->name('signup');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
 Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
 Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
-});
 
 // Admin Site
-Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::prefix('admin')->group(function () {
 
      Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
@@ -63,7 +63,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin-home');
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
-        // Route::put('/profile/{}')
+        Route::put('/profile/{id}/update', [AdminController::class, 'updateAdminProfile'])->name('admin-update');
         Route::resource('user', UserController::class);
         Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
@@ -72,6 +72,9 @@ Route::prefix('admin')->group(function () {
         //Workout
         Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
         Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
+        Route::post('/workoutplan/update/{id}', [WorkoutController::class, 'updateworkoutplan'])->name('updateworkoutplan');
+        Route::get('/workoutplan/delete/{id}', [WorkoutController::class, 'deleteworkoutplan'])->name('deleteworkoutplan');
+        Route::get('/workoutplan/edit/{id}', [WorkoutController::class, 'editworkoutplan'])->name('editworkoutplan');
         Route::get('/workout/{id}', [WorkoutController::class, 'workoutindex'])->name('workout');
         Route::get('/workout', [WorkoutController::class, 'workoutview'])->name('workoutview');
         Route::get('/workout/delete/{id}', [WorkoutController::class, 'workoutdelete'])->name('workoutdelete');
@@ -114,6 +117,14 @@ Route::prefix('admin')->group(function () {
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);
+
+        //payment
+        Route::get('/payment/{id}',[PaymentController::class,'detail'])->name('payment.detail');
+        Route::get('/transaction/bank/{id}',[PaymentController::class,'transactionBankDetail'])->name('transactionbank.detail');
+        Route::get('/transaction/ewallet/{id}',[PaymentController::class,'transactionWalletDetail'])->name('transactionwallet.detail');
+        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction']);
+        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction']);
+        Route::get('/payment',[PaymentController::class,'transctionView'])->name('payment.transction');
 
         //Request
         Route::resource('request', RequestController::class);

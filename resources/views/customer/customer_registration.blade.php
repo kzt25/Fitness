@@ -1,8 +1,8 @@
 @extends('customer.layouts.app')
 
 @section('content')
-<form id="regForm" method="POST" action="{{route('customer_register')}}">
-    @csrf
+<form id="regForm">
+
     <!--personal infos-->
     <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
@@ -1275,7 +1275,7 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button type="submit" class="customer-registeration-next-btn customer-primary-btn" id="nextBtn" onclick="nextPrev(1,'proficiency')">
+        <button type="button" class="customer-registeration-next-btn customer-primary-btn" id="nextBtn" onclick="nextPrev(1,'proficiency')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
@@ -1283,9 +1283,229 @@
 
     </div>
 
-    {{-- <div class="cutomer-registeration-form tab">
-      Hello
-    </div> --}}
+    <div class="cutomer-registeration-form tab">
+        Hello
+      <!--kpay modal-->
+        {{-- <div class="modal fade" id="kpayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header  customer-transaction-modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Send Payment Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
+                </div>
+                <div class="modal-body">
+                <form class="customer-transaction-form" method="POST" action="" >
+                    <div class="customer-transaction-form-img">
+                        <img src="../imgs/kpay.png"/>
+                    </div>
+
+                    <div class="customer-transaction-input-container">
+                        <p>KPay Phone Number:</p>
+                        <input type="number" name = "number" required>
+                    </div>
+                    <div class="customer-transaction-input-container">
+                        <p>KPay Name:</p>
+                        <input type="text" required name = "name">
+                    </div>
+                    <div class="customer-transaction-input-container">
+                        <p>Amount:
+                        </p>
+                        <input type="number" required name = "amount">
+                    </div>
+
+                    <div class="customer-transaction-receipt-img">
+
+                        <span class="selectImage">
+                        Transaction screen shot
+                        <div class="customer-screenshot-upload-btn">
+                            <iconify-icon icon="akar-icons:circle-plus" class="customer-screenshot-upload-btn-icon"></iconify-icon>
+                            <p>Photo</p>
+                            <input type="file" id="kpayImg" name="kpayImg" required>
+                        </div>
+
+                        <button class="customer-transaction-clear-btn" type="button" onclick="clearTransactionImg()">Clear</button>
+
+                        </span>
+                        <img class="preview kpayImg">
+                    </div>
+
+                    <div class="customer-transaction-admin-details">
+                        @foreach($banking_info as $kbz)
+                            @if($kbz->payment_name	== "KBZ Pay")
+                        <div class="customer-transaction-admin-phone">
+                            <p>Kpay Phone Number:</p>
+                            <p>{{$kbz->phone}}</p>
+                        </div>
+                        <div class="customer-transaction-admin-phone">
+                            <p>Account Name:</p>
+                            <p>{{$kbz->account_name}}</p>
+                        </div>
+                        <hr>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <div class="customer-transaction-form-btn-container">
+                        <button type="submit" class="customer-transaction-form-submit">Confirm</button>
+                        <button type="reset"  class="customer-transaction-form-cencel" onclick="clearTransactionImg()">Cancel</button>
+                    </div>
+                </form>
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+        <form id="customer-transaction-choice-form">
+            <p class="customer-transaction-form-header">
+                Confirm Transaction Via
+            </p>
+
+            <div class="customer-transaction-choices-parent-container">
+                <div class="customer-transaction-choices-ewallet-parent-container">
+                    <p class="customer-transaction-choices-ewallet-header">
+                        <iconify-icon icon="akar-icons:wallet" class="customer-transaction-choices-icon"></iconify-icon>
+                        Ewallet
+                        <span class="customer-transaction-choices-recommended">(Recommended)</span>
+                    </p>
+
+                    <div class="customer-transaction-choices-ewallet-checkboxes-container checkbox-flex-container">
+
+
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#kpayModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img">
+                                        <img src="../imgs/kpay.png"/>
+                                    </div>
+                                  </span>
+                                  <span class="checkbox-label">KBZ Pay<br>
+
+                                  </span>
+
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#cbpayModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/cbpay.jfif"/></div>
+                                  </span>
+                                  <span class="checkbox-label">CB Pay<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#wavepayModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/wavepay.jfif"/></div>
+                                  </span>
+                                  <span class="checkbox-label">Wave Pay<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#ayapayModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/ayapay.jfif"/></div>
+                                  </span>
+                                  <span class="checkbox-label">AYA Pay<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="customer-transaction-line"></div>
+                <div class="customer-transaction-choices-ewallet-parent-container">
+                    <p class="customer-transaction-choices-ewallet-header">
+                        <!-- <iconify-icon icon="akar-icons:wallet" class="customer-transaction-choices-icon"></iconify-icon> -->
+                        <iconify-icon icon="fluent:building-bank-16-filled" class="customer-transaction-choices-icon"></iconify-icon>
+                        Bank Account
+
+                    </p>
+
+                    <div class="customer-transaction-choices-ewallet-checkboxes-container checkbox-flex-container">
+
+
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#kbzbankModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img">
+                                        <img src="../imgs/kbzbank-removebg-preview.png"/>
+                                    </div>
+                                  </span>
+                                  <span class="checkbox-label">KBZ Bank<br>
+
+                                  </span>
+
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#cbbankModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/cbbank-removebg-preview.png"/></div>
+                                  </span>
+                                  <span class="checkbox-label">CB Bank<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#ayabankModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/ayabank-removebg-preview.png"/></div>
+                                  </span>
+                                  <span class="checkbox-label">AYA Bank<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="checkbox checkbox-vertical customer-transaction-choice">
+                              <label class="checkbox-wrapper">
+                                <input type="checkbox" name = "transactionChoice" class="checkbox-input" data-bs-toggle="modal" data-bs-target="#mabbankModal" onclick="checkedOnTransactionChoiceClick(this,'transactionChoice')"/>
+                                <span class="checkbox-tile">
+                                  <span class="checkbox-icon">
+                                    <div class="transaction-choice-img"><img src="../imgs/mabbank-removebg-preview.png"/></div>
+                                  </span>
+                                  <span class="checkbox-label">MAB Bank<br>
+
+                                  </span>
+                                </span>
+                              </label>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </form> --}}
+
+    </div>
 
 </form>
 
@@ -1303,7 +1523,6 @@ $(document).ready(function(){
             checkedOnDurationClick(memberPlanDurationCheckboxesList.item(i),"memberPlanDuration")
         }
     }
-
 
 })
 

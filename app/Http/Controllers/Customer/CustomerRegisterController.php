@@ -8,6 +8,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\BankingInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -90,16 +91,24 @@ class CustomerRegisterController extends Controller
         $member_id = $member->id;
         $user->save();
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
-        Auth::login($user->id);
-        return redirect('/');
-    }
-    public function register()
-    {
-        return redirect('/');
+        // Auth::login($user->id);
+        // return redirect('/');
     }
 
-    public function payment()
+    public function register(Request $request)
     {
-        return view('customer.payment');
+        $banking_info = BankingInfo::all();
+        // $this->validator($request->all())->validate();
+
+        // event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        // return $this->registered($request, $user)
+        //                 ?: redirect('$this->redirectPath()');
+        //return redirect('/');
+        return view('customer.customer_registration',compact('banking_info'));
+
     }
+
 }

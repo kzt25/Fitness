@@ -33,7 +33,7 @@
             @endguest
 
             @if(Auth::user())
-            {{-- <p>{{Auth()->user()->name}}</p> --}}
+            <p>{{Auth()->user()->name}}</p>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="customer-primary-btn customer-login-btn" type="submit">Logout</button>

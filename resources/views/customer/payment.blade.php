@@ -10,23 +10,23 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearTransactionInputs()"></button>
         </div>
         <div class="modal-body">
-          <form class="customer-transaction-form">
+          <form class="customer-transaction-form" method="POST" action="" >
             <div class="customer-transaction-form-img">
                 <img src="../imgs/kpay.png"/>
             </div>
 
             <div class="customer-transaction-input-container">
                 <p>KPay Phone Number:</p>
-                <input type="number" required>
+                <input type="number" name = "number" required>
             </div>
             <div class="customer-transaction-input-container">
                 <p>KPay Name:</p>
-                <input type="text" required>
+                <input type="text" required name = "name">
             </div>
             <div class="customer-transaction-input-container">
                 <p>Amount:
                 </p>
-                <input type="number" required>
+                <input type="number" required name = "amount">
             </div>
 
             <div class="customer-transaction-receipt-img">
@@ -46,14 +46,19 @@
             </div>
 
             <div class="customer-transaction-admin-details">
+                @foreach($banking_info as $kbz)
+                    @if($kbz->payment_name	== "KBZ Pay")
                 <div class="customer-transaction-admin-phone">
                     <p>Kpay Phone Number:</p>
-                    <p>09123456789</p>
+                    <p>{{$kbz->phone}}</p>
                 </div>
                 <div class="customer-transaction-admin-phone">
                     <p>Account Name:</p>
-                    <p>user123456</p>
+                    <p>{{$kbz->account_name}}</p>
                 </div>
+                <hr>
+                    @endif
+                @endforeach
             </div>
 
             <div class="customer-transaction-form-btn-container">
@@ -112,14 +117,18 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $cb)
+                    @if($cb->payment_name	== "CB Pay")
                     <div class="customer-transaction-admin-phone">
                         <p>CBpay Phone Number:</p>
-                        <p>09123456789</p>
+                        <p>{{$cb->phone}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$cb->account_name}}</p>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -177,15 +186,21 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $wave)
+                    @if($wave->payment_name	== "Wave Pay")
                     <div class="customer-transaction-admin-phone">
                         <p>Wave pay Phone Number:</p>
-                        <p>09123456789</p>
+                        <p>{{$wave->phone}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$wave->account_name}}</p>
                     </div>
+                    <hr>
+                    @endif
+                    @endforeach
                 </div>
+
 
                 <div class="customer-transaction-form-btn-container">
                     <button type="submit" class="customer-transaction-form-submit">Confirm</button>
@@ -245,14 +260,18 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $aya)
+                    @if($aya->payment_name	== "AYA Pay")
                     <div class="customer-transaction-admin-phone">
                         <p>Ayapay Phone Number:</p>
-                        <p>09123456789</p>
+                        <p>{{$aya->phone}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$aya->account_name}}</p>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -311,14 +330,19 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+
                     <div class="customer-transaction-admin-phone">
+                        @foreach($banking_info as $kbz)
+                        @if($kbz->payment_name	== "KBZ Bank")
                         <p>Bank Account Number:</p>
-                        <p>12345678945</p>
+                        <p>{{$kbz->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$kbz->bank_account_holder}}</p>
                     </div>
+                     @endif
+                     @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -376,14 +400,18 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $cb)
+                    @if($cb->payment_name	== "CB Bank")
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Number:</p>
-                        <p>12345678945</p>
+                        <p>{{$cb->bank_account_name}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$cb->bank_account_holder}}</p>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -441,14 +469,18 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $aya)
+                    @if($aya->payment_name	== "AYA Bank")
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Number:</p>
-                        <p>12345678945</p>
+                        <p>{{$aya->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$aya->bank_account_holder}}</p>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -506,14 +538,18 @@
                 </div>
 
                 <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $mab)
+                    @if($mab->payment_name	== "MAB Bank")
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Number:</p>
-                        <p>12345678945</p>
+                        <p>{{$mab->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Name:</p>
-                        <p>user123456</p>
+                        <p>{{$mab->bank_account_holder}}</p>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">

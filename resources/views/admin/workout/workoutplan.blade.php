@@ -5,7 +5,9 @@
 
 <div class="container">
     {{-- create workout plan --}}
-    <div class="d-flex justify-content-end"><button class="btn btn-primary create-workoutplan">Create Workout Plan</button></div>
+    <div class="d-flex justify-content-end"><button class="btn btn-primary create-workoutplan"><i
+        class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i>Create Workout Plan</button></div>
+
     <div class="workout-plan-popup-parent-container">
         <div class="workout-plan-popup-container ">
             <div class="workout-plan-popup">
@@ -42,8 +44,8 @@
 
                     <!-- Button trigger modal -->
                     <input type="hidden" name="workoutplanId" value="{{$plan->id}}">
-                    <h3 class="text-center">{{$plan->plan_type}} Plan</h3>
-                    <p class="text-center">Monday OCT 3,2022</p>
+                    <h3 class="text-center text-capitalize">{{$plan->plan_type}} Plan</h3>
+                    {{-- <p class="text-center">Monday OCT 3,2022</p> --}}
 
                     <div class="card mb-3 mx-auto shadow rounded" style="max-width: 540px;">
                     <div class="row g-0">
@@ -53,6 +55,9 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">Work out</h5>
+                                    <a class="btn btn-sm btn-primary" href="{{route('editworkoutplan',[$plan->id])}}">Edit plan</a>
+                                    <a class="btn btn-sm btn-danger" href="{{route('deleteworkoutplan',[$plan->id])}}">Delete</a>
+
                                 <p class="text-muted">Core + Arms $ Legs work out.</p>
                                 <p class="card-text"><small>35 mins</small></p>
                             </div>
@@ -144,4 +149,3 @@
    })
  </script>
   @endpush
-
