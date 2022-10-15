@@ -1,8 +1,9 @@
 @extends('customer.layouts.app')
 
 @section('content')
-<form id="regForm" method="POST" {{ route('signup') }}>
-    @csrf
+<form id="regForm">
+    {{-- @csrf
+    method="POST" {{ route('customer_register') }} --}}
     <!--personal infos-->
     <div class="cutomer-registeration-form tab">
         <p class="customer-registeration-form-header">
@@ -1016,7 +1017,7 @@
       </div>
       <div class="checkbox">
         <label class="checkbox-wrapper">
-          <input type="checkbox" name = "badHabits" class="checkbox-input" value="lat night snacks"  />
+          <input type="checkbox" name = "badHabits" class="checkbox-input" value="late night snacks"  />
           <span class="checkbox-tile">
             <span class="checkbox-icon">
               <div class="checkbox-icon-medium"></div>
@@ -1275,10 +1276,11 @@
           <iconify-icon icon="akar-icons:arrow-left" class="customer-prev-icon"></iconify-icon>
           <p>Previous</p>
         </button>
-        <button type="submit" class="customer-registeration-next-btn customer-primary-btn" id="nextBtn" onclick="nextPrev(1,'proficiency')">
+        <button type="button" class="customer-registeration-next-btn customer-primary-btn" id="nextBtn" onclick="nextPrev(1,'proficiency')">
           <p>Next</p>
           <iconify-icon icon="akar-icons:arrow-right" class="customer-next-icon"></iconify-icon>
         </button>
+
       </div>
 
     </div>

@@ -60,6 +60,19 @@ class HomeController extends Controller
         $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
         return view('customer.customer_registration',compact('durations','members'));
     }
+    public function getRegister()
+    {
+        $members=Member::orderBy('price','ASC')->get();
+
+        $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
+
+        $data = [
+            'members' => $members,
+            'durations'=>$durations
+        ];
+
+        return view('auth.register')->with($data);
+    }
 
 
 }
