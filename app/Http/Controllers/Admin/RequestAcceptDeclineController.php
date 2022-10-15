@@ -29,7 +29,7 @@ class RequestAcceptDeclineController extends Controller
         $u->assignRole($role->name);
         $u->active_status=2;
         $u->update();
-        return back()->with('sucess','Accepted');
+        return back()->with('success','Accepted');
     }
     public function decline($id){
         $user = User::findOrFail($id);

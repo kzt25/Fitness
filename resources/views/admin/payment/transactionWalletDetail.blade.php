@@ -14,33 +14,33 @@
 
         <div class="row g-0">
           <div class="col-md-4 shadow ms-3 my-3">
-            <img src="{{asset('image/bodybuild.jpg')}}" class="img-fluid rounded" alt="...">
+            <img src="{{asset('image/'.$wallettransctiondetail->photo)}}" class="img-fluid rounded" alt="...">
           </div>
           <div class="col-md-6">
             <div class="card-body">
               <div>
                 <label class="fs-5">Name :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->user->name}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->user->name}}</label>
               </div>
               <div>
                 <label class="fs-5">Payment Type :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->payment_type}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->payment_type}}</label>
               </div>
               <div>
                 <label class="fs-5">Payment name :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->payment_name ?? "E-wallet"}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->payment_name ?? "E-wallet"}}</label>
              </div>
              <div>
                 <label class="fs-5">Account name :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->account_name ?? "E-wallet"}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->account_name ?? "E-wallet"}}</label>
              </div>
               <div>
                 <label class="fs-5">Phone :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->phone ?? "E-wallet"}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->phone ?? "E-wallet"}}</label>
               </div>
              <div>
                 <label class="fs-5">Amount :</label>
-                <label class="ms-2 text-capitalize">{{$banktransctiondetail->amount}}</label>
+                <label class="ms-2 text-capitalize">{{$wallettransctiondetail->amount}}</label>
              </div>
             </div>
           </div>

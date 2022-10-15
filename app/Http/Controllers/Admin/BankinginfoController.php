@@ -64,7 +64,18 @@ class BankinginfoController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $this->validate($request,[
+            // 'account_name'=> 'required',
+            // 'payment_name' => 'required',
+            'phone'=> 'required|min:9|max:11',
+            // 'amount'=> 'required',
+            // 'image' => 'required',
+        ]);
+
         // dd($request->all());
+
         $bankinginfo = new BankingInfo();
         if ($request->paymentType == "bank transfer") {
             $bankinginfo->payment_type = $request->paymentType;

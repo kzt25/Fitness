@@ -34,7 +34,7 @@ class PaymentController extends Controller
 
                 $detail_icon = '';
 
-                $detail_icon = '<a href=" ' . route('transactionbank.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                $detail_icon = '<a href=" ' . route('transactionbank.detail', $each->id) . ' " class="text-warning mx-1 mt-1" title="payment">
                                     <i class="fa-solid fa-circle-info fa-xl"></i>
                               </a>';
 
@@ -53,7 +53,7 @@ class PaymentController extends Controller
 
                 $detail_icon = '';
 
-                $detail_icon = '<a href=" ' . route('transactionbank.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                $detail_icon = '<a href=" ' . route('transactionbank.detail', $each->id) . ' " class="text-warning mx-1 mt-1" title="payment">
                                     <i class="fa-solid fa-circle-info fa-xl"></i>
                               </a>';
 
@@ -69,7 +69,8 @@ class PaymentController extends Controller
 
     public function transactionBankDetail($id){
 
-        $banktransctiondetail = Payment::where('payment_type','bank')->where('user_id',$id)->with('user')->first();
+        $banktransctiondetail = Payment::where('payment_type','bank')->where('id',$id)->with('user')->first();
+        //dd($banktransctiondetail->toArray());
         return view('admin.payment.transactionBankDetail', compact('banktransctiondetail'));
     }
 
@@ -87,7 +88,7 @@ class PaymentController extends Controller
 
                         $detail_icon = '';
 
-                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->id) . ' " class="text-warning mx-1 mt-1" title="payment">
                                             <i class="fa-solid fa-circle-info fa-xl"></i>
                                       </a>';
 
@@ -105,7 +106,7 @@ class PaymentController extends Controller
 
                         $detail_icon = '';
 
-                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->id) . ' " class="text-warning mx-1 mt-1" title="payment">
                                             <i class="fa-solid fa-circle-info fa-xl"></i>
                                       </a>';
 
@@ -119,7 +120,7 @@ class PaymentController extends Controller
     }
 
     public function transactionWalletDetail($id){
-        $banktransctiondetail = Payment::where('payment_type','ewallet')->where('user_id',$id)->with('user')->first();
-        return view('admin.payment.transactionWalletDetail', compact('banktransctiondetail'));
+        $wallettransctiondetail = Payment::where('payment_type','ewallet')->where('id',$id)->with('user')->first();
+        return view('admin.payment.transactionWalletDetail', compact('wallettransctiondetail'));
     }
 }

@@ -14,7 +14,7 @@
 
         <div class="row g-0">
           <div class="col-md-4 shadow ms-3 my-3">
-            <img src="{{asset('image/bodybuild.jpg')}}" class="img-fluid rounded" alt="...">
+            <img src="" class="img-fluid rounded" alt="...">
           </div>
           <div class="col-md-6">
             <div class="card-body">
