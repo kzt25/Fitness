@@ -1306,7 +1306,6 @@ $(document).ready(function(){
         }
     }
 
-
 })
 
 const checkedOnDurationClick = (el,category) => {

@@ -45,6 +45,9 @@ class TrainerController extends Controller
             ->editColumn('created_at', function ($each) {
                 return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
             })
+            ->editColumn('updated_at', function ($each) {
+                return Carbon::parse($each->updated_at)->format("Y-m-d H:i:s");
+            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -107,7 +110,8 @@ class TrainerController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.trainers.show', compact(''));
     }
 
     /**

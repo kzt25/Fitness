@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MemberHistory;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RequestAcceptDeclineController extends Controller
 {
@@ -15,9 +16,10 @@ class RequestAcceptDeclineController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function accept($id, Request $request){
         $u=User::findOrFail($id);
+        //$user = Auth::user()->id;
 
         $member_history = MemberHistory::where('user_id',$u->id)->first();
         $member_role = Member::where('id',$member_history->member_id)->first();
@@ -27,7 +29,7 @@ class RequestAcceptDeclineController extends Controller
         $u->assignRole($role->name);
         $u->active_status=2;
         $u->update();
-        return back();
+        return back()->with('sucess','Accepted');
     }
     public function decline($id){
         $user = User::findOrFail($id);
@@ -38,6 +40,7 @@ class RequestAcceptDeclineController extends Controller
         $user->assignRole($role->name);
         $user->active_status=0;
         $user->update();
-        return back();
+
+        return back()->with('success','Declined');
     }
 }

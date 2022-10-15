@@ -33,7 +33,8 @@
             </div>
 
             <div class="card shadow p-3 mb-2">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin-update', auth()->user()->id) }}" method="POST" id="update-admin"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="d-md-flex flex-md-wrap justify-content-md-center gap-2">
@@ -96,7 +97,7 @@
                     </div>
 
                     <div class="mt-2 text-center">
-                        <a href="{{ route('admin-profile') }}"  class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('admin-profile') }}" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Confirm</button>
                     </div>
                 </form>
@@ -108,7 +109,8 @@
     </div>
 @endsection
 
-@push('script')
+@push('scripts')
+    {!! JsValidator::formRequest('App\Http\Requests\UpdateAdminProfileRequest', '#update-admin') !!}
     <script>
         $(document).ready(function() {
             $('#profile_img').on('change', function() {
