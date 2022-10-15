@@ -17,6 +17,9 @@ class PaymentController extends Controller
     }
     public function kbz_pay_store()
     {
+        $payment_type = "Ewallet ";
+
+        $user = Auth()->user()->id;
         $user = Auth()->user()->id;
     }
 }
