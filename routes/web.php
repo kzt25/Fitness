@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
@@ -41,8 +42,8 @@ Route::post('customer/customerCreate', [CustomerRegisterController::class, 'Cust
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
-Route::post('customer/signup',[CustomerRegisterController::class,'register'])->name('signup');
+Route::get('customer/register',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('customer_register');
+Route::post('customer/register',[App\Http\Controllers\Auth\RegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
@@ -70,6 +71,9 @@ Route::prefix('admin')->group(function () {
         //Workout
         Route::get('/workoutplan', [WorkoutController::class, 'index'])->name('workoutplane');
         Route::post('/workoutplan/create', [WorkoutController::class, 'createworkoutplan'])->name('createworkoutplan');
+        Route::post('/workoutplan/update/{id}', [WorkoutController::class, 'updateworkoutplan'])->name('updateworkoutplan');
+        Route::get('/workoutplan/delete/{id}', [WorkoutController::class, 'deleteworkoutplan'])->name('deleteworkoutplan');
+        Route::get('/workoutplan/edit/{id}', [WorkoutController::class, 'editworkoutplan'])->name('editworkoutplan');
         Route::get('/workout/{id}', [WorkoutController::class, 'workoutindex'])->name('workout');
         Route::get('/workout', [WorkoutController::class, 'workoutview'])->name('workoutview');
         Route::get('/workout/delete/{id}', [WorkoutController::class, 'workoutdelete'])->name('workoutdelete');
@@ -107,11 +111,22 @@ Route::prefix('admin')->group(function () {
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
 
         Route::get('user_member', [MemberController::class, 'user_member_show'])->name('member.user_member');
+        Route::get('user_member/edit/{id}', [MemberController::class, 'user_member_edit'])->name('member.user_member.edit');
+        Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
+
         Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
 
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
         Route::get('admin/bankinginfo/datatable/ssd', [BankinginfoController::class, 'ssd']);
+
+        //payment
+        Route::get('/payment/{id}',[PaymentController::class,'detail'])->name('payment.detail');
+        Route::get('/transaction/bank/{id}',[PaymentController::class,'transactionBankDetail'])->name('transactionbank.detail');
+        Route::get('/transaction/ewallet/{id}',[PaymentController::class,'transactionWalletDetail'])->name('transactionwallet.detail');
+        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction']);
+        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction']);
+        Route::get('/payment',[PaymentController::class,'transctionView'])->name('payment.transction');
 
         //Request
         Route::resource('request', RequestController::class);

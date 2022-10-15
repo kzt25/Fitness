@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href=" https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+
+
     {{-- <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}"> --}}
 
     <!-- Select2 -->
@@ -64,7 +68,21 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('user-active') ">
+                    <li class="sidebar-item @yield('request-active')">
+                        <a class="sidebar-link" href="{{ route('request.index') }}">
+                            <i class="fa-solid fa-user-group align-middle"></i> <span
+                                class="align-middle">Request</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @yield('transction-active')">
+                        <a class="sidebar-link" href="{{ route('payment.transction') }}">
+                            <i class="fa-solid fa-money-bill-transfer"></i> <span
+                                class="align-middle">Payment Transaction</span>
+                        </a>
+                    </li>
+
+                   <li class="sidebar-item @yield('user-active') ">
                         <a class="sidebar-link" href="{{ route('user.index') }}">
                             <i class="fa-solid fa-users align-middle "></i> <span
                                 class="align-middle">Users</span>
@@ -78,19 +96,14 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item @yield('request-active')">
-                        <a class="sidebar-link" href="{{ route('request.index') }}">
-                            <i class="fa-solid fa-user-group  align-middle"></i> <span
-                                class="align-middle">Request</span>
-                        </a>
-                    </li>
 
-                    {{-- <li class="sidebar-item @yield('member-active')">
+
+                    <li class="sidebar-item @yield('member-active')">
                         <a class="sidebar-link" href="{{ route('member.index') }}">
                             <i class="fa-solid fa-user-group  align-middle"></i> <span
                                 class="align-middle">Member Type</span>
                         </a>
-                    </li> --}}
+                    </li> 
 
                     <li class="sidebar-item " >
                         <a class="sidebar-link" href="#collapseExample" data-mdb-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
@@ -121,28 +134,28 @@
 
                     <li class="sidebar-item @yield('meal-active')">
                         <a class="sidebar-link" href="{{ route('meal.index') }}">
-                            <i class="fa-solid fa-burger  align-middle"></i> <span class="align-middle">Meals</span>
+                            <i class="fa-solid fa-burger align-middle"></i> <span class="align-middle">Meals</span>
                         </a>
                     </li>
 
 
                     <li class="sidebar-item @yield('permission-active')">
                         <a class="sidebar-link" href="{{ route('permission.index') }}">
-                            <i class="fa-solid fa-shield-halved  align-middle"></i> <span
+                            <i class="fa-solid fa-shield-halved align-middle"></i> <span
                                 class="align-middle">Permissions</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item @yield('role-active')">
                         <a class="sidebar-link" href="{{ route('role.index') }}">
-                            <i class="fa-solid fa-user-shield  align-middle"></i> <span
+                            <i class="fa-solid fa-user-shield align-middle"></i> <span
                                 class="align-middle">Roles</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item @yield('workoutplan-active')">
                         <a class="sidebar-link" href="{{ route('workoutplane') }}">
-                            <i class="fa-duotone fa-dumbbell"></i>
+                            <i class="fa-solid fa-clipboard-list"></i>
                             <span class="align-middle">Workout Plan</span>
                         </a>
                     </li>
@@ -201,6 +214,13 @@
     <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+
 
     <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

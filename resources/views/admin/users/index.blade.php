@@ -40,6 +40,8 @@
                     <tr class="align-middle">
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Type</th>
+                        <th>Level</th>
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Role</th>
@@ -77,6 +79,14 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'member_type',
+                        name: 'member_type'
+                    },
+                    {
+                        data: 'membertype_level',
+                        name: 'membertype_level'
                     },
                     {
                         data: 'phone',

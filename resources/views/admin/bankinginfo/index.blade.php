@@ -21,6 +21,9 @@
         .form-label {
             font-size: 14px;
         }
+        tbody{
+            text-transform: capitalize;
+        }
     </style>
 @endsection
 
@@ -30,8 +33,8 @@
         <div class="d-flex justify-content-between mb-3">
             <h2 class="text-center mb-0">Banking Information</h2>
             <a href="{{ route('bankinginfo.create') }}" class="btn btn-primary align-middle"><i
-                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create
-                    Bank Info</span> </a>
+                    class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Add New
+                    Payment</span> </a>
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -40,9 +43,10 @@
                     <tr class="align-middle">
                         <th>ID</th>
                         <th>Paymenmt Type</th>
-                        <th>Account Name</th>
                         <th>Account Holder</th>
                         <th>Account Number</th>
+                        <th>Paymenmt Name</th>
+                        <th>Account Name</th>
                         <th>Phone</th>
                         <th>Action</th>
                     </tr>
@@ -79,16 +83,20 @@
                         name: 'payment_type'
                     },
                     {
-                        data: 'account_name',
-                        name: 'account_name'
-                    },
-                    {
                         data: 'bank_account_holder',
                         name: 'bank_account_holder'
                     },
                     {
                         data: 'bank_account_number',
                         name: 'bank_account_number'
+                    },
+                    {
+                        data: 'payment_name',
+                        name: 'payment_name'
+                    },
+                    {
+                        data: 'account_name',
+                        name: 'account_name'
                     },
                     {
                         data: 'phone',
@@ -146,7 +154,10 @@
                             swal("Your imaginary file is safe!");
                         }
                     });
-            })
+            });
+
+
         });
+
     </script>
 @endpush

@@ -21,6 +21,9 @@
         .form-label {
             font-size: 14px;
         }
+        tbody{
+            text-transform: capitalize;
+        }
     </style>
 @endsection
 
@@ -32,7 +35,7 @@
         </div>
 
         <div class="col-12 card p-4 mb-5">
-            <table class="table table-striped Datatable " style="width: 100%">
+            <table class="table table-striped Datatable" id="export" style="width: 100%">
                 <thead>
                     <tr class="align-middle">
                         <th>ID</th>
@@ -58,6 +61,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+
             var i = 1;
             var table = $('.Datatable').DataTable({
                 processing: true,
@@ -116,6 +120,7 @@
                     title: '{{ Session::get('success') }}'
                 })
             @endif
+
 
             // $(document).on('click', '.delete-btn', function(e) {
             //     e.preventDefault();
