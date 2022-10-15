@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Customer;
 
-use file;
 use App\Models\Payment;
 use App\Models\BankingInfo;
 use Illuminate\Http\Request;
@@ -10,10 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PaymentController extends Controller
+class RegisterPaymentController extends Controller
 {
     //
-
     public function payment()
     {
         $banking_info = BankingInfo::all();
@@ -24,7 +22,7 @@ class PaymentController extends Controller
         $this->validate($request,[
             'account_name'=> 'required',
             'payment_name' => 'required',
-            'phone'=> 'required',
+            'phone'=> 'required|min:9|max:11',
             'amount'=> 'required',
             'image' => 'required',
         ]);
@@ -72,8 +70,6 @@ class PaymentController extends Controller
         ]);
         //dd($request->all());
         $user = auth()->user();
-
-
          // Store Image
          if($request->hasFile('image')) {
             $image = $request->file('image');

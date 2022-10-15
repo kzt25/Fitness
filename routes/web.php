@@ -8,16 +8,17 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
 use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Customer\PaymentController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
 use App\Http\Controllers\Customer\CustomerLoginController;
+use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 
@@ -39,9 +40,9 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
-Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
-Route::post('ewallet_store', [PaymentController::class, 'ewallet_store'])->name('ewallet_store');
-Route::post('bank_payment_store', [PaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
+Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('payment');
+Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
+Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
