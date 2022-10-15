@@ -64,6 +64,7 @@ class BankinginfoController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $bankinginfo = new BankingInfo();
         if ($request->paymentType == "bank transfer") {
             $bankinginfo->payment_type = $request->paymentType;

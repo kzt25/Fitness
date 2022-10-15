@@ -13,11 +13,12 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
-use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerLoginController;
+use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 
@@ -38,6 +39,10 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+
+Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('payment');
+Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
+Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -115,6 +120,9 @@ Route::prefix('admin')->group(function () {
         Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
 
         Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
+        Route::get('admin/user_member/datatable_decline/ssd', [MemberController::class, 'user_member_decline_ssd']);
+        Route::get('user_member/destroy/{id}', [MemberController::class, 'user_member_destroy'])->name('user_member.destroy');
+        Route::get('user_member/ban/{id}', [MemberController::class, 'user_member_ban'])->name('user_member.ban');
 
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);

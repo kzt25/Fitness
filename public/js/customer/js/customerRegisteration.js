@@ -776,7 +776,7 @@
                     if(allData.memberPlan==1){
                         window.location.href = "/";
                     }else{
-                        window.location.href = "/password_reset_view";
+                        window.location.href = "/customer_payment";
                     }
 
                     //location.reload();

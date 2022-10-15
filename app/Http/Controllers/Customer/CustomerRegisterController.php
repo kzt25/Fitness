@@ -8,6 +8,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\BankingInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -96,7 +97,6 @@ class CustomerRegisterController extends Controller
 
     public function register(Request $request)
     {
-
         // $this->validator($request->all())->validate();
 
         // event(new Registered($user = $this->create($request->all())));
@@ -107,4 +107,5 @@ class CustomerRegisterController extends Controller
         //                 ?: redirect('$this->redirectPath()');
         //return redirect('/');
     }
+
 }
