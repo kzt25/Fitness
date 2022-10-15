@@ -90,14 +90,13 @@ class CustomerRegisterController extends Controller
 
         $member_id = $member->id;
         $user->save();
+
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
-        // Auth::login($user->id);
-        // return redirect('/');
+        Auth::login($user);
     }
 
     public function register(Request $request)
     {
-        $banking_info = BankingInfo::all();
         // $this->validator($request->all())->validate();
 
         // event(new Registered($user = $this->create($request->all())));
@@ -107,8 +106,6 @@ class CustomerRegisterController extends Controller
         // return $this->registered($request, $user)
         //                 ?: redirect('$this->redirectPath()');
         //return redirect('/');
-        return view('customer.customer_registration',compact('banking_info'));
-
     }
 
 }

@@ -50,9 +50,18 @@ class MemberController extends Controller
 
         $members = User::query()
                     ->where('member_type','!=','Free')
-                    ->where('member_type','!=',' ');
+                    ->where('member_type','!=',' ')
+                    ->where('active_status',2);
         return Datatables::of($members)
         ->addIndexColumn()
+        ->addColumn('action', function ($each) {
+            $edit_icon = '';
+            $edit_icon = '<a href=" ' . route('member.user_member.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
+                        <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
+                    </a>';
+                    return '<div class="d-flex justify-content-center">' . $edit_icon . '</div>';
+                    })
+        ->rawColumns(['action'])
         ->make(true);
     }
 
@@ -65,6 +74,13 @@ class MemberController extends Controller
     public function user_member_show()
     {
         return view('admin.member.user_member_show');
+    }
+
+    public function user_member_edit($id)
+    {
+        $members=Member::all();
+        $user=User::findOrFail($id);
+        return view('admin.member.user_member_edit',compact('members','user'));
     }
 
 

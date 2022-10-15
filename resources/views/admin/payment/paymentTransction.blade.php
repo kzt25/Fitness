@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-12 card p-4 mb-5">
-            <table class="table table-striped Datatable " style="width: 100%">
+            <table class="table table-striped Datatable" id="bank" style="width: 100%">
                 <thead>
                     <tr class="align-middle">
                         <th>ID</th>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-12 card p-4 mb-5">
-            <table class="table table-striped Datatablewallet " style="width: 100%">
+            <table class="table table-striped Datatablewallet" id="wallet" style="width: 100%">
                 <thead>
                     <tr class="align-middle">
                         <th>ID</th>
@@ -177,10 +177,12 @@
                         data: 'action',
                         name: 'action'
                     }
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
             });
-
-
 
         });
 

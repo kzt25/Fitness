@@ -762,6 +762,7 @@
                 proficiency  : proficiencyData
             }
             }
+
             $.ajax({
                 url : 'customerCreate',
                 method: 'post',
@@ -769,13 +770,22 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data:  {"allData":allData},
+
                 success   : function(data) {
-                    console.log("PI",data);
+
+                    if(allData.memberPlan==1){
+                        window.location.href = "/";
+                    }else{
+                        window.location.href = "/password_reset_view";
+                    }
+
+                    //location.reload();
                 },
                 // error : function(err){
                 //     console.log(err)
                 // }
             });
+
           }
 
           // If the valid status is true, mark the step as finished and valid:

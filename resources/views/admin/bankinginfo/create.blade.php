@@ -26,9 +26,26 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <div id="bank-select">
                     <label for="accname">Payment Name</label>
-                    <input type="text" class="form-control" name="paymentName">
+                    <select class="form-select mb-3" name="bankName" aria-label="Default select example">
+                        <option selected>Select Bank Name</option>
+                        <option value="KBZ Bank">KBZ Bank</option>
+                        <option value="CB Bank">CB Bank</option>
+                        <option value="AYA Bank">AYA Bank</option>
+                        <option value="MAB Bank">MAB Bank</option>
+                    </select>
+                </div>
+
+                <div id="wallet-select" style="display: none;">
+                    <label for="accname">Payment Name</label>
+                    <select class="form-select mb-3" name="ewalletName" aria-label="Default select example" >
+                        <option selected>Select Wallet Name</option>
+                        <option value="KBZ Pay">KBZ Pay</option>
+                        <option value="CB Pay">CB Pay</option>
+                        <option value="AYA Pay">AYA Pay</option>
+                        <option value="Wave Pay">Wave Pay</option>
+                    </select>
                 </div>
 
                 <div class="mb-3" id="bank-number">
@@ -66,15 +83,19 @@
     $("#ewallet").click(function() {
         $('#accname').show();
         $('#phone').show();
+        $('#wallet-select').show();
         $('#bank-number').hide();
         $('#bank-holder').hide();
+        $('#bank-select').hide();
     });
 
     $("#bank").click(function() {
+        $('#bank-select').show();
         $('#bank-number').show();
         $('#bank-holder').show();
         $('#accname').hide();
         $('#phone').hide();
+        $('#wallet-select').hide();
     });
 
 </script>

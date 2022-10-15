@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Pusher\Pusher;
 use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class RequestAcceptDeclineController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function accept($id, Request $request){
         $u=User::findOrFail($id);
         //$user = Auth::user()->id;
@@ -30,21 +29,6 @@ class RequestAcceptDeclineController extends Controller
         $u->assignRole($role->name);
         $u->active_status=2;
         $u->update();
-
-        $options = array(
-            'cluster' => env('PUSHER_APP_CLUSTER'),
-            'encrypted' => true
-        );
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            $options
-        );
-        $data = "Admin is accepted your request. Congratulation !";
-
-        $pusher->trigger('memberaccept', 'App\\Events\\Noti', $data);
-
         return back()->with('sucess','Accepted');
     }
     public function decline($id){
@@ -56,20 +40,6 @@ class RequestAcceptDeclineController extends Controller
         $user->assignRole($role->name);
         $user->active_status=0;
         $user->update();
-
-        $options = array(
-            'cluster' => env('PUSHER_APP_CLUSTER'),
-            'encrypted' => true
-        );
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            $options
-        );
-        $data = "Admin is declined your request. Please try again !";
-
-        $pusher->trigger('memberaccept', 'App\\Events\\Noti', $data);
 
         return back()->with('success','Declined');
     }
