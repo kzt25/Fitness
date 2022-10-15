@@ -25,6 +25,8 @@
     <!--customer login-->
     <link href="{{ asset('css/customer/css/customerLogin.css')}}" rel="stylesheet"/>
 
+    <link href="{{ asset('css/customer/css/transactionChoice.css')}}" rel="stylesheet"/>
+
     <title>Hello, world!</title>
   </head>
   <body class="customer-registeration-bgimg">

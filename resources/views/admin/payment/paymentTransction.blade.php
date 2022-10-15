@@ -24,6 +24,9 @@
         tbody{
             text-transform: capitalize;
         }
+        .exportBtn{
+            border-radius: 100px;
+        }
     </style>
 @endsection
 
@@ -130,14 +133,22 @@
                         data: 'action',
                         name: 'action'
                     }
-                ]
+                ],
+                dom:'lBfrtip',
+                buttons: [
+                    { extend: 'pdfHtml5',text:'Export PDF', className:"bg-primary text-white rounded p-1 mt-1", title:'Bank payment transaction', exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                }},
+                    { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'Bank payment transaction'},
+                ],
 
 
             });
 
 
             var i = 1;
-            var table = $('.Datatablewallet').DataTable({
+            var wallettable = $('.Datatablewallet').DataTable({
+                select: true,
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -178,12 +189,14 @@
                         name: 'action'
                     }
                 ],
-                dom: 'Bfrtip',
+                dom:'lBfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            });
+                    { extend: 'pdfHtml5',text:'Export PDF', className:"bg-primary text-white rounded p-1 mt-1", title:'E-wallet payment transaction', exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6 ]}},
+                    { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'E-wallet payment transaction'},
+                ],
 
+            });
         });
 
     </script>
