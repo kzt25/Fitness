@@ -120,6 +120,9 @@ Route::prefix('admin')->group(function () {
         Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
 
         Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
+        Route::get('admin/user_member/datatable_decline/ssd', [MemberController::class, 'user_member_decline_ssd']);
+        Route::get('user_member/destroy/{id}', [MemberController::class, 'user_member_destroy'])->name('user_member.destroy');
+        Route::get('user_member/ban/{id}', [MemberController::class, 'user_member_ban'])->name('user_member.ban');
 
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);

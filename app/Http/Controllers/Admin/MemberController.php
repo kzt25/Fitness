@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Controllers\Controller;
 use App\Models\MealPlan;
+use App\Models\MemberHistory;
 use GrahamCampbell\ResultType\Success;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -50,16 +51,37 @@ class MemberController extends Controller
 
         $members = User::query()
                     ->where('member_type','!=','Free')
-                    ->where('member_type','!=',' ')
                     ->where('active_status',2);
         return Datatables::of($members)
         ->addIndexColumn()
         ->addColumn('action', function ($each) {
+            $delete_icon = '';
             $edit_icon = '';
             $edit_icon = '<a href=" ' . route('member.user_member.edit', $each->id) . ' " class="text-success mx-1 " title="edit">
                         <i class="fa-solid fa-edit fa-xl" data-id="' . $each->id . '"></i>
                     </a>';
-                    return '<div class="d-flex justify-content-center">' . $edit_icon . '</div>';
+            $delete_icon = '<a href=" ' . route('user_member.ban', $each->id) . ' " class="text-danger mx-1" id="delete" title="ban">
+                        <i class="fa-solid fa-xl fa-ban" data-id="' . $each->id . '"></i>
+                    </a>';
+                    return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon. '</div>';
+                    })
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+
+    public function user_member_decline_ssd() {
+
+        $users = User::query()
+                    ->where('member_type','=','Free')
+                    ->where('active_status',0);
+        return Datatables::of($users)
+        ->addIndexColumn()
+        ->addColumn('action', function ($each) {
+            $delete_icon = '';
+            $delete_icon = '<a href=" ' . route('user_member.destroy', $each->id) . ' " class="text-danger mx-1" id="delete" title="delete">
+                        <i class="fa-solid fa-trash fa-xl delete" data-id="' . $each->id . '"></i>
+                    </a>';
+                    return '<div class="d-flex justify-content-center">' . $delete_icon . '</div>';
                     })
         ->rawColumns(['action'])
         ->make(true);
@@ -80,7 +102,9 @@ class MemberController extends Controller
     {
         $members=Member::all();
         $user=User::findOrFail($id);
-        return view('admin.member.user_member_edit',compact('members','user'));
+        $user_member_history=MemberHistory::where('user_id',$id)->first();
+        $user_member_id=$user_member_history->member_id;
+        return view('admin.member.user_member_edit',compact('members','user','user_member_id'));
     }
 
 
@@ -135,5 +159,87 @@ class MemberController extends Controller
         $member=Member::findOrFail($id);
         $member->delete();
         return redirect()->route('member.index')->with('success', 'Member is Deleted successfully!');
+    }
+
+    public function user_member_destroy($id)
+    {
+        $user=User::findOrFail($id);
+        $user->delete();
+        $user->roles()->detach();
+        return redirect()->back()->with('success', 'User is Deleted successfully!');
+    }
+
+    public function user_member_ban($id)
+    {
+        $user=User::findOrFail($id);
+        $user->active_status=3;
+        $user->update();
+        return redirect()->back()->with('success', 'User is Ban successfully!');
+    }
+
+    public function user_member_update(Request $request,$id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required|min:6|max:11',
+            'email'=>'required|email',
+            'address' => 'required',
+            'height' => 'required',
+            'age' => 'required',
+            'weight' => 'required',
+            'ideal_weight' => 'required',
+            'gender' => 'required',
+            'daily_life' => 'required',
+            'diet_type' => 'required',
+            'neck' => 'required',
+            'waist' => 'required',
+            'hip' => 'required',
+            'shoulders' => 'required',
+            'average_night' => 'required',
+            'hydration' => 'required',
+            'activities' => 'required',
+            'physical_activity' => 'required',
+            'goal' => 'required',
+            'energy_level' => 'required',
+            'body_type' => 'required',
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+        $user=User::findOrFail($id);
+        $user->name=$request->name;
+        $user->phone=$request->phone;
+        $user->email=$request->email;
+        $user->membertype_level=$request->membertype_level;
+        //$user->member_type=$request->member_type;
+        $user->address=$request->address;
+        $user->height =$request->height;
+        $user->weight=$request->weight;
+        $user->ideal_weight=$request->ideal_weight;
+        $user->age =$request->age;
+        $user->gender =$request->gender;
+        $user->daily_life =$request->daily_life;
+        $user->diet_type =$request->diet_type;
+        $user->neck=$request->neck;
+        $user->waist=$request->waist;
+        $user->hip=$request->hip;
+        $user->shoulders=$request->shoulders;
+        $user->average_night=$request->average_night;
+        $user->hydration=$request->hydration;
+        $user->activities=$request->activities;
+        $user->physical_activity=$request->physical_activity;
+        $user->goal=$request->goal;
+        $user->energy_level=$request->energy_level;
+        $user->body_type=$request->body_type;
+        $user->bmi=$request->bmi;
+        $user->bfp=$request->bfp;
+        $user->from_date=$request->from_date;
+        $user->to_date=$request->to_date;
+
+        $user->bad_habits=json_encode($request->bad_habits);
+        $user->most_attention_areas=json_encode($request->most_attention_areas);
+        $user->physical_limitation=json_encode($request->physical_limitation);
+
+        $user->update();
+        return redirect()->route('member.user_member')->with('success','Member Updated Successfully');
     }
 }
