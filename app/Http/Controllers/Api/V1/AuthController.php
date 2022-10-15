@@ -71,9 +71,7 @@ class AuthController extends Controller
         $user->hydration = $request->hydration;
         // Thandar style start
         $user_member_type_id = $request->member_id;
-
         $member = Member::findOrFail($user_member_type_id);
-
         $user_member_type_level = $request->member_type_level;
         $user->membertype_level = $request->member_type_level;
         $user->member_type = $member->member_type;
@@ -144,6 +142,7 @@ class AuthController extends Controller
         $payment = new Payment();
         $payment->user_id = $user->id;
         $payment->payment_type = 'bank';
+        $payment->payment_name = $request->payment_name;
         $payment->bank_account_number = $request->bank_account_number;
         $payment->bank_account_holder = $request->bank_account_holder;
         $payment->amount = $request->amount;
@@ -174,6 +173,7 @@ class AuthController extends Controller
         $payment = new Payment();
         $payment->user_id = $user->id;
         $payment->payment_type = 'ewallet';
+        $payment->payment_name = $request->payment_name;
         $payment->account_name = $request->account_name;
         $payment->phone = $request->phone;
         $payment->amount = $request->amount;

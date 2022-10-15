@@ -61,6 +61,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
         Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');
         Route::put('/profile/{id}/update', [AdminController::class, 'updateAdminProfile'])->name('admin-update');
+
+        // all users
         Route::resource('user', UserController::class);
         Route::get('admin/user/datatable/ssd', [UserController::class, 'ssd']);
 
@@ -122,8 +124,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/payment/{id}',[PaymentController::class,'detail'])->name('payment.detail');
         Route::get('/transaction/bank/{id}',[PaymentController::class,'transactionBankDetail'])->name('transactionbank.detail');
         Route::get('/transaction/ewallet/{id}',[PaymentController::class,'transactionWalletDetail'])->name('transactionwallet.detail');
-        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction']);
-        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction']);
+        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction'])->name('banktransaction');
+        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction'])->name('wallettransaction');
         Route::get('/payment',[PaymentController::class,'transctionView'])->name('payment.transction');
 
         //Request

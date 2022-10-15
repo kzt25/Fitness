@@ -29,9 +29,9 @@
     <div class="col-md-11 mx-auto">
         <div class="d-flex justify-content-between mb-3">
             <h2 class="text-center mb-0">All Users</h2>
-            <a href="{{ route('user.create') }}" class="btn btn-primary align-middle"><i
+            {{-- <a href="{{ route('user.create') }}" class="btn btn-primary align-middle"><i
                     class="fa-solid fa-circle-plus me-2 fa-lg align-middle"></i> <span class="align-middle">Create
-                    User</span> </a>
+                    User</span> </a> --}}
         </div>
 
         <div class="col-12 card p-4 mb-5">
@@ -44,6 +44,7 @@
                         <th>Level</th>
                         <th>Phone</th>
                         <th>Address</th>
+                        <th>Role</th>
                         <th>Created At</th>
                         <th>Action</th>
                     </tr>
@@ -95,6 +96,10 @@
                         data: 'address',
                         name: 'address'
                     },
+                    {
+                        data: 'role_name',
+                        name: 'role_name'
+                    },
 
                     {
                         data: 'created_at',
@@ -104,7 +109,10 @@
                         data: 'action',
                         name: 'action'
                     }
-                ]
+                ],
+                "order": [
+                    [5, "desc"]
+                ],
             });
 
             const Toast = Swal.mixin({

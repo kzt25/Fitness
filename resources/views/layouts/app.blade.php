@@ -31,6 +31,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
+    <!-- Datepicker -->
+    <link rel="stylesheet" href=" https://code.jquery.com/ui/1.12.1/jquery-ui.js">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 
     {{-- <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}"> --}}
@@ -82,6 +86,12 @@
                         </a>
                     </li>
 
+                   <li class="sidebar-item @yield('user-active') ">
+                        <a class="sidebar-link" href="{{ route('user.index') }}">
+                            <i class="fa-solid fa-users align-middle "></i> <span
+                                class="align-middle">Users</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-item @yield('trainer-active') ">
                         <a class="sidebar-link" href="{{ route('trainer.index') }}">
@@ -90,6 +100,14 @@
                         </a>
                     </li>
 
+
+
+                    {{-- <li class="sidebar-item @yield('member-active')">
+                        <a class="sidebar-link" href="{{ route('member.index') }}">
+                            <i class="fa-solid fa-user-group  align-middle"></i> <span
+                                class="align-middle">Member Type</span>
+                        </a>
+                    </li> --}}
 
                     <li class="sidebar-item " >
                         <a class="sidebar-link" href="#collapseExample" data-mdb-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
@@ -152,11 +170,6 @@
                             <span class="align-middle">Banking Info</span>
                         </a>
                     </li>
-
-
-
-
-
                 </ul>
             </div>
         </nav>
@@ -210,6 +223,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    {{-- datepicker --}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
 
 
 

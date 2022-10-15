@@ -19,13 +19,16 @@ class PaymentController extends Controller
         return view('admin.payment.paymentTransction');
     }
 
-    public function bankPaymentTransction()
+    public function bankPaymentTransction(Request $request)
     {
-        $banktransction = Payment::where('payment_type','bank')->with('user')->whereHas('user', function($query){
-            $query->where('active_status',1);
-        });
-        //dd($banktransction->toArray());
-        return Datatables::of($banktransction)
+        if(request()->ajax())
+        {
+            if(!empty($request->start_date)){
+                $banktransction = Payment::where('payment_type','bank')->with('user')->whereBetween('updated_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
+                    $query->where('active_status',2);
+                });
+
+                return Datatables::of($banktransction)
             ->addIndexColumn()
             ->addColumn('action', function ($each) {
 
@@ -38,6 +41,30 @@ class PaymentController extends Controller
                 return '<div class="d-flex justify-content-center">' .$detail_icon. '</div>';
             })
             ->make(true);
+            }
+            else{
+                $banktransction = Payment::where('payment_type','bank')->with('user')->whereHas('user', function($query){
+                    $query->where('active_status',2);
+                });
+
+                return Datatables::of($banktransction)
+            ->addIndexColumn()
+            ->addColumn('action', function ($each) {
+
+                $detail_icon = '';
+
+                $detail_icon = '<a href=" ' . route('transactionbank.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                                    <i class="fa-solid fa-circle-info fa-xl"></i>
+                              </a>';
+
+                return '<div class="d-flex justify-content-center">' .$detail_icon. '</div>';
+            })
+            ->make(true);
+            }
+        }
+
+        //dd($banktransction->toArray());
+
     }
 
     public function transactionBankDetail($id){
@@ -46,24 +73,49 @@ class PaymentController extends Controller
         return view('admin.payment.transactionBankDetail', compact('banktransctiondetail'));
     }
 
-    public function EPaymentTransction()
+    public function EPaymentTransction(Request $request)
     {
-        $wallettransction = Payment::where('payment_type','ewallet')->with('user')->whereHas('user', function($query){
-            $query->where('active_status',1);
-        });
-        return Datatables::of($wallettransction)
-            ->addIndexColumn()
-            ->addColumn('action', function ($each) {
+        if(request()->ajax()){
+            if(!empty($request->start_date)){
 
-                $detail_icon = '';
+                $wallettransction = Payment::where('payment_type','ewallet')->with('user')->whereBetween('updated_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
+                    $query->where('active_status',2);
+                });
+                return Datatables::of($wallettransction)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($each) {
 
-                $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
-                                    <i class="fa-solid fa-circle-info fa-xl"></i>
-                              </a>';
+                        $detail_icon = '';
 
-                return '<div class="d-flex justify-content-center">' .$detail_icon. '</div>';
-            })
-            ->make(true);
+                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                                            <i class="fa-solid fa-circle-info fa-xl"></i>
+                                      </a>';
+
+                        return '<div class="d-flex justify-content-center">' .$detail_icon. '</div>';
+                    })
+                    ->make(true);
+
+            }else{
+                $wallettransction = Payment::where('payment_type','ewallet')->with('user')->whereHas('user', function($query){
+                    $query->where('active_status',2);
+                });
+                return Datatables::of($wallettransction)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($each) {
+
+                        $detail_icon = '';
+
+                        $detail_icon = '<a href=" ' . route('transactionwallet.detail', $each->user->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                                            <i class="fa-solid fa-circle-info fa-xl"></i>
+                                      </a>';
+
+                        return '<div class="d-flex justify-content-center">' .$detail_icon. '</div>';
+                    })
+                    ->make(true);
+            }
+        }
+
+
     }
 
     public function transactionWalletDetail($id){
