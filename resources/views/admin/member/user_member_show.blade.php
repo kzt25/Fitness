@@ -47,6 +47,9 @@
                         <th>Phone </th>
                         <th>Member type</th>
                         <th>Level</th>
+                        <th>From</th>
+                        <th>Expired Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +91,18 @@
                     {
                         data: 'membertype_level',
                         name: 'membertype_level'
+                    },
+                    {
+                        data: 'from_date',
+                        name: 'from_date'
+                    },
+                    {
+                        data: 'to_date',
+                        name: 'to_date'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
                     },
                 ]
             });

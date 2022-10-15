@@ -41,8 +41,8 @@ Route::post('customer/customerCreate', [CustomerRegisterController::class, 'Cust
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('customer/signup',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('signup');
-Route::post('customer/signup',[CustomerRegisterController::class,'register'])->name('signup');
+Route::get('customer/register',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('customer_register');
+Route::post('customer/register',[App\Http\Controllers\Auth\RegisterController::class,'register'])->name('customer_register');
 
 Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
@@ -105,6 +105,9 @@ Route::prefix('admin')->group(function () {
         Route::get('admin/member/datatable/ssd', [MemberController::class, 'ssd']);
 
         Route::get('user_member', [MemberController::class, 'user_member_show'])->name('member.user_member');
+        Route::get('user_member/edit/{id}', [MemberController::class, 'user_member_edit'])->name('member.user_member.edit');
+        Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
+
         Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
 
         //BankingInfo
