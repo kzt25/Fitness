@@ -212,8 +212,12 @@
             // if you have reached the end of the form... :
             if (currentTab >= x.length) {
               //...the form gets submitted:
-              document.getElementById("regForm").submit();
+            //   document.getElementById("regForm").submit();
               return false;
+            }
+
+            if(currentTab < 0){
+                currentTab = 0
             }
             // Otherwise, display the correct tab:
             showTab(currentTab);
@@ -302,30 +306,30 @@
               email.classList.add("invalid")
               alert("Email is not valid.")
             }
-            // else{
-            //     var email = $("#email").val();
-            //     $.ajax({
-            //             url : 'checkemail',
-            //             method: 'get',
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //             },
-            //             data:  {"email":email},
-            //             success   : function(data) {
-            //                 if(data.status == 300){
-            //                     alert(data.message);
-            //                     valid = false;
-            //                     $( "#email" ).addClass("invalid");
-            //                     nextPrev(-1)
+            else{
+                var email = $("#email").val();
+                $.ajax({
+                        url : 'checkemail',
+                        method: 'get',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:  {"email":email},
+                        success   : function(data) {
+                            if(data.status == 300){
+                                alert(data.message);
+                                valid = false;
+                                $( "#email" ).addClass("invalid");
+                                 nextPrev(-1)
 
-            //                 }
-            //                 if(data.status == 200){
+                            }
+                            if(data.status == 200){
 
-            //                     // alert(data.message);
-            //                 }
-            //             },
-            //     });
-            // }
+                                // alert(data.message);
+                            }
+                        },
+                });
+            }
 
             if(valid){
                 personalInfoData.push(name.value,phone.value,email.value,address.value,password.value,confirmPassword.value)

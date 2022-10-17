@@ -113,6 +113,23 @@ class CustomerRegisterController extends Controller
         }
     }
 
+    public function checkemail(Request $request)
+    {
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+        if($user){
+            return response()->json([
+                'status' => 300,
+                'message' => "Your email is already used",
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+            ]);
+        }
+    }
+
     public function register(Request $request)
     {
         // $this->validator($request->all())->validate();
