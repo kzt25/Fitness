@@ -113,8 +113,8 @@ class MemberController extends Controller
         $members=Member::all();
         $user=User::findOrFail($id);
         $user_member_history=MemberHistory::where('user_id',$id)->first();
-        $user_member_id=$user_member_history->member_id;
-        return view('admin.member.user_member_edit',compact('members','user','user_member_id'));
+        //$user_member_id=$user_member_history->member_id;
+        return view('admin.member.user_member_edit',compact('members','user'));
     }
 
 
