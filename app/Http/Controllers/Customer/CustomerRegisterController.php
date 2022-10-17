@@ -92,6 +92,7 @@ class CustomerRegisterController extends Controller
         $user->save();
 
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
+        $user->assignRole('Free');
         Auth::login($user);
     }
 
