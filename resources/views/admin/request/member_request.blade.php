@@ -122,33 +122,33 @@
             @endif
 
 
-            // $(document).on('click', '.delete-btn', function(e) {
-            //     e.preventDefault();
-            //     var id = $(this).data('id');
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
 
-            //     swal({
-            //             text: "Are you sure you want to delete?",
-            //             buttons: true,
-            //             dangerMode: true,
-            //         })
-            //         .then((willDelete) => {
-            //             if (willDelete) {
-            //                 $.ajax({
-            //                     method: "DELETE",
-            //                     url: `/admin/bankinginfo/${id}`
-            //                 }).done(function(res) {
-            //                     Toast.fire({
-            //                         icon: 'success',
-            //                         title: 'Deleted'
-            //                     })
-            //                     table.ajax.reload();
-            //                     console.log("deleted");
-            //                 })
-            //             } else {
-            //                 swal("Your imaginary file is safe!");
-            //             }
-            //         });
-            // })
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `request/member/decline/${id}`
+                            }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
+                                table.ajax.reload();
+                                console.log("deleted");
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+            })
         });
     </script>
 @endpush

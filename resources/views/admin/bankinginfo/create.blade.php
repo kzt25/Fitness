@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div id="bank-select">
+                <div id="bank-select" style="display: none;">
                     <label for="accname">Payment Name</label>
                     <select class="form-select mb-3" name="bankName" aria-label="Default select example">
                         <option selected>Select Bank Name</option>

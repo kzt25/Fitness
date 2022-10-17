@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -36,6 +37,7 @@ class PassResetController extends Controller
                 return response()->json([
                     'status' => 200,
                     'message' => $response['request_id'],
+                    // 'message' => $response['request_id'],
                 ]);
             }
             else{
@@ -60,6 +62,7 @@ class PassResetController extends Controller
             $user->password = Hash::make($request->password);
             $user->update();
             Auth::logout();
+            Alert::success('Success', 'Password Changed Successfully!');
             return redirect('/');
         }else{
             return redirect()->back()->with('success','Passwords do not match');
