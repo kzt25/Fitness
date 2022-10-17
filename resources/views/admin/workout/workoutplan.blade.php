@@ -74,50 +74,8 @@
 
                     </div>
                     </div>
-                    <div class="card mb-3 mx-auto shadow rounded" style="max-width: 540px;">
-                    <div class="row g-0">
-                        {{-- <div class="col-md-4">
-                        <img src="gym1.jpg" class="float-start" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
-                        </div> --}}
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Add Food</h5>
-                                <p class="text-muted">0 of 2014 kcal </p>
-                                <p class="card-text"><small>35 mins</small></p>
-                            </div>
-                            <div class="d-flex justify-content-start mb-2">
-                                <div class="ms-3">
-                                    <a href="{{route('workout',[$plan->id])}}" class="btn btn-sm btn-primary"><small>Add Food</small></a>
-                                </div>
-                                <div class="mx-3">
-                                    <a href="{{route('workoutview')}}" class="btn btn-sm btn-primary"><small>View</small></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="card mx-auto shadow rounded" style="max-width: 540px;">
-                    <div class="row g-0">
-                        {{-- <div class="col-md-4">
-                        <img src="gym1.jpg" class="float-start" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
-                        </div> --}}
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Water Tracker</h5>
-                                <p class="text-muted">0 of 92 oz.</p>
-                                <p class="card-text"><small>35 mins</small></p>
-                            </div>
-                            <div class="d-flex justify-content-start mb-2">
-                                <div class="ms-3">
-                                    <a href="{{route('workout',[$plan->id])}}" class="btn btn-sm btn-primary"><small>Create</small></a>
-                                </div>
-                                <div class="mx-3">
-                                    <a href="{{route('workoutview')}}" class="btn btn-sm btn-primary"><small>View</small></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
                 </div>
             </div>
         @endforeach

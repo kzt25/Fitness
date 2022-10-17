@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Payment;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Member::class, 'member_histories')
                     ->withPivot(['member_id','member_type_level','deleted_at'])
                     ->withTimestamps();
+    }
+
+    public function payment(){
+        return $this->hasOne(Payment::class);
     }
 
 

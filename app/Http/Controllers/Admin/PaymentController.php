@@ -11,7 +11,8 @@ class PaymentController extends Controller
 {
     public function detail($id){
 
-            $payment = Payment::where('user_id',$id)->with('user')->first();
+            $payment = Payment::where('user_id',$id)->get();
+            //dd($payment->toArray());
             return view('admin.request.paymentdetail', compact('payment'));
     }
 
@@ -24,7 +25,7 @@ class PaymentController extends Controller
         if(request()->ajax())
         {
             if(!empty($request->start_date)){
-                $banktransction = Payment::where('payment_type','bank')->with('user')->whereBetween('updated_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
+                $banktransction = Payment::where('payment_type','bank')->with('user')->whereBetween('created_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
                     $query->where('active_status',2);
                 });
 
@@ -79,7 +80,7 @@ class PaymentController extends Controller
         if(request()->ajax()){
             if(!empty($request->start_date)){
 
-                $wallettransction = Payment::where('payment_type','ewallet')->with('user')->whereBetween('updated_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
+                $wallettransction = Payment::where('payment_type','ewallet')->with('user')->whereBetween('created_at', array($request->start_date, $request->end_date))->whereHas('user', function($query){
                     $query->where('active_status',2);
                 });
                 return Datatables::of($wallettransction)
