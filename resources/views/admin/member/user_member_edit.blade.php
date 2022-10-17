@@ -86,7 +86,7 @@
                     <label for="member_type" class="form-label">Member Type</label>
                     <select name="member_type" class="form-select form-select-md mb-3 @error('member_type') is-invalid @enderror" style="width:auto;">
                         @foreach ($members as $member)
-                        <option value="{{ $member->id }}" {{ $user_member_id == $member->id ? 'selected' : '' }}>{{$member->member_type}} - {{$member->duration}}month</option>
+                        <option value="{{ $member->id }}" {{ $user->member_type == $member->member_type ? 'selected' : '' }}>{{$member->member_type}} - {{$member->duration}}month</option>
                         @endforeach
                     </select>
                     </div>
@@ -129,11 +129,6 @@
                 <div class="mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
-                        <label for="age" class="form-label">Age</label>
-                        <input type="text" class="form-control @error('age') is-invalid @enderror" id="age" name="age" value="{{$user->age}}">
-
-                    </div>
-                    <div class="col-auto">
                         <label for="height" class="col-form-label">Height</label>
                         <input type="integer @error('height') is-invalid @enderror" id="height" class="form-control" name="height"  value="{{$user->height}}" >
 
@@ -143,10 +138,19 @@
                         <input type="integer @error('weight') is-invalid @enderror" id="weight" class="form-control" name="weight"  value="{{$user->weight}}" >
 
                     </div>
-
                     <div class="col-auto">
-                        <label for="ideal_weight" class="col-form-label">Ideal Weight</label>
-                        <input type="integer" id="ideal_weight" class="form-control" name="ideal_weight"  value="{{$user->ideal_weight}}" >
+                        <label for="age" class="form-label">Age</label>
+                        <input type="text" class="form-control @error('age') is-invalid @enderror" id="age" name="age" value="{{$user->age}}">
+
+                    </div>
+                    <div class="col-auto">
+                        <label for="neck" class="col-form-label">Neck</label>
+                        <input type="integer @error('neck') is-invalid @enderror" id="neck" class="form-control" name="neck"  value="{{$user->neck}}" >
+
+                    </div>
+                    <div class="col-auto">
+                        <label for="waist" class="col-form-label">Waist</label>
+                        <input type="integer @error('waist') is-invalid @enderror" id="waist" class="form-control" name="waist"  value="{{$user->waist}}" >
 
                     </div>
                 </div>
@@ -154,23 +158,20 @@
                 <div class="mb-3">
                     <div class="row g-3 align-items-center">
                             <div class="col-auto">
-                            <label for="neck" class="col-form-label">Neck</label>
-                            <input type="integer @error('neck') is-invalid @enderror" id="neck" class="form-control" name="neck"  value="{{$user->neck}}" >
-
-                            </div>
-                            <div class="col-auto">
                                 <label for="shoulders" class="col-form-label">Shoulder</label>
                                 <input type="integer @error('shoulders') is-invalid @enderror" id="shoulders" class="form-control" name="shoulders"  value="{{$user->shoulders}}" >
 
                             </div>
-                            <div class="col-auto">
-                                <label for="waist" class="col-form-label">Waist</label>
-                                <input type="integer @error('waist') is-invalid @enderror" id="waist" class="form-control" name="waist"  value="{{$user->waist}}" >
 
-                            </div>
                             <div class="col-auto">
                                 <label for="hip" class="col-form-label">Hip</label>
                                 <input type="integer @error('hip') is-invalid @enderror" id="hip" class="form-control" name="hip"  value="{{$user->hip}}" >
+
+                            </div>
+
+                            <div class="col-auto">
+                                <label for="ideal_weight" class="col-form-label">Ideal Weight</label>
+                                <input type="integer" id="ideal_weight" class="form-control" name="ideal_weight"  value="{{$user->ideal_weight}}" >
 
                             </div>
                     </div>
