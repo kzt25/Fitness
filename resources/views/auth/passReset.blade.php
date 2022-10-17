@@ -88,17 +88,14 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
-     function dispAlert(){
-				alert("Button disabled.");
-			    }
      $(document).ready(function() {
         $("#cannot_reset_password").css("display", "none");
-        //$('#cannot_reset_password').hide();
         $("#password").prop('disabled', true);
         $("#cpassword").prop('disabled', true);
         var otpStatus
+        var phoneNumber
        $("#checkPhone").click(function(){
-
+        ("#checkPhone").prop('disabled', true);
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',
@@ -113,65 +110,34 @@
                         alert(data.message);
                     }
                     if(data.status == 200){
+                        phoneNumber = data.message
                         var ClickedDate = Date($.now());
                         localStorage.setItem('DateClicked', ClickedDate);
+                        localStorage.setItem('Phone', phoneNumber);
                         $(this).prop('disabled', true);
                     }
                 },
         });
     });
 
-
-
-
-    $("#checkDisable").click(function(){
-        console.log("disabled");
-    $(this).prop('disabled', true);
-        // $('#checkDisable').value('disabled');
-
-        var ClickedDate = Date($.now());
-        var dateNow = Date($.now());
-        localStorage.setItem('ClickedDate', ClickedDate);
-        console.log(localStorage.getItem('ClickedDate'));
-    });
-                // $("#checkDisable").click(function(){
-				// 	$("#checkDisable").prop('disabled',true);
-                //     console.log("dfdf")
-				// });
-
-
-    cl_date = new Date(localStorage.getItem('ClickedDate'));
-    dateNow1 = new Date(Date());
-    dateDifference = dateNow1.getTime() - cl_date.getTime();
-    Difference_In_Days = dateDifference / (1000 * 3600 *24);
-    console.log(localStorage.getItem('ClickedDate'));
-    console.log(Difference_In_Days);
-
     reset_date = new Date(localStorage.getItem('DateClicked'));
+    LocalStoragephone = new Date(localStorage.getItem('Phone'));
     dateNow = new Date(Date());
     dateDifferent = dateNow.getTime() - reset_date.getTime();
     enable_reset = dateDifferent / (1000 * 3600 *24);
     console.log(localStorage.getItem('DateClicked'));
     console.log(enable_reset);
 
-    if(enable_reset >= 1){
+     if(enable_reset >= 1 && LocalStoragephone == phoneNumber ){
         localStorage.removeItem('ClickedDate');
+        localStorage.removeItem('Phone');
         $("#checkPhone").prop('disabled', false);
-        $("#cannot_reset_password").css("display", "none");
-    }
-    else{
-        $("#checkPhone").prop('disabled', true);
         $("#cannot_reset_password").css("display", "block");
         $("#can_reset_password").css("display", "none");
     }
-
-    if(Difference_In_Days >= 1){
-        localStorage.removeItem('ClickedDate');
-        $("#checkDisable").prop('disabled', false);
-        $("#cannot_reset_password").css("display", "block");
-    }
     else{
-        $("#checkDisable").prop('disabled', true);
+        $("#can_reset_password").css("display", "block");
+        $("#cannot_reset_password").css("display", "none");
     }
 
         $("#checkOTP").keyup(function(){

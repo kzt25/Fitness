@@ -14,7 +14,7 @@
 
         <div class="row g-0">
           <div class="col-md-4 shadow ms-3 my-3">
-            <img src="{{asset('image/'.$wallettransctiondetail->photo)}}" class="img-fluid rounded" alt="...">
+            <img src="{{asset('/storage/payments/'.$wallettransctiondetail->photo)}}" class="img-fluid rounded" alt="...">
           </div>
           <div class="col-md-6">
             <div class="card-body">

@@ -37,9 +37,37 @@
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="text-center mb-0">All Members</h2>
             </div>
+            <div class="row input-daterange">
+                <div class="col-md-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                    class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Date" >
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                    class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" name="end_date" id="end_date" placeholder="End Date" >
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div>
+                        <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+                        <button id="refresh" class="btn btn-outline-warning btn-sm">Reset</button>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="col-12 card p-4 mb-5">
-                <table class="table table-striped datatable" id="bank" style="width: 100%">
+
+                <table class="table table-striped datatable" style="width: 100%">
                     <thead>
                         <tr class="align-middle">
                         <th>No</th>
@@ -47,7 +75,7 @@
                         <th>Phone </th>
                         <th>Member type</th>
                         <th>Level</th>
-                        <th>From</th>
+                        <th>Started Date</th>
                         <th>Expired Date</th>
                         <th>Action</th>
                         </tr>
@@ -64,9 +92,35 @@
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="text-center mb-0">Declined Members</h2>
             </div>
+            <div class="row input-daterange">
+                <div class="col-md-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                    class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" name="start_date" id="start_date_declined" placeholder="Start Date" >
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                    class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="date" class="form-control" name="end_date" id="end_date_declined" placeholder="End Date" >
+                    </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <div>
+                        <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+                        <button id="refresh" class="btn btn-outline-warning btn-sm">Reset</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-12 card p-4 mb-5">
-                <table class="table table-striped datatabledecline" id="wallet" style="width: 100%">
+                <table class="table table-striped datatabledecline"  style="width: 100%">
                     <thead>
                         <tr class="align-middle">
                             <th>No</th>
@@ -74,7 +128,7 @@
                             <th>Phone </th>
                             <th>Member type</th>
                             <th>Level</th>
-                            <th>From</th>
+                            <th>Started Date</th>
                             <th>Expired Date</th>
                             <th>Action</th>
                         </tr>
@@ -91,13 +145,19 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            var i = 1;
 
-            var table = $('.datatable').DataTable({
-
+            load_member_data();
+            function load_member_data(start_date = '', end_date = ''){
+              var table = $('.datatable').DataTable({
+                // dom: 'Bfrtip',
+                "oSearch": {"bSmart": false},
                 processing: true,
                 serverSide: true,
-                ajax: 'admin/user_member/datatable/ssd',
+                // ajax: 'admin/user_member/datatable/ssd',
+                ajax: {
+                        url:'{{ route("admin/user_member/datatable/ssd") }}',
+                        data:{start_date:start_date, end_date:end_date}
+                    },
                 columns: [
                     {data: 'DT_RowIndex',
                      name: 'DT_RowIndex',
@@ -134,9 +194,11 @@
                     },
                 ]
             });
+        }
 
-            var i = 1;
-            var table = $('.datatabledecline').DataTable({
+        load_declined_member_data();
+        function load_declined_member_data(start_date = '', end_date = ''){
+            var declined = $('.datatabledecline').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
@@ -179,9 +241,10 @@
                 ],
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    'excel', 'pdf'
                 ]
             });
+        }
 
             const Toast = Swal.mixin({
                 toast: true,
@@ -201,6 +264,57 @@
                     title: '{{ Session::get('success') }}'
                 })
             @endif
+
+            $('#filter').click(function(){
+                var start_date = $('#start_date').val();
+                console.log(start_date);
+                var end_date = $('#end_date').val();
+                console.log(end_date);
+
+                if(start_date != '' &&  end_date != '')
+                {
+                $('.datatable').DataTable().destroy();
+                load_member_data(start_date, end_date);
+                }
+                else
+                {
+                alert('Both Date is required');
+                }
+            });
+
+            $('#refresh').click(function(){
+            $('#start_date').val('');
+            $('#end_date').val('');
+            $('.datatable').DataTable().destroy();
+            load_member_data();
+            });
+
+
+            //wallet
+            $('#filterwallet').click(function(){
+                var start_date = $('#start_date_declined').val();
+                console.log(start_date);
+                var end_date = $('#end_date_declined').val();
+                console.log(end_date);
+
+                if(start_date != '' &&  end_date != '')
+                {
+                $('.datatabledecline').DataTable().destroy();
+                load_declined_member_data(start_date, end_date);
+                }
+                else
+                {
+                alert('Both Date is required');
+                }
+            });
+
+            $('#refreshwallet').click(function(){
+            $('#start_date_declined').val('');
+            $('#end_date_declined').val('');
+            $('.datatabledecline').DataTable().destroy();
+            load_declined_member_data();
+            });
+
         })
     </script>
 @endpush

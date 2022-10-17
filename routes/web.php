@@ -21,6 +21,7 @@ use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
+use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,8 +120,8 @@ Route::prefix('admin')->group(function () {
         Route::get('user_member/edit/{id}', [MemberController::class, 'user_member_edit'])->name('member.user_member.edit');
         Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
 
-        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
-        Route::get('admin/user_member/datatable_decline/ssd', [MemberController::class, 'user_member_decline_ssd']);
+        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd'])->name('admin/user_member/datatable/ssd');
+        Route::get('admin/user_member/datatable_decline/ssd', [MemberController::class, 'user_member_decline_ssd'])->name('admin/user_member/datatable_decline/ssd');
         Route::get('user_member/destroy/{id}', [MemberController::class, 'user_member_destroy'])->name('user_member.destroy');
         Route::get('user_member/ban/{id}', [MemberController::class, 'user_member_ban'])->name('user_member.ban');
 
@@ -144,5 +145,25 @@ Route::prefix('admin')->group(function () {
     });
 
 });
-
+        Route::middleware(['role:Trainer'])->group(function () {
+            Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
+        });
+        Route::middleware(['role:Free'])->group(function () {
+            Route::get('/free',[TrainerManagementConntroller::class,'free'])->name('free');
+        });
+        Route::middleware(['role:Platinum'])->group(function () {
+            Route::get('/platinum',[TrainerManagementConntroller::class,'platinum'])->name('platinum');
+        });
+        Route::middleware(['role:Gold'])->group(function () {
+            Route::get('/gold',[TrainerManagementConntroller::class,'gold'])->name('gold');
+        });
+        Route::middleware(['role:Diamond'])->group(function () {
+            Route::get('/diamond',[TrainerManagementConntroller::class,'diamond'])->name('diamond');
+        });
+        Route::middleware(['role:Ruby'])->group(function () {
+            Route::get('/ruby',[TrainerManagementConntroller::class,'ruby'])->name('ruby');
+        });
+        Route::middleware(['role:Ruby Premium'])->group(function () {
+            Route::get('/ruby_premium',[TrainerManagementConntroller::class,'ruby_premium'])->name('ruby_premium');
+        });
 });

@@ -225,7 +225,9 @@
                         { extend: 'pdfHtml5',text:'Export PDF', className:"bg-primary text-white rounded p-1 mt-1", title:'Bank payment transaction', exportOptions: {
                         columns: [ 0, 1, 2, 3, 4, 5, 6 ]
                     }},
-                        { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'Bank payment transaction'},
+                        { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'Bank payment transaction', exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                    }},
                     ],
 
 
@@ -285,7 +287,8 @@
                     buttons: [
                         { extend: 'pdfHtml5',text:'Export PDF', className:"bg-primary text-white rounded p-1 mt-1", title:'E-wallet payment transaction', exportOptions: {
                         columns: [ 0, 1, 2, 3, 4, 5, 6 ]}},
-                        { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'E-wallet payment transaction'},
+                        { extend: 'excelHtml5', text: ' Export Excel', className: "bg-primary text-white rounded p-1 mt-1", title:'E-wallet payment transaction', exportOptions: {
+                        columns: [ 0, 1, 2, 3, 4, 5, 6 ]}},
                     ],
 
                 });

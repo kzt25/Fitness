@@ -20,7 +20,7 @@ class RegisterPaymentController extends Controller
     public function ewallet_store(Request $request)
     {
         $this->validate($request,[
-            'account_name'=> 'required',
+            'account_name'=> 'required|regex:/^[\pL\s\-]+$/u',
             'payment_name' => 'required',
             'phone'=> 'required|min:9|max:11',
             'amount'=> 'required',
@@ -62,9 +62,9 @@ class RegisterPaymentController extends Controller
 
     public function bank_payment_store(Request $request)
     {
-        $this->validate($request,[
-            'bank_account_number'=> 'required',
-            'bank_account_holder' => 'required',
+            $this->validate($request,[
+            'bank_account_number'=> 'required|min:10',
+            'bank_account_holder' => 'required|regex:/^[\pL\s\-]+$/u',
             'amount'=> 'required',
             'image' => 'required',
         ]);
@@ -84,6 +84,7 @@ class RegisterPaymentController extends Controller
         $payment->payment_type = 'bank';
         $payment->bank_account_number = $request->bank_account_number;
         $payment->bank_account_holder = $request->bank_account_holder;
+        $payment->payment_name = $request->payment_name;
         $payment->amount = $request->amount;
         $payment->photo = $imgName;
         $payment->save();
@@ -92,7 +93,7 @@ class RegisterPaymentController extends Controller
             return redirect('/');
         }
         else {
-            Alert::error('Failed', 'Payment failed!');
+            Alert::error('Failed', 'Payment failed! Please Try Again!');
             return back();
         }
     }
