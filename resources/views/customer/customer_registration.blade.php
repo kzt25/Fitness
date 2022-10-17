@@ -1284,10 +1284,6 @@
       </div>
 
     </div>
-
-    <div class="">
-    </div>
-
 </form>
 
 @endsection

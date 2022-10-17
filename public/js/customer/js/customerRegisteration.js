@@ -299,14 +299,14 @@
 
               //alert("Phone number should have 7 to 11 numbers")
             }else{
-                var phone = $("#phone").val();
+                var cus_phone = $("#phone").val();
                 $.ajax({
                         url : 'checkPhone',
                         method: 'get',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data:  {"phone":phone},
+                        data:  {"phone":cus_phone},
                         success   : function(data) {
                             if(data.status == 300){
                                 Swal.fire({
@@ -341,14 +341,14 @@
               //alert("Email is not valid.")
             }
             else{
-                var email = $("#email").val();
+                var cus_email = $("#email").val();
                 $.ajax({
                         url : 'checkemail',
                         method: 'get',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data:  {"email":email},
+                        data:  {"email":cus_email},
                         success   : function(data) {
                             if(data.status == 300){
                                 Swal.fire({
