@@ -27,3 +27,30 @@
 .customer-login-phone-container input, .customer-login-pw-container input{
     padding-left: 30px;
 }
+
+.password-reset-otp{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+
+.otp-input{
+    margin-top: 0;
+}
+
+.customer-pw-reset-btn{
+    margin: auto;
+    margin-top: 40px;
+    display: block;
+}
+
+.cannot-reset-password-container{
+    text-align: center;
+    color: white;
+}
+
+.cannot-reset-password-container span{
+    display: block;
+    margin-bottom: 40px;
+}

@@ -34,10 +34,13 @@
             if($("[name='weight']").val() !== "" && $("[name='idealWeightInput']").val() !== ""){
                 const idealWeight = $("[name='idealWeightInput']").val()
                 const weight = $("[name='weight']").val()
+
                 const weightDiff = parseInt(idealWeight) - parseInt(weight)
                 var duration
                 // console.log(weightDiff.toString())
-
+                if(weightDiff === 0){
+                    alert("Current weight and ideal weight cannot be equal")
+                }
 
                 if(weightDiff < 0){
                     if(Math.abs(weightDiff).toString().length ===1){
@@ -52,16 +55,16 @@
                             if(Math.abs(weightDiff).toString().split("")[1] === '0'){
                                 duration  = Math.abs(weightDiff).toString().split("")[0]
                             }else{
-                                duration  = (parseInt(weightDiff.toString().split("")[0]) + 1).toString()
+                                duration  = (parseInt(Math.abs(weightDiff).toString().split("")[0]) + 1).toString()
                             }
                         }
 
                     }
 
-                    if(duration === '1'){
-                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lbs takes about ${duration} month.`)
+                    if(parseInt(duration) === 1){
+                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lb takes about ${duration} month.`)
                     }else{
-                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lb takes about ${duration} months.`)
                     }
 
                 }
@@ -69,10 +72,10 @@
 
                     duration = (Math.round(parseInt(Math.abs(weightDiff)) / 5)).toString()
 
-                    if(duration === "1"){
-                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lbs takes about ${duration} month.`)
+                    if(parseInt(duration) === 1 || parseInt(duration) === 0){
+                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lb takes about ${duration === 0 ? duration : "1"} month.`)
                     }else{
-                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lb takes about ${duration} months.`)
                     }
 
 
@@ -209,8 +212,12 @@
             // if you have reached the end of the form... :
             if (currentTab >= x.length) {
               //...the form gets submitted:
-              document.getElementById("regForm").submit();
+            //   document.getElementById("regForm").submit();
               return false;
+            }
+
+            if(currentTab < 0){
+                currentTab = 0
             }
             // Otherwise, display the correct tab:
             showTab(currentTab);
@@ -267,6 +274,29 @@
               valid = false
               phone.classList.add("invalid")
               alert("Phone number should have 7 to 11 numbers")
+            }else{
+                var phone = $("#phone").val();
+                $.ajax({
+                        url : 'checkPhone',
+                        method: 'get',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:  {"phone":phone},
+                        success   : function(data) {
+                            if(data.status == 300){
+                                alert(data.message);
+                                valid = false;
+                                $( "#phone" ).addClass("invalid");
+                                nextPrev(-1)
+
+                            }
+                            if(data.status == 200){
+
+                                // alert(data.message);
+                            }
+                        },
+                });
             }
 
             let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
@@ -275,6 +305,30 @@
               valid = false
               email.classList.add("invalid")
               alert("Email is not valid.")
+            }
+            else{
+                var email = $("#email").val();
+                $.ajax({
+                        url : 'checkemail',
+                        method: 'get',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:  {"email":email},
+                        success   : function(data) {
+                            if(data.status == 300){
+                                alert(data.message);
+                                valid = false;
+                                $( "#email" ).addClass("invalid");
+                                 nextPrev(-1)
+
+                            }
+                            if(data.status == 200){
+
+                                // alert(data.message);
+                            }
+                        },
+                });
             }
 
             if(valid){
