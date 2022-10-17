@@ -35,7 +35,7 @@ use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 */
 Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
-
+Route::get('customer/checkPhone',[CustomerRegisterController::class,'checkPhone'])->name('checkPhone');
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
@@ -56,6 +56,8 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 
 Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
 Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+
+
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
 
 // Admin Site

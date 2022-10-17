@@ -96,6 +96,23 @@ class CustomerRegisterController extends Controller
         Auth::login($user);
     }
 
+    public function checkPhone(Request $request)
+    {
+        $phone = $request->phone;
+
+        $user = User::where('phone', $phone)->first();
+        if($user){
+            return response()->json([
+                'status' => 300,
+                'message' => "Your Phone Number is already used",
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+            ]);
+        }
+    }
+
     public function register(Request $request)
     {
         // $this->validator($request->all())->validate();

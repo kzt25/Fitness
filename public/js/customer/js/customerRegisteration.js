@@ -267,6 +267,29 @@
               valid = false
               phone.classList.add("invalid")
               alert("Phone number should have 7 to 11 numbers")
+            }else{
+                var phone = $("#phone").val();
+                $.ajax({
+                        url : 'checkPhone',
+                        method: 'get',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data:  {"phone":phone},
+                        success   : function(data) {
+                            if(data.status == 300){
+                                alert(data.message);
+                                valid = false;
+                                $( "#phone" ).addClass("invalid");
+                                nextPrev(-1)
+
+                            }
+                            if(data.status == 200){
+
+                                // alert(data.message);
+                            }
+                        },
+                });
             }
 
             let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
@@ -276,6 +299,30 @@
               email.classList.add("invalid")
               alert("Email is not valid.")
             }
+            // else{
+            //     var email = $("#email").val();
+            //     $.ajax({
+            //             url : 'checkemail',
+            //             method: 'get',
+            //             headers: {
+            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //             },
+            //             data:  {"email":email},
+            //             success   : function(data) {
+            //                 if(data.status == 300){
+            //                     alert(data.message);
+            //                     valid = false;
+            //                     $( "#email" ).addClass("invalid");
+            //                     nextPrev(-1)
+
+            //                 }
+            //                 if(data.status == 200){
+
+            //                     // alert(data.message);
+            //                 }
+            //             },
+            //     });
+            // }
 
             if(valid){
                 personalInfoData.push(name.value,phone.value,email.value,address.value,password.value,confirmPassword.value)
