@@ -16,7 +16,7 @@
                     <i class="fa-sharp fa-solid fa-xmark close-workoutplan" title="close"></i>
                 </div>
 
-                <form class="workout-plan-input-container" action="{{route('createworkoutplan')}}" method = "POST">
+                <form class="workout-plan-input-container" action="{{route('createworkoutplan')}}" method = "POST" id="workplan-create">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingPassword" placeholder="Workout Plan Type" name="plantype">
@@ -129,6 +129,7 @@
 @endsection
 
 @push('scripts')
+{!! JsValidator::formRequest('App\Http\Requests\WorkoutplanRequest', '#workplan-create') !!}
 <script>
     $(document).ready(function(){
        $(".create-workoutplan").click(function(){
@@ -147,5 +148,7 @@
             $(".referee-remark-popup-parent-container").hide()
        })
    })
+
  </script>
   @endpush
+

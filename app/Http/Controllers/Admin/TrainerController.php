@@ -64,7 +64,7 @@ class TrainerController extends Controller
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 
-                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
+                return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon . '</div>';
             })
             ->make(true);
     }
