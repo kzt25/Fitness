@@ -19,6 +19,7 @@ class CreateTrainersTable extends Migration
             $table->string('phone');
             $table->text('address');
             $table->string('training_type');
+            $table->string('password');
             $table->timestamps();
         });
     }

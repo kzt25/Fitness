@@ -21,6 +21,9 @@
         .form-label {
             font-size: 14px;
         }
+        tbody{
+            text-transform: capitalize;
+        }
     </style>
 @endsection
 
@@ -32,7 +35,7 @@
         </div>
 
         <div class="col-12 card p-4 mb-5">
-            <table class="table table-striped Datatable " style="width: 100%">
+            <table class="table table-striped Datatable" id="export" style="width: 100%">
                 <thead>
                     <tr class="align-middle">
                         <th>ID</th>
@@ -58,6 +61,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+
             var i = 1;
             var table = $('.Datatable').DataTable({
                 processing: true,
@@ -117,33 +121,34 @@
                 })
             @endif
 
-            // $(document).on('click', '.delete-btn', function(e) {
-            //     e.preventDefault();
-            //     var id = $(this).data('id');
 
-            //     swal({
-            //             text: "Are you sure you want to delete?",
-            //             buttons: true,
-            //             dangerMode: true,
-            //         })
-            //         .then((willDelete) => {
-            //             if (willDelete) {
-            //                 $.ajax({
-            //                     method: "DELETE",
-            //                     url: `/admin/bankinginfo/${id}`
-            //                 }).done(function(res) {
-            //                     Toast.fire({
-            //                         icon: 'success',
-            //                         title: 'Deleted'
-            //                     })
-            //                     table.ajax.reload();
-            //                     console.log("deleted");
-            //                 })
-            //             } else {
-            //                 swal("Your imaginary file is safe!");
-            //             }
-            //         });
-            // })
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+
+                swal({
+                        text: "Are you sure you want to delete?",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                method: "GET",
+                                url: `request/member/decline/${id}`
+                            }).done(function(res) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Deleted'
+                                })
+                                table.ajax.reload();
+                                console.log("deleted");
+                            })
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+            })
         });
     </script>
 @endpush

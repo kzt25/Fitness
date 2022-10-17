@@ -1,12 +1,17 @@
 @extends('layouts.app')
+@section('workoutplan-active','active')
 
 @section('content')
+
+<a href="javascript:history.back()" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
+
 <div class="container d-flex justify-content-center">
+
         <div class="card my-3 shadow rounded" style="max-width: 60%">
             <div class="card-header text-center"><h3>Create Workout</h3></div>
             <div class="card-body">
               {{-- <h5 class="card-title">Primary card title</h5> --}}
-              <form class="referee-remark-input-container" action="{{route('createworkout')}}" enctype="multipart/form-data" method = "POST">
+              <form class="referee-remark-input-container" action="{{route('createworkout')}}" enctype="multipart/form-data" method = "POST" id="create-workout">
                 @csrf
                 <input type="hidden" name="workoutplanId" value="{{$workoutplanId}}">
 
@@ -59,15 +64,17 @@
                   </div>
 
                   <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupFile02"> Upload video</label>
+                    <label class="input-group-text"> Upload video
                     <input type="file" class="form-control" name="video" id="videoUpload">
                     <input type="hidden" name="videoTime" value="" class="video-duration">
+                   </label>
                   </div>
 
 
                 <div class="referee-remark-input-btns-container">
                     <button type ="submit" class="btn btn-primary">Create</button>
-                    {{-- <button class="referee-remark-cancel-btn">Cancel</button> --}}
+                    <a href="{{route('workoutplane')}}" class="btn btn-secondary text-primary ms-2">Cancel</a>
+
                 </div>
             </form>
             </div>
@@ -115,3 +122,6 @@
 
 @endsection
 
+@push('scripts')
+{!! JsValidator::formRequest('App\Http\Requests\WorkoutRequest', '#create-workout') !!}
+@endpush

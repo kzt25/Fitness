@@ -60,14 +60,14 @@
     </div>
 @endsection
 
-@push('script')
+@push('scripts')
     <script>
         $(document).ready(function() {
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)

@@ -1,7 +1,13 @@
 @extends('layouts.app')
+@section('workoutplan-active','active')
 
 @section('content')
+
+<a href="javascript:history.back()" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
+
 <div class="container d-flex justify-content-center">
+
+
     <div class="card my-3 shadow rounded" style="max-width: 40%">
         <div class="card-header text-center"><h3>Edit Workouts</h3></div>
         <div class="card-body">
@@ -28,9 +34,9 @@
                     <div class="form-floating col-md-6">
                         <select class="form-select" aria-label="Default select example" placeholder="Workout level select" name="workoutlevel">
                             <option value="{{$data->workout_level}}"></option>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Advance">Advance</option>
-                            <option value="Professional">Professional</option>
+                            <option value="Beginner" id="beginner">Beginner</option>
+                            <option value="Advance" id="advance">Advance</option>
+                            <option value="Professional" id="professional">Professional</option>
                         </select>
                         <label for="floatingInput">Workout level select</label>
                     </div>
@@ -39,16 +45,15 @@
               <div class="d-flex justify-content mb-3">
                 <label for="">Gender Type : &nbsp;</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio1" value="male">
-                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                    <label class="form-check-label"><input class="form-check-input" type="radio" name="gendertype" value="male" id="male">
+                    Male</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio2" value="female">
-                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                    <label class="form-check-label"><input class="form-check-input" type="radio" name="gendertype" id="female" value="female">Female</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio3" value="both">
-                    <label class="form-check-label" for="inlineRadio3">Both</label>
+
+                    <label class="form-check-label" for="inlineRadio3"> <input class="form-check-input" type="radio" name="gendertype" id="both" value="both"> Both</label>
                   </div>
               </div>
 
@@ -59,16 +64,17 @@
               </div>
 
               <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile02"> Upload video</label>
-                <input type="file" class="form-control" name="video" id="videoUpload inputGroupFile02">
+                <label class="input-group-text"> Upload video
+                <input type="file" class="form-control" name="video" id="videoUpload">
                 <input type="input-group-text" value="{{$data->video}}" disabled>
                 <input type="hidden" name="videoTime" value="" class="video-duration">
+            </label>
               </div>
 
 
             <div class="referee-remark-input-btns-container">
                 <button type ="submit" class="btn btn-primary">Update</button>
-                {{-- <button class="referee-remark-cancel-btn">Cancel</button> --}}
+                <a href="{{route('workoutview')}}" class="btn btn-secondary ms-2">Cancel</a>
             </div>
         </form>
         </div>
@@ -78,7 +84,33 @@
 
 </div>
 
+
+@endsection
+
+@push('scripts')
 <script>
+    $(document).ready(function(){
+        var user = @json($data);
+
+        if (user.gender_type == 'male') {
+            $("#male").attr('checked', 'checked');
+        }else if(user.gender_type == 'female'){
+            $("#female").attr('checked', 'checked');
+        }else{
+            $("#both").attr('checked', 'checked');
+        }
+
+        if(user.workout_level == 'Beginner'){
+            var select = $("#beginner");
+            select.attr('selected',true);
+        }else if(user.workout_level == 'Advance'){
+            var select = $("#advance");
+            select.attr('selected',true);
+        }else if(user.workout_level == 'Professional'){
+            var select = $("#professional");
+            select.attr('selected',true);
+        }
+    })
 
 document.getElementById("videoUpload")
     .onchange = function(event) {
@@ -96,5 +128,4 @@ document.getElementById("videoUpload")
     }
 
 </script>
-@endsection
-
+@endpush

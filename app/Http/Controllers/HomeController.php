@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Member;
+use App\Models\BankingInfo;
 use Illuminate\Http\Request;
 use App\Models\MemberHistory;
 use Illuminate\Support\Facades\DB;
@@ -46,17 +47,34 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $user = User::find(1);
-        // $mem = $user->members()->get();
-        // $users = User::with('members')->orderBy('created_at', 'DESC')->get();
+        return view('customer.index');
+    }
+
+    public function customerregister()
+    {
         $user = User::find(1);
+        $banking_info = BankingInfo::all();
         // $mem = $user->members()->get();
         $users = User::with('members')->orderBy('created_at', 'DESC')->get();
 
         $members=Member::orderBy('price','ASC')->get();
 
         $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
-        return view('customer.customer_registration',compact('durations','members'));
+        return view('customer.customer_registration',compact('durations','members','banking_info'));
     }
+    public function getRegister()
+    {
+        $members=Member::orderBy('price','ASC')->get();
+
+        $durations=Member::groupBy('duration')->where('duration','!=',0)->get();
+
+        $data = [
+            'members' => $members,
+            'durations'=>$durations
+        ];
+
+        return view('auth.register')->with($data);
+    }
+
 
 }

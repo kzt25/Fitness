@@ -9,11 +9,11 @@ use Yajra\Datatables\Datatables;
 
 class RequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.request.member_request');
@@ -22,21 +22,27 @@ class RequestController extends Controller
     public function ssd()
     {
         $memberRequest = User::where('active_status',1)->get();
+
         return Datatables::of($memberRequest)
             ->addIndexColumn()
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
-                $detail_icon = '';
                 $delete_icon = '';
-                $edit_icon = '<a href=" ' . route('requestaccept', $each->id) . ' " class="text-warning mx-1 " title="edit">
-                                    <i class="fa-solid fa-edit fa-xl"></i>
+                $detail_icon = '';
+
+                $detail_icon = '<a href=" ' . route('payment.detail', $each->id) . ' " class="text-warning mx-1 mt-1" title="payment">
+                                        <i class="fa-solid fa-circle-info fa-xl"></i>
                               </a>';
 
-                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
-                                    <i class="fa-solid fa-trash fa-xl"></i>
+                $edit_icon = '<a href=" ' . route('requestaccept', $each->id) . ' " class="mx-1 btn btn-sm btn-success">
+                                    Accept
+                              </a>';
+
+                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="mx-1 btn btn-sm delete-btn btn-danger" data-id="' . $each->id . '" >
+                                    Decline
                                 </a>';
 
-                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
+                return '<div class="d-flex justify-content-center">' .$detail_icon. $edit_icon . $delete_icon . '</div>';
             })
             ->make(true);
     }

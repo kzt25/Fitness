@@ -9,25 +9,48 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\WorkoutRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\WorkoutplanRequest;
 
 
 class WorkoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $workoutplan = WorkoutPlan::select('id','plan_type')->get();
         //dd($workoutplan->toArray());
         return view('admin.workout.workoutplan', compact('workoutplan'));
     }
 
-    public function createworkoutplan(Request $request){
-        $this->validate($request,[
-            'plantype'=>'required'
-        ]);
+    public function createworkoutplan(WorkoutplanRequest $request){
+
         $data = new WorkoutPlan();
         $data->plan_type = $request->plantype;
 
         $data->save();
+        return back();
+    }
+
+    public function editworkoutplan($id){
+        $workoutplanEdit = WorkoutPlan::where('id',$id)->first();
+        return view('admin.workout.workoutplanedit', compact('workoutplanEdit'));
+    }
+
+    public function updateworkoutplan($id, Request $request){
+        $data =  WorkoutPlan::findOrFail($id);
+        $data->plan_type = $request->plantype;
+        $data->update();
+        return redirect()->route('workoutplane');
+    }
+
+    public function deleteworkoutplan($id){
+        $data =  WorkoutPlan::findOrFail($id);
+        $data->delete();
         return back();
     }
 
@@ -37,16 +60,7 @@ class WorkoutController extends Controller
         return view('admin.workout.workoutcreate', compact('workoutplanId'));
     }
 
-    public function createworkout(Request $request){
-        //dd($request->all());
-        $this->validate($request,[
-            'workoutname'=> 'required',
-            'gendertype' => 'required',
-            'workoutlevel'=> 'required',
-            'calories'=> 'required',
-            'image' => 'required',
-            'video'=> 'required|mimes:mp4,webm',
-        ]);
+    public function createworkout(WorkoutRequest $request){
 
         if($request->hasFile('video')) {
             $video = $request->file('video');
@@ -55,8 +69,8 @@ class WorkoutController extends Controller
                 'upload/'.$video_name,
                 file_get_contents($video)
             );
-            // $video->move(public_path().'/upload/',$video_name);
         }
+
         if($request->hasFile('image')) {
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
@@ -64,7 +78,6 @@ class WorkoutController extends Controller
                 'upload/'.$image_name,
                 file_get_contents($image)
             );
-            //$image->move(public_path().'/upload/',$image_name);
         }
 
         if($request->gendertype == 'both'){
@@ -124,11 +137,11 @@ class WorkoutController extends Controller
 
         $data->delete();
 
-        if(File::exists(public_path().'/upload/'.$image_name)){
-            File::delete(public_path().'/upload/'.$image_name);
+        if(File::exists(storage_path()."/app/upload/".$image_name)){
+            File::delete(storage_path()."/app/upload/".$image_name);
         }
-        if(File::exists(public_path().'/upload/'.$video_name)){
-            File::delete(public_path().'/upload/'.$video_name);
+        if(File::exists(storage_path()."/app/upload/".$video_name)){
+            File::delete(storage_path()."/app/upload/".$video_name);
         }
         return back()->with(['success'=>'Workout delete success.']);
     }
@@ -184,7 +197,7 @@ class WorkoutController extends Controller
         // $response->header('Accept-Ranges','bytes');
         // for ($i=1; $i<=count($video); $i++) {
             foreach($video as $vd){
-                return response()->file(storage_path()."/app/".$vd->video);
+                return response()->file(storage_path()."/app/upload/".$vd->video);
             }
         // }
     }

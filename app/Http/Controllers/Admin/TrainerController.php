@@ -15,11 +15,11 @@ use Spatie\Permission\Models\Role;
 
 class TrainerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.trainers.index');
@@ -45,6 +45,9 @@ class TrainerController extends Controller
             ->editColumn('created_at', function ($each) {
                 return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
             })
+            ->editColumn('updated_at', function ($each) {
+                return Carbon::parse($each->updated_at)->format("Y-m-d H:i:s");
+            })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
                 $detail_icon = '';
@@ -61,7 +64,7 @@ class TrainerController extends Controller
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 
-                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
+                return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon . '</div>';
             })
             ->make(true);
     }
@@ -107,7 +110,8 @@ class TrainerController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.trainers.show', compact(''));
     }
 
     /**

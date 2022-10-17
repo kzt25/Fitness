@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\BankingInfo;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\BankingRequest;
+use Illuminate\Support\Facades\Storage;
 
 class BankinginfoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('admin.bankinginfo.index');
@@ -40,20 +41,18 @@ class BankinginfoController extends Controller
             // })
             ->addColumn('action', function ($each) {
                 $edit_icon = '';
-                $detail_icon = '';
                 $delete_icon = '';
+
+
                 $edit_icon = '<a href=" ' . route('bankinginfo.edit', $each->id) . ' " class="text-warning mx-1 " title="edit">
                                     <i class="fa-solid fa-edit fa-xl"></i>
                               </a>';
-                $detail_icon = '<a href=" ' . route('bankinginfo.show', $each->id) . ' " class="text-info mx-1" title="detail">
-                                    <i class="fa-solid fa-circle-info fa-xl"></i>
-                                </a>';
 
-                $delete_icon = '<a href=" ' . route('bankinginfo.destroy', $each->id) . ' " class="text-danger mx-1              delete-btn" title="delete"  data-id="' . $each->id . '" >
+                $delete_icon = '<a href=" ' . route('bankinginfo.destroy', $each->id) . ' " class="text-danger mx-1 delete-btn" title="delete"  data-id="' . $each->id . '" >
                                     <i class="fa-solid fa-trash fa-xl"></i>
                                 </a>';
 
-                return '<div class="d-flex justify-content-center">' .  $detail_icon  . $edit_icon . $delete_icon . '</div>';
+                return '<div class="d-flex justify-content-center">'.$edit_icon .$delete_icon . '</div>';
             })
             ->make(true);
     }
@@ -64,17 +63,35 @@ class BankinginfoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BankingRequest $request)
     {
+        // dd($request->all());
 
         $bankinginfo = new BankingInfo();
-        $bankinginfo->payment_type = $request->type;
-        $bankinginfo->bank_account_number = $request->accountNo;
-        $bankinginfo->bank_account_holder = $request->accountHolder;
-        $bankinginfo->account_name = $request->accountName;
-        $bankinginfo->phone = $request->phone;
-        $bankinginfo->save();
-        return redirect()->route('bankinginfo.index');
+        if ($request->paymentType == "bank transfer") {
+            $bankinginfo->payment_type = $request->paymentType;
+            $bankinginfo->payment_name = $request->bankName;
+            $bankinginfo->bank_account_number = $request->accountNo;
+            $bankinginfo->bank_account_holder = $request->accountHolder;
+            $bankinginfo->account_name = null;
+            $bankinginfo->phone = null;
+            $bankinginfo->save();
+            return redirect()->route('bankinginfo.index');
+        } else if($request->paymentType == "ewallet"){
+            $this->validate($request,[
+                'phone'=> 'required|min:11',
+            ]);
+
+            $bankinginfo->payment_type = $request->paymentType;
+            $bankinginfo->payment_name = $request->ewalletName;
+            $bankinginfo->bank_account_number =null;
+            $bankinginfo->bank_account_holder =null;
+            $bankinginfo->account_name = $request->accountName;
+            $bankinginfo->phone = $request->phone;
+            $bankinginfo->save();
+            return redirect()->route('bankinginfo.index');
+        }
+
     }
 
     /**
@@ -109,15 +126,36 @@ class BankinginfoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $bank = BankingInfo::findorFail($id);
-        $bank->payment_type = $request->type;
-        $bank->bank_account_number = $request->accountNo;
-        $bank->account_name = $request->name;
-        $bank->bank_account_holder = $request->accountHolder;
-        $bank->phone = $request->phone;
-        $bank->update();
+
+        if($request->paymentType =='bank transfer'){
+            $bank->payment_type = $request->paymentType;
+            $bank->payment_name = $request->bankName;
+            $bank->bank_account_number = $request->accountNo;
+            $bank->bank_account_holder = $request->accountHolder;
+            $bank->account_name = null;
+            $bank->phone = null;
+            $bank->update();
 
         return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
+
+        }else if($request->paymentType =='ewallet'){
+            $this->validate($request,[
+                'phone'=> 'required|min:11',
+            ]);
+            $bank->payment_type = $request->paymentType;
+            $bank->payment_name = $request->ewalletName;
+            $bank->bank_account_number = null;
+            $bank->bank_account_holder = null;
+            $bank->account_name = $request->accountName;
+            $bank->phone = $request->phone;
+            $bank->update();
+
+            return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
+        }
+
+
     }
 
     /**

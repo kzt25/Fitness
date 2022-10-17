@@ -12,7 +12,7 @@
                 </div>
                 <div class="mt-4">
                     <label for="phone">Phone</label>
-                    <input type="number" class="form-control" name="phone" value="{{ old('name', $trainer->phone) }}">
+                    <input type="number" class="form-control" name="phone" value="{{ old('phone', $trainer->phone) }}">
                 </div>
                 <div class="mt-4">
                     <label class="" for="training_type">Training Type</label> <br>
