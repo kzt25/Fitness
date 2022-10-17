@@ -17,6 +17,12 @@ class RegisterPaymentController extends Controller
         $banking_info = BankingInfo::all();
         return view('customer.payment',compact('banking_info'));
     }
+    // public function test()
+    // {
+
+    //     $banking_info = BankingInfo::all();
+    //     return view('customer.payment_test',compact('banking_info'));
+    // }
     public function ewallet_store(Request $request)
     {
         $this->validate($request,[
@@ -35,7 +41,7 @@ class RegisterPaymentController extends Controller
             $image = $request->file('image');
             $imgName = uniqid() . '_' . $image->getClientOriginalName();
             Storage::disk('local')->put(
-                'payments/'.$imgName,
+                'public/payments/'.$imgName,
                 file_get_contents($image)
             );
         }
@@ -75,7 +81,7 @@ class RegisterPaymentController extends Controller
             $image = $request->file('image');
             $imgName = uniqid() . '_' . $image->getClientOriginalName();
             Storage::disk('local')->put(
-                'payments/'.$imgName,
+                'public/payments/'.$imgName,
                 file_get_contents($image)
             );
         }

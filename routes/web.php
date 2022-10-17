@@ -41,7 +41,8 @@ Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('cus
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
-Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('payment');
+Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('customer_payment');
+// Route::get('test_payment', [RegisterPaymentController::class, 'test'])->name('test_payment');
 Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
 Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
