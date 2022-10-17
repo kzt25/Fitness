@@ -11,7 +11,7 @@
             <div class="card-header text-center"><h3>Create Workout</h3></div>
             <div class="card-body">
               {{-- <h5 class="card-title">Primary card title</h5> --}}
-              <form class="referee-remark-input-container" action="{{route('createworkout')}}" enctype="multipart/form-data" method = "POST">
+              <form class="referee-remark-input-container" action="{{route('createworkout')}}" enctype="multipart/form-data" method = "POST" id="create-workout">
                 @csrf
                 <input type="hidden" name="workoutplanId" value="{{$workoutplanId}}">
 
@@ -73,7 +73,7 @@
 
                 <div class="referee-remark-input-btns-container">
                     <button type ="submit" class="btn btn-primary">Create</button>
-                    <button type="reset" class="btn btn-secondary text-primary ms-2">Cancel</button>
+                    <a href="{{route('workoutplane')}}" class="btn btn-secondary text-primary ms-2">Cancel</a>
 
                 </div>
             </form>
@@ -122,3 +122,6 @@
 
 @endsection
 
+@push('scripts')
+{!! JsValidator::formRequest('App\Http\Requests\WorkoutRequest', '#create-workout') !!}
+@endpush

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\BankingInfo;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\BankingRequest;
+use Illuminate\Support\Facades\Storage;
 
 class BankinginfoController extends Controller
 {
@@ -62,18 +63,8 @@ class BankinginfoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BankingRequest $request)
     {
-
-
-        $this->validate($request,[
-            // 'account_name'=> 'required',
-            // 'payment_name' => 'required',
-            'phone'=> 'required|min:9|max:11',
-            // 'amount'=> 'required',
-            // 'image' => 'required',
-        ]);
-
         // dd($request->all());
 
         $bankinginfo = new BankingInfo();
@@ -87,6 +78,10 @@ class BankinginfoController extends Controller
             $bankinginfo->save();
             return redirect()->route('bankinginfo.index');
         } else if($request->paymentType == "ewallet"){
+            $this->validate($request,[
+                'phone'=> 'required|min:11',
+            ]);
+
             $bankinginfo->payment_type = $request->paymentType;
             $bankinginfo->payment_name = $request->ewalletName;
             $bankinginfo->bank_account_number =null;
@@ -146,6 +141,9 @@ class BankinginfoController extends Controller
         return redirect()->route('bankinginfo.index')->with('success', 'Payment information is updated successfully!');
 
         }else if($request->paymentType =='ewallet'){
+            $this->validate($request,[
+                'phone'=> 'required|min:11',
+            ]);
             $bank->payment_type = $request->paymentType;
             $bank->payment_name = $request->ewalletName;
             $bank->bank_account_number = null;

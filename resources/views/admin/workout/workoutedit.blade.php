@@ -74,8 +74,7 @@
 
             <div class="referee-remark-input-btns-container">
                 <button type ="submit" class="btn btn-primary">Update</button>
-                <button type ="reset" class="btn btn-secondary ms-2">Cancel</button>
-                {{-- <button class="referee-remark-cancel-btn">Cancel</button> --}}
+                <a href="{{route('workoutview')}}" class="btn btn-secondary ms-2">Cancel</a>
             </div>
         </form>
         </div>

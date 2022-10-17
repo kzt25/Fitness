@@ -9,7 +9,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\WorkoutRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\WorkoutplanRequest;
 
 
 class WorkoutController extends Controller
@@ -18,17 +20,15 @@ class WorkoutController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(){
         $workoutplan = WorkoutPlan::select('id','plan_type')->get();
         //dd($workoutplan->toArray());
         return view('admin.workout.workoutplan', compact('workoutplan'));
     }
 
-    public function createworkoutplan(Request $request){
-        $this->validate($request,[
-            'plantype'=>'required'
-        ]);
+    public function createworkoutplan(WorkoutplanRequest $request){
+
         $data = new WorkoutPlan();
         $data->plan_type = $request->plantype;
 
@@ -60,16 +60,7 @@ class WorkoutController extends Controller
         return view('admin.workout.workoutcreate', compact('workoutplanId'));
     }
 
-    public function createworkout(Request $request){
-        //dd($request->all());
-        $this->validate($request,[
-            'workoutname'=> 'required',
-            'gendertype' => 'required',
-            'workoutlevel'=> 'required',
-            'calories'=> 'required',
-            'image' => 'required',
-            'video'=> 'required|mimes:mp4,webm',
-        ]);
+    public function createworkout(WorkoutRequest $request){
 
         if($request->hasFile('video')) {
             $video = $request->file('video');
