@@ -51,7 +51,37 @@ class LoginController extends Controller
 
         if( $user->hasAnyRole(['System_Admin'])){
             Auth::login($user);
-        }else{
+            return redirect('admin');
+        }
+        if( $user->hasAnyRole(['Trainer'])){
+            Auth::login($user);
+            return redirect('trainer');
+        }
+        if( $user->hasAnyRole(['Free'])){
+            Auth::login($user);
+            return redirect('free');
+        }
+        if( $user->hasAnyRole(['Platinum'])){
+            Auth::login($user);
+            return redirect('platinum');
+        }
+        if( $user->hasAnyRole(['Gold'])){
+            Auth::login($user);
+            return redirect('gold');
+        }
+        if( $user->hasAnyRole(['Diamond'])){
+            Auth::login($user);
+            return redirect('diamond');
+        }
+        if( $user->hasAnyRole(['Ruby'])){
+            Auth::login($user);
+            return redirect('ruby');
+        }
+        if( $user->hasAnyRole(['Ruby Premium'])){
+            Auth::login($user);
+            return redirect('ruby_premium');
+        }
+        else{
             return redirect('/');
         }
     }

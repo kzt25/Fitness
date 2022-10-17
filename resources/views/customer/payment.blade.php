@@ -2,6 +2,18 @@
 
 @section('content')
 @include('sweetalert::alert')
+
+@if (count($errors) > 0)
+    <div class="alert alert-warning alert-dismissible fade show">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+
+    </div>
+@endif
+
 <!--kpay modal-->
 <div class="modal fade" id="kpayModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -314,9 +326,10 @@
                     <p>Bank Account Number:</p>
                     <input type="text" name = "payment_name" hidden value="KBZ Bank">
                     <input type="number" name = "bank_account_number" required>
+                    {{-- @error('bank_account_number') <span class="error">{{ $message }}</span> @enderror --}}
                 </div>
                 <div class="customer-transaction-input-container">
-                    <p>Bank Account Name:</p>
+                    <p>Bank Account Holder Name:</p>
                     <input type="text" name ="bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
@@ -388,7 +401,7 @@
                     <input type="number" required name ="bank_account_number">
                 </div>
                 <div class="customer-transaction-input-container">
-                    <p>Bank Account Name:</p>
+                    <p>Bank Account Holder Name:</p>
                     <input type="text" name ="bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
@@ -421,7 +434,7 @@
                         <p>{{$cb->bank_account_name}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
-                        <p>Bank Account Name:</p>
+                        <p>Bank Account Holder Name:</p>
                         <p>{{$cb->bank_account_holder}}</p>
                     </div>
                     @endif
@@ -459,7 +472,7 @@
                     <input type="number" name ="bank_account_number" required>
                 </div>
                 <div class="customer-transaction-input-container">
-                    <p>Bank Account Name:</p>
+                    <p>Bank Account Holder Name:</p>
                     <input type="text" name = "bank_account_holder" required>
                 </div>
                 <div class="customer-transaction-input-container">
@@ -492,7 +505,7 @@
                         <p>{{$aya->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
-                        <p>Bank Account Name:</p>
+                        <p>Bank Account Holder Name:</p>
                         <p>{{$aya->bank_account_holder}}</p>
                     </div>
                     @endif
@@ -563,7 +576,7 @@
                         <p>{{$mab->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
-                        <p>Bank Account Name:</p>
+                        <p>Bank Account Holder Name:</p>
                         <p>{{$mab->bank_account_holder}}</p>
                     </div>
                     @endif
@@ -738,6 +751,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script>
+
         const kpayInput = document.querySelector('#kpayImg');
         const kpayPreview = document.querySelector('.kpayImg');
 
@@ -885,6 +899,9 @@
         //   }
 
         }
+        $(document).ready(function(){
+            $('.alert').alert()
+        })
     </script>
 
 @endpush
