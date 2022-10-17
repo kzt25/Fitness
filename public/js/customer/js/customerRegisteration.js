@@ -34,10 +34,13 @@
             if($("[name='weight']").val() !== "" && $("[name='idealWeightInput']").val() !== ""){
                 const idealWeight = $("[name='idealWeightInput']").val()
                 const weight = $("[name='weight']").val()
+
                 const weightDiff = parseInt(idealWeight) - parseInt(weight)
                 var duration
                 // console.log(weightDiff.toString())
-
+                if(weightDiff === 0){
+                    alert("Current weight and ideal weight cannot be equal")
+                }
 
                 if(weightDiff < 0){
                     if(Math.abs(weightDiff).toString().length ===1){
@@ -52,16 +55,16 @@
                             if(Math.abs(weightDiff).toString().split("")[1] === '0'){
                                 duration  = Math.abs(weightDiff).toString().split("")[0]
                             }else{
-                                duration  = (parseInt(weightDiff.toString().split("")[0]) + 1).toString()
+                                duration  = (parseInt(Math.abs(weightDiff).toString().split("")[0]) + 1).toString()
                             }
                         }
 
                     }
 
-                    if(duration === '1'){
-                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lbs takes about ${duration} month.`)
+                    if(parseInt(duration) === 1){
+                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lb takes about ${duration} month.`)
                     }else{
-                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                        $(".weight-difference-text").text(`Losing ${Math.abs(weightDiff)} lb takes about ${duration} months.`)
                     }
 
                 }
@@ -69,10 +72,10 @@
 
                     duration = (Math.round(parseInt(Math.abs(weightDiff)) / 5)).toString()
 
-                    if(duration === "1"){
-                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lbs takes about ${duration} month.`)
+                    if(parseInt(duration) === 1 || parseInt(duration) === 0){
+                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lb takes about ${duration === 0 ? duration : "1"} month.`)
                     }else{
-                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lbs takes about ${duration} months.`)
+                        $(".weight-difference-text").text(`Gaining ${Math.abs(weightDiff)} lb takes about ${duration} months.`)
                     }
 
 
