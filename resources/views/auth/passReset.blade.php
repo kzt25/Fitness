@@ -95,7 +95,7 @@
         var otpStatus
         var phoneNumber
        $("#checkPhone").click(function(){
-        ("#checkPhone").prop('disabled', true);
+        // ("#checkPhone").prop('disabled', true);
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',

@@ -4,7 +4,9 @@
 @include('sweetalert::alert')
 
 
-<h1>Something is comming soon.......</h1>
+@hasanyrole('Free')
+<h1>Welcome Free User -  {{Auth()->user()->name}}</h1>
+@endhasanyrole
  @hasanyrole('Platinum')
 <h1>Welcome Platinum User -  {{Auth()->user()->name}}</h1>
 @endhasanyrole
