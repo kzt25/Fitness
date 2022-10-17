@@ -136,12 +136,12 @@
 
                     <div class="col-auto">
                         <label for="weight" class="col-form-label">Weight</label>
-                        <input type="integer @error('weight') is-invalid @enderror" id="weight" class="form-control" name="weight"  value="{{$user->weight}}" >
+                        <input type="integer @error('weight') is-invalid @enderror" id="weight" class="form-control" placeholder="weight(pound)" name="weight"  value="{{$user->weight}}" >
 
                     </div>
                     <div class="col-auto">
                         <label for="height" class="col-form-label">Height</label>
-                        <input type="integer @error('height') is-invalid @enderror" id="height" class="form-control" name="height"  value="{{$user->height}}" >
+                        <input type="integer @error('height') is-invalid @enderror" id="height" class="form-control" placeholder="height(inches)" name="height"  value="{{$user->height}}" >
 
                         </div>
                     <div class="col-auto">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-auto">
                         <label for="neck" class="col-form-label">Neck</label>
-                        <input type="integer @error('neck') is-invalid @enderror" id="neck" class="form-control" name="neck"  value="{{$user->neck}}" >
+                        <input type="integer @error('neck') is-invalid @enderror" id="neck" class="form-control" placeholder="neck(inches)" name="neck"  value="{{$user->neck}}" >
 
                     </div>
 
@@ -161,12 +161,12 @@
                     <div class="row g-3 align-items-center">
                             <div class="col-auto">
                                 <label for="waist" class="col-form-label">Waist</label>
-                                <input type="integer @error('waist') is-invalid @enderror" id="waist" class="form-control" name="waist"  value="{{$user->waist}}" >
+                                <input type="integer @error('waist') is-invalid @enderror" id="waist" class="form-control" placeholder="waist(inches)" name="waist"  value="{{$user->waist}}" >
 
                             </div>
                             <div class="col-auto" id="female_hip">
                                 <label for="hip" class="col-form-label">Hip</label>
-                                <input type="integer @error('hip') is-invalid @enderror" id="hip" class="form-control" name="hip"  value="{{$user->hip}}" >
+                                <input type="integer @error('hip') is-invalid @enderror" id="hip" class="form-control" placeholder="hip(inches)" name="hip"  value="{{$user->hip}}" >
 
                             </div>
                             <div class="col-auto">
@@ -382,8 +382,7 @@
     $('#weight,#height').on('change keyup input', (function() {
         const edit_w=$('#weight').val();
         const edit_h=$('#height').val();
-        const inch_h=edit_h*12;
-        document.getElementById('bmi').value= parseFloat(edit_w/((inch_h)*(inch_h))*703).toFixed(1);
+        document.getElementById('bmi').value= parseFloat(edit_w/((edit_h)*(edit_h))*703).toFixed(1);
 
     })
     );
@@ -399,11 +398,11 @@
         if(gender==="male"){
             console.log("male");
             //const bfp= Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(height*12)/Math.log(10))+36.76*1)*100)/100;
-            document.getElementById('bfp').value= Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(height*12)/Math.log(10))+36.76*1)*100)/100;
+            document.getElementById('bfp').value= Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(height)/Math.log(10))+36.76*1)*100)/100;
         }else{
             console.log("female");
             //bfp = Math.round((163.205*(Math.log(waist*1.0+hip*1.0-neck*1.0)/Math.log(10))- 97.684*(Math.log(height*12)/Math.log(10))-78.387*1.0)*100)/100;
-            document.getElementById('bfp').value= Math.round((163.205*(Math.log(waist*1.0+hip*1.0-neck*1.0)/Math.log(10))- 97.684*(Math.log(height*12)/Math.log(10))-78.387*1.0)*100)/100;
+            document.getElementById('bfp').value= Math.round((163.205*(Math.log(waist*1.0+hip*1.0-neck*1.0)/Math.log(10))- 97.684*(Math.log(height)/Math.log(10))-78.387*1.0)*100)/100;
         }
 
         })
