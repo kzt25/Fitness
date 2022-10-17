@@ -82,7 +82,7 @@
                     {{-- <div class="col-md-5" id = "cannot_reset_password">
                         <h6 class="text-danger">You cannot reset your password now! <br><br>Please Try again later!</h6>
                     </div> --}}
-                    <div class="cannot-reset-password-container" >
+                    <div class="cannot-reset-password-container" id = "cannot_reset_password">
                         <p>You cannot reset your password now!</p>
                         <span>Please try again later</span><br>
                         <a href="#" class="customer-primary-btn">Go Back</a>
