@@ -39,7 +39,13 @@
                 var duration
                 // console.log(weightDiff.toString())
                 if(weightDiff === 0){
-                    alert("Current weight and ideal weight cannot be equal")
+                    Swal.fire({
+                        text: "Current weight and ideal weight cannot be equal",
+                        confirmButtonColor: '#3CDD57',
+                        timer: 3000
+                      });
+                    //alert("Current weight and ideal weight cannot be equal")
+
                 }
 
                 if(weightDiff < 0){
@@ -260,32 +266,55 @@
               valid = false
               password.classList.add("invalid")
               confirmPassword.classList.add("invalid")
-              alert("Passwords are not equal")
+
+              Swal.fire({
+                text: "Passwords are not equal",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Passwords are not equal")
             }
 
             if(password.value !== "" && !(password.value.length >= 6 && password.value.length <= 11) ){
               valid = false
               password.classList.add("invalid")
               confirmPassword.classList.add("invalid")
-              alert("Passwords should have 6 to 11 characters or numbers.")
+              Swal.fire({
+                text: "Passwords should have 6 to 11 characters or numbers.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Passwords should have 6 to 11 characters or numbers.")
             }
 
             if(phone.value !== "" && !(phone.value.length >= 7 && phone.value.length <= 11)){
               valid = false
               phone.classList.add("invalid")
-              alert("Phone number should have 7 to 11 numbers")
+              //Swal.fire("Phone number should have 7 to 11 numbers");
+              Swal.fire({
+                text: "Phone number should have 7 to 11 numbers",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+
+              //alert("Phone number should have 7 to 11 numbers")
             }else{
-                var phone = $("#phone").val();
+                var cus_phone = $("#phone").val();
                 $.ajax({
                         url : 'checkPhone',
                         method: 'get',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data:  {"phone":phone},
+                        data:  {"phone":cus_phone},
                         success   : function(data) {
                             if(data.status == 300){
-                                alert(data.message);
+                                Swal.fire({
+                                    text: data.message,
+                                    confirmButtonColor: '#3CDD57',
+                                    timer: 3000
+                                  });
+
                                 valid = false;
                                 $( "#phone" ).addClass("invalid");
                                 nextPrev(-1)
@@ -304,20 +333,30 @@
             if(email.value !== "" && regex.test(email.value) === false){
               valid = false
               email.classList.add("invalid")
-              alert("Email is not valid.")
+              Swal.fire({
+                text: "Email is not valid.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Email is not valid.")
             }
             else{
-                var email = $("#email").val();
+                var cus_email = $("#email").val();
                 $.ajax({
                         url : 'checkemail',
                         method: 'get',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data:  {"email":email},
+                        data:  {"email":cus_email},
                         success   : function(data) {
                             if(data.status == 300){
-                                alert(data.message);
+                                Swal.fire({
+                                    text: data.message,
+                                    confirmButtonColor: '#3CDD57',
+                                    timer: 3000
+                                  });
+                                // alert(data.message);
                                 valid = false;
                                 $( "#email" ).addClass("invalid");
                                  nextPrev(-1)
@@ -401,7 +440,12 @@
 
             if(physicalLimitationsArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+
             }
 
             if(valid){
@@ -428,7 +472,12 @@
 
             if(preferedActivitiesArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Please Select at least one.")
             }
 
             if(valid){
@@ -454,7 +503,11 @@
 
             if(bodyTypeArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -483,7 +536,11 @@
             }
             if(mainGoalArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -510,7 +567,11 @@
             }
             if(typicalDayArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -537,7 +598,11 @@
             }
             if(dietArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -562,7 +627,11 @@
             }
             if(sleepArr.length === 0){
               valid = false
-              alert("Please Select at least one.")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -588,7 +657,12 @@
             }
             if(energyLevelArr.length === 0){
               valid = false
-              alert("Please Select at least one.energy")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Please Select at least one.")
             }
 
             if(valid){
@@ -614,7 +688,12 @@
             }
             if(idealWeightArr.length === 0){
               valid = false
-              alert("Please Select at least one.energy")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
+              //alert("Please Select at least one.")
             }
 
             if(valid){
@@ -640,7 +719,11 @@
             }
             if(bodyAreaArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -666,7 +749,11 @@
             }
             if(physicalActivityArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -692,7 +779,11 @@
             }
             if(badHabitsArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -718,7 +809,11 @@
             }
             if(waterIntakeArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -778,7 +873,11 @@
             }
             if(memberPlanArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
@@ -804,7 +903,11 @@
             }
             if(proficiencyArr.length === 0){
               valid = false
-              alert("Please Select at least one")
+              Swal.fire({
+                text: "Please Select at least one.",
+                confirmButtonColor: '#3CDD57',
+                timer: 3000
+              });
             }
 
             if(valid){
