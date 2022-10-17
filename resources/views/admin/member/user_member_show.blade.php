@@ -239,10 +239,10 @@
                         name: 'action'
                     },
                 ],
-                dom: 'Bfrtip',
-                buttons: [
-                    'excel', 'pdf'
-                ]
+                // dom: 'Bfrtip',
+                // buttons: [
+                //     'excel', 'pdf'
+                // ]
             });
         }
 
