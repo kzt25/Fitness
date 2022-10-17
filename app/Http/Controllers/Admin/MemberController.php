@@ -210,7 +210,13 @@ class MemberController extends Controller
         $user->phone=$request->phone;
         $user->email=$request->email;
         $user->membertype_level=$request->membertype_level;
-        //$user->member_type=$request->member_type;
+
+        $member=Member::find($request->member_type);
+        $member_role=Role::find($member->role_id);
+        $user->assignRole($member_role->name);
+
+        //$user->members()->attach($request->member_type, ['member_type_level' => $request->membertype_level]);
+        $user->member_type=$member_role->name;
         $user->address=$request->address;
         $user->height =$request->height;
         $user->weight=$request->weight;

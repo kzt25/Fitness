@@ -177,10 +177,7 @@
                         name: 'action'
                     },
                 ],
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                
             });
 
             const Toast = Swal.mixin({

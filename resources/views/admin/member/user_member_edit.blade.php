@@ -83,7 +83,7 @@
                     </select>
                     </div>
                     <div class="col-auto">
-                    <label for="member_type" class="form-label">Member Type</label>
+                    <label for="member_type" class="form-label">Member Type</label>{{$user_member_id}}
                     <select name="member_type" class="form-select form-select-md mb-3 @error('member_type') is-invalid @enderror" style="width:auto;">
                         @foreach ($members as $member)
                         <option value="{{ $member->id }}" {{ $user_member_id == $member->id ? 'selected' : '' }}>{{$member->member_type}} - {{$member->duration}}month</option>
