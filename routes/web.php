@@ -36,6 +36,7 @@ use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 Route::get('customer/checkPhone',[CustomerRegisterController::class,'checkPhone'])->name('checkPhone');
+Route::get('customer/checkemail',[CustomerRegisterController::class,'checkemail'])->name('checkPhone');
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
