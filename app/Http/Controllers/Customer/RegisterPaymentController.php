@@ -17,6 +17,12 @@ class RegisterPaymentController extends Controller
         $banking_info = BankingInfo::all();
         return view('customer.payment',compact('banking_info'));
     }
+    // public function test()
+    // {
+
+    //     $banking_info = BankingInfo::all();
+    //     return view('customer.payment_test',compact('banking_info'));
+    // }
     public function ewallet_store(Request $request)
     {
         $this->validate($request,[

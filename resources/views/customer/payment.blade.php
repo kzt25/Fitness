@@ -326,7 +326,6 @@
                     <p>Bank Account Number:</p>
                     <input type="text" name = "payment_name" hidden value="KBZ Bank">
                     <input type="number" name = "bank_account_number" required>
-                    {{-- @error('bank_account_number') <span class="error">{{ $message }}</span> @enderror --}}
                 </div>
                 <div class="customer-transaction-input-container">
                     <p>Bank Account Holder Name:</p>
@@ -354,20 +353,35 @@
                     <img class="preview kbzbankimg">
                 </div>
 
-                <div class="customer-transaction-admin-details">
+                {{-- <div class="customer-transaction-admin-details">
 
                     <div class="customer-transaction-admin-phone">
-                        @foreach($banking_info as $kbz)
-                        @if($kbz->payment_name	== "KBZ Bank")
+                        @foreach($banking_info as $kbzbank)
+                        @if($kbzbank->payment_name	== "KBZ Bank")
                         <p>Bank Account Number:</p>
-                        <p>{{$kbz->bank_account_number}}</p>
+                        <p>{{$kbzbank->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Name:</p>
-                        <p>{{$kbz->bank_account_holder}}</p>
+                        <p>{{$kbzbank->bank_account_holder}}</p>
                     </div>
                      @endif
                      @endforeach
+                </div> --}}
+
+                <div class="customer-transaction-admin-details">
+                    @foreach($banking_info as $kbzB)
+                    @if($kbzB->payment_name	== "KBZ Bank")
+                    <div class="customer-transaction-admin-phone">
+                        <p>Bank Account Number:</p>
+                        <p>{{$kbzB->bank_account_number}}</p>
+                    </div>
+                    <div class="customer-transaction-admin-phone">
+                        <p>Bank Account Holder Name:</p>
+                        <p>{{$kbzB->bank_account_holder}}</p>
+                    </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <div class="customer-transaction-form-btn-container">
@@ -431,7 +445,7 @@
                     @if($cb->payment_name	== "CB Bank")
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Number:</p>
-                        <p>{{$cb->bank_account_name}}</p>
+                        <p>{{$cb->bank_account_number}}</p>
                     </div>
                     <div class="customer-transaction-admin-phone">
                         <p>Bank Account Holder Name:</p>
@@ -886,19 +900,9 @@
                     }
                 }
             }
-
             el.checked = true
-
-
-        //     if(el.checked){
-        //         console.log("uncheck")
-        //     el.checked = false;
-        //   }else{
-        //     console.log("check")
-        //     el.checked = true;
-        //   }
-
         }
+
         $(document).ready(function(){
             $('.alert').alert()
         })
