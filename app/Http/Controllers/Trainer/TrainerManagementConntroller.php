@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Trainer;
 
-use App\Http\Controllers\Controller;
+use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\TrainingGroup;
+use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
 {
     //
     public function index()
     {
-        return view('Trainer.index');
+        $members=Member::groupBy('member_type')
+                        ->where('member_type','!=','Free')
+                        ->get();
+        $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
+        return view('Trainer.index',compact('members','groups'));
     }
     public function free()
     {

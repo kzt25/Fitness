@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Trainer\TrainerGroupController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
@@ -62,7 +63,8 @@ Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
 
 Route::middleware(['role:Trainer'])->group(function () {
-    Route::post('/trainer/group/create',[AdminController::class, 'index'])->name('trainer.group.create');
+    Route::post('/trainer/group/create',[TrainerGroupController::class, 'store'])->name('trainer.group.create');
+    Route::get('/trainer/group/show/{id}',[TrainerGroupController::class, 'show'])->name('trainer.group.show');
 });
 // Admin Site
 Route::prefix('admin')->group(function () {

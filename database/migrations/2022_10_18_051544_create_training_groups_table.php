@@ -16,7 +16,7 @@ class CreateTrainingGroupsTable extends Migration
         Schema::create('training_groups', function (Blueprint $table) {
             $table->id();
             $table->integer('trainer_id');
-            $table->integer('member_type_id');
+            $table->string('member_type');
             $table->string('group_name');
             $table->string('group_type');
             $table->string('member_type_level');
