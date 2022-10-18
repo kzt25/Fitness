@@ -6,12 +6,23 @@
             <form action="{{ route('mealplan.update', $mealplan->id) }}" method="POST" id="create-mealplan">
                 @csrf
                 @method('PUT')
-
+                <div class="mb-4">
+                    <label class="" for="member_type_id">Member Type</label> <br>
+                    <select class="form-control " name="member_type_id" id="member_type_id">
+                        @foreach($member as $memb)
+                        <option value="{{$memb->member_type}}" {{ $memb->member_type == $mealplan->member_type_id ? "selected":"" }}>{{$memb->member_type}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="mt-4">
                     <label for="meal_plan_type">Meal Plan Type</label>
                     <input type="text" class="form-control" name="meal_plan_type" value = "{{$mealplan->meal_plan_type}}">
                 </div>
 
+                <div class="mt-4">
+                    <label for="name">Meal Plan Name</label>
+                    <input type="text" class="form-control" name="meal_plan_name"  value = "{{$mealplan->plan_name}}">
+                </div>
 
                 <div class="mt-4">
                     @if($mealplan->gender == 'Male')

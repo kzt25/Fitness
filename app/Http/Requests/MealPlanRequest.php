@@ -27,8 +27,7 @@ class MealPlanRequest extends FormRequest
             //
             'gender' => 'required',
             'meal_plan_type' => 'required',
-
-
+            'meal_plan_name' => 'required',
         ];
     }
 }

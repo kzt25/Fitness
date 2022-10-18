@@ -6,8 +6,8 @@
             <form action="{{ route('mealplan.store') }}" method="POST" id="create-mealplan">
                 @csrf
                 <div class="mb-4">
-                    <label class="" for="meal_plan_id">Member Type</label> <br>
-                    <select class="form-control " name="meal_plan_id" id="meal_plan_id">
+                    <label class="" for="member_type_id">Member Type</label> <br>
+                    <select class="form-control " name="member_type_id" id="member_type_id">
                         @foreach($member as $memb)
                         <option value="{{$memb->member_type}}">{{$memb->member_type}}</option>
                         @endforeach
@@ -16,6 +16,11 @@
                 <div class="mt-4">
                     <label for="name">Meal Plan Type</label>
                     <input type="text" class="form-control" name="meal_plan_type">
+                </div>
+
+                <div class="mt-4">
+                    <label for="name">Meal Plan Name</label>
+                    <input type="text" class="form-control" name="meal_plan_name">
                 </div>
 
                 <div class="mt-4">

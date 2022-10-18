@@ -66,9 +66,10 @@ class MealPlanController extends Controller
     {
         //
         $mealPlan = new MealPlan();
-        $mealPlan->member_id = $request->member_id;
+        $mealPlan->member_type_id = $request->member_type_id;
         $mealPlan->gender = $request->gender;
         $mealPlan->meal_plan_type = $request->meal_plan_type;
+        $mealPlan->plan_name = $request->meal_plan_name;
         $mealPlan->save();
         return redirect()->route('mealplan.index')->with('success', 'New Meal Plan is created successfully!');
     }
@@ -82,7 +83,7 @@ class MealPlanController extends Controller
     public function edit($id)
     {
         //
-        $member = Member::All();
+        $member = Member::groupBy('member_type')->get();
         // $mealplan = MealPlan::where('meal_plan_id',$id)->first();
         $mealplan =MealPlan::findOrFail($id);
         return view('admin.MealPlan.edit', compact('mealplan','member'));
@@ -91,13 +92,12 @@ class MealPlanController extends Controller
 
     public function update(MealPlanRequest $request, $id)
     {
-        //
-        // $mealPlan_update = MealPlan::where('meal_plan_id',$id)->first();
-        //  dd($mealPlan_update->meal_plan_id);
+        // dd("df");
         $mealPlan_update=MealPlan::findOrFail($id);
-        // $mealPlan_update->member_id = $request->member_id;
+        $mealPlan_update->member_type_id = $request->member_type_id;
         $mealPlan_update->gender = $request->gender;
         $mealPlan_update->meal_plan_type = $request->meal_plan_type;
+        $mealPlan_update->plan_name = $request->meal_plan_name;
         $mealPlan_update->update();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is updated successfully!');
     }
