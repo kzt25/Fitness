@@ -16,7 +16,7 @@ class MealPlanController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -51,7 +51,7 @@ class MealPlanController extends Controller
     public function create()
     {
         //
-        $member = Member::All();
+        $member = Member::groupBy('member_type')->get();
         // dd($member);
         return view('admin.MealPlan.create',compact('member'));
     }
@@ -66,7 +66,7 @@ class MealPlanController extends Controller
     {
         //
         $mealPlan = new MealPlan();
-        // $mealPlan->member_id = $request->member_id;
+        $mealPlan->member_id = $request->member_id;
         $mealPlan->gender = $request->gender;
         $mealPlan->meal_plan_type = $request->meal_plan_type;
         $mealPlan->save();

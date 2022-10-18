@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Trainer;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
 {
@@ -19,8 +20,20 @@ class TrainerManagementConntroller extends Controller
 
     public function view_member()
     {
-        return view('Trainer.view_member');
+        $member = User::where('name' , '!=','testing')->get();
+        return view('Trainer.view_member',compact('member'));
     }
+
+    public function addMember($id)
+    {
+        $member = User::findOrFail($id);
+        $member->name = "testing";
+        $member->update();
+        return redirect()->back()->with('popup', 'open');
+    }
+
+
+
 
 
 

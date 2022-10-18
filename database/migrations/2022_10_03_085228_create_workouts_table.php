@@ -22,6 +22,8 @@ class CreateWorkoutsTable extends Migration
             $table->string('calories');
             $table->string('workout_level');
             $table->string('workout_periods');
+            $table->string('place');
+            $table->string('day');
             $table->string('image');
             $table->string('video');
             $table->timestamps();
