@@ -75,6 +75,31 @@
                   </div>
               </div>
 
+              <div class="row g-3 mb-3">
+                <div class="form-floating col-md-6">
+                        <select class="form-select" aria-label="Default select example" placeholder="Select workout day" name="workoutday">
+                            <option value=""></option>
+                            <option value="Monday" id="Monday">Monday</option>
+                            <option value="Tuesday" id="Tuesday">Tuesday</option>
+                            <option value="Wednesday" id="Wednesday">Wednesday</option>
+                            <option value="Thursday" id="Thursday">Thursday</option>
+                            <option value="Friday" id="Friday">Friday</option>
+                            <option value="Saturday" id="Saturday">Saturday</option>
+                            <option value="Sunday" id="Sunday">Sunday</option>
+                        </select>
+                        <label for="floatingInput">Select Workout day</label>
+                </div>
+                <div class="form-floating col-md-6">
+                        <select class="form-select" aria-label="Default select example" placeholder="Select workout place" name="workoutplace">
+                            <option value=""></option>
+                            <option value="Gym" id="Gym">Gym</option>
+                            <option value="Home" id="Home">Home</option>
+                        </select>
+                        <label for="floatingInput">Select Workout Place</label>
+                </div>
+          </div>
+
+
               <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupFile01">Upload photo</label>
                 <input type="file" class="form-control" id="inputGroupFile01" name="image">
@@ -133,6 +158,27 @@
         }else if(user.workout_level == 'Professional'){
             var select = $("#professional");
             select.attr('selected',true);
+        }
+        if (user.day == 'Monday') {
+            $("#Monday").attr('selected',true);
+        } else if(user.day == 'Tuesday'){
+            $("#Tuesday").attr('selected',true);
+        }else if(user.day == 'Wednesday'){
+            $("#Wednesday").attr('selected',true);
+        }else if(user.day == 'Thursday'){
+            $("#Thursday").attr('selected',true);
+        }else if(user.day == 'Friday'){
+            $("#Friday").attr('selected',true);
+        }else if(user.day == 'Saturday'){
+            $("#Saturday").attr('selected',true);
+        }else if(user.day == 'Sunday'){
+            $("#Sunday").attr('selected',true);
+        }
+
+        if (user.place == 'Gym') {
+            $("#Gym").attr('selected',true);
+        } else {
+            $("#Home").attr('selected',true);
         }
     })
 

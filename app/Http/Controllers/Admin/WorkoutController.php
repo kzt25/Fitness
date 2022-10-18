@@ -189,6 +189,7 @@ class WorkoutController extends Controller
             $image_name = $check->image;
         }
 
+        $check->member_type = $request->memberType ?? $check->member_type;
         $check->workout_name = $request->workoutname ?? $check->workout_name;
         $check->gender_type = $request->gendertype ?? $check->gender_type;
         $check->workout_level = $request->workoutlevel ?? $check->workout_level;
