@@ -46,7 +46,7 @@
         </div>
 
         <div class="group-chat-messages-container">
-            <div class="group-chat-receiver-container">
+            {{-- <div class="group-chat-receiver-container">
                 <img src="../imgs/avatar.png"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
@@ -111,7 +111,7 @@
                     </video>
                 </div>
                 <img src="../imgs/avatar.png"/>
-            </div>
+            </div> --}}
         </div>
 
         <form class="group-chat-send-form-container">
