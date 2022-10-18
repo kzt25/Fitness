@@ -12,7 +12,7 @@
             </a> -->
             <div class="tainer-group-chat-name-container">
                 <img src="{{ asset('image/default.jpg')}}"/>
-                <p>Group Name</p>
+                <p>Group Name 1</p>
             </div>
             <div class="tainer-group-chat-name-container">
                 <img src="{{ asset('image/default.jpg')}}"/>
@@ -32,7 +32,7 @@
                     <p>Group Name</p>
                     <span>group member, group member,group member,group member,group member,</span>
                 </div>
-            </a>
+            </a>   
 
             <a href="../htmls/trainerTrainingCenterViewMedia.html" class="group-chat-view-midea-link">
                 <p>View Media</p>
@@ -109,7 +109,7 @@
                 </div>
                 <img src="../imgs/avatar.png"/>
             </div> --}}
-                <img src="{{ asset('image/default.jpg')}}"/>
+                {{-- <img src="{{ asset('image/default.jpg')}}"/> --}}
             </div>
         </div>
 
