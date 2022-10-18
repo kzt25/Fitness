@@ -154,6 +154,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/trainer', [TrainerManagementConntroller::class, 'index'])->name('trainer');
         Route::get('/trainer/view_member',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
         Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
+        Route::post('trainer/member/search',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
     });
     Route::middleware(['role:Free'])->group(function () {
         Route::get('/free', [TrainerManagementConntroller::class, 'free'])->name('free');

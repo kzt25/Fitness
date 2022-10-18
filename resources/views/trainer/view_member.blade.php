@@ -11,8 +11,9 @@
         </div>
         <div class="modal-body">
          <form class="add-member-form" action="">
+            <input type="text" class="form-control mb-3"   placeholder="Search employee" id="search">
             <div class="add-member-rows-container">
-                @foreach($member as $memb)
+                {{-- @foreach($member as $memb)
                 <div class="add-member-row">
                     <div class="add-member-name-container">
                         <img src="../imgs/avatar.png">
@@ -25,8 +26,7 @@
                         <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>
                     </div>
                 </div>
-                @endforeach
-
+                @endforeach --}}
             </div>
 
             <div class="create-group-form-btns-contaier">
@@ -258,7 +258,57 @@
           });
         });
        </script>
-          @endif
+        @endif
+        <script>
+            $('#search').on('keyup', function(){
+                    search();
+                });
+                search();
+                function search(){
+                    var keyword = $('#search').val();
+                    $.post('{{ route('trainer/member/search') }}',
+                    {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        keyword:keyword
+                    },
+                    function(data){
+                        table_post_row(data);
+                        console.log(data);
+                    });
+                }
+                // table row with ajax
+                function table_post_row(res){
+                let htmlView = '';
+                if(res.members.length <= 0){
+                    htmlView+= `
+                       No data found.
+                    `;
+                }
+                for(let i = 0; i < res.members.length; i++){
+                    id = res.members[i].id;
+
+                    // var id = '12';
+	                var url = "{{ route('addMember',':id') }}";
+                    url = url.replace(':id', id);
+
+                    htmlView += `
+                        <div class="add-member-row">
+                            <div class="add-member-name-container">
+                                <img src="../imgs/avatar.png">
+                                <p>`+res.members[i].name+`</p>
+                            </div>
+                            <div class="add-member-row-btns-container">
+                                <label class="add-member-checkbox">
+                                    <a href = ${url} ><p>Add</p></a>
+                                </label>
+                                <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>
+                            </div>
+                        </div>
+                `
+                }
+                    $('.add-member-rows-container').html(htmlView);
+                }
+        </script>
 @endsection
 
 
