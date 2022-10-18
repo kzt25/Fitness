@@ -13,13 +13,15 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\TrainerController;
 use App\Http\Controllers\Admin\WorkoutController;
 use App\Http\Controllers\Admin\MealPlanController;
+use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
-use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Customer\CustomerLoginController;
+use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
+use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +35,17 @@ use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 */
 Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
-
+Route::get('customer/checkPhone',[CustomerRegisterController::class,'checkPhone'])->name('checkPhone');
+Route::get('customer/checkemail',[CustomerRegisterController::class,'checkemail'])->name('checkPhone');
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
 Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+
+Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('customer_payment');
+// Route::get('test_payment', [RegisterPaymentController::class, 'test'])->name('test_payment');
+Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
+Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -49,6 +57,8 @@ Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->nam
 
 Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
 Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+
+
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
 
 // Admin Site
@@ -114,7 +124,10 @@ Route::prefix('admin')->group(function () {
         Route::get('user_member/edit/{id}', [MemberController::class, 'user_member_edit'])->name('member.user_member.edit');
         Route::post('user_member/update/{id}',[MemberController::class,'user_member_update'])->name('member.user_member.update');
 
-        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd']);
+        Route::get('admin/user_member/datatable/ssd', [MemberController::class, 'user_member_ssd'])->name('admin/user_member/datatable/ssd');
+        Route::get('admin/user_member/datatable_decline/ssd', [MemberController::class, 'user_member_decline_ssd'])->name('admin/user_member/datatable_decline/ssd');
+        Route::get('user_member/destroy/{id}', [MemberController::class, 'user_member_destroy'])->name('user_member.destroy');
+        Route::get('user_member/ban/{id}', [MemberController::class, 'user_member_ban'])->name('user_member.ban');
 
         //BankingInfo
         Route::resource('bankinginfo', BankinginfoController::class);
@@ -124,8 +137,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/payment/{id}',[PaymentController::class,'detail'])->name('payment.detail');
         Route::get('/transaction/bank/{id}',[PaymentController::class,'transactionBankDetail'])->name('transactionbank.detail');
         Route::get('/transaction/ewallet/{id}',[PaymentController::class,'transactionWalletDetail'])->name('transactionwallet.detail');
-        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction']);
-        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction']);
+        Route::get('payment/bank/transction',[PaymentController::class,'bankPaymentTransction'])->name('banktransaction');
+        Route::get('payment/ewallet/transction',[PaymentController::class,'EPaymentTransction'])->name('wallettransaction');
         Route::get('/payment',[PaymentController::class,'transctionView'])->name('payment.transction');
 
         //Request
@@ -136,5 +149,25 @@ Route::prefix('admin')->group(function () {
     });
 
 });
-
+        Route::middleware(['role:Trainer'])->group(function () {
+            Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
+        });
+        Route::middleware(['role:Free'])->group(function () {
+            Route::get('/free',[TrainerManagementConntroller::class,'free'])->name('free');
+        });
+        Route::middleware(['role:Platinum'])->group(function () {
+            Route::get('/platinum',[TrainerManagementConntroller::class,'platinum'])->name('platinum');
+        });
+        Route::middleware(['role:Gold'])->group(function () {
+            Route::get('/gold',[TrainerManagementConntroller::class,'gold'])->name('gold');
+        });
+        Route::middleware(['role:Diamond'])->group(function () {
+            Route::get('/diamond',[TrainerManagementConntroller::class,'diamond'])->name('diamond');
+        });
+        Route::middleware(['role:Ruby'])->group(function () {
+            Route::get('/ruby',[TrainerManagementConntroller::class,'ruby'])->name('ruby');
+        });
+        Route::middleware(['role:Ruby Premium'])->group(function () {
+            Route::get('/ruby_premium',[TrainerManagementConntroller::class,'ruby_premium'])->name('ruby_premium');
+        });
 });

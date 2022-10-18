@@ -64,6 +64,11 @@
                 <div class="mb-4" id="phone">
                     <label for="phone">Phone</label>
                     <input type="number" class="form-control" name="phone" value="{{$bankinginfo->phone}}">
+                    @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">Phone number is required at least 11.</p>
+                            @endforeach
+                    @endif
                 </div>
 
                 <div class="float-end mt-4">

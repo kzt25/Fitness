@@ -8,7 +8,7 @@
         <div class="card shadow p-4">
             <h3 class="text-center mb-2">Add New Bank Account</h3>
 
-            <form action="{{ route('bankinginfo.store') }}" method="POST" id="create-trainer">
+            <form action="{{ route('bankinginfo.store') }}" method="POST" id="create-bankinfo">
                 @csrf
                 <div class="d-flex mb-3">
                     <label>Payment Type :</label>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div id="bank-select">
+                <div id="bank-select" style="display: none;">
                     <label for="accname">Payment Name</label>
                     <select class="form-select mb-3" name="bankName" aria-label="Default select example">
                         <option selected>Select Bank Name</option>
@@ -65,7 +65,13 @@
                 <div class="mb-4" id="phone" style="display: none;">
                     <label>Phone</label>
                     <input type="number" class="form-control" name="phone">
+                    @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">Phone number is required at least 11.</p>
+                            @endforeach
+                    @endif
                 </div>
+
 
                 <div class="float-end mt-4">
                     <a href="{{ route('bankinginfo.index') }}" class="btn btn-secondary">Cancel</a>
@@ -79,6 +85,7 @@
 
 
 @push('scripts')
+{!! JsValidator::formRequest('App\Http\Requests\BankingRequest', '#create-bankinfo') !!}
 <script>
     $("#ewallet").click(function() {
         $('#accname').show();

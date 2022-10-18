@@ -8,6 +8,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\BankingInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -91,12 +92,46 @@ class CustomerRegisterController extends Controller
         $user->save();
 
         $user->members()->attach($member_id, ['member_type_level' => $user_member_type_level]);
+        $user->assignRole('Free');
         Auth::login($user);
+    }
+
+    public function checkPhone(Request $request)
+    {
+        $phone = $request->phone;
+
+        $user = User::where('phone', $phone)->first();
+        if($user){
+            return response()->json([
+                'status' => 300,
+                'message' => "Your Phone Number is already used",
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+            ]);
+        }
+    }
+
+    public function checkemail(Request $request)
+    {
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+        if($user){
+            return response()->json([
+                'status' => 300,
+                'message' => "Your email is already used",
+            ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+            ]);
+        }
     }
 
     public function register(Request $request)
     {
-
         // $this->validator($request->all())->validate();
 
         // event(new Registered($user = $this->create($request->all())));
@@ -107,4 +142,5 @@ class CustomerRegisterController extends Controller
         //                 ?: redirect('$this->redirectPath()');
         //return redirect('/');
     }
+
 }

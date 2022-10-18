@@ -29,8 +29,9 @@
 
 
                 <div class="float-end mt-4">
-                    <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary" onclick="submitForm(this);">Confirm</button>
+                    <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>
+
                 </div>
             </form>
         </div>

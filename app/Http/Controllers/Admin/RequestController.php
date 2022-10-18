@@ -13,7 +13,7 @@ class RequestController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.request.member_request');
@@ -22,6 +22,7 @@ class RequestController extends Controller
     public function ssd()
     {
         $memberRequest = User::where('active_status',1)->get();
+
         return Datatables::of($memberRequest)
             ->addIndexColumn()
             ->addColumn('action', function ($each) {
@@ -37,7 +38,7 @@ class RequestController extends Controller
                                     Accept
                               </a>';
 
-                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="mx-1 btn btn-sm btn-danger" data-id="' . $each->id . '" >
+                $delete_icon = '<a href=" ' . route('requestdecline', $each->id) . ' " class="mx-1 btn btn-sm delete-btn btn-danger" data-id="' . $each->id . '" >
                                     Decline
                                 </a>';
 
