@@ -16,6 +16,26 @@ class TrainerManagementConntroller extends Controller
     {
         return view('Trainer.free_user');
     }
+
+    public function view_member()
+    {
+        return view('Trainer.view_member');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function platinum()
     {
         return view('Trainer.platinum_user');
