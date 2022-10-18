@@ -13,10 +13,11 @@
           </div>
 
         <div class="row g-0">
-          <div class="col-md-4 shadow ms-3 my-3">
-            <img src="{{asset('/storage/payments/'.$banktransctiondetail->photo)}}" class="img-fluid rounded" alt="...">
+          <div class="col-md-4 shadow" style="width:300px; height:600px">
+            <img src="{{asset('/storage/payments/'.$banktransctiondetail->photo)}}" class="img-fluit rounded" style="width: 100%;
+            height:100%">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 d-flex align-items-center">
             <div class="card-body">
               <div>
                 <label class="fs-5">Name :</label>

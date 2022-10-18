@@ -82,7 +82,7 @@
                     {{-- <div class="col-md-5" id = "cannot_reset_password">
                         <h6 class="text-danger">You cannot reset your password now! <br><br>Please Try again later!</h6>
                     </div> --}}
-                    <div class="cannot-reset-password-container" >
+                    <div class="cannot-reset-password-container" id = "cannot_reset_password">
                         <p>You cannot reset your password now!</p>
                         <span>Please try again later</span><br>
                         <a href="#" class="customer-primary-btn">Go Back</a>
@@ -104,7 +104,7 @@
         var otpStatus
         var phoneNumber
        $("#checkPhone").click(function(){
-        ("#checkPhone").prop('disabled', true);
+        // ("#checkPhone").prop('disabled', true);
           var phone = $(".phone").val();
           $.ajax({
                 url : 'checkPhoneGetOTP',
@@ -116,7 +116,12 @@
                 success   : function(data) {
                     otpStatus = data
                     if(data.status == 300){
-                        alert(data.message);
+                        // alert(data.message);
+                        Swal.fire({
+                        text: data.message,
+                        confirmButtonColor: '#3CDD57',
+                        timer: 3000
+                      });
                     }
                     if(data.status == 200){
                         phoneNumber = data.message

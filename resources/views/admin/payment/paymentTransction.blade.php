@@ -32,13 +32,9 @@
 
 @section('transction-active', 'active')
 @section('content')
-<div class="container-fluit">
+<div class="col-md-12 mx-auto">
     <div class="row input-daterange">
-
-
-
-
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -47,7 +43,7 @@
                 <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Date" >
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -56,14 +52,15 @@
                 <input type="date" class="form-control" name="end_date" id="end_date" placeholder="End Date" >
             </div>
         </div>
-    </div>
-    <div>
-        <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
-        <button id="refresh" class="btn btn-outline-warning btn-sm">Reset</button>
+        <div class="col-md-2 ">
+            <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+            <button id="refresh" class="btn btn-outline-warning btn-sm">Reset</button>
+        </div>
     </div>
 
+
     <div class="row">
-        <div class="col-md-11 mx-auto">
+        <div class="col-md-12">
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="text-center mb-0">Bank Payment Transaction</h2>
             </div>
@@ -93,9 +90,9 @@
 
 </div>
 
-<div class="container-fluit">
+<div class="col-md-12 mx-auto">
     <div class="row input-daterange">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -104,7 +101,7 @@
                 <input type="date" class="form-control" name="start_date" id="start_datewallet" placeholder="Start Date" >
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text bg-info text-white" id="basic-addon1"><i
@@ -113,15 +110,16 @@
                 <input type="date" class="form-control" name="end_date" id="end_datewallet" placeholder="End Date" >
             </div>
         </div>
+        <div class="col-md-2">
+            <button id="filterwallet" class="btn btn-outline-info btn-sm">Filter</button>
+            <button id="refreshwallet" class="btn btn-outline-warning btn-sm">Reset</button>
+        </div>
     </div>
-    <div>
-        <button id="filterwallet" class="btn btn-outline-info btn-sm">Filter</button>
-        <button id="refreshwallet" class="btn btn-outline-warning btn-sm">Reset</button>
-    </div>
+
 
     <div class="row">
 
-        <div class="col-md-11 mx-auto">
+        <div class="col-md-12">
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="text-center mb-0">E-wallet Payment Transaction</h2>
             </div>

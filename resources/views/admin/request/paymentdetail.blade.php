@@ -16,10 +16,11 @@
 
                @foreach ($payment as $pay)
                 <div class="row g-0">
-                    <div class="col-md-4 shadow ms-3 my-3">
-                    <img src="{{asset('/storage/payments/'.$pay->photo)}}" class="img-fluid rounded" alt="...">
+                    <div class="col-md-4 shadow mt-3 ms-3" style="width:300px; height:600px">
+                        <img src="{{asset('/storage/payments/'.$pay->photo)}}" class="img-fluit rounded" alt="..." style="width: 100%;
+                        height:100%">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 d-flex align-items-center">
                     <div class="card-body">
                         <div>
                         <label class="fs-5">Name :</label>
@@ -33,23 +34,28 @@
                         <label class="fs-5">Payment name :</label>
                         <label class="ms-2 text-capitalize">{{$pay->payment_name ?? "Bank"}}</label>
                         </div>
-                    <div id="bank-number">
-                        <label class="fs-5">Bank account number :</label>
-                        <label class="ms-2 text-capitalize">{{$pay->bank_account_number ?? "E-wallet"}}</label>
-                    </div>
-                        <div id="bank-holder">
-                        <label class="fs-5">Bank account holder :</label>
-                        <label class="ms-2 text-capitalize">{{$pay->bank_account_holder ?? "E-wallet"}}</label>
-                        </div>
+                        @if ($pay->payment_type == "bank")
+                            <div id="bank-number">
+                                <label class="fs-5">Bank account number :</label>
+                                <label class="ms-2 text-capitalize">{{$pay->bank_account_number ?? "E-wallet"}}</label>
+                            </div>
+                            <div id="bank-holder">
+                            <label class="fs-5">Bank account holder :</label>
+                            <label class="ms-2 text-capitalize">{{$pay->bank_account_holder ?? "E-wallet"}}</label>
+                            </div>
+                        @else
+                            <div id="account-name">
+                            <label class="fs-5">Account name :</label>
+                            <label class="ms-2 text-capitalize">{{$pay->account_name ?? "Bank"}}</label>
+                            </div>
+                            <div id="phone">
+                            <label class="fs-5">Phone No. :</label>
+                            <label class="ms-2 text-capitalize">{{$pay->phone ?? "Bank"}}</label>
+                            </div>
+                        @endif
 
-                        <div id="account-name">
-                        <label class="fs-5">Account name :</label>
-                        <label class="ms-2 text-capitalize">{{$pay->account_name ?? "Bank"}}</label>
-                        </div>
-                        <div id="phone">
-                        <label class="fs-5">Phone No. :</label>
-                        <label class="ms-2 text-capitalize">{{$pay->phone ?? "Bank"}}</label>
-                        </div>
+
+
                     <div>
                         <label class="fs-5">Amount :</label>
                         <label class="ms-2 text-capitalize">{{$pay->amount ?? "Amount not have."}}</label>
@@ -70,7 +76,7 @@
 @endsection
 
 
-@push('scripts')
+{{-- @push('scripts')
 <script>
     $(document).ready(function(){
         var paymentType = @json($payment);
@@ -85,4 +91,4 @@
 
 </script>
 
-@endpush
+@endpush --}}

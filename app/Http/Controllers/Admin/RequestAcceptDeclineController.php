@@ -36,13 +36,11 @@ class RequestAcceptDeclineController extends Controller
 
     public function decline($id){
         $user = User::findOrFail($id);
-        $member_history = MemberHistory::where('user_id',$user->id)->first();
-        $member_role = Member::where('id',$member_history->member_id)->first();
-        $role=Role::findOrFail($member_role->role_id);
-        $user->assignRole($role->name);
+        // $member_history = MemberHistory::where('user_id',$user->id)->first();
+        // $member_role = Member::where('id',$member_history->member_id)->first();
         $user->active_status=0;
+        $user->member_type = 'Free';
         $user->update();
-
         return back()->with('success','Declined');
     }
 }
