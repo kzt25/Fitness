@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMealPlansTable extends Migration
+class CreateTrainingGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateMealPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('meal_plans', function (Blueprint $table) {
+        Schema::create('training_groups', function (Blueprint $table) {
             $table->id();
+            $table->integer('trainer_id');
             $table->integer('member_type_id');
-            $table->string('plan_name');
+            $table->string('group_name');
+            $table->string('group_type');
+            $table->string('member_type_level');
             $table->string('gender');
-            $table->string('meal_plan_type');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateMealPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meal_plans');
+        Schema::dropIfExists('training_groups');
     }
 }

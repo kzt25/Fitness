@@ -15,11 +15,8 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('messge_body');
-            $table->text('file');
-            $table->text('photo');
-            $table->text('short_video');
-            $table->text('voice_msg');
+            $table->text('text');
+            $table->text('media');
             $table->timestamps();
         });
     }

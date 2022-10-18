@@ -61,6 +61,9 @@ Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->
 
 Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
 
+Route::middleware(['role:Trainer'])->group(function () {
+    Route::post('/trainer/group/create',[AdminController::class, 'index'])->name('trainer.group.create');
+});
 // Admin Site
 Route::prefix('admin')->group(function () {
 
