@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('member_type');
             $table->string('membertype_level');
             $table->string('member_code')->nullable();
+            $table->boolean('ingroup')->default(0);
             $table->integer('height')->default(0);
             $table->float('weight')->default(0.0);
             $table->float('ideal_weight')->default(0.0);

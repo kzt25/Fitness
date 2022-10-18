@@ -62,12 +62,13 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
     Route::post('password_reset', [PassResetController::class, 'password_reset'])->name('password_reset');
 
+    Route::middleware(['role:Trainer'])->group(function () {
+        Route::post('/trainer/group/create', [AdminController::class, 'index'])->name('trainer.group.create');
+    });
     // Admin Site
     Route::prefix('admin')->group(function () {
-
         Route::middleware(['role:System_Admin|King|Queen'])->group(function () {
             // Route::middleware('auth')->group(function () {
-
             Route::get('/', [AdminController::class, 'index'])->name('admin-home');
             Route::get('/profile', [AdminController::class, 'adminProfile'])->name('admin-profile');
             Route::get('/profile/edit', [AdminController::class, 'editAdminProfile'])->name('admin-edit');

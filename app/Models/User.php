@@ -39,6 +39,13 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
+    public function tainer_groups()
+    {
+        return $this->belongsToMany(TrainerGroup::class, 'training_groups')
+                    ->withPivot(['group_id','user_id'])
+                    ->withTimestamps();
+    }
+
     public function payment(){
         return $this->hasOne(Payment::class);
     }
