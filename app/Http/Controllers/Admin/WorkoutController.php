@@ -66,7 +66,7 @@ class WorkoutController extends Controller
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
             Storage::disk('local')->put(
-                'upload/'.$video_name,
+                'public/upload/'.$video_name,
                 file_get_contents($video)
             );
         }
@@ -75,7 +75,7 @@ class WorkoutController extends Controller
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
             Storage::disk('local')->put(
-                'upload/'.$image_name,
+                'public/upload/'.$image_name,
                 file_get_contents($image)
             );
         }
@@ -89,6 +89,8 @@ class WorkoutController extends Controller
         $data->calories = $request->calories;
         $data->time = $request->videoTime;
         $data->workout_periods =0;
+        $data->day = $request->workoutday;
+        $data->place = $request->workoutplace;
         $data->image = $image_name;
         $data->video=$video_name;
         $data->save();
@@ -101,6 +103,8 @@ class WorkoutController extends Controller
         $data->calories = $request->calories;
         $data->time = $request->videoTime;
         $data->workout_periods =0;
+        $data->day = $request->workoutday;
+        $data->place = $request->workoutplace;
         $data->image = $image_name;
         $data->video=$video_name;
         $data->save();
@@ -115,6 +119,8 @@ class WorkoutController extends Controller
         $data->calories = $request->calories;
         $data->time = $request->videoTime;
         $data->workout_periods =0;
+        $data->day = $request->workoutday;
+        $data->place = $request->workoutplace;
         $data->image = $image_name;
         $data->video=$video_name;
         $data->save();
@@ -125,7 +131,7 @@ class WorkoutController extends Controller
     }
 
     public function workoutview(){
-        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.gender_type','workouts.workout_level','workouts.time','workouts.calories','workouts.video')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
+        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.gender_type','workouts.workout_level','workouts.time','workouts.calories','workouts.video','workouts.day','workouts.place')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
         //dd($workoutview->toArray());
         return view('admin.workout.workout')->with(['workoutview'=>$workoutview]);
     }
@@ -137,11 +143,11 @@ class WorkoutController extends Controller
 
         $data->delete();
 
-        if(File::exists(storage_path()."/app/upload/".$image_name)){
-            File::delete(storage_path()."/app/upload/".$image_name);
+        if(File::exists(storage_path()."/app/public/upload/".$image_name)){
+            File::delete(storage_path()."/app/public/upload/".$image_name);
         }
-        if(File::exists(storage_path()."/app/upload/".$video_name)){
-            File::delete(storage_path()."/app/upload/".$video_name);
+        if(File::exists(storage_path()."/app/public/upload/".$video_name)){
+            File::delete(storage_path()."/app/public/upload/".$video_name);
         }
         return back()->with(['success'=>'Workout delete success.']);
     }
@@ -160,7 +166,7 @@ class WorkoutController extends Controller
             $video = $request->file('video');
             $video_name =uniqid().'_'. $video->getClientOriginalName();
             Storage::disk('local')->put(
-                'upload/'.$video_name,
+                'public/upload/'.$video_name,
                 file_get_contents($video)
             );
         }else{
@@ -170,7 +176,7 @@ class WorkoutController extends Controller
             $image = $request->file('image');
             $image_name =uniqid().'_'. $image->getClientOriginalName();
             Storage::disk('local')->put(
-                'upload/'.$image_name,
+                'public/upload/'.$image_name,
                 file_get_contents($image)
             );
         }else{
@@ -182,6 +188,8 @@ class WorkoutController extends Controller
         $check->workout_level = $request->workoutlevel ?? $check->workout_level;
         $check->time = $request->videoTime ?? $check->time;
         $check->calories = $request->calories ?? $check->calories;
+        $check->day = $request->workoutday ?? $check->day;
+        $check->place = $request->workoutplace ?? $check->place;
         $check->image = $image_name;
         $check->video = $video_name;
         $check->update();
@@ -197,7 +205,7 @@ class WorkoutController extends Controller
         // $response->header('Accept-Ranges','bytes');
         // for ($i=1; $i<=count($video); $i++) {
             foreach($video as $vd){
-                return response()->file(storage_path()."/app/upload/".$vd->video);
+                return response()->file(storage_path()."/app/public/upload/".$vd->video);
             }
         // }
     }
