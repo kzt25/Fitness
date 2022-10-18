@@ -21,9 +21,20 @@
                     </video>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname">
-                    <label for="floatingInput">Workout Name</label>
+                <div class="row g-3 mb-3">
+                    <div class="form-floating col-md-6">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname">
+                        <label for="floatingInput">Workout Name</label>
+                    </div>
+                    <div class="form-floating col-md-6">
+                        <select class="form-select" aria-label="Default select example" placeholder="Workout level select" name="workoutlevel">
+                            <option value=""></option>
+                            <option value="Platimun">Platimun</option>
+                            <option value="Advance">Advance</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                        <label for="floatingInput">Workout level select</label>
+                    </div>
                 </div>
 
                   <div class="row g-3 mb-3">
