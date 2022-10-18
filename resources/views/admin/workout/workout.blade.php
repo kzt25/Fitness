@@ -22,6 +22,7 @@
             <div class="card shadow rounded">
                 <div class="card-header">
                     {{$workout->plan_type}}
+                    <span class="bg-info text-white rounded-pill" style="font-size: 0.8rem; padding:3px; float: right;">{{$workout->day}}</span>
                 </div>
                 <div class="card-body" style="padding: 0;">
                         <div class="" width="100%">
@@ -37,6 +38,7 @@
                             <p class="card-text mb-1"> <b>Workout Name :</b> {{$workout->workout_name}}</p>
                             <p class="card-text mb-1"><b>Gender Type :</b> {{$workout->gender_type}}</p>
                             <p class="card-text mb-1"><b>Level :</b> {{$workout->workout_level}}</p>
+                            <p class="card-text mb-1"><b>Place :</b> {{$workout->place}}</p>
                             <p class="card-text mb-1"><b>Burn Calories :</b> {{$workout->calories}} Calories</p>
                             <p class="card-text mb-3"><b>Video Duration :</b> {{$workout->time}} Minutes</p>
                             <a href="{{route('workoutedit',[$workout->id])}}" class="btn btn-sm btn-primary">Edit</a>
