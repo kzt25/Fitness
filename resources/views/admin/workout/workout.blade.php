@@ -15,7 +15,7 @@
 <div class="d-flex">
 <h3 class="text-center mx-auto">Workouts</h3>
 </div>
-<a href="javascript:history.back()" class="btn btn-primary "><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
+<a href="{{route('workoutplane')}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp; Back</a>
     <div class="row my-3">
         @foreach ($workoutview as $workout)
         <div class="col-md-3">
