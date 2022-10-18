@@ -19,65 +19,69 @@
   </head>
   <body class="customer-loggedin-bg">
     @include('trainer.layouts.header')
-
-    <!--create gp modal-->
-    <div class="modal fade" id="CreateGroupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header  customer-transaction-modal-header">
-              <h5 class="modal-title text-center" id="exampleModalLabel">Create Group</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearCreateGroupInputs()"></button>
-            </div>
-            <div class="modal-body">
-             <form class="create-group-form" action="">
-                <input type="hidden">
-                <div class="create-group-name create-group-input">
-                    <p>Group Name</p>
-                    <input type="text" name="group_name" required>
-                </div>
-                <div class="create-group-member-type create-group-input">
-                    <p>Member Type</p>
-                    <select name="member_type">
-                        <option value="">Choose Member Type</option>
-                    </select>
-                </div>
-                <div class="create-group-member-type create-group-input">
-                    <p>Level</p>
-                    <select name="level">
-                        <option value="">Choose Level</option>
-                    </select>
-                </div>
-                <div class="create-group-gender create-group-input">
-                    <p>Gender</p>
-                    <select name="gender">
-                        <option value="">Choose Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <div class="create-group-group-type create-group-input">
-                    <p>Group Type</p>
-                    <select name="group_type">
-                        <option value="">Choose Group Type</option>
-                        <option value="weightLoss">Weight Loss</option>
-                        <option value="bodyBeauty">Body Beauty</option>
-                    </select>
-                </div>
-
-                <div class="create-group-form-btns-contaier">
-                    <button type="submit" class="customer-primary-btn">Confirm</button>
-                    <button type="reset" class="customer-secondary-btn">Cancel</button>
-                </div>
-             </form>
-
-            </div>
-
-          </div>
+ <!--create gp modal-->
+ <div class="modal fade" id="CreateGroupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header  customer-transaction-modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Create Group</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearCreateGroupInputs()"></button>
         </div>
-    </div>
+        <div class="modal-body">
+         <form class="create-group-form" action="" method="POST">
+            @method('POST')
+            @csrf
+            <input type="hidden" name="trainer_id" value="1">
+            <div class="create-group-name create-group-input">
+                <p>Group Name</p>
+                <input type="text" name="group_name" required>
+            </div>
+            <div class="create-group-member-type create-group-input">
+                <p>Member Type</p>
+                <select name="member_type">
+                    <option value="">Choose Member Type</option>
+                </select>
+            </div>
+            <div class="create-group-member-type create-group-input">
+                <p>Level</p>
+                <select name="level">
+                    <option value="">Choose Level</option>
+                </select>
+            </div>
+            <div class="create-group-gender create-group-input">
+                <p>Gender</p>
+                <select name="gender">
+                    <option value="">Choose Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="create-group-group-type create-group-input">
+                <p>Group Type</p>
+                <select name="group_type">
+                    <option value="">Choose Group Type</option>
+                    <option value="weightLoss">Weight Loss</option>
+                    <option value="bodyBeauty">Body Beauty</option>
+                </select>
+            </div>
 
+            <div class="create-group-form-btns-contaier">
+                <button type="submit" class="customer-primary-btn">Confirm</button>
+                <button type="reset" class="customer-secondary-btn">Cancel</button>
+            </div>
+         </form>
+
+        </div>
+
+      </div>
+    </div>
+</div>
     <div class="customer-main-content-container">
         <div class="trainer-main-content-container">
+            <button data-bs-toggle="modal" data-bs-target="#CreateGroupModal" class="trainer-create-gp-modal-btn customer-primary-btn">
+                <iconify-icon icon="akar-icons:circle-plus" class="trainer-create-gp--modal-btn-icon"></iconify-icon>
+                <p>Group</p>
+            </button>
             @yield('content')
 
         </div>

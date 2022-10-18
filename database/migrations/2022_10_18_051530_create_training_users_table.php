@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMealPlansTable extends Migration
+class CreateTrainingUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMealPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('meal_plans', function (Blueprint $table) {
+        Schema::create('training_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('member_type_id');
-            $table->string('plan_name');
-            $table->string('gender');
-            $table->string('meal_plan_type');
+            $table->integer('user_id')->unsigned();
+            $table->integer('group_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateMealPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meal_plans');
+        Schema::dropIfExists('training_users');
     }
 }

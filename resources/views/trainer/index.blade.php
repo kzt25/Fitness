@@ -2,11 +2,6 @@
 
 @section('content')
 
-<button data-bs-toggle="modal" data-bs-target="#CreateGroupModal" class="trainer-create-gp-modal-btn customer-primary-btn">
-    <iconify-icon icon="akar-icons:circle-plus" class="trainer-create-gp--modal-btn-icon"></iconify-icon>
-    <p>Group</p>
-</button>
-
 <div class="trainer-two-columns-container">
     <div class="trainer-group-chats-parent-container">
         <p>Groups</p>
@@ -16,15 +11,15 @@
                 <p>Group Name</p>
             </a> -->
             <div class="tainer-group-chat-name-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <p>Group Name</p>
             </div>
             <div class="tainer-group-chat-name-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <p>Group Name</p>
             </div>
             <div class="tainer-group-chat-name-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <p>Group Name</p>
             </div>
         </div>
@@ -32,7 +27,7 @@
     <div class="group-chat-container">
         <div class="group-chat-header">
             <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}} "/>
                 <div class="group-chat-header-name-text-container">
                     <p>Group Name</p>
                     <span>group member, group member,group member,group member,group member,</span>
@@ -48,34 +43,36 @@
         <div class="group-chat-messages-container">
             {{-- <div class="group-chat-receiver-container">
                 <img src="../imgs/avatar.png"/>
+            <div class="group-chat-receiver-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
                     <p>This is a long text message.This is a long text message.This is a long text message.This is a long text message.This is a long text message.</p>
                 </div>
             </div>
             <div class="group-chat-receiver-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
                     <p>This is a long text message</p>
                 </div>
             </div>
             <div class="group-chat-receiver-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
                     <p>This is a long text message</p>
                 </div>
             </div>
             <div class="group-chat-receiver-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
                     <p>This is a long text message</p>
                 </div>
             </div>
             <div class="group-chat-receiver-container">
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
                     <span>Group Member</span>
                     <p>This is a long text message</p>
@@ -87,21 +84,21 @@
 
                     <p>This is a long text message</p>
                 </div>
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
             </div>
             <div class="group-chat-sender-container">
                 <div class="group-chat-sender-text-container">
 
                     <p>This is a long text message This is a long text message This is a long text message This is a long text message</p>
                 </div>
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
             </div>
             <div class="group-chat-sender-container">
                 <div class="group-chat-sender-text-container">
 
-                    <img src="../imgs/avatar.png">
+                    <img src="{{ asset('image/default.jpg')}}">
                 </div>
-                <img src="../imgs/avatar.png"/>
+                <img src="{{ asset('image/default.jpg')}}"/>
             </div>
             <div class="group-chat-sender-container">
                 <div class="group-chat-sender-text-container">
@@ -112,6 +109,8 @@
                 </div>
                 <img src="../imgs/avatar.png"/>
             </div> --}}
+                <img src="{{ asset('image/default.jpg')}}"/>
+            </div>
         </div>
 
         <form class="group-chat-send-form-container">
