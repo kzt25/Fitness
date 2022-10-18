@@ -43,19 +43,43 @@
                   </div>
 
                   <div class="d-flex justify-content mb-3">
-                    <label for="">Gender Type : &nbsp;</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio1" value="male">
-                        <label class="form-check-label" for="inlineRadio1">Male</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio2" value="female">
-                        <label class="form-check-label" for="inlineRadio2">Female</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio3" value="both">
-                        <label class="form-check-label" for="inlineRadio3">Both</label>
-                      </div>
+                        <label for="">Gender Type : &nbsp;</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio1" value="male">
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio2" value="female">
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gendertype" id="inlineRadio3" value="both">
+                            <label class="form-check-label" for="inlineRadio3">Both</label>
+                        </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                        <div class="form-floating col-md-6">
+                                <select class="form-select" aria-label="Default select example" placeholder="Select workout day" name="workoutday">
+                                    <option value=""></option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                                <label for="floatingInput">Select Workout day</label>
+                        </div>
+                        <div class="form-floating col-md-6">
+                                <select class="form-select" aria-label="Default select example" placeholder="Select workout place" name="workoutplace">
+                                    <option value=""></option>
+                                    <option value="Gym">Gym</option>
+                                    <option value="Home">Home</option>
+                                </select>
+                                <label for="floatingInput">Select Workout Place</label>
+                        </div>
                   </div>
 
                   <div class="input-group mb-3">
