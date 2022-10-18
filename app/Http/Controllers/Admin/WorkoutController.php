@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Member;
 use App\Models\Workout;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
@@ -56,8 +57,9 @@ class WorkoutController extends Controller
 
     public function workoutindex(Request $request){
         $workoutplanId = $request->id;
+        $member = Member::groupBy('member_type')->orWhere('member_type','Platinum')->orWhere('member_type','Gold')->get();
         //dd($workoutplanId);
-        return view('admin.workout.workoutcreate', compact('workoutplanId'));
+        return view('admin.workout.workoutcreate', compact('workoutplanId', 'member'));
     }
 
     public function createworkout(WorkoutRequest $request){
@@ -83,6 +85,7 @@ class WorkoutController extends Controller
         if($request->gendertype == 'both'){
             $data = new Workout();
         $data->workout_plan_id = $request->workoutplanId;
+        $data->member_type = $request->memberType;
         $data->workout_name = $request->workoutname;
         $data->gender_type = 'male';
         $data->workout_level = $request->workoutlevel;
@@ -97,6 +100,7 @@ class WorkoutController extends Controller
 
         $data = new Workout();
         $data->workout_plan_id = $request->workoutplanId;
+        $data->member_type = $request->memberType;
         $data->workout_name = $request->workoutname;
         $data->gender_type = 'female';
         $data->workout_level = $request->workoutlevel;
@@ -113,6 +117,7 @@ class WorkoutController extends Controller
         else{
             $data = new Workout();
         $data->workout_plan_id = $request->workoutplanId;
+        $data->member_type = $request->memberType;
         $data->workout_name = $request->workoutname;
         $data->gender_type = $request->gendertype;
         $data->workout_level = $request->workoutlevel;
@@ -131,7 +136,7 @@ class WorkoutController extends Controller
     }
 
     public function workoutview(){
-        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.gender_type','workouts.workout_level','workouts.time','workouts.calories','workouts.video','workouts.day','workouts.place')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
+        $workoutview = Workout::select('workouts.id','workout_plans.plan_type','workouts.workout_name','workouts.gender_type','workouts.workout_level','workouts.time','workouts.calories','workouts.video','workouts.day','workouts.place','workouts.member_type')->join('workout_plans','workout_plans.id','workouts.workout_plan_id')->get();
         //dd($workoutview->toArray());
         return view('admin.workout.workout')->with(['workoutview'=>$workoutview]);
     }
@@ -154,8 +159,9 @@ class WorkoutController extends Controller
 
     public function workoutedit($id){
         $data = Workout::where('id',$id)->first();
+        $member = Member::groupBy('member_type')->orWhere('member_type','Platinum')->orWhere('member_type','Gold')->get();
         //dd($data->toArray());
-        return view('admin.workout.workoutedit')->with(['data'=>$data]);
+        return view('admin.workout.workoutedit')->with(['data'=>$data, 'member'=>$member]);
     }
 
     public function workoutupdate($id, Request $request){

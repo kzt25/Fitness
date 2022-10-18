@@ -21,9 +21,27 @@
                 </video>
             </div>
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname" value="{{$data->workout_name}}">
-                <label for="floatingInput">Workout Name</label>
+            <div class="row g-3 mb-3">
+                <div class="form-floating col-md-6">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname" value="{{$data->workout_name}}">
+                    <label for="floatingInput">Workout Name</label>
+                </div>
+                <div class="form-floating col-md-6">
+                    <select class="form-select" aria-label="Default select example" placeholder="Member level" name="memberType">
+                        <option value=""></option>
+                        @foreach ($member as $members)
+                        @if ($members->member_type == "Platinum")
+                            <option value="{{$members->member_type}}" id="platinum">{{$members->member_type}}</option>
+                        @elseif($members->member_type == "Gold"){
+                            <option value="{{$members->member_type}}" id="gold">{{$members->member_type}}</option>
+                        }
+                        @endif
+
+                        @endforeach
+
+                    </select>
+                    <label for="floatingInput">Workout level select</label>
+                </div>
             </div>
 
               <div class="row g-3 mb-3">
@@ -98,6 +116,12 @@
             $("#female").attr('checked', 'checked');
         }else{
             $("#both").attr('checked', 'checked');
+        }
+
+        if (user.member_type == 'Platinum') {
+            $("#platinum").attr('selected',true);
+        } else {
+            $("#gold").attr('selected',true);
         }
 
         if(user.workout_level == 'Beginner'){

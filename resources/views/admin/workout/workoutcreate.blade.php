@@ -27,11 +27,12 @@
                         <label for="floatingInput">Workout Name</label>
                     </div>
                     <div class="form-floating col-md-6">
-                        <select class="form-select" aria-label="Default select example" placeholder="Workout level select" name="workoutlevel">
+                        <select class="form-select" aria-label="Default select example" placeholder="Workout level select" name="memberType">
                             <option value=""></option>
-                            <option value="Platimun">Platimun</option>
-                            <option value="Advance">Advance</option>
-                            <option value="Professional">Professional</option>
+                            @foreach ($member as $members)
+                            <option value="{{$members->member_type}}">{{$members->member_type}}</option>
+                            @endforeach
+
                         </select>
                         <label for="floatingInput">Workout level select</label>
                     </div>
