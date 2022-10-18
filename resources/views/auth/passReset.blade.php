@@ -116,7 +116,12 @@
                 success   : function(data) {
                     otpStatus = data
                     if(data.status == 300){
-                        alert(data.message);
+                        // alert(data.message);
+                        Swal.fire({
+                        text: data.message,
+                        confirmButtonColor: '#3CDD57',
+                        timer: 3000
+                      });
                     }
                     if(data.status == 200){
                         phoneNumber = data.message
