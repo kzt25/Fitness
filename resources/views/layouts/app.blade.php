@@ -271,16 +271,7 @@
                             </a>
 
                         </li>
-
-
-
-
-
                     </li>
-
-
-
-
 
                     <li class="sidebar-item @yield('mealplan-active')">
 
