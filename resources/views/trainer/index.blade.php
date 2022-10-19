@@ -20,10 +20,10 @@
             </a> -->
 
             @foreach ($groups as $group)
-                <a class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
+                <button class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
                     <img src="{{ asset('image/default.jpg')}}"/>
                     <p>{{$group->group_name}}</p>
-                </a>
+                </button>
             @endforeach
         </div>
     </div>
@@ -154,18 +154,54 @@
 <script>
     $(document).ready(function () {
         $(document).on('click','#group-chat', function (e) {
-            e.preventDefault();
-            var group_id=$(this).val();
+            var id=$(this).val();
             $.ajax({
                 type:"GET",
-                url:"/trainer/group/show"+group_id,
+                url:"trainer/group/show/"+id,
                 datatype:"json",
+
                 success:function(data){
-                    $("#group_name").append(data.data.group_name);
-                    console.log(data.data.id);
+                    $.each(data.messages, function (key, value) {
+                       msg=value.messge_body;
+                    //  $("#hh").append('<div class="group-chat-receiver-text-container">\
+                    //             <span>Group Member</span>\
+                    //             <p>'+value.messge_body+'</p>\
+                    //         </div>')
+                    var html = '<div class="group-chat-receiver-text-container">' +
+                                '<span>Group Member</span>' +
+                                    '<p>' +value.messge_body
+                                    '</p>' +
+                                    '</div>';
+                    //$('#hh').append(html);
+
+                    var view_member_url = '{{route("trainer/view_member", ":id")}}';
+                    view_member_url = view_member_url.replace(':id', data.group_chat.id);
+                    html = "";
+                     $(".group-chat-container").html('');
+
+                    $(".group-chat-container").append('<div class="group-chat-header">\
+                        <a href="'+view_member_url+'" class="group-chat-header-name-container">\
+                        <img src=" "/><div class="group-chat-header-name-text-container">'+data.group_chat.group_name+' <p id="group_name">\
+                        </p><span id="group_member">group member, group member</span>\
+                        </div></a>\
+                        <a href="../htmls/trainerTrainingCenterViewMedia.html" class="group-chat-view-midea-link">\
+                        <p>View Media</p>\
+                        <iconify-icon icon="akar-icons:arrow-right" class="group-chat-view-midea-link-icon"></iconify-icon>\
+                        </a>\
+                        </div>\
+                        <div class="group-chat-messages-container">\
+                        <div class="group-chat-receiver-container"> <img src="{{ asset('image/default.jpg')}}"/>\
+                            <div class="group-chat-receiver-text-container">\
+                                <span>Group Member</span>\
+                                <p></p>\
+                            </div>\
+                            </div>\
+                            </div></div>');
+                        });
                 }
             })
         });
+
     })
 </script>
 

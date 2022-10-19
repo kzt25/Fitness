@@ -7,7 +7,7 @@
       <div class="modal-content">
         <div class="modal-header  customer-transaction-modal-header">
           <h5 class="modal-title text-center" id="exampleModalLabel">Add Member</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="uncheckAddMemberBoxes()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
          <form class="add-member-form" action="">
@@ -28,11 +28,11 @@
                 </div>
                 @endforeach --}}
             </div>
-
+            {{--
             <div class="create-group-form-btns-contaier">
                 <button type="submit" class="customer-primary-btn">Confirm</button>
                 <button type="reset" class="customer-secondary-btn" onclick="uncheckAddMemberBoxes()">Cancel</button>
-            </div>
+            </div> --}}
          </form>
 
         </div>
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-
+            <input type="text" name="id" value = {{$group->id}}>
 
 
         <div class="trainer-two-columns-container">
@@ -68,7 +68,7 @@
                     <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
                         <img src="../imgs/avatar.png"/>
                         <div class="group-chat-header-name-text-container">
-                            <p>Group Name</p>
+                            <p>{{$group->group_name}}</p>
                             <span>group member, group member,group member,group member,group member,</span>
                         </div>
                     </a>
@@ -266,7 +266,10 @@
                 search();
                 function search(){
                     var keyword = $('#search').val();
-                    $.post('{{ route('trainer/member/search') }}',
+                    var group_id = {{$group->id}};
+                    var search_url = "{{ route('trainer/member/search',':id') }}";
+                    search_url = search_url.replace(':id', group_id);
+                    $.post(search_url,
                     {
                         _token: $('meta[name="csrf-token"]').attr('content'),
                         keyword:keyword
@@ -287,10 +290,8 @@
                 for(let i = 0; i < res.members.length; i++){
                     id = res.members[i].id;
 
-                    // var id = '12';
-	                var url = "{{ route('addMember',':id') }}";
+                    var url = "{{ route('addMember',':id') }}";
                     url = url.replace(':id', id);
-
                     htmlView += `
                         <div class="add-member-row">
                             <div class="add-member-name-container">
@@ -299,6 +300,7 @@
                             </div>
                             <div class="add-member-row-btns-container">
                                 <label class="add-member-checkbox">
+
                                     <a href = ${url} ><p>Add</p></a>
                                 </label>
                                 <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>

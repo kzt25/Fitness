@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trainer;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class TrainerGroupController extends Controller
@@ -40,10 +41,13 @@ class TrainerGroupController extends Controller
         'success','New Training Group is created successfully');
     }
 
-    public function show($id)
-    {
+    public function chat_show($id)
+    { $messages=DB::select('select * from messages');
         $group_chat=TrainingGroup::findOrFail($id);
         return response()
-            ->json(['data' => $group_chat]);
+            ->json([
+                'group_chat' => $group_chat,
+                'messages'=>$messages
+        ]);
     }
 }

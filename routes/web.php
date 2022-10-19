@@ -156,6 +156,10 @@ Route::prefix('admin')->group(function () {
 });
         Route::middleware(['role:Trainer'])->group(function () {
             Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
+            Route::post('trainer/member/search/{id}',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
+            Route::get('/trainer/view_member/{id}',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
+            Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
+            Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
         });
         Route::middleware(['role:Free'])->group(function () {
             Route::get('/free',[TrainerManagementConntroller::class,'free'])->name('free');

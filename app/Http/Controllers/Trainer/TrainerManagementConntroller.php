@@ -24,50 +24,144 @@ class TrainerManagementConntroller extends Controller
         return view('Trainer.free_user');
     }
 
-    public function view_member()
+    public function view_member($id)
     {
-        $member = User::where('ingroup' , '!=',1)->get();
-        return view('Trainer.view_member',compact('member'));
+        // dd($id);
+        $members=Member::groupBy('member_type')
+        ->where('member_type','!=','Free')
+        ->get();
+
+        $group_id = $id;
+        $group = TrainingGroup::where('id',$group_id)->first();
+        // dd($group);
+           if($group->group_type = 'weightLoss'){
+            $member = User::where('ingroup' , '!=',1)
+            ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->where('bmi','>=',25)
+            ->get();
+
+           }
+
+           if($group->group_type = 'weightGain'){
+            $member = User::where('ingroup' , '!=',1)
+            ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->where('bmi','<=',18.5)
+            ->get();
+
+           }
+
+           if($group->group_type = 'bodyBeauty'){
+           $member = User::where('ingroup' , '!=',1)
+           ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->whereBetween('bmi', [18.5, 24.9])
+            ->get();
+
+           }
+
+           dd($member);
+
+        return view('Trainer.view_member',compact('member','members','group'));
     }
 
     public function addMember($id)
     {
         $member = User::findOrFail($id);
+        $group_id = 4;
         $member->ingroup = 1;
         $member->update();
+       // $member->tainer_groups()->attach(['user_id' => $member->id,'training_group_id' => $group_id]);
+        $member->tainer_groups()->attach($group_id);
         return redirect()->back()->with('popup', 'open');
     }
 
 
     public function showMember(Request $request)
     {
-        $members = User::where('ingroup' , '!=',1)->get();
+        $group_id =  $request->id;
+        $group = TrainingGroup::where('id',$group_id)->first();
+
+        if($group->group_type = 'weightLoss'){
+            $members = User::where('ingroup' , '!=',1)
+            ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->where('bmi','>=',25)
+            ->get();
+
+           }
+
+           if($group->group_type = 'weightGain'){
+            $members = User::where('ingroup' , '!=',1)
+            ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->where('bmi','<=',18.5)
+            ->get();
+
+           }
+
+           if($group->group_type = 'bodyBeauty'){
+           $members = User::where('ingroup' , '!=',1)
+           ->where('active_status',2)
+            ->where('member_type',$group->member_type)
+            ->where('membertype_level',$group->member_type_level)
+            ->where('gender',$group->gender)
+            ->whereBetween('bmi', [18.5, 24.9])
+            ->get();
+
+           }
         if($request->keyword != ''){
-        $members = User::where('name','LIKE','%'.$request->keyword.'%')->get();
+            if($group->group_type = 'weightLoss'){
+                $members = User::where('ingroup' , '!=',1)
+                ->where('active_status',2)
+                ->where('member_type',$group->member_type)
+                ->where('membertype_level',$group->member_type_level)
+                ->where('gender',$group->gender)
+                ->where('bmi','>=',25)
+                ->where('name','LIKE','%'.$request->keyword.'%')
+                ->get();
+               }
+
+               if($group->group_type = 'weightGain'){
+                $members = User::where('ingroup' , '!=',1)
+                ->where('active_status',2)
+                ->where('member_type',$group->member_type)
+                ->where('membertype_level',$group->member_type_level)
+                ->where('gender',$group->gender)
+                ->where('bmi','<=',18.5)
+                ->where('name','LIKE','%'.$request->keyword.'%')
+                ->get();
+               }
+
+               if($group->group_type = 'bodyBeauty'){
+               $members = User::where('ingroup' , '!=',1)
+               ->where('active_status',2)
+                ->where('member_type',$group->member_type)
+                ->where('membertype_level',$group->member_type_level)
+                ->where('gender',$group->gender)
+                ->whereBetween('bmi', [18.5, 24.9])
+                ->where('name','LIKE','%'.$request->keyword.'%')
+                ->get();
+               }
+
+            //$members = User::where('name','LIKE','%'.$request->keyword.'%')->get();
         }
+        dd($members);
         return response()->json([
            'members' => $members
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function platinum()
     {
         return view('Trainer.platinum_user');
