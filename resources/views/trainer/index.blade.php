@@ -15,9 +15,9 @@
             <p>Groups</p>
             <div class="trainer-group-chats-container">
                 <!-- <a href="#" class="tainer-group-chat-name-container">
-                    <img src="../imgs/avatar.png"/>
-                    <p>Group Name</p>
-                </a> -->
+                        <img src="../imgs/avatar.png"/>
+                        <p>Group Name</p>
+                    </a> -->
 
                 @foreach ($groups as $group)
                     <a class="tainer-group-chat-name-container" id="group-chat" value="{{ $group->id }}">
@@ -153,33 +153,4 @@
             </div>`;
         });
     </script>
-    @push('scripts')
-        <script>
-            $(document).ready(function() {
-                $(document).on('click', '#group-chat', function(e) {
-                    e.preventDefault();
-                    var group_id = $(this).val();
-                    $.ajax({
-                        type: "GET",
-                        url: "/trainer/group/show" + group_id,
-                        datatype: "json",
-                        success: function(data) {
-                            $("#group_name").append(data.data.group_name);
-                            console.log(data.data.id);
-                        }
-                    })
-                });
-            })
-        </script>
-
-        {{-- <script>
-        $(document).ready(function() {
-        @if (Session::has('success'))
-                Toast.fire({
-                    icon: 'success',
-                    title: '{{ Session::get('success') }}'
-                })
-            @endif
-        })
-    </script> --}}
-    @endpush
+@endpush
