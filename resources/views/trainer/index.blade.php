@@ -1,118 +1,33 @@
 @extends('trainer.layouts.app')
 
 @section('content')
-@if (Session::has('success'))
+    @if (Session::has('success'))
         <script>
             Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
+                'Good job!',
+                'You clicked the button!',
+                'success'
             )
         </script>
     @endif
-<div class="trainer-two-columns-container">
-    <div class="trainer-group-chats-parent-container">
-        <p>Groups</p>
-        <div class="trainer-group-chats-container">
-            <!-- <a href="#" class="tainer-group-chat-name-container">
-                <img src="../imgs/avatar.png"/>
-                <p>Group Name</p>
-            </a> -->
-
-            @foreach ($groups as $group)
-                <a class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
-                    <img src="{{ asset('image/default.jpg')}}"/>
-                    <p>{{$group->group_name}}</p>
-                </a>
-            @endforeach
-        </div>
-    </div>
-    <div class="group-chat-container">
-        <div class="group-chat-header">
-            <a href="{{url('trainer/view_member')}}" class="group-chat-header-name-container">
-                <img src="{{ asset('image/default.jpg')}} "/>
-                <div class="group-chat-header-name-text-container">
+    <div class="trainer-two-columns-container">
+        <div class="trainer-group-chats-parent-container">
+            <p>Groups</p>
+            <div class="trainer-group-chats-container">
+                <!-- <a href="#" class="tainer-group-chat-name-container">
+                    <img src="../imgs/avatar.png"/>
                     <p>Group Name</p>
-                    <p id="group_name"></p>
-                    <span id="group_member">group member, group member,group member,group member,group member,</span>
-                </div>
-            </a>
+                </a> -->
 
-            <a href="../htmls/trainerTrainingCenterViewMedia.html" class="group-chat-view-midea-link">
-                <p>View Media</p>
-                <iconify-icon icon="akar-icons:arrow-right" class="group-chat-view-midea-link-icon"></iconify-icon>
-            </a>
+                @foreach ($groups as $group)
+                    <a class="tainer-group-chat-name-container" id="group-chat" value="{{ $group->id }}">
+                        <img src="{{ asset('image/default.jpg') }}" />
+                        <p>{{ $group->group_name }}</p>
+                    </a>
+                @endforeach
+            </div>
         </div>
 
-        <div class="group-chat-messages-container">
-            <div class="group-chat-receiver-container">
-                <img src="../imgs/avatar.png"/>
-            <div class="group-chat-receiver-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <div class="group-chat-receiver-text-container">
-                    <span>Group Member</span>
-                    <p>This is a long text message.This is a long text message.This is a long text message.This is a long text message.This is a long text message.</p>
-                </div>
-                <div class="tainer-group-chat-name-container">
-                    <img src="{{ asset('image/default.jpg') }}" />
-                    <p>Group Name</p>
-                </div>
-            </div>
-            <div class="group-chat-receiver-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <div class="group-chat-receiver-text-container">
-                    <span>Group Member</span>
-                    <p>This is a long text message</p>
-                </div>
-            </div>
-            <div class="group-chat-receiver-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <div class="group-chat-receiver-text-container">
-                    <span>Group Member</span>
-                    <p>This is a long text message</p>
-                </div>
-            </div>
-            <div class="group-chat-receiver-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <div class="group-chat-receiver-text-container">
-                    <span>Group Member</span>
-                    <p>This is a long text message</p>
-                </div>
-            </div>
-
-            <div class="group-chat-sender-container">
-                <div class="group-chat-sender-text-container">
-
-                    <p>This is a long text message</p>
-                </div>
-                <img src="{{ asset('image/default.jpg')}}"/>
-            </div>
-            <div class="group-chat-sender-container">
-                <div class="group-chat-sender-text-container">
-
-                    <p>This is a long text message This is a long text message This is a long text message This is a long text message</p>
-                </div>
-                <img src="{{ asset('image/default.jpg')}}"/>
-            </div>
-            <div class="group-chat-sender-container">
-                <div class="group-chat-sender-text-container">
-
-                    <img src="{{ asset('image/default.jpg')}}">
-                </div>
-                <img src="{{ asset('image/default.jpg')}}"/>
-            </div>
-            <div class="group-chat-sender-container">
-                <div class="group-chat-sender-text-container">
-
-                    <video width="200" height="auto" controls>
-                        <source src="../imgs/movie.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <img src="../imgs/avatar.png"/>
-            </div>
-            <img src="{{ asset('image/default.jpg')}}"/>
-            </div>
-        </div>
         <div class="group-chat-container">
             <div class="group-chat-header">
                 <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
@@ -238,26 +153,26 @@
             </div>`;
         });
     </script>
-@push('scripts')
-<script>
-    $(document).ready(function () {
-        $(document).on('click','#group-chat', function (e) {
-            e.preventDefault();
-            var group_id=$(this).val();
-            $.ajax({
-                type:"GET",
-                url:"/trainer/group/show"+group_id,
-                datatype:"json",
-                success:function(data){
-                    $("#group_name").append(data.data.group_name);
-                    console.log(data.data.id);
-                }
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $(document).on('click', '#group-chat', function(e) {
+                    e.preventDefault();
+                    var group_id = $(this).val();
+                    $.ajax({
+                        type: "GET",
+                        url: "/trainer/group/show" + group_id,
+                        datatype: "json",
+                        success: function(data) {
+                            $("#group_name").append(data.data.group_name);
+                            console.log(data.data.id);
+                        }
+                    })
+                });
             })
-        });
-    })
-</script>
+        </script>
 
-    {{-- <script>
+        {{-- <script>
         $(document).ready(function() {
         @if (Session::has('success'))
                 Toast.fire({
@@ -267,4 +182,4 @@
             @endif
         })
     </script> --}}
-@endpush
+    @endpush
