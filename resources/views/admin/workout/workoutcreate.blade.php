@@ -3,7 +3,7 @@
 
 @section('content')
 
-<a href="javascript:history.back()" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
+<a href="{{route('workoutplane')}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp; Back</a>
 
 <div class="container d-flex justify-content-center">
 
@@ -21,9 +21,21 @@
                     </video>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname">
-                    <label for="floatingInput">Workout Name</label>
+                <div class="row g-3 mb-3">
+                    <div class="form-floating col-md-6">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Workout Name" name="workoutname">
+                        <label for="floatingInput">Workout Name</label>
+                    </div>
+                    <div class="form-floating col-md-6">
+                        <select class="form-select" aria-label="Default select example" placeholder="Workout level select" name="memberType">
+                            <option value=""></option>
+                            @foreach ($member as $members)
+                            <option value="{{$members->member_type}}">{{$members->member_type}}</option>
+                            @endforeach
+
+                        </select>
+                        <label for="floatingInput">Workout level select</label>
+                    </div>
                 </div>
 
                   <div class="row g-3 mb-3">

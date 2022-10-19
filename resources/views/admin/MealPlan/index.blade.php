@@ -40,7 +40,9 @@
                     <tr>
                         <th>No</th>
                         {{-- <th>ID</th> --}}
+                        <th>Member Type</th>
                         <th>Meal Plan Type</th>
+                        <th>Meal Plan Name</th>
                         <th>gender</th>
                         <th>Action</th>
                     </tr>
@@ -72,8 +74,16 @@
                         searchable: false
                     },
                     {
+                        data: 'member_type_id',
+                        name: 'member_type_id'
+                    },
+                    {
                         data: 'meal_plan_type',
                         name: 'meal_plan_type'
+                    },
+                    {
+                        data: 'plan_name',
+                        name: 'plan_name'
                     },
                     {
                         data: 'gender',

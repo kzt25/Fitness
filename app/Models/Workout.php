@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Workout extends Model
 {
     use HasFactory;
-    protected $fillable = ['workout_plan_id','workout_name','gender_type','time','calories','workout_level','workout_periods','place','day','image','video'];
+    protected $fillable = ['workout_plan_id','member_type','workout_name','gender_type','time','calories','workout_level','workout_periods','place','day','image','video'];
 }

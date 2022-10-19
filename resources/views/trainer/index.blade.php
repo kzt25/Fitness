@@ -20,16 +20,16 @@
             </a> -->
 
             @foreach ($groups as $group)
-                <button class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
+                <a class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
                     <img src="{{ asset('image/default.jpg')}}"/>
                     <p>{{$group->group_name}}</p>
-                </button>
+                </a>
             @endforeach
         </div>
     </div>
     <div class="group-chat-container">
         <div class="group-chat-header">
-            <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
+            <a href="{{url('trainer/view_member')}}" class="group-chat-header-name-container">
                 <img src="{{ asset('image/default.jpg')}} "/>
                 <div class="group-chat-header-name-text-container">
                     <p id="group_name"></p>
@@ -44,6 +44,8 @@
         </div>
 
         <div class="group-chat-messages-container">
+            <div class="group-chat-receiver-container">
+                <img src="../imgs/avatar.png"/>
             <div class="group-chat-receiver-container">
                 <img src="{{ asset('image/default.jpg')}}"/>
                 <div class="group-chat-receiver-text-container">
@@ -108,7 +110,9 @@
                         <source src="../imgs/movie.mp4" type="video/mp4">
                     </video>
                 </div>
-                <img src="{{ asset('image/default.jpg')}}"/>
+                <img src="../imgs/avatar.png"/>
+            </div>
+            <img src="{{ asset('image/default.jpg')}}"/>
             </div>
         </div>
 
@@ -154,7 +158,7 @@
             var group_id=$(this).val();
             $.ajax({
                 type:"GET",
-                url:"/trainer/group/show/"+group_id,
+                url:"/trainer/group/show"+group_id,
                 datatype:"json",
                 success:function(data){
                     $("#group_name").append(data.data.group_name);
