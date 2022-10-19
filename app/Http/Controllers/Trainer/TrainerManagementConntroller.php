@@ -14,7 +14,6 @@ use App\Models\Member;
 
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
-use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
 {
