@@ -16,8 +16,8 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->integer('training_group_id');
-            $table->longText('text');
-            $table->string('media');
+            $table->longText('text')->nullable();
+            $table->string('media')->nullable();
             $table->timestamps();
         });
     }
