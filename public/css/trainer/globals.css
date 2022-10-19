@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
 :root{
     --customer-primary-color: #3CDD57;
     --customer-primary-color-hover : #53f96f;
@@ -9,7 +13,7 @@
 }
 *{
     font-family: 'Poppins', sans-serif;
-    
+
 }
 
 input::-webkit-outer-spin-button,
@@ -31,11 +35,11 @@ input[type=number] {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: var(--customer-loggedin-bg-color); 
+    background: var(--customer-loggedin-bg-color);
   }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--customer-primary-color); 
+    background: var(--customer-primary-color);
   }
 
 .customer-main-content-container{
@@ -430,7 +434,7 @@ z-index: 10;
 .group-chat-send-form-submit-btn-icon{
     font-size: 30px;
     color: white;
-    
+
 }
 
 .group-chat-img-preview{
@@ -485,7 +489,7 @@ z-index: 10;
     height: 100%;
     padding: 0;
     border: none;
-    
+
 }
 
 .group-chat-media img{

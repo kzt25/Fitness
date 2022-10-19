@@ -2,23 +2,45 @@
 
 namespace App\Http\Controllers\Trainer;
 
+
+use App\Events\TrainingMessageEvent;
+use App\Http\Controllers\Controller;
+use App\Models\Message;
+
 use App\Models\User;
+
+
 use App\Models\Member;
+
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
-use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
 {
     //
     public function index()
     {
+        $messages = Message::all();
         $members=Member::groupBy('member_type')
                         ->where('member_type','!=','Free')
                         ->get();
         $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
-        return view('Trainer.index',compact('members','groups'));
+        return view('Trainer.index',compact('messages','members','groups'));
     }
+
+    public function send(Request $request)
+    {
+        event(new TrainingMessageEvent($request->text));
+
+        $message = new Message();
+        $message->training_group_id = 1;
+        $message->text = $request->text == null ?  null : $request->text;
+        $message->media = $request->media == null ? null : $request->media;
+
+        $message->save();
+        return "success";
+    }
+
     public function free()
     {
         return view('Trainer.free_user');
