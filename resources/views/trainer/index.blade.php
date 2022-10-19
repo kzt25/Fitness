@@ -152,5 +152,11 @@
                 <img src="{{ asset('image/default.jpg') }}" />
             </div>`;
         });
+
+        $(document).ready(function() {
+                $(window).on("load",function() {
+                    $('.group-chat-messages-container').scrollTop($('.group-chat-messages-container')[0].scrollHeight);
+                });
+        });
     </script>
 @endpush
