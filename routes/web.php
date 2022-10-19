@@ -36,7 +36,7 @@ use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Auth::routes();
-    
+
     Route::get('/customerlogin', [CustomerLoginController::class, 'login'])->name('customerlogin');
     Route::get('customer/checkPhone', [CustomerRegisterController::class, 'checkPhone'])->name('checkPhone');
     Route::get('customer/checkemail', [CustomerRegisterController::class, 'checkemail'])->name('checkPhone');
@@ -155,6 +155,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::middleware(['role:Trainer'])->group(function () {
         Route::get('/trainer', [TrainerManagementConntroller::class, 'index'])->name('trainer');
         Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+        Route::get('/trainer/view_member',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
+        Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
+        Route::post('trainer/member/search',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
     });
     Route::middleware(['role:Free'])->group(function () {
         Route::get('/free', [TrainerManagementConntroller::class, 'free'])->name('free');

@@ -1,26 +1,111 @@
 @extends('trainer.layouts.app')
 
 @section('content')
-    <div class="trainer-two-columns-container">
-        <div class="trainer-group-chats-parent-container">
-            <p>Groups</p>
-            <div class="trainer-group-chats-container">
-                <!-- <a href="#" class="tainer-group-chat-name-container">
-                                                <img src="../imgs/avatar.png"/>
-                                                <p>Group Name</p>
-                                            </a> -->
-                <div class="tainer-group-chat-name-container">
-                    <img src="{{ asset('image/default.jpg') }}" />
+
+<div class="trainer-two-columns-container">
+    <div class="trainer-group-chats-parent-container">
+        <p>Groups</p>
+        <div class="trainer-group-chats-container">
+            <!-- <a href="#" class="tainer-group-chat-name-container">
+                <img src="../imgs/avatar.png"/>
+                <p>Group Name</p>
+            </a> -->
+            <div class="tainer-group-chat-name-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <p>Group Name 1</p>
+            </div>
+            <div class="tainer-group-chat-name-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <p>Group Name</p>
+            </div>
+            <div class="tainer-group-chat-name-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <p>Group Name</p>
+            </div>
+        </div>
+    </div>
+    <div class="group-chat-container">
+        <div class="group-chat-header">
+            <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
+                <img src="{{ asset('image/default.jpg')}} "/>
+                <div class="group-chat-header-name-text-container">
                     <p>Group Name</p>
+                </div>
+            </a>
+
+            <a href="../htmls/trainerTrainingCenterViewMedia.html" class="group-chat-view-midea-link">
+                <p>View Media</p>
+                <iconify-icon icon="akar-icons:arrow-right" class="group-chat-view-midea-link-icon"></iconify-icon>
+            </a>
+        </div>
+
+        <div class="group-chat-messages-container">
+            {{-- <div class="group-chat-receiver-container">
+                <img src="../imgs/avatar.png"/>
+            <div class="group-chat-receiver-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <div class="group-chat-receiver-text-container">
+                    <span>Group Member</span>
+                    <p>This is a long text message.This is a long text message.This is a long text message.This is a long text message.This is a long text message.</p>
                 </div>
                 <div class="tainer-group-chat-name-container">
                     <img src="{{ asset('image/default.jpg') }}" />
                     <p>Group Name</p>
                 </div>
-                <div class="tainer-group-chat-name-container">
-                    <img src="{{ asset('image/default.jpg') }}" />
-                    <p>Group Name</p>
+            </div>
+            <div class="group-chat-receiver-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <div class="group-chat-receiver-text-container">
+                    <span>Group Member</span>
+                    <p>This is a long text message</p>
                 </div>
+            </div>
+            <div class="group-chat-receiver-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <div class="group-chat-receiver-text-container">
+                    <span>Group Member</span>
+                    <p>This is a long text message</p>
+                </div>
+            </div>
+            <div class="group-chat-receiver-container">
+                <img src="{{ asset('image/default.jpg')}}"/>
+                <div class="group-chat-receiver-text-container">
+                    <span>Group Member</span>
+                    <p>This is a long text message</p>
+                </div>
+            </div>
+
+            <div class="group-chat-sender-container">
+                <div class="group-chat-sender-text-container">
+
+                    <p>This is a long text message</p>
+                </div>
+                <img src="{{ asset('image/default.jpg')}}"/>
+            </div>
+            <div class="group-chat-sender-container">
+                <div class="group-chat-sender-text-container">
+
+                    <p>This is a long text message This is a long text message This is a long text message This is a long text message</p>
+                </div>
+                <img src="{{ asset('image/default.jpg')}}"/>
+            </div>
+            <div class="group-chat-sender-container">
+                <div class="group-chat-sender-text-container">
+
+                    <img src="{{ asset('image/default.jpg')}}">
+                </div>
+                <img src="{{ asset('image/default.jpg')}}"/>
+            </div>
+            <div class="group-chat-sender-container">
+                <div class="group-chat-sender-text-container">
+
+                    <video width="200" height="auto" controls>
+                        <source src="../imgs/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <img src="../imgs/avatar.png"/>
+            </div> --}}
+                {{-- <img src="{{ asset('image/default.jpg')}}"/> --}}
             </div>
         </div>
         <div class="group-chat-container">

@@ -15,7 +15,7 @@
 <div class="d-flex">
 <h3 class="text-center mx-auto">Workouts</h3>
 </div>
-<a href="javascript:history.back()" class="btn btn-primary "><i class="fa-solid fa-arrow-left-long"></i> &nbsp; Back</a>
+<a href="{{route('workoutplane')}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp; Back</a>
     <div class="row my-3">
         @foreach ($workoutview as $workout)
         <div class="col-md-3">
@@ -38,6 +38,7 @@
                             <p class="card-text mb-1"> <b>Workout Name :</b> {{$workout->workout_name}}</p>
                             <p class="card-text mb-1"><b>Gender Type :</b> {{$workout->gender_type}}</p>
                             <p class="card-text mb-1"><b>Level :</b> {{$workout->workout_level}}</p>
+                            <p class="card-text mb-1"><b>Member Type :</b> {{$workout->member_type}}</p>
                             <p class="card-text mb-1"><b>Place :</b> {{$workout->place}}</p>
                             <p class="card-text mb-1"><b>Burn Calories :</b> {{$workout->calories}} Calories</p>
                             <p class="card-text mb-3"><b>Video Duration :</b> {{$workout->time}} Minutes</p>

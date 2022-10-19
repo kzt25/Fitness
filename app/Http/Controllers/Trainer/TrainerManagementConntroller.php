@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Trainer;
 
+<<<<<<< HEAD
 use App\Events\TrainingMessageEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+=======
+use App\Models\User;
+>>>>>>> d39be78f7fa231a81ac8d455cf4185fc852e6b7c
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
 {
@@ -34,6 +39,51 @@ class TrainerManagementConntroller extends Controller
     {
         return view('Trainer.free_user');
     }
+
+    public function view_member()
+    {
+        $member = User::where('ingroup' , '!=',1)->get();
+        return view('Trainer.view_member',compact('member'));
+    }
+
+    public function addMember($id)
+    {
+        $member = User::findOrFail($id);
+        $member->ingroup = 1;
+        $member->update();
+        return redirect()->back()->with('popup', 'open');
+    }
+
+
+    public function showMember(Request $request)
+    {
+        $members = User::where('ingroup' , '!=',1)->get();
+        if($request->keyword != ''){
+        $members = User::where('name','LIKE','%'.$request->keyword.'%')->get();
+        }
+        return response()->json([
+           'members' => $members
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function platinum()
     {
         return view('Trainer.platinum_user');
@@ -54,4 +104,5 @@ class TrainerManagementConntroller extends Controller
     {
         return view('Trainer.ruby_premium_user');
     }
+
 }
