@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\PassResetController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\User\UserWorkoutController;
 use App\Http\Controllers\Admin\BankinginfoController;
+use App\Http\Controllers\Trainer\TrainerGroupController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\RegisterPaymentController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
@@ -33,6 +34,11 @@ use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'prevent-back-history'], function(){
+Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
+Route::get('customer/checkPhone',[CustomerRegisterController::class,'checkPhone'])->name('checkPhone');
+Route::get('customer/checkemail',[CustomerRegisterController::class,'checkemail'])->name('checkPhone');
+//Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Auth::routes();
@@ -41,28 +47,29 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('customer/checkPhone', [CustomerRegisterController::class, 'checkPhone'])->name('checkPhone');
     Route::get('customer/checkemail', [CustomerRegisterController::class, 'checkemail'])->name('checkPhone');
     //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
+Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
+Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
 
-    Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
-    Route::post('customer/customerCreate', [CustomerRegisterController::class, 'CustomerData'])->name('customerCreate');
+Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('customer_payment');
+// Route::get('test_payment', [RegisterPaymentController::class, 'test'])->name('test_payment');
+Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
+Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
 
-    Route::get('customer_payment', [RegisterPaymentController::class, 'payment'])->name('customer_payment');
-    // Route::get('test_payment', [RegisterPaymentController::class, 'test'])->name('test_payment');
-    Route::post('ewallet_store', [RegisterPaymentController::class, 'ewallet_store'])->name('ewallet_store');
-    Route::post('bank_payment_store', [RegisterPaymentController::class, 'bank_payment_store'])->name('bank_payment_store');
+Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('customer/register',[App\Http\Controllers\HomeController::class, 'customerregister'])->name('customer_register');
+Route::post('customer/register',[App\Http\Controllers\Auth\RegisterController::class,'register'])->name('customer_register');
 
-    Route::get('customer/register', [App\Http\Controllers\HomeController::class, 'customerregister'])->name('customer_register');
-    Route::post('customer/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('customer_register');
+Route::get('/user/workout/start',[UserWorkoutController::class,'getstart'])->name('userworkout.getstart');
 
-    Route::get('/user/workout/start', [UserWorkoutController::class, 'getstart'])->name('userworkout.getstart');
-
-    Route::get('password_reset_view', [PassResetController::class, 'passResetView'])->name('password_reset_view');
-    Route::get('checkPhoneGetOTP', [PassResetController::class, 'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
+Route::get('password_reset_view',[PassResetController::class,'passResetView'])->name('password_reset_view');
+Route::get('checkPhoneGetOTP',[PassResetController::class,'checkPhoneGetOTP'])->name('checkPhoneGetOTP');
 
 
-    Route::post('password_reset', [PassResetController::class, 'password_reset'])->name('password_reset');
+Route::post('password_reset',[PassResetController::class,'password_reset'])->name('password_reset');
 
     Route::middleware(['role:Trainer'])->group(function () {
         Route::post('/trainer/group/create', [AdminController::class, 'index'])->name('trainer.group.create');

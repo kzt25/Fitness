@@ -18,6 +18,8 @@
     <link href="{{asset('css/trainer/trainerTrainingCenter.css')}}" rel="stylesheet" />
 
     <title>YC-Trainer</title>
+
+
   </head>
   <body class="customer-loggedin-bg">
     @include('trainer.layouts.header')
@@ -30,29 +32,35 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearCreateGroupInputs()"></button>
         </div>
         <div class="modal-body">
-         <form class="create-group-form" action="" method="POST">
+         <form class="create-group-form" action="{{route('trainer.group.create')}}" method="POST">
             @method('POST')
             @csrf
-            <input type="hidden" name="trainer_id" value="1">
+            <input type="hidden" name="trainer_id" value="{{auth()->user()->id}}">
             <div class="create-group-name create-group-input">
                 <p>Group Name</p>
                 <input type="text" name="group_name" required>
             </div>
             <div class="create-group-member-type create-group-input">
                 <p>Member Type</p>
-                <select name="member_type">
+                <select name="member_type" class="@error('member_type') is-invalid @enderror">
                     <option value="">Choose Member Type</option>
+                    @foreach ($members as $member)
+                    <option value="{{$member->member_type}}">{{$member->member_type}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="create-group-member-type create-group-input">
                 <p>Level</p>
-                <select name="level">
+                <select name="member_type_level" class="@error('member_type_level') is-invalid @enderror">
                     <option value="">Choose Level</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="professional">Professional</option>
                 </select>
             </div>
             <div class="create-group-gender create-group-input">
                 <p>Gender</p>
-                <select name="gender">
+                <select name="gender" class="@error('gender') is-invalid @enderror">
                     <option value="">Choose Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -60,7 +68,7 @@
             </div>
             <div class="create-group-group-type create-group-input">
                 <p>Group Type</p>
-                <select name="group_type">
+                <select name="group_type" class="@error('gender') is-invalid @enderror" id="group_type">
                     <option value="">Choose Group Type</option>
                     <option value="weightLoss">Weight Loss</option>
                     <option value="bodyBeauty">Body Beauty</option>
@@ -69,7 +77,7 @@
 
             <div class="create-group-form-btns-contaier">
                 <button type="submit" class="customer-primary-btn">Confirm</button>
-                <button type="reset" class="customer-secondary-btn">Cancel</button>
+                <button type="reset" class="customer-secondary-btn" data-bs-dismiss="modal" aria-label="Close" onclick="clearCreateGroupInputs()">Cancel</button>
             </div>
          </form>
 
@@ -95,6 +103,8 @@
     @stack('scripts')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- Sweet Alert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

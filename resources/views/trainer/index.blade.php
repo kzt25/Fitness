@@ -1,7 +1,15 @@
 @extends('trainer.layouts.app')
 
 @section('content')
-
+@if (Session::has('success'))
+        <script>
+            Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+            )
+        </script>
+    @endif
 <div class="trainer-two-columns-container">
     <div class="trainer-group-chats-parent-container">
         <p>Groups</p>
@@ -10,26 +18,23 @@
                 <img src="../imgs/avatar.png"/>
                 <p>Group Name</p>
             </a> -->
-            <div class="tainer-group-chat-name-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <p>Group Name 1</p>
-            </div>
-            <div class="tainer-group-chat-name-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <p>Group Name</p>
-            </div>
-            <div class="tainer-group-chat-name-container">
-                <img src="{{ asset('image/default.jpg')}}"/>
-                <p>Group Name</p>
-            </div>
+
+            @foreach ($groups as $group)
+                <a class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}">
+                    <img src="{{ asset('image/default.jpg')}}"/>
+                    <p>{{$group->group_name}}</p>
+                </a>
+            @endforeach
         </div>
     </div>
     <div class="group-chat-container">
         <div class="group-chat-header">
-            <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
+            <a href="{{url('trainer/view_member')}}" class="group-chat-header-name-container">
                 <img src="{{ asset('image/default.jpg')}} "/>
                 <div class="group-chat-header-name-text-container">
                     <p>Group Name</p>
+                    <p id="group_name"></p>
+                    <span id="group_member">group member, group member,group member,group member,group member,</span>
                 </div>
             </a>
 
@@ -40,7 +45,7 @@
         </div>
 
         <div class="group-chat-messages-container">
-            {{-- <div class="group-chat-receiver-container">
+            <div class="group-chat-receiver-container">
                 <img src="../imgs/avatar.png"/>
             <div class="group-chat-receiver-container">
                 <img src="{{ asset('image/default.jpg')}}"/>
@@ -104,8 +109,8 @@
                     </video>
                 </div>
                 <img src="../imgs/avatar.png"/>
-            </div> --}}
-                {{-- <img src="{{ asset('image/default.jpg')}}"/> --}}
+            </div>
+            <img src="{{ asset('image/default.jpg')}}"/>
             </div>
         </div>
         <div class="group-chat-container">
@@ -233,4 +238,33 @@
             </div>`;
         });
     </script>
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $(document).on('click','#group-chat', function (e) {
+            e.preventDefault();
+            var group_id=$(this).val();
+            $.ajax({
+                type:"GET",
+                url:"/trainer/group/show"+group_id,
+                datatype:"json",
+                success:function(data){
+                    $("#group_name").append(data.data.group_name);
+                    console.log(data.data.id);
+                }
+            })
+        });
+    })
+</script>
+
+    {{-- <script>
+        $(document).ready(function() {
+        @if (Session::has('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ Session::get('success') }}'
+                })
+            @endif
+        })
+    </script> --}}
 @endpush

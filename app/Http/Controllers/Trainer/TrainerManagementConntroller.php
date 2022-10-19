@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Trainer;
 
-<<<<<<< HEAD
+
 use App\Events\TrainingMessageEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
-=======
+
 use App\Models\User;
->>>>>>> d39be78f7fa231a81ac8d455cf4185fc852e6b7c
+
+
+use App\Models\Member;
+
 use Illuminate\Http\Request;
+use App\Models\TrainingGroup;
 use App\Http\Controllers\Controller;
 
 class TrainerManagementConntroller extends Controller
@@ -18,12 +22,15 @@ class TrainerManagementConntroller extends Controller
     public function index()
     {
         $messages = Message::all();
-        return view('Trainer.index', compact('messages'));
+        $members=Member::groupBy('member_type')
+                        ->where('member_type','!=','Free')
+                        ->get();
+        $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
+        return view('Trainer.index',compact('messages','members','groups'));
     }
 
     public function send(Request $request)
     {
-        dd($request->all());
         event(new TrainingMessageEvent($request->text));
 
         $message = new Message();
