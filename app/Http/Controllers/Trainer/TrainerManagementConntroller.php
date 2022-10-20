@@ -51,7 +51,6 @@ class TrainerManagementConntroller extends Controller
 
     public function view_member($id)
     {
-        // dd($id);
         $members=Member::groupBy('member_type')
         ->where('member_type','!=','Free')
         ->get();
@@ -91,10 +90,6 @@ class TrainerManagementConntroller extends Controller
             ->get();
 
            }
-
-
-
-
         return view('Trainer.view_member',compact('member','members','group'));
     }
 
