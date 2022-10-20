@@ -81,6 +81,7 @@ Route::middleware(['role:Trainer'])->group(function () {
 
     Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
     Route::get('trainer/group/delete', [TrainerManagementConntroller::class, 'destroy'])->name('group.delete');
+    Route::get('trainer/group/member/kick/{id}', [TrainerManagementConntroller::class, 'kick'])->name('member.kick');
 });
 // Admin Site
 Route::prefix('admin')->group(function () {
