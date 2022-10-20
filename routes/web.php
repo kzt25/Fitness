@@ -76,9 +76,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
             Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
             Route::post('trainer/member/search/{id}',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
             Route::get('/trainer/view_member/{id}',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
-            Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
+            Route::get('/addMember/{id}/{group_id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
             Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
             Route::post('/trainer/group/create', [AdminController::class, 'index'])->name('trainer.group.create');
+            Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+            Route::get('trainer/group/delete', [TrainerManagementConntroller::class, 'destroy'])->name('group.delete');
         });
         // Admin Site
         Route::prefix('admin')->group(function () {

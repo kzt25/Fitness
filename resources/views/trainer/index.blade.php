@@ -1,6 +1,7 @@
 @extends('trainer.layouts.app')
 
 @section('content')
+@include('sweetalert::alert')
     @if (Session::has('success'))
         <script>
             Swal.fire(
@@ -20,10 +21,10 @@
                     </a> -->
 
                 @foreach ($groups as $group)
-                    <a class="tainer-group-chat-name-container" id="group-chat" value="{{ $group->id }}">
+                    <button class="tainer-group-chat-name-container" id="group-chat" value="{{ $group->id }}">
                         <img src="{{ asset('image/default.jpg') }}" />
                         <p>{{ $group->group_name }}</p>
-                    </a>
+                    </button>
                 @endforeach
             </div>
         </div>
