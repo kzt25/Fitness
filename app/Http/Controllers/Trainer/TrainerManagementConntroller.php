@@ -26,8 +26,11 @@ class TrainerManagementConntroller extends Controller
 
     public function view_member()
     {
+        $members=Member::groupBy('member_type')
+                        ->where('member_type','!=','Free')
+                        ->get();
         $member = User::where('ingroup' , '!=',1)->get();
-        return view('Trainer.view_member',compact('member'));
+        return view('Trainer.view_member',compact('member','members'));
     }
 
     public function addMember($id)

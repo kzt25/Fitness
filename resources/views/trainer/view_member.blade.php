@@ -291,7 +291,7 @@
 	                var url = "{{ route('addMember',':id') }}";
                     url = url.replace(':id', id);
 
-                    htmlView += `
+                    var htmlView += `
                         <div class="add-member-row">
                             <div class="add-member-name-container">
                                 <img src="../imgs/avatar.png">

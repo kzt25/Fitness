@@ -6,6 +6,8 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Psr7\Message;
+use Illuminate\Support\Facades\DB;
 
 class TrainerGroupController extends Controller
 {
@@ -40,10 +42,14 @@ class TrainerGroupController extends Controller
         'success','New Training Group is created successfully');
     }
 
-    public function show($id)
-    {
+    public function chat_show($id)
+    {    $chat_messages=DB::table('messages')->get();
+        //$messages=DB::select('select * from messages');
         $group_chat=TrainingGroup::findOrFail($id);
         return response()
-            ->json(['data' => $group_chat]);
+            ->json([
+                'group_chat' => $group_chat,
+                'chat_messages'=>$chat_messages
+        ]);
     }
 }

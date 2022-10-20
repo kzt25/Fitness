@@ -56,7 +56,7 @@ class LoginController extends Controller
         }
         if( $user->hasAnyRole(['Trainer'])){
             Auth::login($user);
-            return redirect('trainer');
+            return redirect('/');
         }
         if( $user->hasAnyRole(['Free'])){
             Auth::login($user);
