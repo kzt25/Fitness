@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Payment;
+use App\Models\TrainingGroup;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -41,8 +42,8 @@ class User extends Authenticatable
 
     public function tainer_groups()
     {
-        return $this->belongsToMany(TrainerGroup::class, 'training_groups')
-                    ->withPivot(['group_id','user_id'])
+        return $this->belongsToMany(TrainingGroup::class,'training_users')
+                    // ->withPivot(['user_id','training_group_id'])
                     ->withTimestamps();
     }
 

@@ -71,6 +71,16 @@ Route::middleware(['role:Trainer'])->group(function () {
     Route::get('/trainer/view_member',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
     Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
 });
+
+Route::middleware(['role:Trainer'])->group(function () {
+    Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
+    Route::post('trainer/member/search/{id}',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
+    Route::get('/trainer/view_member/{id}',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
+    Route::get('/addMember/{id}/{group_id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
+    Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
+
+    Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+});
 // Admin Site
 Route::prefix('admin')->group(function () {
 
@@ -180,4 +190,7 @@ Route::prefix('admin')->group(function () {
         Route::middleware(['role:Ruby Premium'])->group(function () {
             Route::get('/ruby_premium',[TrainerManagementConntroller::class,'ruby_premium'])->name('ruby_premium');
         });
-});
+        });
+
+
+

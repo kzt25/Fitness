@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Trainer;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Psr7\Message;
-use Illuminate\Support\Facades\DB;
 
 class TrainerGroupController extends Controller
 {
