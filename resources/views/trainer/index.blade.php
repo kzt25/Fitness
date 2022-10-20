@@ -15,11 +15,6 @@
     <div class="trainer-group-chats-parent-container">
         <p>Groups</p>
         <div class="trainer-group-chats-container">
-            <!-- <a href="#" class="tainer-group-chat-name-container">
-                <img src="../imgs/avatar.png"/>
-                <p>Group Name</p>
-            </a> -->
-
             @forelse ($groups as $group)
                 <button class="tainer-group-chat-name-container" id="group-chat" value="{{$group->id}}" style=" background-color: transparent;background-repeat: no-repeat;border: none;cursor: pointer;overflow: hidden;outline: none;">
                     <img src="{{ asset('image/default.jpg')}}"/>
@@ -36,17 +31,9 @@
             <div class="group-chat-header">
 
             </div>
-
-            {{-- <div class="group-chat-messages-container">
-
-                <p id="p" style="text-align:center">Choose group and start chatting</p>
-                <div class="group-chat-sender-container" id="trainer_message_el">
-
-                </div>
-            </div> --}}
             <div class="group-chat-messages-container">
                 <div class="group-chat-sender-container" id="trainer_message_el">
-                    <p id="p" style="text-align:center">Choose group and start chatting</p>
+                    <p id="p" class="text-secondary p-1" style="text-align:center">Choose group and start chatting</p>
                     <div class="group-chat-sender-text-container" id="send_message">
 
                     </div>
@@ -66,10 +53,12 @@
 <script>
 
     $(document).ready(function () {
+
         $(window).on("load",function() {
                     $('.group-chat-messages-container').scrollTop($('.group-chat-messages-container')[0].scrollHeight);
                 });
         $(document).on('click','#group-chat', function (e) {
+            e.preventDefault();
             $('#p').hide();
             var id=$(this).val();
             $.ajax({
@@ -205,18 +194,6 @@
 
     });
 
-
-
 </script>
 
-    {{-- <script>
-        $(document).ready(function() {
-        @if (Session::has('success'))
-                Toast.fire({
-                    icon: 'success',
-                    title: '{{ Session::get('success') }}'
-                })
-            @endif
-        })
-    </script> --}}
 @endpush
