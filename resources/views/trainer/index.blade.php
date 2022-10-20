@@ -1,7 +1,8 @@
 @extends('trainer.layouts.app')
 
 @section('content')
-@if (Session::has('success'))
+@include('sweetalert::alert')
+    @if (Session::has('success'))
         <script>
             Swal.fire(
             'Good job!',

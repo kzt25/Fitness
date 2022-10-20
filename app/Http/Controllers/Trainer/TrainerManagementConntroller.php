@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Trainer;
 
 
-use App\Events\TrainingMessageEvent;
-use App\Http\Controllers\Controller;
-use App\Models\Message;
-
+use App\Models\Meal;
 use App\Models\User;
-
-
 use App\Models\Member;
 
+use App\Models\Message;
+
+
 use Illuminate\Http\Request;
+
 use App\Models\TrainingGroup;
+use App\Events\TrainingMessageEvent;
+use App\Http\Controllers\Controller;
+use App\Models\TrainingUser;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TrainerManagementConntroller extends Controller
 {
@@ -55,7 +58,7 @@ class TrainerManagementConntroller extends Controller
         $group_id = $id;
         $group = TrainingGroup::where('id',$group_id)->first();
         // dd($group);
-           if($group->group_type = 'weightLoss'){
+           if($group->group_type === 'weightLoss'){
             $member = User::where('ingroup' , '!=',1)
             ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -66,7 +69,7 @@ class TrainerManagementConntroller extends Controller
 
            }
 
-           if($group->group_type = 'weightGain'){
+           if($group->group_type === 'weightGain'){
             $member = User::where('ingroup' , '!=',1)
             ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -77,7 +80,7 @@ class TrainerManagementConntroller extends Controller
 
            }
 
-           if($group->group_type = 'bodyBeauty'){
+           if($group->group_type === 'bodyBeauty'){
            $member = User::where('ingroup' , '!=',1)
            ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -87,19 +90,16 @@ class TrainerManagementConntroller extends Controller
             ->get();
 
            }
-
-
-
         return view('Trainer.view_member',compact('member','members','group'));
     }
 
-    public function addMember($id)
+    public function addMember(Request $request)
     {
+        $id = $request->id;
+        $group_id = $request->group_id;
         $member = User::findOrFail($id);
-        $group_id = 4;
         $member->ingroup = 1;
         $member->update();
-       // $member->tainer_groups()->attach(['user_id' => $member->id,'training_group_id' => $group_id]);
         $member->tainer_groups()->attach($group_id);
         return redirect()->back()->with('popup', 'open');
     }
@@ -110,7 +110,7 @@ class TrainerManagementConntroller extends Controller
         $group_id =  $request->id;
         $group = TrainingGroup::where('id',$group_id)->first();
 
-        if($group->group_type = 'weightLoss'){
+        if($group->group_type === 'weightLoss'){
             $members = User::where('ingroup' , '!=',1)
             ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -121,7 +121,7 @@ class TrainerManagementConntroller extends Controller
 
            }
 
-           if($group->group_type = 'weightGain'){
+           if($group->group_type === 'weightGain'){
             $members = User::where('ingroup' , '!=',1)
             ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -132,7 +132,7 @@ class TrainerManagementConntroller extends Controller
 
            }
 
-           if($group->group_type = 'bodyBeauty'){
+           if($group->group_type === 'bodyBeauty'){
            $members = User::where('ingroup' , '!=',1)
            ->where('active_status',2)
             ->where('member_type',$group->member_type)
@@ -143,7 +143,7 @@ class TrainerManagementConntroller extends Controller
 
            }
         if($request->keyword != ''){
-            if($group->group_type = 'weightLoss'){
+            if($group->group_type === 'weightLoss'){
                 $members = User::where('ingroup' , '!=',1)
                 ->where('active_status',2)
                 ->where('member_type',$group->member_type)
@@ -154,18 +154,18 @@ class TrainerManagementConntroller extends Controller
                 ->get();
                }
 
-               if($group->group_type = 'weightGain'){
+               if($group->group_type === 'weightGain'){
                 $members = User::where('ingroup' , '!=',1)
                 ->where('active_status',2)
                 ->where('member_type',$group->member_type)
                 ->where('membertype_level',$group->member_type_level)
                 ->where('gender',$group->gender)
-                ->where('bmi','<=',18.5)
+                ->where('bmi','<=',18.4)
                 ->where('name','LIKE','%'.$request->keyword.'%')
                 ->get();
                }
 
-               if($group->group_type = 'bodyBeauty'){
+               if($group->group_type === 'bodyBeauty'){
                $members = User::where('ingroup' , '!=',1)
                ->where('active_status',2)
                 ->where('member_type',$group->member_type)
@@ -178,10 +178,24 @@ class TrainerManagementConntroller extends Controller
 
             //$members = User::where('name','LIKE','%'.$request->keyword.'%')->get();
         }
-        dd($members);
+        //dd($members);
         return response()->json([
            'members' => $members
         ]);
+    }
+    public function destroy(Request $request)
+    {
+        $group_users = TrainingUser::where('training_group_id',$request->group_id)->get();
+        foreach($group_users as $gu){
+            User::where('id',$gu->user_id)->update(["ingroup" => 0]);
+        }
+
+        $group_user_delete = TrainingUser::where('training_group_id',$request->group_id);
+        $group_user_delete->delete();
+        $group_delete = TrainingGroup::where('id',$request->group_id);
+        $group_delete->delete();
+        Alert::success('Success', 'Group Deleted!');
+        return redirect('trainer');
     }
     public function platinum()
     {

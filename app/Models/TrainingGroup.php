@@ -15,4 +15,5 @@ class TrainingGroup extends Model
                     //->withPivot(['user_id','training_group_id'])
                     ->withTimestamps();
     }
+
 }

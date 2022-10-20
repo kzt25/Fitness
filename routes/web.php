@@ -80,6 +80,7 @@ Route::middleware(['role:Trainer'])->group(function () {
     Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
 
     Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+    Route::get('trainer/group/delete', [TrainerManagementConntroller::class, 'destroy'])->name('group.delete');
 });
 // Admin Site
 Route::prefix('admin')->group(function () {
@@ -169,9 +170,7 @@ Route::prefix('admin')->group(function () {
     });
 
 });
-        Route::middleware(['role:Trainer'])->group(function () {
-            Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
-        });
+
         Route::middleware(['role:Free'])->group(function () {
             Route::get('/free',[TrainerManagementConntroller::class,'free'])->name('free');
         });

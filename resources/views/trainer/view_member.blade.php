@@ -41,9 +41,6 @@
     </div>
 </div>
 
-            <input type="text" name="id" value = {{$group->id}}>
-
-
         <div class="trainer-two-columns-container">
             <div class="trainer-group-chats-parent-container">
                 <p>Groups</p>
@@ -88,10 +85,13 @@
                             <iconify-icon icon="akar-icons:circle-plus" class="trainer-view-members-add-icon"></iconify-icon>
                             <p>Add Member</p>
                         </button>
+                        <form action="{{route('group.delete')}}">
+                            <input type ="text" name = "group_id" value="{{$group->id}}" hidden>
+                            <button  class="trainer-view-members-delete-btn customer-red-btn">
+                                Delete Group
+                            </button>
+                        </form>
 
-                        <a href="#" class="trainer-view-members-delete-btn customer-red-btn">
-                            Delete Group
-                        </a>
                     </div>
                 </div>
 
@@ -289,9 +289,12 @@
                 }
                 for(let i = 0; i < res.members.length; i++){
                     id = res.members[i].id;
+                    group_id = {{$group->id}};
 
-                    var url = "{{ route('addMember',':id') }}";
+                    var url = "{{ route('addMember',[':id',':group_id']) }}";
                     url = url.replace(':id', id);
+                    url = url.replace(':group_id', group_id);
+                    // console.log(url);
                     htmlView += `
                         <div class="add-member-row">
                             <div class="add-member-name-container">
@@ -304,6 +307,7 @@
                                     <a href = ${url} ><p>Add</p></a>
                                 </label>
                                 <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>
+
                             </div>
                         </div>
                 `
