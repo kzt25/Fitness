@@ -52,7 +52,9 @@
         </div>
         </div>
     </div>
-
+    <div id = "nogroup">
+        <p class="text-secondary p-1">No Group</p>
+        </div>
     <div class="trainer-two-columns-container">
         <div class="trainer-group-chats-parent-container">
             <p>Groups</p>
@@ -63,7 +65,9 @@
                         <p>{{$group->group_name}}</p>
                     </button>
                 @empty
+                <div id = "">
                 <p class="text-secondary p-1">No Group</p>
+                </div>
                 @endforelse
             </div>
         </div>
@@ -114,12 +118,14 @@
     $(document).ready(function () {
             $('.trainer-group-chat-view-members-header').hide();
             $('.trainer-group-chat-members-container').hide();
+            $('#nogroup').hide();
             // $('.group-chat-messages-container').hide();
         $(window).on("load",function() {
                     $('.group-chat-messages-container').scrollTop($('.group-chat-messages-container')[0].scrollHeight);
                 });
         $(document).on('click','#group-chat', function (e) {
-            e.preventDefault();
+            e.stopPropagation();
+
             $('#p').hide();
             $('.trainer-group-chat-view-members-header').hide();
             $('.trainer-group-chat-members-container').hide();
@@ -252,9 +258,10 @@
                     <img src="{{ asset('image/default.jpg') }}" />
                 </div>`;
             });
-
+            return false;
         });
         $(document).on('click','#add_member', function (e) {
+
             e.preventDefault();
 
             $('#search').on('keyup', function(){
@@ -263,7 +270,11 @@
                 search();
                 function search(){
                     var keyword = $('#search').val();
-                    var group_id = {{$group->id}};
+                    if(localStorage.getItem('group_id') === null){
+                        $('#nogroup').show();
+                    }
+                    else{
+                    var group_id = localStorage.getItem('group_id');
                     var search_url = "{{ route('trainer/member/search',':id') }}";
                     search_url = search_url.replace(':id', group_id);
                     $.post(search_url,
@@ -275,6 +286,8 @@
                         table_post_row(data);
                         console.log(data);
                     });
+                    }
+
                 }
                 // table row with ajax
                 function table_post_row(res){
