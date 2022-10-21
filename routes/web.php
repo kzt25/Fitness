@@ -77,7 +77,7 @@ Route::middleware(['role:Trainer'])->group(function () {
     Route::get('/trainer/view_media/{id}',[TrainerManagementConntroller::class,'view_media'])->name('trainer/view_media');
     Route::get('/addMember/{id}/{group_id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
     Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
-    Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+    Route::post('trainer/send/{id}', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
     Route::get('trainer/group/delete', [TrainerManagementConntroller::class, 'destroy'])->name('group.delete');
     Route::get('trainer/group/member/kick/{id}', [TrainerManagementConntroller::class, 'kick'])->name('member.kick');
 });

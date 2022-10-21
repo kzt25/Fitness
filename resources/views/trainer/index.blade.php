@@ -210,11 +210,11 @@
 
                             let trainer_message_input=document.querySelector(".trainer_message_input");
                             let group_chat_messages_container = document.querySelector(".group-chat-messages-container");
-
-                            console.log(trainer_message_input);
+                            let id = localStorage.getItem('group_id');
+                            // console.log(id,"id");
                             const options = {
                                 method: "POST",
-                                url: "trainer/send",
+                                url: "trainer/send/"+id,
                                 data: {
                                     text: trainer_message_input.value
                                 }
