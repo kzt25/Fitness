@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TrainingUser extends Model
 {
     use HasFactory;
+
+    public function group() {
+        return $this->belongsTo(TrainingGroup::class,'group_id', 'id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

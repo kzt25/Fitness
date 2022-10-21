@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -85,6 +86,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Register successfully!',
             'user' => $user,
+
             'token' => $token->plainTextToken
         ]);
     }
@@ -102,7 +104,8 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Successfully Login!',
                 'token' => $token->plainTextToken,
-                'user' => $user
+                'user' => $user,
+                'user_role' => $user->roles->pluck('name')
             ]);
         } else {
             return response()->json([
@@ -239,7 +242,6 @@ class AuthController extends Controller
 
         return response()->json([
             'user' => $user,
-            'token' => $token
         ]);
     }
 

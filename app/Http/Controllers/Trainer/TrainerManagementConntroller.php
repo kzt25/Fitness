@@ -20,12 +20,12 @@ class TrainerManagementConntroller extends Controller
     //
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::whereNotNull('text')->get();
         $members=Member::groupBy('member_type')
                         ->where('member_type','!=','Free')
                         ->get();
-        $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
-        return view('Trainer.index',compact('messages','members','groups'));
+        // $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
+        return view('Trainer.index',compact('messages','members'));
     }
 
     public function send(Request $request)

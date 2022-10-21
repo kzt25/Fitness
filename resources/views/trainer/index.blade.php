@@ -19,12 +19,12 @@
                         <p>Group Name</p>
                     </a> -->
 
-                @foreach ($groups as $group)
+                {{-- @foreach ($groups as $group)
                     <a class="tainer-group-chat-name-container" id="group-chat" value="{{ $group->id }}">
                         <img src="{{ asset('image/default.jpg') }}" />
                         <p>{{ $group->group_name }}</p>
                     </a>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
 

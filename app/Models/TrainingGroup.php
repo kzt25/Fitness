@@ -15,4 +15,8 @@ class TrainingGroup extends Model
                     ->withPivot(['group_id','user_id'])
                     ->withTimestamps();
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
