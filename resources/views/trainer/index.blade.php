@@ -196,77 +196,46 @@
                             });
                 }
             })
-            $(document).on('submit','#trainer_message_form', function (e){
-                    e.preventDefault();
-                    var trainer_message_input=$(".trainer_message_input").val();
-
-                    console.log(trainer_message_input);
-                    const options = {
-                        method: "POST",
-                        url: "trainer/send",
-                        data: {
-                            text: trainer_message_input
-                        }
-                    }
-                    axios(options);
-
-
-                    Pusher.logToConsole = true;
-                    var pusher = new Pusher('6c07a0a51a0f074bcdf0', {
-                        cluster: 'us2'
-                    });
-
-                    var channel = pusher.subscribe('trainer-message');
-                    channel.bind('training_message_event', function(data) {
-                        group_chat_messages_container.innerHTML += `
-                    <div class="group-chat-sender-container" id="trainer_message_el">
-                            <div class="group-chat-sender-text-container">
-                                <p>${data.message}</p>
-                            </div>
-                            <img src="{{ asset('image/default.jpg') }}" />
-                        </div>`;
-                    });
-
-                });
-
-            let trainer_message_el = document.getElementById("trainer_message_el");
-            let trainer_message_form = document.getElementById("trainer_message_form");
-            let trainer_send_message_btn = document.getElementById("trainer_send_message_btn");
-            let trainer_message_input = document.querySelector(".trainer_message_input");
-
-            let group_chat_messages_container = document.querySelector(".group-chat-messages-container");
-            trainer_message_form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                    //alert(trainer_message_input.value);
-                console.log(trainer_message_input.value);
-                const options = {
-                    method: "POST",
-                    url: "trainer/send",
-                    data: {
-                        text: trainer_message_input.value
-                    }
-                }
-                axios(options);
-                trainer_message_input.value = "";
-            });
-            Pusher.logToConsole = true;
-
-            var pusher = new Pusher('6c07a0a51a0f074bcdf0', {
-                cluster: 'us2'
-            });
-            var channel = pusher.subscribe('trainer-message');
-            channel.bind('training_message_event', function(data) {
-                group_chat_messages_container.innerHTML += `
-            <div class="group-chat-sender-container" id="trainer_message_el">
-                    <div class="group-chat-sender-text-container">
-                        <p>${data.message}</p>
-                    </div>
-                    <img src="{{ asset('image/default.jpg') }}" />
-                </div>`;
-            });
 
         });
+        
+        $(document).on('submit','#trainer_message_form', function (e){
+                            e.preventDefault();
+
+                            let trainer_message_input=document.querySelector(".trainer_message_input");
+                            let group_chat_messages_container = document.querySelector(".group-chat-messages-container");
+
+                            console.log(trainer_message_input);
+                            const options = {
+                                method: "POST",
+                                url: "trainer/send",
+                                data: {
+                                    text: trainer_message_input.value
+                                }
+                            }
+                            axios(options);
+                            trainer_message_input.value='';
+
+                            Pusher.logToConsole = true;
+                            var pusher = new Pusher('6c07a0a51a0f074bcdf0', {
+                                cluster: 'us2'
+                            });
+
+                            var channel = pusher.subscribe('trainer-message');
+                            channel.bind('training_message_event', function(data) {
+                                group_chat_messages_container.innerHTML += `
+                            <div class="group-chat-sender-container" id="trainer_message_el">
+                                    <div class="group-chat-sender-text-container">
+                                        <p>${data.message}</p>
+                                    </div>
+                                    <img src="{{ asset('image/default.jpg') }}" />
+                                </div>`;
+                            });
+
+
+
+        });
+
         $(document).on('click','#add_member', function (e) {
             e.preventDefault();
             $(".trainer-group-chat-view-members-header").empty();
