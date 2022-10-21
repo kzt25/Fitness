@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\TrainingUser;
 use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class TrainingGroupController extends Controller
@@ -15,7 +16,7 @@ class TrainingGroupController extends Controller
     public function getTrainningGroups()
     {
         $user = auth()->user();
-        $training_groups = TrainingGroup::where('user_id', $user->id)->get();
+        $training_groups = TrainingGroup::where('trainer_id', $user->id)->get();
 
         return response()->json([
             'message' => 'success',
@@ -28,7 +29,7 @@ class TrainingGroupController extends Controller
         $user = auth()->user();
 
         $training_group = new TrainingGroup();
-        $training_group->user_id = $user->id;
+        $training_group->trainer_id = $user->id;
         $training_group->member_type = $request->member_type;
         $training_group->member_type_level = $request->proficiency;
         $training_group->group_name = $request->group_name;
@@ -118,15 +119,17 @@ class TrainingGroupController extends Controller
                 ->whereBetween('bmi', [18.5, 24.9])
                 ->get();
 
-                return response()->json([
-                    'message' => 'success',
-                    'members' => $members
-                ]);
+            return response()->json([
+                'message' => 'success',
+                'members' => $members
+            ]);
         }
     }
 
-    public function viewMembers() {
-        $training_users = TrainingUser::with('group.user')->get();
+    public function viewMembers(Request $request)
+    {
+        $training_group_id = $request->training_group_id;
+        $training_users = TrainingUser::where('training_group_id', $training_group_id)->with('user')->get();
 
         return response()->json([
             'message' => 'success',
