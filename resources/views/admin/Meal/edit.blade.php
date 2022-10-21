@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" name="name" value="{{$meal->name}}">
                 </div>
 
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <label for="name">Meal Time</label>
                     <input type="text" class="form-control" value="{{$meal->meal_time}}" name="meal_time">
                 </div>
@@ -28,7 +28,7 @@
                 <div class="mt-4">
                     <label for="name">Day</label>
                     <input type="date" class="form-control" value="{{$meal->day}}" name="day">
-                </div>
+                </div> --}}
 
                 <div class="mt-4">
                     <label for="calories">Calories</label>

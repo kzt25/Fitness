@@ -34,10 +34,11 @@ class TrainerManagementConntroller extends Controller
 
     public function send(Request $request)
     {
+        // dd("dd");
         event(new TrainingMessageEvent($request->text));
 
         $message = new Message();
-        $message->training_group_id = 1;
+        $message->training_group_id = $request->id;
         $message->text = $request->text == null ?  null : $request->text;
         $message->media = $request->media == null ? null : $request->media;
 
