@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\TrainingGroupController;
+use App\Http\Controllers\Trainer\TrainerGroupController;
+use App\Models\TrainingGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -38,4 +37,17 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::post('store-bank-payment', [AuthController::class, 'storeBankPayment']);
     Route::post('store-wallet-payment', [AuthController::class, 'storeWalletPayment']);
+
+    //Training Center
+    Route::get('training-groups', [TrainingGroupController::class, 'getTrainningGroups']);
+    Route::post('create-trainging-group', [TrainingGroupController::class, 'createTrainingGroup']);
+    Route::post('delete-training-group', [TrainingGroupController::class, 'deleteTrainingGroup']);
+    Route::post('training-group-view-media', [TrainingGroupController::class, 'trainingGroupViewMedia']);
+
+    Route::post('members-for-training-group', [TrainingGroupController::class, 'memberForTrainingGroup']);
+    Route::get('view-member', [TrainingGroupController::class, 'viewMembers']);
+    Route::get('view-member-profile', [TrainerGroupController::class, 'viewMemberProfile']);
+    Route::post('add-member', [TrainingGroupController::class, 'addMember']);
+    Route::post('kick-member', [TrainingGroupController::class, 'kickMember']);
+
 });

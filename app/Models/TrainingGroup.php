@@ -16,4 +16,7 @@ class TrainingGroup extends Model
                     ->withTimestamps();
     }
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

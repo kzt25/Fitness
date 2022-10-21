@@ -65,10 +65,8 @@ Route::post('password_reset',[PassResetController::class,'password_reset'])->nam
 Route::middleware(['role:Trainer'])->group(function () {
     Route::post('/trainer/group/create',[TrainerGroupController::class, 'store'])->name('trainer.group.create');
     Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
-
     Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
     Route::post('trainer/member/search',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
-    Route::get('/trainer/view_member',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
     Route::get('/addMember/{id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
 });
 
@@ -76,10 +74,10 @@ Route::middleware(['role:Trainer'])->group(function () {
     Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
     Route::post('trainer/member/search/{id}',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
     Route::get('/trainer/view_member/{id}',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
+    Route::get('/trainer/view_media/{id}',[TrainerManagementConntroller::class,'view_media'])->name('trainer/view_media');
     Route::get('/addMember/{id}/{group_id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
     Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);
-
-    Route::post('trainer/send', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
+    Route::post('trainer/send/{group_id}', [TrainerManagementConntroller::class, 'send'])->name('trainer-send-message');
     Route::get('trainer/group/delete', [TrainerManagementConntroller::class, 'destroy'])->name('group.delete');
     Route::get('trainer/group/member/kick/{id}', [TrainerManagementConntroller::class, 'kick'])->name('member.kick');
 });

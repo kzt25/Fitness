@@ -122,6 +122,12 @@
 
     <link rel="stylesheet" href="{{asset('css/workout.css')}}">
 
+    <!--chart js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
     @yield('styles')
 
 
