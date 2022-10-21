@@ -19,6 +19,8 @@ class CreateMealsTable extends Migration
             $table->float('calories')->default(0);
             $table->integer('meal_plan_id');
             $table->string('gender');
+            $table->string('meal_time');
+            $table->string('day');
             $table->timestamps();
         });
     }

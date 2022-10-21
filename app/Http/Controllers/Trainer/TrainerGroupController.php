@@ -43,7 +43,8 @@ class TrainerGroupController extends Controller
     }
 
     public function chat_show($id)
-    {    $chat_messages=DB::table('messages')->get();
+    {
+        $chat_messages=DB::table('messages')->where('training_group_id',$id)->get();
         //$messages=DB::select('select * from messages');
         $group_chat=TrainingGroup::findOrFail($id);
         return response()

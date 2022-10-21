@@ -40,10 +40,10 @@
       </div>
     </div>
 </div>
-
         <div class="trainer-two-columns-container">
             <div class="trainer-group-chats-parent-container">
                 <p>Groups</p>
+
                 <div class="trainer-group-chats-container">
 
                     <div class="tainer-group-chat-name-container">
@@ -96,126 +96,22 @@
                 </div>
 
                 <div class="trainer-group-chat-members-container">
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
+                    @forelse ($group_members as $m)
+                        <div class="trainer-group-chat-member-row">
+                            <div class="trainer-group-chat-member-name">
+                                <img src="../imgs/avatar.png">
+                                <p>{{$m->name}}</p>
+                            </div>
 
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
+                            <div class="trainer-group-chat-member-btns-container">
+                                <a href="#" class="customer-secondary-btn">View Profile</a>
+                                <a href="{{route('member.kick',$m->id)}}" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
+                            </div>
 
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
                         </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
+                    @empty
+                    <p class="text-secondary p-1">No Group Members</p>
+                    @endforelse
                 </div>
 
 
