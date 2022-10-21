@@ -18,6 +18,7 @@
     font-size: 19px;
     font-weight: 600;
     margin-bottom: 5px;
+    color: var(--customer-text-color);
 }
 
 .customer-training-center-header-container p{
@@ -45,6 +46,16 @@
     margin-bottom: 20px;
 }
 
+.customer-group-chat-member-row .customer-secondary-btn{
+    border: 2px solid var(--customer-text-color);
+    color: var(--customer-text-color);
+}
+
+.customer-group-chat-member-row .customer-secondary-btn:hover{
+    border: 2px solid var(--customer-primary-color);
+    color: var(--customer-primary-color);
+}
+
 .customer-group-chat-member-name{
     display: flex;
     align-items: center;
@@ -60,6 +71,7 @@
 .customer-group-chat-member-name p{
     margin-bottom: 0;
     margin-left: 5px;
+    color: var(--customer-text-color);
 }
 
 .customer-trainingcenter-media-container{
@@ -379,4 +391,187 @@ video::-webkit-media-controls-fullscreen-button {
 
 .customer-workout-completed-save-btn{
     margin-top: 40px;
+}
+
+.customer-plat-total-cal{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 80px;
+}
+
+.customer-plat-total-cal span{
+    color: var(--customer-primary-color);
+    margin-left: 20px;
+}
+
+.customer-plat-food-track-header{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.customer-food-tracker-parent-container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 0 10px;
+    margin-bottom: 40px;
+}
+
+.customer-food-tracker-container{
+    background-color: white;
+    box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 20px;
+    height: 500px;
+}
+
+.customer-food-tracker-header{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.customer-food-tracker-header > h1{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.customer-food-tracker-header > p span{
+    color: var(--customer-primary-color);
+}
+
+.customer-food-tracker-checkboxes-container{
+    height: calc(100% - 70px);
+    overflow-y: scroll;
+}
+
+.customer-plat-food-tracker{
+    pointer-events: none;
+}
+
+.customer-food-tracker-checkbox{
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: all 0.2s ease-in-out;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+.customer-food-tracker-checkbox:hover{
+    background-color: var(--customer-primary-color);
+}
+
+.customer-food-tracker-checkbox:hover .customer-food-tracker-checkbox-label{
+    /* transform: scale(1.1);  */
+    /* color: var(--customer-primary-color); */
+    color: white;
+}
+
+.customer-food-tracker-checkbox:hover .customer-food-tracker-checkbox-label span{
+    color: white;
+}
+
+.customer-food-tracker-checkbox input{
+    width: 15px;
+    height: 15px;
+    /* border:1px solid var(--customer-primary-color); */
+    cursor: pointer;
+}
+
+.customer-food-tracker-checkbox-label{
+    margin-left: 10px;
+    transition: all 0.1s ease-in-out;
+}
+
+.customer-food-tracker-checkbox-label p{
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.customer-food-tracker-checkbox-label span{
+    font-size: 12px;
+    color: var(--customer-light-text-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.customer-diamond-food-track-header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.customer-diamond-food-track-header h1{
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+.customer-diamond-food-track-header span{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--customer-light-text-color);
+}
+
+
+.card-chart{
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.card-center{
+    line-height: 1.5;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.card-label{
+    color: var(--customer-light-text-color);
+    /* font-weight: $normal; */
+    font-size: 14px;
+}
+
+.card-value{
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--customer-primary-color);
+}
+
+.customer-water-track-details-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customer-water-track-intake-container{
+    text-align: center;
+}
+
+.customer-water-track-days-container{
+    margin-left: 60px;
+    text-align: center;
+}
+
+.customer-water-track-intake-container span, .customer-water-track-days-container span{
+    font-size: 18px;
+    color: var(--customer-light-text-color);
+    font-weight: 600;
+}
+
+.customer-water-track-intake-container p, .customer-water-track-days-container p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.customer-water-track-btn{
+    /* margin: auto; */
+    display: block;
+    margin: 40px auto 40px auto;
+    /* text-align: center; */
 }

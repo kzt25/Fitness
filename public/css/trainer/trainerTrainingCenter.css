@@ -1,5 +1,5 @@
 .trainer-main-content-container{
-    
+
     width: 900px;
     margin: auto;
     margin-top: 140px;
@@ -37,7 +37,7 @@
     box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
     -webkit-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
     -moz-box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.25);
-    background-color: white;
+    background-color: var(--customer-card-bg-color);
     padding: 20px 15px;
     border-radius: 10px;
     height: 100%;
@@ -45,6 +45,7 @@
 
 .trainer-group-chats-parent-container > p{
     margin-bottom: 20px;
+    color: var(--customer-text-color);
 }
 
 .trainer-group-chats-container{
@@ -56,11 +57,11 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: black;
+    color: var(--customer-text-color);
 }
 
 .tainer-group-chat-name-container:not(:first-child){
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .tainer-group-chat-name-container img{
@@ -127,6 +128,16 @@
     margin-bottom: 20px;
 }
 
+.trainer-group-chat-member-row .customer-secondary-btn{
+    border: 2px solid var(--customer-text-color);
+    color: var(--customer-text-color);
+}
+
+.trainer-group-chat-member-row .customer-secondary-btn:hover{
+    border: 2px solid var(--customer-primary-color);
+    color: var(--customer-primary-color);
+}
+
 .trainer-group-chat-member-name{
     display: flex;
     align-items: center;
@@ -142,6 +153,7 @@
 .trainer-group-chat-member-name p{
     margin-bottom: 0;
     margin-left: 5px;
+    color: var(--customer-text-color);
 }
 
 .trainer-group-chat-member-kick-btn{
@@ -199,7 +211,7 @@
     height: 100%;
     padding: 0;
     border: none;
-    
+
 }
 
 .trainer-group-chat-media img{
@@ -258,7 +270,7 @@
     cursor: pointer;
 }
 
-/* .add-member-checkbox:has(input:checked){ 
+/* .add-member-checkbox:has(input:checked){
     background-color: var(--customer-primary-color);
 } */
 
