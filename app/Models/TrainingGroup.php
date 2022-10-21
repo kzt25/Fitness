@@ -11,8 +11,8 @@ class TrainingGroup extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'training_groups')
-                    ->withPivot(['group_id','user_id'])
+        return $this->belongsToMany(User::class,'training_users')
+                    //->withPivot(['user_id','training_group_id'])
                     ->withTimestamps();
     }
 

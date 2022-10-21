@@ -17,7 +17,7 @@ class MealController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         //
@@ -68,6 +68,8 @@ class MealController extends Controller
         // $meal_create->gender = $request->gender;
         $meal_create->calories = $request->calories;
         $meal_create->meal_plan_id = $request->meal_plan_id;
+        $meal_create->meal_time = $request->meal_time;
+        $meal_create->day = $request->day;
         $meal_create->save();
         return redirect()->route('meal.index')->with('success', 'New Meal is created successfully!');
     }
@@ -115,6 +117,8 @@ class MealController extends Controller
         // $meal_update->gender = $request->gender;
         $meal_update->calories = $request->calories;
         $meal_update->meal_plan_id = $request->meal_plan_id;
+        $meal_update->meal_time = $request->meal_time;
+        $meal_update->day = $request->day;
         $meal_update->update();
         return redirect()->route('meal.index')->with('success', 'Meal is updated successfully!');
     }

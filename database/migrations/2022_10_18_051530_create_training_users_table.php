@@ -16,7 +16,7 @@ class CreateTrainingUsersTable extends Migration
         Schema::create('training_users', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('group_id')->unsigned();
+            $table->integer('training_group_id')->unsigned();
             $table->timestamps();
         });
     }

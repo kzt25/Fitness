@@ -7,7 +7,7 @@
       <div class="modal-content">
         <div class="modal-header  customer-transaction-modal-header">
           <h5 class="modal-title text-center" id="exampleModalLabel">Add Member</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="uncheckAddMemberBoxes()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
          <form class="add-member-form" action="">
@@ -28,11 +28,11 @@
                 </div>
                 @endforeach --}}
             </div>
-
+            {{--
             <div class="create-group-form-btns-contaier">
                 <button type="submit" class="customer-primary-btn">Confirm</button>
                 <button type="reset" class="customer-secondary-btn" onclick="uncheckAddMemberBoxes()">Cancel</button>
-            </div>
+            </div> --}}
          </form>
 
         </div>
@@ -40,13 +40,10 @@
       </div>
     </div>
 </div>
-
-
-
-
         <div class="trainer-two-columns-container">
             <div class="trainer-group-chats-parent-container">
                 <p>Groups</p>
+
                 <div class="trainer-group-chats-container">
 
                     <div class="tainer-group-chat-name-container">
@@ -68,7 +65,7 @@
                     <a href="../htmls/trainerGroupChatViewMembers.html" class="group-chat-header-name-container">
                         <img src="../imgs/avatar.png"/>
                         <div class="group-chat-header-name-text-container">
-                            <p>Group Name</p>
+                            <p>{{$group->group_name}}</p>
                             <span>group member, group member,group member,group member,group member,</span>
                         </div>
                     </a>
@@ -88,134 +85,33 @@
                             <iconify-icon icon="akar-icons:circle-plus" class="trainer-view-members-add-icon"></iconify-icon>
                             <p>Add Member</p>
                         </button>
+                        <form action="{{route('group.delete')}}">
+                            <input type ="text" name = "group_id" value="{{$group->id}}" hidden>
+                            <button  class="trainer-view-members-delete-btn customer-red-btn">
+                                Delete Group
+                            </button>
+                        </form>
 
-                        <a href="#" class="trainer-view-members-delete-btn customer-red-btn">
-                            Delete Group
-                        </a>
                     </div>
                 </div>
 
                 <div class="trainer-group-chat-members-container">
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
+                    @forelse ($group_members as $m)
+                        <div class="trainer-group-chat-member-row">
+                            <div class="trainer-group-chat-member-name">
+                                <img src="../imgs/avatar.png">
+                                <p>{{$m->name}}</p>
+                            </div>
 
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
+                            <div class="trainer-group-chat-member-btns-container">
+                                <a href="#" class="customer-secondary-btn">View Profile</a>
+                                <a href="{{route('member.kick',$m->id)}}" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
+                            </div>
 
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
                         </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
-                    <div class="trainer-group-chat-member-row">
-                        <div class="trainer-group-chat-member-name">
-                            <img src="../imgs/avatar.png">
-                            <p>Group Member</p>
-                        </div>
-
-                        <div class="trainer-group-chat-member-btns-container">
-                            <a href="#" class="customer-secondary-btn">View Profile</a>
-                            <a href="#" class="trainer-group-chat-member-kick-btn customer-red-btn ">Kick Member</a>
-                        </div>
-
-                    </div>
+                    @empty
+                    <p class="text-secondary p-1">No Group Members</p>
+                    @endforelse
                 </div>
 
 
@@ -266,7 +162,10 @@
                 search();
                 function search(){
                     var keyword = $('#search').val();
-                    $.post('{{ route('trainer/member/search') }}',
+                    var group_id = {{$group->id}};
+                    var search_url = "{{ route('trainer/member/search',':id') }}";
+                    search_url = search_url.replace(':id', group_id);
+                    $.post(search_url,
                     {
                         _token: $('meta[name="csrf-token"]').attr('content'),
                         keyword:keyword
@@ -286,11 +185,12 @@
                 }
                 for(let i = 0; i < res.members.length; i++){
                     id = res.members[i].id;
+                    group_id = {{$group->id}};
 
-                    // var id = '12';
-	                var url = "{{ route('addMember',':id') }}";
+                    var url = "{{ route('addMember',[':id',':group_id']) }}";
                     url = url.replace(':id', id);
-
+                    url = url.replace(':group_id', group_id);
+                    // console.log(url);
                     htmlView += `
                         <div class="add-member-row">
                             <div class="add-member-name-container">
@@ -299,9 +199,11 @@
                             </div>
                             <div class="add-member-row-btns-container">
                                 <label class="add-member-checkbox">
+
                                     <a href = ${url} ><p>Add</p></a>
                                 </label>
                                 <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>
+
                             </div>
                         </div>
                 `
