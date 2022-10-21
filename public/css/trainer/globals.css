@@ -10,6 +10,29 @@
     --customer-red-color: #D70000;
     --customer-red-color-hover: #f52b2b;
     --customer-light-text-color : #a0a0a0;
+    --customer-nav-bg-color : #ffffff;
+}
+
+[data-theme = "dark"]{
+    --customer-primary-color: #3CDD57;
+    --customer-primary-color-hover : #53f96f;
+    --customer-placeholder-color: #dddddd;
+    --customer-loggedin-bg-color : #ECECEC;
+    --customer-red-color: #D70000;
+    --customer-red-color-hover: #f52b2b;
+    --customer-light-text-color : #a0a0a0;
+    --customer-nav-bg-color : #282828;
+}
+
+[data-theme="pink"]{
+    --customer-primary-color: #3CDD57;
+    --customer-primary-color-hover : #53f96f;
+    --customer-placeholder-color: #dddddd;
+    --customer-loggedin-bg-color : #ECECEC;
+    --customer-red-color: #D70000;
+    --customer-red-color-hover: #f52b2b;
+    --customer-light-text-color : #a0a0a0;
+    --customer-nav-bg-color : #F98EAA;
 }
 *{
     font-family: 'Poppins', sans-serif;
