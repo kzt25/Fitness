@@ -165,7 +165,7 @@
                                         <iconify-icon icon="akar-icons:arrow-right" class="group-chat-view-midea-link-icon"></iconify-icon>
                                         </a>
                                         `;
-                        var sender = `<form class="group-chat-send-form-container trainer_message_form" id=`+id+` method="POST">
+                        var sender = `<form class="group-chat-send-form-container" id="trainer_message_form" method="POST">
                                     <div class="group-chat-send-form-message-parent-container">
                                         <div class="group-chat-send-form-img-emoji-container">
                                             <label class="group-chat-send-form-img-contaier">
@@ -190,7 +190,7 @@
                                         </button>
                                     </div>
 
-                                    <button type="submit" class="group-chat-send-form-submit-btn">
+                                    <button type="submit" class="group-chat-send-form-submit-btn" id="sendd">
                                         <iconify-icon icon="akar-icons:send" class="group-chat-send-form-submit-btn-icon"></iconify-icon>
                                     </button>
                                 </form>`;
@@ -202,20 +202,19 @@
                             });
                 }
             })
+
         });
 
-        $(document).on('submit','.trainer_message_form', function (e){
+        $(document).on('submit','#trainer_message_form', function (e){
                             e.preventDefault();
-                            var group_id=this.id;
-                            var id = $('this').data('id');
-                            console.log(id);
+
                             let trainer_message_input=document.querySelector(".trainer_message_input");
                             let group_chat_messages_container = document.querySelector(".group-chat-messages-container");
-
-                            console.log(trainer_message_input);
+                            let id = localStorage.getItem('group_id');
+                            // console.log(id,"id");
                             const options = {
                                 method: "POST",
-                                url: "trainer/send"+group_id,
+                                url: "trainer/send/"+id,
                                 data: {
                                     text: trainer_message_input.value
                                 }
@@ -244,7 +243,6 @@
         });
 
         $(document).on('click','#add_member', function (e) {
-
             e.preventDefault();
             $(".trainer-group-chat-view-members-header").empty();
             $(".trainer-group-chat-members-container").empty();
@@ -396,6 +394,10 @@
                 $('.group-chat-messages-container').hide();
                 $('#send_form').hide();
             })
+
+            // function myFn(){
+
+            // }
         });
     </script>
 
