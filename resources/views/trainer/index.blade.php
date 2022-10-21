@@ -394,6 +394,10 @@
                 $('.group-chat-messages-container').hide();
                 $('#send_form').hide();
             })
+
+            // function myFn(){
+
+            // }
         });
     </script>
 
