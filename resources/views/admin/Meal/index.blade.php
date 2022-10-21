@@ -75,6 +75,14 @@
                         name: 'name'
                     },
                     {
+                        data: 'meal_time',
+                        name: 'meal_time'
+                    },
+                    {
+                        data: 'day',
+                        name: 'day'
+                    },
+                    {
                         data: 'calories',
                         name: 'calories'
                     },

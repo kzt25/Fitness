@@ -52,10 +52,13 @@ class TrainerManagementConntroller extends Controller
                         ->delete();
 
         $member_user=User::findOrFail($id);
+
         $member_user->ingroup=0;
         $member_user->update();
 
-        return redirect()->back()->with('success','Kick Member Successfully');
+        return response()->json(['message'=>'Kick Member Successfully']);
+
+        //return redirect()->back()->with('success','Kick Member Successfully');
 
     }
 
@@ -74,8 +77,8 @@ class TrainerManagementConntroller extends Controller
                             ->get();
         $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
         $members=Member::groupBy('member_type')
-        ->where('member_type','!=','Free')
-        ->get();
+                        ->where('member_type','!=','Free')
+                        ->get();
 
         $group_id = $id;
         $group = TrainingGroup::where('id',$group_id)->first();
@@ -90,6 +93,24 @@ class TrainerManagementConntroller extends Controller
         // dd($group);
 
         //return view('Trainer.view_member',compact('members','group','group_members','groups'));
+    }
+
+    public function view_media($id)
+    {
+        $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
+        $group = TrainingGroup::where('id',$id)->first();
+        $members=Member::groupBy('member_type')
+        ->where('member_type','!=','Free')
+        ->get();
+        $message = Message::where('training_group_id',$id)->get();
+        return response()
+        ->json([
+            'members' => $members,
+            'group'=>$group,
+            'messages'=>$message,
+            'groups'=>$groups
+         ]);
+        // return view('Trainer.view_media',compact('members','message','group'));
     }
 
     public function addMember(Request $request)
