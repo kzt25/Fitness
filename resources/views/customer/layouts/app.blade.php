@@ -55,6 +55,9 @@
 
     <script src={{ asset('js/customer/js/customerRegisteration.js')}}></script>
 
+    <!--theme-->
+    <script src="{{asset('js/theme.js')}}"></script>
+
     @stack('scripts')
 
   </body>
