@@ -57,7 +57,7 @@ class TrainerManagementConntroller extends Controller
         $member_user->ingroup=0;
         $member_user->update();
 
-        return response()->json(['message'=>'Kick Member Successfully']);
+        //return response()->json(['message'=>'Kick Member Successfully']);
 
         //return redirect()->back()->with('success','Kick Member Successfully');
 
