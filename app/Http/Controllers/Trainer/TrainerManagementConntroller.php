@@ -32,7 +32,7 @@ class TrainerManagementConntroller extends Controller
          return view('Trainer.index',compact('messages','members','groups'));
     }
 
-    public function send(Request $request)
+    public function send(Request $request,$group_id)
     {
         // dd("dd");
         event(new TrainingMessageEvent($request->text));
