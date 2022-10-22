@@ -36,7 +36,6 @@ class TrainerManagementConntroller extends Controller
     {
         // dd("dd");
         event(new TrainingMessageEvent($request->text));
-
         $message = new Message();
         $message->training_group_id = $request->id;
         $message->text = $request->text == null ?  null : $request->text;
@@ -48,6 +47,7 @@ class TrainerManagementConntroller extends Controller
 
     public function kick($id)
     {
+        //dd($id);
         $member_kick=DB::table('training_users')
                         ->where('user_id',$id)
                         ->delete();
@@ -57,9 +57,9 @@ class TrainerManagementConntroller extends Controller
         $member_user->ingroup=0;
         $member_user->update();
 
-        return response()->json(['message'=>'Kick Member Successfully']);
-
-        //return redirect()->back()->with('success','Kick Member Successfully');
+       // return response()->json(['message'=>'Kick Member Successfully']);
+    //    return response()->json(['member'=>$member_user]);
+       return redirect()->back()->with('success','Kick Member Successfully');
 
     }
 
@@ -139,7 +139,6 @@ class TrainerManagementConntroller extends Controller
             ->where('gender',$group->gender)
             ->where('bmi','>=',25)
             ->get();
-
            }
 
            if($group->group_type === 'weightGain'){
@@ -150,7 +149,6 @@ class TrainerManagementConntroller extends Controller
             ->where('gender',$group->gender)
             ->where('bmi','<=',18.5)
             ->get();
-
            }
 
            if($group->group_type === 'bodyBeauty'){
@@ -163,6 +161,8 @@ class TrainerManagementConntroller extends Controller
             ->get();
 
            }
+
+        //dd($request->keyword);
         if($request->keyword != ''){
             if($group->group_type === 'weightLoss'){
                 $members = User::where('ingroup' , '!=',1)

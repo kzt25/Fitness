@@ -25,7 +25,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="add-member-form" action="">
-                            <input type="text" class="form-control mb-3" placeholder="Search employee" id="search">
+                            <input type="text" class="form-control mb-3"   placeholder="Search member" id="search">
                             <div class="add-member-rows-container">
                             </div>
                         </form>
@@ -127,6 +127,10 @@
     @endif
     <script>
         $(document).ready(function() {
+            $( "#search" ).keypress(function(e) {
+                    alert( "Handler for .keyup() called." );
+                    console.log("44");
+                    });
             $('.trainer-group-chat-view-members-header').hide();
             $('.trainer-group-chat-members-container').hide();
             $('.trainer-group-chat-media-container').hide();
@@ -237,9 +241,6 @@
                                     <img src="{{ asset('image/default.jpg') }}" />
                                 </div>`;
                             });
-
-
-
         });
 
         $(document).on('click','#add_member', function (e) {
@@ -247,13 +248,16 @@
             $(".trainer-group-chat-view-members-header").empty();
             $(".trainer-group-chat-members-container").empty();
             console.log("header");
-            $('#search').on('keyup', function(){
-                    search();
-                });
-                search();
+            // $('#search').on('keyup', function(){
+            //         search();
+            //     });
+
+                                    search();
+
 
                 function search() {
                     var keyword = $('#search').val();
+                    //console.log("keyword");
                     var group_id = localStorage.getItem('group_id');
                     console.log("dd", group_id)
                     var search_url = "{{ route('trainer/member/search', ':id') }}";
@@ -329,7 +333,7 @@
                                     </div>\
                                     <div class="trainer-group-chat-member-btns-container">\
                                         <a href="#" class="customer-secondary-btn">View Profile</a>\
-                                        <a href="` + kick_url + `" class="trainer-group-chat-member-kick-btn customer-red-btn">Kick Member</a>\
+                                        <a  href="`+ kick_url + `" data-url="` + kick_url + `" class="trainer-group-chat-member-kick-btn customer-red-btn" id="kick_member">Kick Member</a>\
                                     </div>\
                                 </div>`);
                         });
@@ -394,10 +398,6 @@
                 $('.group-chat-messages-container').hide();
                 $('#send_form').hide();
             })
-
-            // function myFn(){
-
-            // }
         });
     </script>
 
