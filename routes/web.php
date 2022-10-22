@@ -80,6 +80,7 @@ Route::middleware(['role:Trainer'])->group(function () {
     Route::get('/trainer',[TrainerManagementConntroller::class,'index'])->name('trainer');
     Route::post('trainer/member/search/{id}',[TrainerManagementConntroller::class,'showMember'])->name('trainer/member/search');
     Route::get('/trainer/view_member/{id}',[TrainerManagementConntroller::class,'view_member'])->name('trainer/view_member');
+    Route::get('/trainer/add_member/{id}',[TrainerManagementConntroller::class,'add_member'])->name('trainer/add_member');
     Route::get('/trainer/view_media/{id}',[TrainerManagementConntroller::class,'view_media'])->name('trainer/view_media');
     Route::get('/addMember/{id}/{group_id}',[TrainerManagementConntroller::class,'addMember'])->name('addMember');
     Route::get('trainer/group/show/{id}',[TrainerGroupController::class, 'chat_show']);

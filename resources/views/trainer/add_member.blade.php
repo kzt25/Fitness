@@ -1,5 +1,4 @@
 @extends('trainer.layouts.app')
-
 @section('content')
 <!--add member modal-->
 <div class="modal fade" id="addMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
