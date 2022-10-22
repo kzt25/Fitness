@@ -39,15 +39,18 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('store-wallet-payment', [AuthController::class, 'storeWalletPayment']);
 
     //Training Center
-    Route::get('training-groups', [TrainingGroupController::class, 'getTrainningGroups']);
-    Route::post('create-training-group', [TrainingGroupController::class, 'createTrainingGroup']);
-    Route::post('delete-training-group', [TrainingGroupController::class, 'deleteTrainingGroup']);
+    Route::get('training-groups', [TrainingGroupController::class, 'getTrainningGroups']); // end
+    Route::post('create-training-group', [TrainingGroupController::class, 'createTrainingGroup']); //end
+    Route::post('delete-training-group', [TrainingGroupController::class, 'deleteTrainingGroup']); // end
     Route::post('training-group-view-media', [TrainingGroupController::class, 'trainingGroupViewMedia']);
+    // to change get method
 
     Route::post('members-for-training-group', [TrainingGroupController::class, 'memberForTrainingGroup']);
-    Route::post('view-member', [TrainingGroupController::class, 'viewMembers']);
+
+    Route::post('view-member', [TrainingGroupController::class, 'viewMembers']);//end // to change get method
     Route::get('view-member-profile', [TrainerGroupController::class, 'viewMemberProfile']);
     Route::post('add-member', [TrainingGroupController::class, 'addMember']);
     Route::post('kick-member', [TrainingGroupController::class, 'kickMember']);
 
+    Route::get('test/{name}', [TrainingGroupController::class, 'test']);
 });

@@ -31,7 +31,7 @@ class TrainingGroupController extends Controller
         $training_group = new TrainingGroup();
         $training_group->trainer_id = $user->id;
         $training_group->member_type = $request->member_type;
-        $training_group->member_type_level = $request->proficiency;
+        $training_group->member_type_level = $request->member_type_level;
         $training_group->group_name = $request->group_name;
         $training_group->gender = $request->gender;
         $training_group->group_type = $request->group_type;
@@ -53,8 +53,10 @@ class TrainingGroupController extends Controller
 
         $group_user_delete = TrainingUser::where('training_group_id', $request->group_id);
         $group_user_delete->delete();
+
         $group_message_delete = Message::where('training_group_id', $request->group_id);
         $group_message_delete->delete();
+
         $group_delete = TrainingGroup::where('id', $request->group_id);
         $group_delete->delete();
 
@@ -77,11 +79,10 @@ class TrainingGroupController extends Controller
     public function memberForTrainingGroup(Request $request) // for search
     {
         $group_id = $request->id;
-
         $group = TrainingGroup::where('id', $group_id)->first();
 
         if ($group->group_type == 'weightLoss') {
-            $members = User::where('ingroup', '!=', 1)
+            $members = User::select('name', 'id')->where('ingroup', '!=', 1)
                 ->where('active_status', 2)
                 ->where('member_type', $group->member_type)
                 ->where('membertype_level', $group->member_type_level)
@@ -95,8 +96,8 @@ class TrainingGroupController extends Controller
             ]);
         }
 
-        if ($group->group_type == 'WeightGain') {
-            $members = User::where('ingroup', '!=', 1)
+        if ($group->group_type == 'weightGain') {
+            $members = User::select('name', 'id')->where('ingroup', '!=', 1)
                 ->where('active_status', 2)
                 ->where('member_type', $group->member_type)
                 ->where('membertype_level', $group->member_type_level)
@@ -111,7 +112,7 @@ class TrainingGroupController extends Controller
         }
 
         if ($group->group_type == 'bodyBeauty') {
-            $members = User::where('ingroup', '!=', 1)
+            $members = User::select('name', 'id')->where('ingroup', '!=', 1)
                 ->where('active_status', 2)
                 ->where('member_type', $group->member_type)
                 ->where('membertype_level', $group->member_type_level)
@@ -147,12 +148,19 @@ class TrainingGroupController extends Controller
     // MH style
     public function addMember(Request $request)
     {
-        $id = $request->id;
-        $group_id = $request->group_id;
-        $member = User::findOrFail($id);
-        $member->ingroup = 1;
-        $member->update();
-        $member->tainer_groups()->attach($group_id);
+        $addMembers = $request->all(); // json string
+        $addMembers =  json_decode(json_encode($addMembers));  // change to json object from json string
+
+        foreach ($addMembers->memberLists as $memberList) {
+            $id = $memberList->id; // user id
+            $group_id = $memberList->group_id; //group id
+
+            $member = User::findOrFail($id);
+            $member->ingroup = 1;
+            $member->update();
+            $member->tainer_groups()->attach($group_id);
+
+        }
 
         return response()->json([
             'message' => 'success',
@@ -173,6 +181,11 @@ class TrainingGroupController extends Controller
         return response()->json([
             'message' => 'success'
         ]);
+    }
+
+
+    public function test($name) {
+        return $name;
     }
 
     // public function kick($id)
