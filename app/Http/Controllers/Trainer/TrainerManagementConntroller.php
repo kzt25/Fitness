@@ -29,10 +29,10 @@ class TrainerManagementConntroller extends Controller
                         ->where('member_type','!=','Free')
                         ->get();
          $groups=TrainingGroup::where('trainer_id',auth()->user()->id)->get();
-        return view('Trainer.index',compact('messages','members','groups'));
+         return view('Trainer.index',compact('messages','members','groups'));
     }
 
-    public function send(Request $request)
+    public function send(Request $request,$group_id)
     {
         // dd("dd");
         event(new TrainingMessageEvent($request->text));

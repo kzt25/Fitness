@@ -40,12 +40,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     //Training Center
     Route::get('training-groups', [TrainingGroupController::class, 'getTrainningGroups']);
-    Route::post('create-trainging-group', [TrainingGroupController::class, 'createTrainingGroup']);
+    Route::post('create-training-group', [TrainingGroupController::class, 'createTrainingGroup']);
     Route::post('delete-training-group', [TrainingGroupController::class, 'deleteTrainingGroup']);
     Route::post('training-group-view-media', [TrainingGroupController::class, 'trainingGroupViewMedia']);
 
     Route::post('members-for-training-group', [TrainingGroupController::class, 'memberForTrainingGroup']);
-    Route::get('view-member', [TrainingGroupController::class, 'viewMembers']);
+    Route::post('view-member', [TrainingGroupController::class, 'viewMembers']);
     Route::get('view-member-profile', [TrainerGroupController::class, 'viewMemberProfile']);
     Route::post('add-member', [TrainingGroupController::class, 'addMember']);
     Route::post('kick-member', [TrainingGroupController::class, 'kickMember']);

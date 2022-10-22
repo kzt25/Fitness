@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TrainingCenter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\BankinginfoController;
 use App\Http\Controllers\Trainer\TrainerGroupController;
 use App\Http\Controllers\Customer\CustomerLoginController;
 use App\Http\Controllers\Customer\RegisterPaymentController;
+use App\Http\Controllers\Customer\Customer_TrainingCenterController;
 use App\Http\Controllers\Customer\CustomerRegisterController;
 use App\Http\Controllers\Admin\RequestAcceptDeclineController;
 use App\Http\Controllers\Trainer\TrainerManagementConntroller;
@@ -37,7 +39,11 @@ use App\Http\Controllers\Trainer\TrainerManagementConntroller;
 Route::group(['middleware' => 'prevent-back-history'], function(){
 Route::get('/customerlogin',[CustomerLoginController::class,'login'])->name('customerlogin');
 Route::get('customer/checkPhone',[CustomerRegisterController::class,'checkPhone'])->name('checkPhone');
+Route::get('customer/checkemail',[CustomerRegisterController::class,'checkemail'])->name('checkEmail');
+
 Route::get('customer/checkemail',[CustomerRegisterController::class,'checkemail'])->name('checkPhone');
+
+
 //Route::get('/customer/signup', [App\Http\Controllers\HomeController::class, 'customersignup'])->name('home');
 
 Route::post('/data/save', [HomeController::class, 'store'])->name('data.save');
@@ -173,15 +179,24 @@ Route::prefix('admin')->group(function () {
         Route::middleware(['role:Free'])->group(function () {
             Route::get('/free',[TrainerManagementConntroller::class,'free'])->name('free');
         });
-        Route::middleware(['role:Platinum'])->group(function () {
+        Route::middleware(['role:Platinum|Diamond'])->group(function () {
             Route::get('/platinum',[TrainerManagementConntroller::class,'platinum'])->name('platinum');
+            Route::get('/diamond',[TrainerManagementConntroller::class,'diamond'])->name('diamond');
+            Route::get('customer/training_center',[Customer_TrainingCenterController::class,'index'])->name('training_center.index');
+            Route::get('customer/training_center/meal',[Customer_TrainingCenterController::class,'meal'])->name('training_center.meal');
+            Route::get('customer/training_center/workout_plan',[Customer_TrainingCenterController::class,'workout_plan'])->name('training_center.workout_plan');
+            Route::get('customer/training_center/water',[Customer_TrainingCenterController::class,'water'])->name('training_center.water');
+            Route::get('customer/training_center/workout',[Customer_TrainingCenterController::class,'workout'])->name('training_center.workout');
+
+
         });
         Route::middleware(['role:Gold'])->group(function () {
             Route::get('/gold',[TrainerManagementConntroller::class,'gold'])->name('gold');
         });
-        Route::middleware(['role:Diamond'])->group(function () {
-            Route::get('/diamond',[TrainerManagementConntroller::class,'diamond'])->name('diamond');
-        });
+        // Route::middleware(['role:Diamond'])->group(function () {
+        //     Route::get('customer/training_center',[Customer_TrainingCenterController::class,'index'])->name('training_center.index');
+        //     Route::get('/diamond',[TrainerManagementConntroller::class,'diamond'])->name('diamond');
+        // });
         Route::middleware(['role:Ruby'])->group(function () {
             Route::get('/ruby',[TrainerManagementConntroller::class,'ruby'])->name('ruby');
         });

@@ -25,9 +25,9 @@
             </select>
         </div>
         <div class="customer-navlinks-container">
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <a href="#">Shop</a>
-            <a href="#">Training Center</a>
+            <a href="{{route('training_center.index')}}">Training Center</a>
 
         </div>
 
