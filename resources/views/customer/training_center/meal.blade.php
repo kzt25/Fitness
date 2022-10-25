@@ -257,13 +257,14 @@
                         var rowIdx = 0;
                         if(foodList.length === 0){
                             foodList.push(foodObj)
+                            console.log('attr');
                         }
 
                         // console.log(foodList);
                         // console.log(foodList,"foodlist")
 
                             $.each(foodList, function(index,value) {
-                                if(value.id === foodObj.id){
+                                if(value.id == foodObj.id){
                                     value.servings += 1
                                     console.log("same food")
                                     $(".customer-added-food-list-container tbody tr").each(function(){
