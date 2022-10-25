@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 @empty
-                <p class="text-secondary p-1">No Video</p>
+                <p class="text-secondary p-1">No Video Found</p>
             @endforelse
         </div>
     </div>

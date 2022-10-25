@@ -8,6 +8,7 @@ use App\Models\Meal;
 use App\Models\MealPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class Customer_TrainingCenterController extends Controller
 
@@ -41,10 +42,12 @@ class Customer_TrainingCenterController extends Controller
     public function workout_plan()
     {
         $user=auth()->user();
+        $current_day=Carbon::now()->format('l');
         $tc_workouts=DB::table('workouts')
                         ->where('member_type',$user->member_type)
                         ->where('gender_type',$user->gender)
                         ->where('workout_level',$user->membertype_level)
+                        ->where('day',$current_day)
                         ->get();
 
         return view('customer.training_center.workout_plan',compact('tc_workouts'));

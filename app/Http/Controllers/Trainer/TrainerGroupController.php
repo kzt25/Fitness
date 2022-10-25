@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TrainingGroup;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Psr7\Message;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TrainerGroupController extends Controller
 {
@@ -38,8 +38,10 @@ class TrainerGroupController extends Controller
         $members=Member::groupBy('member_type')
                 ->where('member_type','!=','Free')
                 ->get();
+        Alert::success('Success', 'New Training Group is created successfully');
+
         return redirect()->route('trainer',compact('groups','members'))->with(
-        'success','New Training Group is created successfully');
+        'success','');
     }
 
     public function chat_show($id)

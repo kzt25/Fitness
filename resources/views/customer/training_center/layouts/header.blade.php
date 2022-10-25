@@ -30,6 +30,12 @@
             <a href="{{route('training_center.index')}}">Training Center</a>
             <a href="#">Notifications</a>
             <a href="#">Account</a>
+            <div style="float:right;margin-left:30px">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button class="customer-primary-btn customer-login-btn" type="submit">Logout</button>
+            </form>
+            </div>
         </div>
     </div>
 </div>

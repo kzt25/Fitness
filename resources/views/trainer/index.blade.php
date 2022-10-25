@@ -2,15 +2,6 @@
 
 @section('content')
     @include('sweetalert::alert')
-    @if (Session::has('success'))
-        <script>
-            Swal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
-            )
-        </script>
-    @endif
     {{-- @include('trainer.trainer_groups') --}}
 
     <!--add member modal-->
