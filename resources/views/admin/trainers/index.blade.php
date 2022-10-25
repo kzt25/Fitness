@@ -43,7 +43,7 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Training Type</th>
-                        <th>Created At</th>
+                        <th>Role</th>
                         <th>Updated At</th>
                         <th>Action</th>
                     </tr>
@@ -92,8 +92,8 @@
                         name: 'training_type'
                     },
                     {
-                        data : 'created_at',
-                        name: 'created_at'
+                        data: 'role_name',
+                        name: 'role_name'
                     },
                     {
                         data: 'updated_at',

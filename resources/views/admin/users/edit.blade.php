@@ -37,7 +37,7 @@
 
                 <div class="mt-4">
                     <label for="role">Role</label>
-                    <select class="form-select" id="role" name="role">
+                    <select class="form-select" id="role" name="roles">
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}" @if (in_array($role->id, $old_roles))
                                 selected
