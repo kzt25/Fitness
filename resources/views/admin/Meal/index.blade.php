@@ -44,7 +44,6 @@
                         <th>Carbohydrates</th>
                         <th>Protein</th>
                         <th>Meal Plan Type</th>
-                        <th>Gender</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -94,12 +93,8 @@
                         name: 'protein'
                     },
                     {
-                        data: 'meal_plans.meal_plan_type',
-                        name: 'meal_plans.meal_plan_type'
-                    },
-                    {
-                        data: 'meal_plans.gender',
-                        name: 'meal_plans.gender'
+                        data: 'meal_plans.plan_name',
+                        name: 'meal_plans.plan_name'
                     },
                     {
                         data: 'action',
