@@ -25,8 +25,6 @@ class MealPlanRequest extends FormRequest
     {
         return [
             //
-            'gender' => 'required',
-            'meal_plan_type' => 'required',
             'meal_plan_name' => 'required',
         ];
     }

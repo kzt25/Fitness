@@ -428,6 +428,14 @@ video::-webkit-media-controls-fullscreen-button {
     height: 500px;
 }
 
+.customer-food-tracker-container input{
+    width: 100%;
+    height: 45px;
+    border: 2px solid var(--customer-primary-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .customer-food-tracker-header{
     text-align: center;
     margin-bottom: 20px;
@@ -443,7 +451,7 @@ video::-webkit-media-controls-fullscreen-button {
 }
 
 .customer-food-tracker-checkboxes-container{
-    height: calc(100% - 70px);
+    height: calc(100% - 100px);
     overflow-y: scroll;
 }
 
@@ -453,34 +461,48 @@ video::-webkit-media-controls-fullscreen-button {
 
 .customer-food-tracker-checkbox{
     width: 100%;
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     transition: all 0.2s ease-in-out;
     padding: 10px 5px;
     border-radius: 5px;
+    justify-content: space-between;
 }
 
-.customer-food-tracker-checkbox:hover{
+/* .customer-food-tracker-checkbox:hover{
     background-color: var(--customer-primary-color);
-}
+} */
 
-.customer-food-tracker-checkbox:hover .customer-food-tracker-checkbox-label{
-    /* transform: scale(1.1);  */
-    /* color: var(--customer-primary-color); */
+/* .customer-food-tracker-checkbox:hover .customer-food-tracker-checkbox-label{
     color: white;
 }
 
 .customer-food-tracker-checkbox:hover .customer-food-tracker-checkbox-label span{
     color: white;
-}
+} */
 
 .customer-food-tracker-checkbox input{
     width: 15px;
     height: 15px;
     /* border:1px solid var(--customer-primary-color); */
     cursor: pointer;
+}
+
+.customer-food-tracker-checkbox button{
+    padding: 5px 20px;
+    color: var(--customer-text-color);
+    border: 2px solid var(--customer-text-color);
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.customer-food-tracker-checkbox button:hover{
+    /* background-color: var(--customer-primary-color); */
+    color: var(--customer-primary-color);
+    border: 2px solid var(--customer-primary-color);
 }
 
 .customer-food-tracker-checkbox-label{
@@ -521,6 +543,13 @@ video::-webkit-media-controls-fullscreen-button {
     position: relative;
     margin-bottom: 30px;
     text-align: center;
+}
+
+.small-card-charts-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 20px;
 }
 
 .card-center{
@@ -574,4 +603,102 @@ video::-webkit-media-controls-fullscreen-button {
     display: block;
     margin: 40px auto 40px auto;
     /* text-align: center; */
+}
+
+.food-suggestions{
+    position: relative;
+  /* display: inline-block; */
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+  }
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+  }
+
+.customer-added-food-list-container{
+    width: 100%;
+
+}
+
+.customer-added-food-list-container thead tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* .customer-added-food-list-container thead tr{
+    display: block;
+
+} */
+
+.customer-added-food-list-container tbody tr{
+    background-color: var(--customer-primary-soft-color);
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.customer-added-food-list-container tbody{
+    height: 300px;
+    /* display: block; */
+    display: block;
+    width: 100%;
+    overflow-y: scroll;
+
+}
+
+.customer-added-food-list-container tbody tr:nth-child(2n){
+    background-color: #ECECEC;
+}
+
+.customer-added-food-list-container th{
+    text-align: center;
+}
+
+.customer-added-food-list-container td{
+    /* width: calc(100% / 8); */
+    text-align: center;
+    /* display: table; */
+    padding: 20px 0;
+}
+
+.customer-added-food-list-container input{
+    width: 100px;
+    border-radius: 5px;
+}
+
+.customer-add-food-delete-btn{
+    padding: 5px 10px;
+    /* background-color: var(--customer-red); */
+    border: none;
+    
+}
+
+.customer-addfood-confirm-btn{
+    display: block;
+    /* margin-top: 30px; */
+    margin: 30px auto;
+    /* padding: 5px 10px; */
 }
