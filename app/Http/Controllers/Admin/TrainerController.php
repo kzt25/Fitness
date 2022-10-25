@@ -42,8 +42,12 @@ class TrainerController extends Controller
                 }
                 return $training_type;
             })
-            ->editColumn('created_at', function ($each) {
-                return Carbon::parse($each->created_at)->format("Y-m-d H:i:s");
+            ->addColumn('role_name', function ($each) {
+                $output = "";
+                foreach ($each->roles as $role) {
+                    $output .= '<span class="badge badge-pill badge-success m-1">' . $role->name  . '</span>';
+                }
+                return $output;
             })
             ->editColumn('updated_at', function ($each) {
                 return Carbon::parse($each->updated_at)->format("Y-m-d H:i:s");
@@ -66,6 +70,7 @@ class TrainerController extends Controller
 
                 return '<div class="d-flex justify-content-center">' . $edit_icon . $delete_icon . '</div>';
             })
+            ->rawColumns(['role_name', 'action'])
             ->make(true);
     }
 
