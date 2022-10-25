@@ -48,78 +48,22 @@
     <div class="customer-workout-plan-details-workouts-container">
         <h1>Workouts</h1>
         <div class="customer-workout-plan-workouts-container">
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
+            @forelse ($tc_workouts as $workout)
+                <div class="customer-workout-plan-workout-container">
+                    <div class="customer-workout-plan-video-container">
+                        <video controls>
+                            <source src="{{asset('/storage/upload/'.$workout->video)}}" type="video/mp4">
+                        </video>
+                    </div>
 
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
+                    <div class="customer-workout-plan-name">
+                        <p>{{$workout->workout_name}}</p>
+                        <span>{{$workout->time}}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
-
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
-                </div>
-            </div>
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
-
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
-                </div>
-            </div>
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
-
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
-                </div>
-            </div>
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
-
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
-                </div>
-            </div>
-            <div class="customer-workout-plan-workout-container">
-                <div class="customer-workout-plan-video-container">
-                    <video>
-                        <source src="../imgs/movie.mp4">
-                    </video>
-                </div>
-
-                <div class="customer-workout-plan-name">
-                    <p>Training 1</p>
-                    <span>20 sec</span>
-                </div>
-            </div>
+                @empty
+                <p class="text-secondary p-1">No Video</p>
+            @endforelse
         </div>
     </div>
 </div>

@@ -34,9 +34,18 @@
                     <label for="calories">Calories</label>
                     <input type="number" class="form-control" name="calories">
                 </div>
-
-
-
+                <div class="mt-4">
+                    <label for="calories">Carbohydrates</label>
+                    <input type="number" class="form-control" name="carbohydrates">
+                </div>
+                <div class="mt-4">
+                    <label for="calories">Fat</label>
+                    <input type="number" class="form-control" name="fat">
+                </div>
+                <div class="mt-4">
+                    <label for="calories">Protein</label>
+                    <input type="number" class="form-control" name="protein">
+                </div>
                 <div class="float-end mt-4">
                     <button type="submit" class="btn btn-primary" onclick="submitForm(this);">Confirm</button>
                     <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>

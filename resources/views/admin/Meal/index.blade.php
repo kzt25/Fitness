@@ -40,8 +40,11 @@
                         <th>No.</th>
                         <th>Name</th>
                         <th>Calories</th>
-                        <th>Gender</th>
+                        <th>Fat</th>
+                        <th>Carbohydrates</th>
+                        <th>Protein</th>
                         <th>Meal Plan Type</th>
+                        <th>Gender</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -77,6 +80,18 @@
                     {
                         data: 'calories',
                         name: 'calories'
+                    },
+                    {
+                        data: 'fat',
+                        name: 'fat'
+                    },
+                    {
+                        data: 'carbohydrates',
+                        name: 'carbohydrates'
+                    },
+                    {
+                        data: 'protein',
+                        name: 'protein'
                     },
                     {
                         data: 'meal_plans.meal_plan_type',

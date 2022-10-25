@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Customer;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\Workout;
 use App\Models\MealPlan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class Customer_TrainingCenterController extends Controller
 
@@ -22,7 +24,14 @@ class Customer_TrainingCenterController extends Controller
 
     public function workout_plan()
     {
-        return view('customer.training_center.workout_plan');
+        $user=auth()->user();
+        $tc_workouts=DB::table('workouts')
+                        ->where('member_type',$user->member_type)
+                        ->where('gender_type',$user->gender)
+                        ->where('workout_level',$user->membertype_level)
+                        ->get();
+
+        return view('customer.training_center.workout_plan',compact('tc_workouts'));
     }
 
     public function water()
