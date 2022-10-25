@@ -64,13 +64,11 @@ class MealPlanController extends Controller
      */
     public function store(MealPlanRequest $request)
     {
-        //
         $mealPlan = new MealPlan();
-        $mealPlan->member_type_id = $request->member_type_id;
-        $mealPlan->gender = $request->gender;
-        $mealPlan->meal_plan_type = $request->meal_plan_type;
+        $mealPlan->member_type = $request->member_type;
         $mealPlan->plan_name = $request->meal_plan_name;
         $mealPlan->save();
+        //dd($mealPlan);
         return redirect()->route('mealplan.index')->with('success', 'New Meal Plan is created successfully!');
     }
 
@@ -94,9 +92,7 @@ class MealPlanController extends Controller
     {
         // dd("df");
         $mealPlan_update=MealPlan::findOrFail($id);
-        $mealPlan_update->member_type_id = $request->member_type_id;
-        $mealPlan_update->gender = $request->gender;
-        $mealPlan_update->meal_plan_type = $request->meal_plan_type;
+        $mealPlan_update->member_type = $request->member_type;
         $mealPlan_update->plan_name = $request->meal_plan_name;
         $mealPlan_update->update();
         return redirect()->route('mealplan.index')->with('success', 'Meal Plan is updated successfully!');

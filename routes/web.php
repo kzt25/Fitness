@@ -303,6 +303,8 @@ Route::prefix('admin')->group(function () {
             Route::get('customer/training_center/water',[Customer_TrainingCenterController::class,'water'])->name('training_center.water');
             Route::get('customer/training_center/workout',[Customer_TrainingCenterController::class,'workout'])->name('training_center.workout');
 
+            Route::post('customer/training_center/breakfast',[Customer_TrainingCenterController::class,'showbreakfast'])->name('customer/training_center/breakfast');
+
 
         });
         Route::middleware(['role:Gold'])->group(function () {

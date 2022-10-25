@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Models\Workout;
+use Illuminate\Support\Facades\DB;
+use App\Models\Meal;
 use App\Models\MealPlan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class Customer_TrainingCenterController extends Controller
@@ -18,9 +19,24 @@ class Customer_TrainingCenterController extends Controller
 
     public function meal()
     {
-        $customer_meal_plans=MealPlan::all();
-        return view('customer.training_center.meal',compact('customer_meal_plans'));
+        $meals =Meal::all();
+        return view('customer.training_center.meal',compact('meals'));
     }
+
+        public function showbreakfast(Request $request)
+        {
+
+            $meals =Meal::all();
+
+            if($request->keyword != ''){
+                $meals = Meal::where('name','LIKE','%'.$request->keyword.'%')->get();
+            }
+            //dd($members);
+            return response()->json([
+               'breakfast' => $meals
+            ]);
+        }
+
 
     public function workout_plan()
     {

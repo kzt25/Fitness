@@ -58,6 +58,8 @@
     <!--theme-->
     <script src="{{asset('js/theme.js')}}"></script>
 
+
+
     @stack('scripts')
 
   </body>

@@ -144,11 +144,13 @@ class UserController extends Controller
 
         $user->member_type = $member->member_type;
 
+        $user->syncRoles($request->roles);
+
         $user->save();
         $user->members()->attach($request->member_id);
         // Thandar style end
 
-        $user->syncRoles($request->roles);
+
 
         return redirect()->route('user.index')->with('success', 'User is updated successfully!');
     }
