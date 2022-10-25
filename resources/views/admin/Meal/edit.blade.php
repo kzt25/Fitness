@@ -35,6 +35,19 @@
                     <input type="number" class="form-control" name="calories" value={{$meal->calories}}>
                 </div>
 
+                <div class="mt-4">
+                    <label for="calories">Carbohydrates</label>
+                    <input type="number" class="form-control" name="carbohydrates" value={{$meal->carbohydrates}}>
+                </div>
+                <div class="mt-4">
+                    <label for="calories">Fat</label>
+                    <input type="number" class="form-control" name="fat" value={{$meal->fat}}>
+                </div>
+                <div class="mt-4">
+                    <label for="calories">Protein</label>
+                    <input type="number" class="form-control" name="protein" value={{$meal->protein}}>
+                </div>
+
                 <div class="float-end mt-4">
                     <button type="submit" class="btn btn-primary" >Update</button>
                     <a href="{{ route('meal.index') }}" class="btn btn-secondary">Cancel</a>

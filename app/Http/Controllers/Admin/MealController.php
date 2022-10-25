@@ -68,8 +68,11 @@ class MealController extends Controller
         // $meal_create->gender = $request->gender;
         $meal_create->calories = $request->calories;
         $meal_create->meal_plan_id = $request->meal_plan_id;
-        $meal_create->meal_time = $request->meal_time;
-        $meal_create->day = $request->day;
+        $meal_create->carbohydrates = $request->carbohydrates;
+        $meal_create->protein = $request->protein;
+        $meal_create->fat = $request->fat;
+        // $meal_create->meal_time = $request->meal_time;
+        // $meal_create->day = $request->day;
         $meal_create->save();
         return redirect()->route('meal.index')->with('success', 'New Meal is created successfully!');
     }
@@ -117,8 +120,9 @@ class MealController extends Controller
         // $meal_update->gender = $request->gender;
         $meal_update->calories = $request->calories;
         $meal_update->meal_plan_id = $request->meal_plan_id;
-        $meal_update->meal_time = $request->meal_time;
-        $meal_update->day = $request->day;
+        $meal_update->carbohydrates = $request->carbohydrates;
+        $meal_update->protein = $request->protein;
+        $meal_update->fat = $request->fat;
         $meal_update->update();
         return redirect()->route('meal.index')->with('success', 'Meal is updated successfully!');
     }

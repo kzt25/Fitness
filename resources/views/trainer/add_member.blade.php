@@ -1,7 +1,44 @@
 @extends('trainer.layouts.app')
-
 @section('content')
+<!--add member modal-->
+<div class="modal fade" id="addMemberModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header  customer-transaction-modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Add Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form class="add-member-form" action="">
+            <input type="text" class="form-control mb-3"   placeholder="Search Member" id="search">
+            <div class="add-member-rows-container">
+                {{-- @foreach($member as $memb)
+                <div class="add-member-row">
+                    <div class="add-member-name-container">
+                        <img src="../imgs/avatar.png">
+                        <p>{{$memb->name}}</p>
+                    </div>
+                    <div class="add-member-row-btns-container">
+                        <label class="add-member-checkbox">
+                            <a href = "{{route('addMember',$memb->id)}}"><p>Add</p></a>
+                        </label>
+                        <a href="#" class="customer-secondary-btn add-member-view-profile-btn">View Profile</a>
+                    </div>
+                </div>
+                @endforeach --}}
+            </div>
+            {{--
+            <div class="create-group-form-btns-contaier">
+                <button type="submit" class="customer-primary-btn">Confirm</button>
+                <button type="reset" class="customer-secondary-btn" onclick="uncheckAddMemberBoxes()">Cancel</button>
+            </div> --}}
+         </form>
 
+        </div>
+
+      </div>
+    </div>
+</div>
         <div class="trainer-two-columns-container">
             <div class="trainer-group-chats-parent-container">
                 <p>Groups</p>
@@ -136,7 +173,8 @@
 
                             </div>
                         </div>
-                `}
+                `
+                }
                     $('.add-member-rows-container').html(htmlView);
                 }
                 $(document).on('click', '#group-chat', function() {
