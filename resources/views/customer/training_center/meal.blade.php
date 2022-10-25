@@ -234,13 +234,14 @@
                          <button class="customer-food-tracker-checkbox-btn breakfast_add" data-id = `+res.breakfast[i].id+` value=`+i+` >Add</button>
                          </div>
                 `
+                    }
 
 
-            $('.breakfast_container').html(htmlView);
+                    $('.breakfast_container').html(htmlView);
                     $(".breakfast_add").click(function(){
+                        $(".customer-added-food-list-container tbody").empty()
                         var id = $(this).data('id');
                         var i = $(this).val();
-
                         foodObj = {
                                 id : res.breakfast[i].id,
                                 name : res.breakfast[i].name,
@@ -251,31 +252,28 @@
                                 servings : 0
                             }
                             console.log(foodList)
-                        console.log(foodObj)
+                            console.log(foodObj)
 
                         var rowIdx = 0;
                         if(foodList.length === 0){
                             foodList.push(foodObj)
                         }
-                        // else{
-                        //     foodList.splice(foodObj)
-                        // }
+
                         // console.log(foodList);
                         // console.log(foodList,"foodlist")
 
                             $.each(foodList, function(index,value) {
-                                // console.log(value?.name === foodObj.name)
-                                // console.log(foodObj.id,"obj")
-                                // console.log(value.id , "value");
                                 if(value.id === foodObj.id){
                                     value.servings += 1
                                     console.log("same food")
                                     $(".customer-added-food-list-container tbody tr").each(function(){
                                         // console.log($(this).attr("id"))
                                         var idCount = $(`[id=${$(this).attr("id")}]`);
+                                        console.log(idCount.length,"idcount");
                                         if (idCount.length > 0){
+                                            console.log("id same")
                                             $(`[id=${$(this).attr("id")}]`).remove();
-                                        }
+                                            }
                                     })
 
                                 }else{
@@ -283,12 +281,11 @@
                                     foodList.push(foodObj)
                                     // console.log(foodList)
                                 }
-                                $(".customer-added-food-list-container tbody").empty()
 
                             $.each(foodList, function(index,value){
                                 $(".customer-added-food-list-container tbody").append(`
                                 <tr id="R${++rowIdx}">
-                                    <td>${rowIdx}</td>
+                                    <td>${value.id}</td>
                                     <td>${value.name}</td>
                                     <td>${value.cal}</td>
                                     <td>${value.carb}</td>
@@ -306,7 +303,6 @@
 
                         })
                      });
-                    }
 
                 }
 
